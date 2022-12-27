@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-export default function Buttons({ text }) {
+export default function Buttons({ text, onPress }) {
   return (
+    <TouchableOpacity onPress={onPress}>
     <View style={styles.container}>
-      <TouchableOpacity>
         <Text style={styles.text}>{text}</Text>
-      </TouchableOpacity>
     </View>
+    </TouchableOpacity>
   );
 }
 

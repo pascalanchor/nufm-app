@@ -1,25 +1,31 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import Buttons from "../../Components/SharedComponents/Buttons";
 
 export default function LoginForm() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.welcomeCont}>
         <Text style={styles.welcome}>Welcome !</Text>
       </View>
+      <View style={styles.inputs}>
       <BasicInput label="Email" placeholder="Enter your Email here" />
-      <BasicInput label="Password"  bool={true} placeholder="Enter your Password" />
-      <View style={styles.btn}>
-      <Buttons text="Login" />
+      <BasicInput
+        label="Password"
+        bool={true}
+        placeholder="Enter your Password"
+      />
       </View>
+        <Buttons
+          text="Login"
+          onPress={() => {
+            navigation.navigate("Home");
+          }}
+        />
     </View>
   );
 }
@@ -34,7 +40,7 @@ const styles = StyleSheet.create({
     marginVertical: "8%",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: "8%",
+    paddingBottom: "10%",
     marginHorizontal: "3%",
   },
   text: {
@@ -52,7 +58,8 @@ const styles = StyleSheet.create({
     marginVertical: "4%",
     paddingTop: "5%",
   },
-  btn:{
-    marginTop:"10%"
-  }
+  inputs: {
+    width:"100%",
+    marginBottom: "8%",
+  },
 });

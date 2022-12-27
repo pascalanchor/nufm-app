@@ -1,3 +1,10 @@
 export { default as Landing } from './LoginScreens/Landing';
 export { default as Login } from './LoginScreens/Login';
 export { default as Reset } from './LoginScreens/Reset';
+export { default as Home } from './AdminScreens/Home';
+export { default as Calendar } from './AdminScreens/Calendar';
+export { default as Analytics } from './AdminScreens/Analytics';
+export { default as Incident } from './AdminScreens/Incident';
+export { default as Risk } from './AdminScreens/Risk';
+export { default as Communication } from './AdminScreens/Communication';
+export { default as Support } from './AdminScreens/Support';

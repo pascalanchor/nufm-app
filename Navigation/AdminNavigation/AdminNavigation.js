@@ -1,20 +1,35 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+// import { StyleSheet, Text, View, Image } from "react-native";
 // import { NavigationContainer } from "@react-navigation/native";
-// import Landing from '../../Screens/LoginScreens/Landing'
+// import { createStackNavigator } from "@react-navigation/stack";
+// import DrawerItem from '../../Components/SharedComponents/DrawerItems';
+// import {Home, Calendar, Analytics, Incident, Support, Risk, Communication} from '../../Screens';
 
-export default function AdminNavigation() {
-  return (
-    <View style={styles.container}>
-      {/* <NavigationContainer> */}
-        {/* <Landing/> */}
-      {/* </NavigationContainer> */}
-    </View>
-  );
-}
+// const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f2f2f2",
-  },
-});
+// export default function AdminNavigation() {
+//   return (
+//     <View style={styles.container}>
+//       {/* <NavigationContainer> */}
+//         {/* <Stack.Navigator
+//         options={{ gestureEnabled: false }}
+//           screenOptions={{
+//             headerShown: false,
+//           }}
+//         > */}
+//           <Stack.Screen
+//             name="Home"
+//             component={Home}
+//           />
+//           <Stack.Screen name="Risk" component={Risk} />
+//         {/* </Stack.Navigator> */}
+//       {/* </NavigationContainer> */}
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#f2f2f2",
+//   },
+// });
