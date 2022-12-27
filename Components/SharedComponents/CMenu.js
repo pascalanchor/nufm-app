@@ -6,6 +6,7 @@ import {
   Modal,
   FlatList,
   TouchableOpacity,
+  TouchableWithoutFeedback
 } from "react-native";
 // import Modal from "react-native-modal";
 import { ScrollView } from "react-native-virtualized-view";
@@ -84,6 +85,7 @@ export default function CMenu({ modalVisible, setModal }) {
   ];
   return (
     <Modal animationType="fade" transparent={true} visible={modalVisible}>
+      <TouchableWithoutFeedback onPress={()=>setModal(false)}>
       <View style={styles.container}>
         <View style={styles.subCont}>
           <View style={styles.txtImg}>
@@ -136,6 +138,7 @@ export default function CMenu({ modalVisible, setModal }) {
           </View>
         </View>
       </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 }

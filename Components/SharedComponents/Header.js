@@ -41,12 +41,10 @@ const styles = StyleSheet.create({
     paddingTop: "18%",
     paddingHorizontal: "7%",
     width: "100%",
-    backgroundColor: "#EAEAEA",
   },
   container: {
     flexDirection: "column",
     justifyContent: "flex-start",
-    backgroundColor: "#EAEAEA",
     marginBottom: "5%",
   },
   img: {

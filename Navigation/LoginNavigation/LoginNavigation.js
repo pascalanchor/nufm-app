@@ -35,6 +35,7 @@ export default function LoginNavigation() {
           <Stack.Screen name="Reset" component={Reset} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Risk" component={Risk} />
+          <Stack.Screen name="Communication" component={Communication} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

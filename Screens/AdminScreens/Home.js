@@ -20,7 +20,7 @@ import Equipments from "../../assets/Equipments.png";
 import Vendors from "../../assets/Vendors.png";
 import Contracts from "../../assets/Contracts.png";
 
-export default function Home({ props }) {
+export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);
   const CardItems = [
     { name: "Facility Management", icon: Facility },
@@ -43,7 +43,7 @@ export default function Home({ props }) {
 
   return (
     <View style={styles.box}>
-      <View style={styles.menu}>
+      <View>
         <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
       <Header title="Home" setModal={setModalVisible} />
@@ -64,16 +64,10 @@ export default function Home({ props }) {
 }
 
 const styles = StyleSheet.create({
-  menu: {
-    // position: "absolute",
-  },
   box: {
-    backgroundColor: "#EAEAEA",
-    // position: "relative",
-    height: "100%",
+    flex:1
   },
   container: {
-    backgroundColor: "#EAEAEA",
-    paddingBottom: "31%",
+    paddingBottom: "35%",
   },
 });

@@ -13,7 +13,7 @@ export default function LoginForm() {
         <Text style={styles.welcome}>Welcome !</Text>
       </View>
       <View style={styles.inputs}>
-      <BasicInput label="Email" placeholder="Enter your Email here" />
+      <BasicInput label="Email" keyboardType="email-address" placeholder="Enter your Email here" />
       <BasicInput
         label="Password"
         bool={true}
