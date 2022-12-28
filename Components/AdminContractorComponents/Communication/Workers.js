@@ -41,6 +41,7 @@ export default function Workers({ searchVal }) {
       time: "9:00AM",
     },
   ];
+
   return (
     <View style={styles.box}>
       <ScrollView>
