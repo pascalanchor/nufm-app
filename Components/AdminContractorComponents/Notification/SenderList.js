@@ -10,8 +10,10 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Senders({ searchVal }) {
+  const navigation = useNavigation();
   const Senders = [
     { name: "Hussam Khaled", date: "28-09-2022", receiver: "Jana" },
     { name: "Jana Zreika", date: "28-09-2022", receiver: "Jana" },
@@ -56,23 +58,25 @@ export default function Senders({ searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <View style={styles.senderContainer}>
-                <View style={styles.senderRec}>
-                  <Text style={styles.txt}> {item.name}</Text>
-                  <Text style={styles.receiver}> {item.receiver}</Text>
+              <TouchableOpacity onPress={() => navigation.navigate("Sender")}>
+                <View style={styles.senderContainer}>
+                  <View style={styles.senderRec}>
+                    <Text style={styles.txt}> {item.name}</Text>
+                    <Text style={styles.receiver}> {item.receiver}</Text>
+                  </View>
+                  <View>
+                    <TouchableOpacity>
+                      <AntDesign
+                        name="close"
+                        size={20}
+                        color="#898989"
+                        style={styles.close}
+                      />
+                    </TouchableOpacity>
+                    <Text style={styles.date}>{item.date}</Text>
+                  </View>
                 </View>
-                <View>
-                  <TouchableOpacity>
-                    <AntDesign
-                      name="close"
-                      size={20}
-                      color="#898989"
-                      style={styles.close}
-                    />
-                  </TouchableOpacity>
-                  <Text style={styles.date}>{item.date}</Text>
-                </View>
-              </View>
+              </TouchableOpacity>
             );
           }}
         />

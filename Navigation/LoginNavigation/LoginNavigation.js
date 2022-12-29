@@ -11,7 +11,8 @@ import {
   Support,
   Risk,
   Communication,
-  Notification
+  Notification, 
+  Sender
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -38,6 +39,7 @@ export default function LoginNavigation() {
           <Stack.Screen name="Risk" component={Risk} />
           <Stack.Screen name="Communication" component={Communication} />
           <Stack.Screen name="Notification" component={Notification} />
+          <Stack.Screen name="Sender" component={Sender} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

@@ -9,3 +9,4 @@ export { default as Risk } from './AdminScreens/Risk';
 export { default as Communication } from './AdminScreens/Communication';
 export { default as Support } from './AdminScreens/Support';
 export { default as Notification } from './AdminScreens/Notification';
+export { default as Sender } from './AdminScreens/Sender';
