@@ -151,6 +151,7 @@ const styles = StyleSheet.create({
     width: "80%",
     height: "100%",
     backgroundColor: "#023D26",
+    paddingTop:"6%"
   },
   img: {
     width: 190,
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
   menuItem: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    paddingLeft: "6%",
+    paddingLeft: "7%",
     marginVertical: "3%",
     alignItems: "center",
   },
@@ -195,7 +196,7 @@ const styles = StyleSheet.create({
   logout: {
     flexDirection: "row",
     paddingLeft: "2%",
-    marginBottom: "8%",
+    marginBottom: "10%",
     alignItems: "center",
     backgroundColor: "#B4D9CB",
     borderRadius: 7,
@@ -205,13 +206,13 @@ const styles = StyleSheet.create({
   },
   reset: {
     flexDirection: "row",
-    marginBottom: "8%",
+    marginBottom: "10%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B4D9CB",
     borderRadius: 7,
     width: "41%",
     marginHorizontal: "6%",
-    paddingVertical: "2.3%",
+    paddingVertical: "2.5%",
   },
 });

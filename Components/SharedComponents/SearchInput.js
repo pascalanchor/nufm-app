@@ -3,8 +3,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { EvilIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 
-export default function SearchInput({setSearchVal}) {
-  
+export default function SearchInput({ setSearchVal }) {
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -29,14 +28,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#F1F1F1",
     borderTopRightRadius: 12,
     borderBottomRightRadius: 12,
-    borderWidth: 1,
-    borderColor: "#F0F0F0",
     paddingLeft: "2%",
     fontSize: RFPercentage(1.5),
   },
   container: {
     marginHorizontal: "9%",
-    marginBottom:"5%"
+    marginBottom: "5%",
   },
   subCont: {
     flexDirection: "column",

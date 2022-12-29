@@ -12,7 +12,7 @@ export default function TabPannel({searchVal}) {
       screenOptions={{
         tabBarActiveTintColor: "#023D26",
         tabBarIndicatorStyle: {
-          backgroundColor: "#B4D9CB",
+          backgroundColor: "#92BFAE",
         },
         tabBarLabelStyle: {
           fontSize: RFPercentage(1.4),
