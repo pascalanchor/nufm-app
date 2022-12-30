@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { EvilIcons } from "@expo/vector-icons";
-import CMenu from "../../Components/SharedComponents/CMenu";
-import Header from "../../Components/SharedComponents/Header";
-import SenderList from "../../Components/AdminContractorComponents/Notification/SenderList";
+import CMenu from "../../../Components/SharedComponents/CMenu";
+import Header from "../../../Components/SharedComponents/Header";
+import SenderList from "../../../Components/AdminContractorComponents/Notification/SenderList";
 
 export default function Notification() {
   const [searchVal, setSearchVal] = useState("");

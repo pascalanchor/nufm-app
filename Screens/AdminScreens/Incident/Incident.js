@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { EvilIcons } from "@expo/vector-icons";
-import CMenu from "../../Components/SharedComponents/CMenu";
-import Header from "../../Components/SharedComponents/Header";
-import IncidentList from "../../Components/AdminContractorComponents/Incident/IncidentList";
+import CMenu from "../../../Components/SharedComponents/CMenu";
+import Header from "../../../Components/SharedComponents/Header";
+import IncidentList from "../../../Components/AdminContractorComponents/Incident/IncidentList";
 
 export default function Incident() {
   const [searchVal, setSearchVal] = useState("");

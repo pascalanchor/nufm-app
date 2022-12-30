@@ -7,11 +7,11 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import CMenu from "../../Components/SharedComponents/CMenu";
-import Header from "../../Components/SharedComponents/Header";
-import IncidentDetails from "../../Components/AdminContractorComponents/Incident/IncidentDetails.js";
+import CMenu from "../../../Components/SharedComponents/CMenu";
+import Header from "../../../Components/SharedComponents/Header";
+import SenderDetails from "../../../Components/AdminContractorComponents/Notification/SenderDetails.js";
 
-export default function IncidentDet() {
+export default function Sender() {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -19,9 +19,9 @@ export default function IncidentDet() {
       <View>
         <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Incident" setModal={setModalVisible} />
+      <Header title="Notification" setModal={setModalVisible} />
       <View style={{ marginVertical:"10%"}}>
-      <IncidentDetails />
+      <SenderDetails />
       </View>
     </View>
   );
