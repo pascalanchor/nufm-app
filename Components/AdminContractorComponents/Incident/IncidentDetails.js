@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
-export default function SenderDetails() {
+export default function IncidentDetails() {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -39,20 +39,26 @@ export default function SenderDetails() {
           </View>
         </View>
         <View style={styles.txtInput}>
-          <Text style={styles.txt}>Status</Text>
+          <Text style={styles.txt}>Sites</Text>
           <View style={styles.disabledInput}>
             <Text style={styles.txtInside}></Text>
           </View>
         </View>
         <View style={styles.txtInput}>
-          <Text style={styles.txt}>Receiver</Text>
+          <Text style={styles.txt}>Facility</Text>
           <View style={styles.disabledInput}>
             <Text style={styles.txtInside}></Text>
           </View>
         </View>
         <View style={styles.txtInput}>
-          <Text style={styles.txt}>Date</Text>
+          <Text style={styles.txt}>Task</Text>
           <View style={styles.disabledInput}>
+            <Text style={styles.txtInside}></Text>
+          </View>
+        </View>
+        <View style={styles.txtInput}>
+          <Text style={styles.txt}>Incident</Text>
+          <View style={styles.txtarea}>
             <Text style={styles.txtInside}></Text>
           </View>
         </View>
@@ -82,7 +88,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
     borderRadius: 25,
-    aspectRatio: 0.8 / 1,
+    aspectRatio: 0.67 / 1,
     width: "100%",
     paddingHorizontal: "6%",
     paddingVertical: "5%",
@@ -114,7 +120,7 @@ const styles = StyleSheet.create({
     paddingLeft: "3%",
   },
   txtarea: {
-    aspectRatio: 2.5 / 1,
+    aspectRatio: 3 / 1,
     backgroundColor: "#F1F1F1",
     borderRadius: 10,
     width: "80%",
@@ -127,7 +133,7 @@ const styles = StyleSheet.create({
     paddingVertical: "3.5%",
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: "5%",
+    marginVertical: "6%",
     borderRadius: 15,
   },
 });

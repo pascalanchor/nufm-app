@@ -10,3 +10,4 @@ export { default as Communication } from './AdminScreens/Communication';
 export { default as Support } from './AdminScreens/Support';
 export { default as Notification } from './AdminScreens/Notification';
 export { default as Sender } from './AdminScreens/Sender';
+export { default as IncidentDet } from "./AdminScreens/IncidentDet";
