@@ -20,7 +20,7 @@ export default function Communication() {
       <Header title="Communication" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> New Messages</Text>
-        <SearchInput setSearchVal={setSearchVal} bgColor="#F1F1F1"/>
+        <SearchInput searchVal={searchVal} setSearchVal={setSearchVal} bgColor="#F1F1F1"/>
         <TabPannel searchVal={searchVal} />
       </View>
     </View>

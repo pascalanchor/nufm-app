@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -57,13 +57,28 @@ export default function Contractors({ searchVal }) {
       phone: "70322027",
     },
   ];
+  const [contractorsArr, setContractorsArr] = useState([]);
+  useEffect(() => {
+    sortedArray();
+  }, [searchVal]);
+  const sortedArray = () => {
+    setContractorsArr(
+      Contractors.filter((cntr) =>
+        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+      )
+    );
+  };
 
   return (
     <View style={styles.box}>
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={Contractors}
+          data={
+            contractorsArr && contractorsArr.length > 0
+              ? contractorsArr
+              : Contractors
+          }
           numColumns={1}
           renderItem={({ item }) => {
             return (

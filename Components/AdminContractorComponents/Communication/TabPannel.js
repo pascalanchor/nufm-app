@@ -20,9 +20,9 @@ export default function TabPannel({searchVal}) {
         },
       }}
     >
-      <Tab.Screen name="Workers" component={Workers} searchVal={searchVal}/>
-      <Tab.Screen name="Contractors" component={Contractors} />
-      <Tab.Screen name="Occupants" component={Occupants} />
+      <Tab.Screen name="Workers"  children={()=><Workers searchVal={searchVal}/>}/>
+      <Tab.Screen name="Contractors"  children={()=><Contractors searchVal={searchVal}/>} />
+      <Tab.Screen name="Occupants"  children={()=><Occupants searchVal={searchVal}/>} />
     </Tab.Navigator>
   );
 }

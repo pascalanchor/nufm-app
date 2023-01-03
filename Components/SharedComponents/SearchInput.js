@@ -3,7 +3,10 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { EvilIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 
-export default function SearchInput({ setSearchVal }) {
+export default function SearchInput({ setSearchVal, searchVal }) {
+  const handleChange = (searchVal) => {
+    setSearchVal(searchVal);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -14,7 +17,8 @@ export default function SearchInput({ setSearchVal }) {
           <TextInput
             style={styles.input}
             placeholder="Search"
-            onChangeText={(e) => setSearchVal(e.target.value)}
+            onChangeText={handleChange}
+            value={searchVal}
           />
         </View>
       </View>

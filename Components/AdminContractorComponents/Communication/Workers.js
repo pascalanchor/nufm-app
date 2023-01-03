@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Linking } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
@@ -71,12 +71,28 @@ export default function Workers({ searchVal }) {
     },
   ];
 
+  const [WorkersArr, setWorkersArr] = useState([]);
+  useEffect(() => {
+    sortedArray();
+  }, [searchVal]);
+  const sortedArray = () => {
+    setWorkersArr(
+      Workers.filter((cntr) =>
+        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+      )
+    );
+  };
+
   return (
     <View style={styles.box}>
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={Workers}
+          data={
+            WorkersArr && WorkersArr.length > 0
+              ? WorkersArr
+              : Workers
+          }
           numColumns={1}
           renderItem={({ item }) => {
             return (
