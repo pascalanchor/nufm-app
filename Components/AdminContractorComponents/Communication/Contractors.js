@@ -1,31 +1,60 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  Linking,
+  TouchableOpacity,
+} from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import Avatar from "../../../assets/avatar.png";
 
 export default function Contractors({ searchVal }) {
   const Contractors = [
-    { name: "Hussam Khaled", icon: Avatar, date: "28-09-2022", time: "9:00AM" },
-    { name: "Jana Zreika", icon: Avatar, date: "28-09-2022", time: "9:00AM" },
     {
-      name: "Samir Sam",
+      name: "Hussam Khaled",
       icon: Avatar,
       date: "28-09-2022",
       time: "9:00AM",
+      phone: "70580011",
+    },
+    {
+      name: "Jana Zreika",
+      icon: Avatar,
+      date: "28-09-2022",
+      time: "9:00AM",
+      phone: "03358475",
+    },
+    {
+      name: "Tarek Zreika",
+      icon: Avatar,
+      date: "28-09-2022",
+      time: "9:00AM",
+      phone: "70322027",
     },
     {
       name: "Hussam Khaled2",
       icon: Avatar,
       date: "28-09-2022",
       time: "9:00AM",
+      phone: "70580011",
     },
-    { name: "Jana Zreika9", icon: Avatar, date: "28-09-2022", time: "9:00AM" },
+    {
+      name: "Jana Zreika9",
+      icon: Avatar,
+      date: "28-09-2022",
+      time: "9:00AM",
+      phone: "03358475",
+    },
     {
       name: "Samir Sam7",
       icon: Avatar,
       date: "28-09-2022",
       time: "9:00AM",
+      phone: "70322027",
     },
   ];
 
@@ -38,16 +67,24 @@ export default function Contractors({ searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <View style={styles.workerContainer}>
-                <View style={styles.workerImg}>
-                  <Image source={item.icon} style={styles.img} />
-                  <Text style={styles.txt}> {item.name}</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  Linking.openURL(
+                    "http://api.whatsapp.com/send?phone=" + item.phone
+                  );
+                }}
+              >
+                <View style={styles.workerContainer}>
+                  <View style={styles.workerImg}>
+                    <Image source={item.icon} style={styles.img} />
+                    <Text style={styles.txt}> {item.name}</Text>
+                  </View>
+                  <View>
+                    <Text style={styles.time}>{item.time}</Text>
+                    <Text style={styles.date}>{item.date}</Text>
+                  </View>
                 </View>
-                <View>
-                  <Text style={styles.time}>{item.time}</Text>
-                  <Text style={styles.date}>{item.date}</Text>
-                </View>
-              </View>
+              </TouchableOpacity>
             );
           }}
         />
