@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   StyleSheet,
   Text,
@@ -48,13 +48,24 @@ export default function Senders({ searchVal }) {
       receiver: "Jana",
     },
   ];
+  const [SenderArr, setSenderArr] = useState([]);
+  useEffect(() => {
+    sortedArray();
+  }, [searchVal]);
+  const sortedArray = () => {
+    setSenderArr(
+      Senders.filter((cntr) =>
+        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+      )
+    );
+  };
 
   return (
     <View style={styles.box}>
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={Senders}
+          data={SenderArr && SenderArr.length > 0 ? SenderArr : Senders}
           numColumns={1}
           renderItem={({ item }) => {
             return (

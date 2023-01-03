@@ -8,6 +8,9 @@ import Header from "../../../Components/SharedComponents/Header";
 import IncidentList from "../../../Components/AdminContractorComponents/Incident/IncidentList";
 
 export default function Incident() {
+  const handleChange = (searchVal) => {
+    setSearchVal(searchVal);
+  };
   const [searchVal, setSearchVal] = useState("");
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,12 +29,12 @@ export default function Incident() {
             <TextInput
               style={styles.input}
               placeholder="Search"
-              onChangeText={(e) => setSearchVal(e.target.value)}
+              onChangeText={handleChange}
             />
           </View>
         </View>
 
-        <IncidentList />
+        <IncidentList searchVal={searchVal} />
       </View>
     </View>
   );
@@ -56,7 +59,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 12,
     paddingLeft: "2%",
     fontSize: RFPercentage(1.5),
-
   },
   container: {
     marginHorizontal: "4.5%",

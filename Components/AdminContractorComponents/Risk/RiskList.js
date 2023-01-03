@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,7 +14,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function Risks({ searchVal }) {
   const navigation = useNavigation();
-  const Incidents = [
+  const Risks = [
     { name: "Risk1", date: "28-09-2022", facilityName: "facility" },
     { name: "Risk2", date: "28-09-2022", facilityName: "facility" },
     {
@@ -33,13 +33,29 @@ export default function Risks({ searchVal }) {
       facilityName: "facility",
     },
   ];
+  const [RiskArr, setRiskArr] = useState([]);
+  useEffect(() => {
+    sortedArray();
+  }, [searchVal]);
+  const sortedArray = () => {
+    setRiskArr(
+      Risks.filter((cntr) =>
+        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+      )
+    );
+  };
+
 
   return (
     <View style={styles.box}>
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={Incidents}
+          data={
+            RiskArr && RiskArr.length > 0
+              ? RiskArr
+              : Risks
+          }
           numColumns={1}
           renderItem={({ item }) => {
             return (

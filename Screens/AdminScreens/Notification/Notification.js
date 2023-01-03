@@ -8,6 +8,9 @@ import Header from "../../../Components/SharedComponents/Header";
 import SenderList from "../../../Components/AdminContractorComponents/Notification/SenderList";
 
 export default function Notification() {
+  const handleChange = (searchVal) => {
+    setSearchVal(searchVal);
+  };
   const [searchVal, setSearchVal] = useState("");
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,12 +29,12 @@ export default function Notification() {
             <TextInput
               style={styles.input}
               placeholder="Search"
-              onChangeText={(e) => setSearchVal(e.target.value)}
+              onChangeText={handleChange}
             />
           </View>
         </View>
 
-        <SenderList />
+        <SenderList searchVal={searchVal} />
       </View>
     </View>
   );

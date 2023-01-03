@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 import {
   StyleSheet,
   Text,
@@ -33,13 +33,28 @@ export default function Incidents({ searchVal }) {
       facilityName: "facility",
     },
   ];
+  const [IncidentArr, setIncidentArr] = useState([]);
+  useEffect(() => {
+    sortedArray();
+  }, [searchVal]);
+  const sortedArray = () => {
+    setIncidentArr(
+      Incidents.filter((cntr) =>
+        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+      )
+    );
+  };
 
   return (
     <View style={styles.box}>
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={Incidents}
+          data={
+            IncidentArr && IncidentArr.length > 0
+              ? IncidentArr
+              : Incidents
+          }
           numColumns={1}
           renderItem={({ item }) => {
             return (

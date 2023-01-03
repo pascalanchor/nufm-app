@@ -8,6 +8,9 @@ import Header from "../../../Components/SharedComponents/Header";
 import RiskList from "../../../Components/AdminContractorComponents/Risk/RiskList";
 
 export default function Risk() {
+  const handleChange = (searchVal) => {
+    setSearchVal(searchVal);
+  };
   const [searchVal, setSearchVal] = useState("");
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -26,12 +29,12 @@ export default function Risk() {
             <TextInput
               style={styles.input}
               placeholder="Search"
-              onChangeText={(e) => setSearchVal(e.target.value)}
+              onChangeText={handleChange}
             />
           </View>
         </View>
 
-        <RiskList />
+        <RiskList searchVal={searchVal} />
       </View>
     </View>
   );
