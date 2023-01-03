@@ -45,17 +45,12 @@ export default function Risks({ searchVal }) {
     );
   };
 
-
   return (
     <View style={styles.box}>
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={
-            RiskArr && RiskArr.length > 0
-              ? RiskArr
-              : Risks
-          }
+          data={RiskArr && RiskArr.length > 0 ? RiskArr : Risks}
           numColumns={1}
           renderItem={({ item }) => {
             return (

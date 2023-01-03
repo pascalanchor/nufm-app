@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -50,15 +50,13 @@ export default function Incidents({ searchVal }) {
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.name}
-          data={
-            IncidentArr && IncidentArr.length > 0
-              ? IncidentArr
-              : Incidents
-          }
+          data={IncidentArr && IncidentArr.length > 0 ? IncidentArr : Incidents}
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate("IncidentDet")}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("IncidentDet")}
+              >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
                     <Text style={styles.txt}> {item.name}</Text>

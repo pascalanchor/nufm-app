@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 12,
     paddingLeft: "2%",
     fontSize: RFPercentage(1.5),
-
   },
   container: {
     marginHorizontal: "4.5%",
