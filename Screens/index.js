@@ -11,3 +11,4 @@ export { default as Sender } from './AdminScreens/Notification/Sender';
 export { default as IncidentDet } from "./AdminScreens//Incident/IncidentDet";
 export { default as RiskDet } from "./AdminScreens/Risk/RiskDet";
 export { default as Facilities } from "./AdminScreens/Facility/Facilities";
+export { default as AddFacility } from "./AdminScreens/Facility/AddFacility";

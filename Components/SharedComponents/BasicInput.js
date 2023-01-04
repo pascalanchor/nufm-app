@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image, TextInput } from "react-native";
+import { StyleSheet, View, Text,TextInput } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function BasicInput({
@@ -7,7 +7,7 @@ export default function BasicInput({
   KeyboardType,
   value,
   onChange,
-  bool
+  bool,
 }) {
   return (
     <View style={styles.container}>
@@ -30,11 +30,9 @@ export default function BasicInput({
 const styles = StyleSheet.create({
   input: {
     width: "100%",
-    aspectRatio: 6.8 / 1,
+    aspectRatio: 6.9 / 1,
     backgroundColor: "#F1F1F1",
     borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#D7D7D7",
     paddingLeft: "4%",
     marginTop: "2.5%",
     fontSize: RFPercentage(1.7),
