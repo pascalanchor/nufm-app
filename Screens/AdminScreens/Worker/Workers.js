@@ -8,9 +8,9 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import SearchInput from "../../../Components/SharedComponents/SearchInput";
-import FacilityTable from "../../../Components/AdminContractorComponents/Facility/FacilityTable";
+import WorkerTable from "../../../Components/AdminContractorComponents/Worker/WorkerTable";
 
-export default function Facilities() {
+export default function Workers() {
   const navigation = useNavigation();
 
   const [searchVal, setSearchVal] = useState("");
@@ -21,26 +21,26 @@ export default function Facilities() {
       <View>
         <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Facility" setModal={setModalVisible} />
+      <Header title="Worker" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
-        <Text style={styles.txt}> Facilities</Text>
+        <Text style={styles.txt}> Workers</Text>
         <SearchInput
           searchVal={searchVal}
           setSearchVal={setSearchVal}
           bgColor="#F1F1F1"
         />
-        <FacilityTable searchVal={searchVal} />
+        <WorkerTable searchVal={searchVal} />
       </View>
       <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("AddFacility");
-          }}
-        >
-          <View style={styles.btnSite}>
-            <Ionicons name="add-outline" size={22} color="#023D26" />
-            <Text style={styles.addSite}>ADD Facility Site</Text>
-          </View>
-        </TouchableOpacity>
+        onPress={() => {
+          navigation.navigate("AddWorker");
+        }}
+      >
+        <View style={styles.btnSite}>
+          <Ionicons name="add-outline" size={22} color="#023D26" />
+          <Text style={styles.addSite}>ADD Worker</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,
-    marginBottom: "5%",
+    marginBottom: "8%",
     marginTop: "3%",
   },
   txt: {
@@ -70,14 +70,13 @@ const styles = StyleSheet.create({
   btnSite: {
     flexDirection: "row",
     backgroundColor: "#B2E3D1",
-    // backgroundColor:"#4FB4B4",
     borderRadius: 15,
     paddingHorizontal: "2%",
     alignItems: "center",
     paddingVertical: "3%",
     justifyContent: "center",
-    marginHorizontal: "5.5%",
-    marginBottom:"7%"
+    marginBottom: "7%",
+    marginHorizontal: "6%",
   },
   addSite: {
     fontSize: RFPercentage(1.9),

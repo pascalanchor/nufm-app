@@ -19,10 +19,13 @@ export default function SenderDetails() {
         <View
           style={{
             flexDirection: "row",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             marginBottom: "4%",
           }}
         >
+               <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back-circle" size={30} color="#B2E3D1" />
+          </TouchableOpacity>
           <TouchableOpacity>
             <AntDesign
               name="close"
@@ -62,11 +65,6 @@ export default function SenderDetails() {
             <Text style={styles.txtInside}></Text>
           </View>
         </View>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={styles.backbtn}>
-            <Text style={{ color: "#023D26", fontWeight: "bold" }}>Back</Text>
-          </View>
-        </TouchableOpacity>
       </View>
     </View>
   );
@@ -82,7 +80,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
     borderRadius: 25,
-    aspectRatio: 0.8 / 1,
+    aspectRatio: 0.9 / 1,
     width: "100%",
     paddingHorizontal: "6%",
     paddingVertical: "5%",
@@ -121,13 +119,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginLeft: "2%",
     paddingLeft: "2%",
-  },
-  backbtn: {
-    backgroundColor: "#B2E3D1",
-    paddingVertical: "3.5%",
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: "5%",
-    borderRadius: 15,
   },
 });

@@ -214,7 +214,7 @@ export default function AddForm() {
 const styles = StyleSheet.create({
   input: {
     width: "100%",
-    aspectRatio: 9 / 1,
+    aspectRatio: 8.6 / 1,
     backgroundColor: "#F1F1F1",
     borderRadius: 12,
     paddingLeft: "4%",
@@ -225,12 +225,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "4%",
+    marginBottom: "8%",
   },
   subCont: {
     flexDirection: "column",
     width: "90%",
-    marginTop: "3%",
+    marginTop: "4%",
   },
   label: {
     paddingLeft: "1.5%",

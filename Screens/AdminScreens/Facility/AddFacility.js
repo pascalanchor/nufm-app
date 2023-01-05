@@ -36,7 +36,9 @@ export default function AddFacility() {
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Add Facility Site</Text>
         <ScrollView>{multiStepForm()}</ScrollView>
-        <View style={{ flexDirection: page > 0 ? "row" : "column" }}>
+      
+      </View>
+      <View style={{ flexDirection: page > 0 ? "row" : "column", paddingHorizontal:"1.5%" }}>
           <View style={{ width: "50%" }}>
             {page > 0 && (
               <TouchableOpacity onPress={() => setPage(page - 1)}>
@@ -56,7 +58,7 @@ export default function AddFacility() {
                   alignItems: "center",
                   paddingVertical: page > 0 ? "6%" : "3%",
                   justifyContent: "center",
-                  marginVertical: page > 0 ? "10%" : "5%",
+                  marginBottom: page > 0 ? "12%" : "7%",
                   marginHorizontal: page > 0 ? "10%" : "5%",
                 }}
               >
@@ -67,7 +69,6 @@ export default function AddFacility() {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
     </View>
   );
 }
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,
-    marginBottom: "8%",
+    marginBottom: "5%",
     marginTop: "3%",
   },
   txt: {
@@ -105,7 +106,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: "6%",
     justifyContent: "center",
-    marginVertical: "10%",
+    marginBottom: "12%",
     marginHorizontal: "10%",
   },
   addBack: {
