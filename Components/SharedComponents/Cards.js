@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 5,
     },
-    shadowOpacity: 0.37,
-    shadowRadius: 12,
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
     elevation: 6,
     marginHorizontal: "2%",
     marginVertical: "3%",

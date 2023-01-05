@@ -70,14 +70,13 @@ const styles = StyleSheet.create({
   btnSite: {
     flexDirection: "row",
     backgroundColor: "#B2E3D1",
-    borderBottomLeftRadius: 25,
-    borderBottomRightRadius: 25,
-    borderTopRightRadius: 0,
-    borderTopleftRadius: 0,
+    // backgroundColor:"#4FB4B4",
+    borderRadius: 15,
     paddingHorizontal: "2%",
     alignItems: "center",
-    paddingVertical: "5%",
+    paddingVertical: "3%",
     justifyContent: "center",
+    margin: "5%",
   },
   addSite: {
     fontSize: RFPercentage(1.9),

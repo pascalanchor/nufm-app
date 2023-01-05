@@ -42,11 +42,11 @@ export default function Workers({ searchVal }) {
       phone: "03358475",
     },
     {
-      name: "Samir Sam7",
+      name: "Ziad",
       icon: Avatar,
       date: "28-09-2022",
       time: "9:00AM",
-      phone: "70322027",
+      phone: "76462633",
     },
     {
       name: "Hussam Khaled4",

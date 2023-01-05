@@ -4,13 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import NUFM from "../../assets/NUFM-Green.png";
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export default function Header({ title, setModal }) {
   const navigation = useNavigation();
@@ -18,13 +12,17 @@ export default function Header({ title, setModal }) {
     <View style={styles.container}>
       <View style={styles.subCont}>
         <TouchableOpacity onPress={() => setModal(true)}>
-          <Entypo name="menu" size={26} color="#023D26" />
+          <View>
+            <Entypo name="menu" size={26} color="#023D26" />
+          </View>
         </TouchableOpacity>
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
-        <TouchableOpacity onPress={()=> navigation.navigate("Notification")}>
-        <Ionicons name="notifications-outline" size={26} color="#023D26" />
+        <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
+          <View>
+            <Ionicons name="notifications-outline" size={26} color="#023D26" />
+          </View>
         </TouchableOpacity>
       </View>
       <View></View>

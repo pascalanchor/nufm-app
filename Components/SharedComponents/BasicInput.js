@@ -30,7 +30,7 @@ export default function BasicInput({
 const styles = StyleSheet.create({
   input: {
     width: "100%",
-    aspectRatio: 6.9 / 1,
+    aspectRatio: 7 / 1,
     backgroundColor: "#F1F1F1",
     borderRadius: 12,
     paddingLeft: "4%",
