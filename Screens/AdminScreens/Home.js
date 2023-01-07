@@ -20,10 +20,13 @@ export default function Home() {
   const navToWorker = () => {
     navigation.navigate("Workers");
   };
+  const navToAtt = () => {
+    navigation.navigate("Attendances");
+  };
   const CardItems = [
     { name: "Facility Management", icon: Facility, link: navToFac },
     { name: "Worker Management", icon: Worker, link: navToWorker },
-    { name: "Attendance Management", icon: Attendance, link: navToFac },
+    { name: "Attendance Management", icon: Attendance, link: navToAtt },
   ];
 
   return (

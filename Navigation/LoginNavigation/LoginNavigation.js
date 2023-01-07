@@ -17,7 +17,8 @@ import {
   RiskDet,
   Facilities,
   AddFacility,
-  Workers
+  Workers,
+  Attendances,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -51,8 +52,7 @@ export default function LoginNavigation() {
           <Stack.Screen name="Facilities" component={Facilities} />
           <Stack.Screen name="AddFacility" component={AddFacility} />
           <Stack.Screen name="Workers" component={Workers} />
-
-
+          <Stack.Screen name="Attendances" component={Attendances} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>
