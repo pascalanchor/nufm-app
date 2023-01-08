@@ -13,5 +13,6 @@ export { default as RiskDet } from "./AdminScreens/Risk/RiskDet";
 export { default as Facilities } from "./AdminScreens/Facility/Facilities";
 export { default as AddFacility } from "./AdminScreens/Facility/AddFacility";
 export { default as Workers } from "./AdminScreens/Worker/Workers";
+export { default as AddWorker } from "./AdminScreens/Worker/AddWorker";
 export { default as Attendances } from "./AdminScreens/Attendance/Attendances";
 export { default as CheckAttendance } from "./AdminScreens/Attendance/CheckAttendance";

@@ -18,6 +18,7 @@ import {
   Facilities,
   AddFacility,
   Workers,
+  AddWorker,
   Attendances,
   CheckAttendance
 } from "../../Screens";
@@ -53,6 +54,7 @@ export default function LoginNavigation() {
           <Stack.Screen name="Facilities" component={Facilities} />
           <Stack.Screen name="AddFacility" component={AddFacility} />
           <Stack.Screen name="Workers" component={Workers} />
+          <Stack.Screen name="AddWorker" component={AddWorker} />
           <Stack.Screen name="Attendances" component={Attendances} />
           <Stack.Screen name="CheckAttendance" component={CheckAttendance} />
 
