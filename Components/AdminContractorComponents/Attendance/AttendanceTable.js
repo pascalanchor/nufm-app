@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
+import { useNavigation } from "@react-navigation/native";
 
 export default function AttendanceTable({ searchVal }) {
+  const navigation = useNavigation();
   const Attendances = [
     {
       name: "Attendance one",
@@ -76,18 +84,18 @@ export default function AttendanceTable({ searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-                <TouchableOpacity>
-              <View style={styles.AttendanceContainer}>
-                <View style={styles.details}>
-                  <Text style={styles.txt}> {item.name}</Text>
+              <TouchableOpacity onPress={()=>navigation.navigate("CheckAttendance")}>
+                <View style={styles.AttendanceContainer}>
+                  <View style={styles.details}>
+                    <Text style={styles.txt}> {item.name}</Text>
+                  </View>
+                  <View style={styles.details}>
+                    <Text style={styles.Facility}>{item.Facility}</Text>
+                  </View>
+                  <View style={styles.details3}>
+                    <Text style={styles.Email}>{item.Email}</Text>
+                  </View>
                 </View>
-                <View style={styles.details}>
-                  <Text style={styles.Facility}>{item.Facility}</Text>
-                </View>
-                <View style={styles.details3}>
-                  <Text style={styles.Email}>{item.Email}</Text>
-                </View>
-              </View>
               </TouchableOpacity>
             );
           }}
