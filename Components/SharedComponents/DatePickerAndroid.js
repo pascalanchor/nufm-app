@@ -41,7 +41,6 @@ export default function DatePickerAndroid({ name, value }) {
           is24Hour={true}
           onChange={onDateSelected}
           name={name}
-          // style={styleSheet.datePicker}
         />
       )}
     </View>

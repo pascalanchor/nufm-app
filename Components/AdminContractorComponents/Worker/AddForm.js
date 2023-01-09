@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  Platform,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -50,7 +51,7 @@ export default function AddForm() {
             style={styles.input}
             containerStyle={{
               backgroundColor: "#FFF",
-              marginTop: "-9.5%",
+              marginTop: Platform.OS === "android" ? "-9.5%" : 0,
               borderRadius: 12,
             }}
             activeColor="#F1F1F1"

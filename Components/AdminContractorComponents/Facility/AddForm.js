@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  Platform
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
+import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 
 export default function AddForm() {
   const countries = ["Parent1", "FP2", "FP3", "Fp4"];
@@ -185,7 +187,9 @@ export default function AddForm() {
       </View>
 
       <View style={styles.subCont}>
-        <DatePickerAndroid />
+        {Platform.OS ==="android" ?
+        <DatePickerAndroid /> :
+        <DatePickerIOS/>}
       </View>
 
       <View style={styles.subCont}>
