@@ -16,25 +16,9 @@ export default function AddFacility() {
       <Header title="Worker" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Add Worker</Text>
-        <ScrollView>
+        {/* <ScrollView> */}
           <AddForm />
-        </ScrollView>
-      </View>
-      <View style={{ flexDirection: "row" }}>
-        <View style={{ width: "30%" }}>
-          <TouchableOpacity>
-            <View style={styles.cancel}>
-              <Text style={styles.canceltext}>Cancel</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View style={{ width: "70%" }}>
-          <TouchableOpacity>
-            <View style={styles.save}>
-              <Text style={styles.addSite}>Save</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        {/* </ScrollView> */}
       </View>
     </View>
   );
@@ -45,7 +29,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   whiteBox: {
-    flex: 1,
+    // height: "56%",
+    display:"flex",
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,
@@ -58,38 +43,5 @@ const styles = StyleSheet.create({
     color: "#023D26",
     textAlign: "center",
     paddingVertical: "6%",
-  },
-  addSite: {
-    fontSize: RFPercentage(1.9),
-    fontWeight: "bold",
-    color: "#023D26",
-    paddingLeft: "2%",
-  },
-  canceltext: {
-    fontSize: RFPercentage(1.9),
-    fontWeight: "bold",
-    color: "#023D26",
-    paddingLeft: "2%",
-  },
-  save: {
-    backgroundColor: "#B2E3D1",
-    borderRadius: 15,
-    paddingHorizontal: "2%",
-    alignItems: "center",
-    paddingVertical: "3%",
-    justifyContent: "center",
-    marginBottom: "7%",
-    marginHorizontal: "7%",
-  },
-  cancel: {
-    borderWidth: 2,
-    borderColor: "#B2E3D1",
-    borderRadius: 15,
-    paddingHorizontal: "2%",
-    alignItems: "center",
-    paddingVertical: "5%",
-    justifyContent: "center",
-    marginBottom: "7%",
-    marginLeft: "20%",
   },
 });
