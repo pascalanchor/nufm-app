@@ -35,40 +35,46 @@ export default function AddFacility() {
       <Header title="Facility" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Add Facility Site</Text>
-        <ScrollView>{multiStepForm()}</ScrollView>
-      
-      </View>
-      <View style={{ flexDirection: page > 0 ? "row" : "column", paddingHorizontal:"1.5%" }}>
-          <View style={{ width: "50%" }}>
-            {page > 0 && (
-              <TouchableOpacity onPress={() => setPage(page - 1)}>
-                <View style={styles.btnBack}>
-                  <Text style={styles.addBack}>Back</Text>
+        <ScrollView>
+          {multiStepForm()}
+          <View
+            style={{
+              flexDirection: page > 0 ? "row" : "column",
+              paddingHorizontal: "1.5%",
+            }}
+          >
+            <View style={{ width: "50%" }}>
+              {page > 0 && (
+                <TouchableOpacity onPress={() => setPage(page - 1)}>
+                  <View style={styles.btnBack}>
+                    <Text style={styles.addBack}>Back</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            </View>
+            <View style={{ width: page > 0 ? "50%" : "100%" }}>
+              <TouchableOpacity onPress={handleSubmit}>
+                <View
+                  style={{
+                    backgroundColor: "#309694",
+                    borderRadius: 25,
+                    paddingHorizontal: "2%",
+                    alignItems: "center",
+                    paddingVertical: page > 0 ? "6%" : "3%",
+                    justifyContent: "center",
+                    marginBottom: page > 0 ? "12%" : "7%",
+                    marginHorizontal: page > 0 ? "10%" : "5%",
+                  }}
+                >
+                  <Text style={styles.addSite}>
+                    {page === 0 || page === 1 ? "Next" : "Submit"}
+                  </Text>
                 </View>
               </TouchableOpacity>
-            )}
+            </View>
           </View>
-          <View style={{ width: page > 0 ? "50%" : "100%" }}>
-            <TouchableOpacity onPress={handleSubmit}>
-              <View
-                style={{
-                  backgroundColor: "#B2E3D1",
-                  borderRadius: 15,
-                  paddingHorizontal: "2%",
-                  alignItems: "center",
-                  paddingVertical: page > 0 ? "6%" : "3%",
-                  justifyContent: "center",
-                  marginBottom: page > 0 ? "12%" : "7%",
-                  marginHorizontal: page > 0 ? "10%" : "5%",
-                }}
-              >
-                <Text style={styles.addSite}>
-                  {page === 0 || page === 1 ? "Next" : "Submit"}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -95,13 +101,13 @@ const styles = StyleSheet.create({
   addSite: {
     fontSize: RFPercentage(1.9),
     fontWeight: "bold",
-    color: "#023D26",
+    color: "#fff",
     paddingLeft: "2%",
   },
   btnBack: {
     flexDirection: "row",
-    backgroundColor: "#B2E3D1",
-    borderRadius: 15,
+    backgroundColor: "#309694",
+    borderRadius: 25,
     paddingHorizontal: "2%",
     alignItems: "center",
     paddingVertical: "6%",
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
   addBack: {
     fontSize: RFPercentage(1.9),
     fontWeight: "bold",
-    color: "#023D26",
+    color: "#fff",
     paddingLeft: "2%",
   },
 });

@@ -37,7 +37,7 @@ export default function Facilities() {
           }}
         >
           <View style={styles.btnSite}>
-            <Ionicons name="add-outline" size={22} color="#023D26" />
+            <Ionicons name="add-outline" size={22} color="#fff" />
             <Text style={styles.addSite}>ADD Facility Site</Text>
           </View>
         </TouchableOpacity>
@@ -69,8 +69,7 @@ const styles = StyleSheet.create({
   },
   btnSite: {
     flexDirection: "row",
-    backgroundColor: "#B2E3D1",
-    // backgroundColor:"#4FB4B4",
+    backgroundColor: "#309694",
     borderRadius: 15,
     paddingHorizontal: "2%",
     alignItems: "center",
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
   addSite: {
     fontSize: RFPercentage(1.9),
     fontWeight: "bold",
-    color: "#023D26",
+    color: "#fff",
     paddingLeft: "2%",
   },
 });

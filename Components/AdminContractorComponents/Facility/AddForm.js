@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
   TextInput,
+  Button,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons } from "@expo/vector-icons";
+import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 
 export default function AddForm() {
   const countries = ["Parent1", "FP2", "FP3", "Fp4"];
@@ -183,16 +185,7 @@ export default function AddForm() {
       </View>
 
       <View style={styles.subCont}>
-        <View>
-          <Text style={styles.label}>Date Opened</Text>
-        </View>
-        <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-
-          //   onChangeText={onChange}
-          //   value={value}
-        />
+        <DatePickerAndroid />
       </View>
 
       <View style={styles.subCont}>
