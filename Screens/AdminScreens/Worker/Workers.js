@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   btnSite: {
     flexDirection: "row",
     backgroundColor: "#309694",
-    borderRadius: 25,
+    borderRadius: 12,
     paddingHorizontal: "2%",
     alignItems: "center",
     paddingVertical: "2.5%",

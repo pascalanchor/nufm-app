@@ -12,11 +12,11 @@ import { ScrollView } from "react-native-virtualized-view";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import Home from "../../assets/Home-Img.png";
-import Communication from "../../assets/Home-Img.png";
-import Incident from "../../assets/Incident-Img.png";
-import Risk from "../../assets/Incident-Img.png";
-import Support from "../../assets/Support-Img.png";
+import Home from "../../assets/Home.png";
+import Communication from "../../assets/Communication.png";
+import Incident from "../../assets/Incident.png";
+import Risk from "../../assets/Risk.png";
+import Support from "../../assets/Support.png";
 import Login from "../../assets/Login.png";
 import NUFM from "../../assets/NUFM.png";
 

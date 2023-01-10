@@ -57,13 +57,13 @@ export default function AddFacility() {
                 <View
                   style={{
                     backgroundColor: "#309694",
-                    borderRadius: 25,
+                    borderRadius: 12,
                     paddingHorizontal: "2%",
                     alignItems: "center",
                     paddingVertical: page > 0 ? "5%" : "3%",
                     justifyContent: "center",
                     marginBottom: page > 0 ? "12%" : "7%",
-                    marginHorizontal: page > 0 ? "10%" : "4.5%",
+                    marginHorizontal: page > 0 ? "8%" : "4.5%",
                   }}
                 >
                   <Text style={styles.addSite}>
@@ -106,19 +106,21 @@ const styles = StyleSheet.create({
   },
   btnBack: {
     flexDirection: "row",
-    backgroundColor: "#309694",
-    borderRadius: 25,
+    backgroundColor: "#fff",
+    borderRadius: 12,
     paddingHorizontal: "2%",
     alignItems: "center",
-    paddingVertical: "5%",
+    paddingVertical: "4.2%",
     justifyContent: "center",
     marginBottom: "12%",
-    marginHorizontal: "10%",
+    marginHorizontal: "8%",
+    borderWidth:1.5,
+    borderColor:"#309694"
   },
   addBack: {
     fontSize: RFPercentage(1.9),
     fontWeight: "bold",
-    color: "#fff",
+    color: "#309694",
     paddingLeft: "2%",
   },
 });

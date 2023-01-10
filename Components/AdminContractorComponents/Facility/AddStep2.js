@@ -1,11 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-
-
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import WorkSchedule from "./WorkSchedule";
+import PrimaryContact from "./PrimaryContact"
 export default function AddStep2() {
   return (
     <View>
-        <Text>Add 22222</Text>
-        </View>
-  )
+      <WorkSchedule />
+      <PrimaryContact/>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({});

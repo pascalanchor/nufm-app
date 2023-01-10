@@ -7,9 +7,9 @@ import { useNavigation } from "@react-navigation/native";
 import CMenu from "../../Components/SharedComponents/CMenu";
 import Header from "../../Components/SharedComponents/Header";
 import Cards from "../../Components/SharedComponents/Cards";
-import Facility from "../../assets/Facility.png";
-import Worker from "../../assets/Worker.png";
-import Attendance from "../../assets/Attendance.png";
+import Facility from "../../assets/Facility-Management.png";
+import Worker from "../../assets/Worker-Management.png";
+import Attendance from "../../assets/Attandence-Management.png";
 
 export default function Home() {
   const [modalVisible, setModalVisible] = useState(false);

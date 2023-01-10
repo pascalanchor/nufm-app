@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   },
   save: {
     backgroundColor: "#309694",
-    borderRadius: 25,
+    borderRadius: 12,
     paddingHorizontal: "2%",
     alignItems: "center",
     paddingVertical: "3%",
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
   cancel: {
     borderWidth: 1.5,
     borderColor: "#309694",
-    borderRadius: 25,
+    borderRadius: 12,
     paddingHorizontal: "2%",
     alignItems: "center",
     paddingVertical: "5%",
