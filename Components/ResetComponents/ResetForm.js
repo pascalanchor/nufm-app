@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import Buttons from "../../Components/SharedComponents/Buttons";
@@ -15,11 +10,14 @@ export default function ResetForm() {
       <View style={styles.resetCont}>
         <Text style={styles.reset}>Reset Password</Text>
       </View>
-      <BasicInput label="New Password" placeholder="Enter your Password" />
-      <BasicInput label="Confirm Password" placeholder="Renter your Password" />
-      <View style={styles.btn}>
-      <Buttons text="Save" />
+      <View style={styles.inputs}>
+        <BasicInput label="New Password" placeholder="Enter your Password" />
+        <BasicInput
+          label="Confirm Password"
+          placeholder="Renter your Password"
+        />
       </View>
+      <Buttons text="Save" />
     </View>
   );
 }
@@ -52,7 +50,8 @@ const styles = StyleSheet.create({
     marginVertical: "4%",
     paddingTop: "5%",
   },
-  btn:{
-    marginTop:"10%"
-  }
+  inputs: {
+    width: "100%",
+    marginBottom: "8%",
+  },
 });

@@ -60,10 +60,10 @@ export default function AddFacility() {
                     borderRadius: 25,
                     paddingHorizontal: "2%",
                     alignItems: "center",
-                    paddingVertical: page > 0 ? "6%" : "3%",
+                    paddingVertical: page > 0 ? "5%" : "3%",
                     justifyContent: "center",
                     marginBottom: page > 0 ? "12%" : "7%",
-                    marginHorizontal: page > 0 ? "10%" : "5%",
+                    marginHorizontal: page > 0 ? "10%" : "4.5%",
                   }}
                 >
                   <Text style={styles.addSite}>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     paddingHorizontal: "2%",
     alignItems: "center",
-    paddingVertical: "6%",
+    paddingVertical: "5%",
     justifyContent: "center",
     marginBottom: "12%",
     marginHorizontal: "10%",

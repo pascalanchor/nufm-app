@@ -4,9 +4,9 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 export default function Buttons({ text, onPress }) {
   return (
     <TouchableOpacity onPress={onPress}>
-    <View style={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.text}>{text}</Text>
-    </View>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   text: {
-    fontWeight: "semi-bold",
+    fontWeight: "bold",
     color: "white",
     fontSize: RFPercentage(2),
     textAlign: "center",

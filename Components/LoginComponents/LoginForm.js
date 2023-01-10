@@ -13,19 +13,23 @@ export default function LoginForm() {
         <Text style={styles.welcome}>Welcome !</Text>
       </View>
       <View style={styles.inputs}>
-      <BasicInput label="Email" keyboardType="email-address" placeholder="Enter your Email here" />
-      <BasicInput
-        label="Password"
-        bool={true}
-        placeholder="Enter your Password"
-      />
-      </View>
-        <Buttons
-          text="Login"
-          onPress={() => {
-            navigation.navigate("Home");
-          }}
+        <BasicInput
+          label="Email"
+          keyboardType="email-address"
+          placeholder="Enter your Email here"
         />
+        <BasicInput
+          label="Password"
+          bool={true}
+          placeholder="Enter your Password"
+        />
+      </View>
+      <Buttons
+        text="Login"
+        onPress={() => {
+          navigation.navigate("Home");
+        }}
+      />
     </View>
   );
 }
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
   },
   inputs: {
-    width:"100%",
+    width: "100%",
     marginBottom: "8%",
   },
 });

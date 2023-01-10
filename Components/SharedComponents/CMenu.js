@@ -116,7 +116,13 @@ export default function CMenu({ modalVisible, setModal }) {
                     <Text style={styles.txtlog}>Log out</Text>
                   </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.reset}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate("Reset");
+                    setModal(false);
+                  }}
+                  style={styles.reset}
+                >
                   <View>
                     <Text style={styles.txtlog}>Reset Password</Text>
                   </View>

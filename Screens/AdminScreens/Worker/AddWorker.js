@@ -16,9 +16,9 @@ export default function AddFacility() {
       <Header title="Worker" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Add Worker</Text>
-        {/* <ScrollView> */}
+        <ScrollView>
           <AddForm />
-        {/* </ScrollView> */}
+        </ScrollView>
       </View>
     </View>
   );
@@ -29,8 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   whiteBox: {
-    // height: "56%",
-    display:"flex",
+    display: "flex",
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,

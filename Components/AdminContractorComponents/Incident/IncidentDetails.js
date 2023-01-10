@@ -24,7 +24,7 @@ export default function IncidentDetails() {
           }}
         >
           <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back-circle" size={30} color="#B2E3D1" />
+          <Ionicons name="chevron-back-circle" size={30} color="#309694" />
           </TouchableOpacity>
           <TouchableOpacity>
             <AntDesign
