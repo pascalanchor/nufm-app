@@ -31,16 +31,8 @@ export default function CMenu({ modalVisible, setModal }) {
     navigation.navigate("Communication");
     setModal(false);
   };
-  const navToCalendar = () => {
-    navigation.navigate("Calendar");
-    setModal(false);
-  };
   const navToIncident = () => {
     navigation.navigate("Incident");
-    setModal(false);
-  };
-  const navToAnalytics = () => {
-    navigation.navigate("Analytics");
     setModal(false);
   };
   const navToSupport = () => {

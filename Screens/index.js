@@ -16,3 +16,5 @@ export { default as Workers } from "./AdminScreens/Worker/Workers";
 export { default as AddWorker } from "./AdminScreens/Worker/AddWorker";
 export { default as Attendances } from "./AdminScreens/Attendance/Attendances";
 export { default as CheckAttendance } from "./AdminScreens/Attendance/CheckAttendance";
+//Contractor
+export { default as ContractorHome } from "./ContractorScreens/ContractorHome";

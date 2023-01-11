@@ -10,7 +10,7 @@ import Header from "../../../Components/SharedComponents/Header";
 import SearchInput from "../../../Components/SharedComponents/SearchInput";
 import AttendanceTable from "../../../Components/AdminContractorComponents/Attendance/AttendanceTable";
 
-export default function Attendances() {
+export default function Attendances({link}) {
   const navigation = useNavigation();
 
   const [searchVal, setSearchVal] = useState("");
@@ -29,7 +29,7 @@ export default function Attendances() {
           setSearchVal={setSearchVal}
           bgColor="#F1F1F1"
         />
-        <AttendanceTable searchVal={searchVal} />
+        <AttendanceTable link={link} searchVal={searchVal} />
       </View>
     </View>
   );

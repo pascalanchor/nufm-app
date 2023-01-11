@@ -10,7 +10,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { useNavigation } from "@react-navigation/native";
 
-export default function AttendanceTable({ searchVal }) {
+export default function AttendanceTable({ searchVal, link }) {
   const navigation = useNavigation();
   const Attendances = [
     {
@@ -84,7 +84,7 @@ export default function AttendanceTable({ searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={()=>navigation.navigate("CheckAttendance")}>
+              <TouchableOpacity onPress={()=>navigation.navigate(link+"CheckAttendance")}>
                 <View style={styles.AttendanceContainer}>
                   <View style={styles.details}>
                     <Text style={styles.txt}> {item.name}</Text>

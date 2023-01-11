@@ -10,7 +10,7 @@ import Header from "../../../Components/SharedComponents/Header";
 import SearchInput from "../../../Components/SharedComponents/SearchInput";
 import WorkerTable from "../../../Components/AdminContractorComponents/Worker/WorkerTable";
 
-export default function Workers() {
+export default function Workers({link}) {
   const navigation = useNavigation();
 
   const [searchVal, setSearchVal] = useState("");
@@ -33,7 +33,7 @@ export default function Workers() {
       </View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("AddWorker");
+          navigation.navigate(link+"AddWorker");
         }}
       >
         <View style={styles.btnSite}>

@@ -12,7 +12,7 @@ import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Incidents({ searchVal }) {
+export default function Incidents({ searchVal,link }) {
   const navigation = useNavigation();
   const Incidents = [
     { name: "Hussam Khaled", date: "28-09-2022", facilityName: "facility" },
@@ -55,7 +55,7 @@ export default function Incidents({ searchVal }) {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate("IncidentDet")}
+                onPress={() => navigation.navigate(link+"IncidentDet")}
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>

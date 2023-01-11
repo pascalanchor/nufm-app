@@ -10,7 +10,7 @@ import Header from "../../../Components/SharedComponents/Header";
 import SearchInput from "../../../Components/SharedComponents/SearchInput";
 import FacilityTable from "../../../Components/AdminContractorComponents/Facility/FacilityTable";
 
-export default function Facilities() {
+export default function Facilities({link}) {
   const navigation = useNavigation();
 
   const [searchVal, setSearchVal] = useState("");
@@ -33,7 +33,7 @@ export default function Facilities() {
       </View>
       <TouchableOpacity
           onPress={() => {
-            navigation.navigate("AddFacility");
+            navigation.navigate(link+"AddFacility");
           }}
         >
           <View style={styles.btnSite}>
