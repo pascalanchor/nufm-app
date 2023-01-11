@@ -6,7 +6,7 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import AddForm from "../../../Components/AdminContractorComponents/Worker/AddForm";
 
-export default function AddFacility() {
+export default function AddWorker() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.box}>

@@ -7,7 +7,7 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import RiskList from "../../../Components/AdminContractorComponents/Risk/RiskList";
 
-export default function Risk() {
+export default function Risk({link}) {
   const handleChange = (searchVal) => {
     setSearchVal(searchVal);
   };
@@ -17,9 +17,9 @@ export default function Risk() {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Risk" setModal={setModalVisible} />
+      <Header link={link} title="Risk" setModal={setModalVisible} />
       <View style={styles.listBox}>
         <View style={styles.container}>
           <View style={styles.searchSection}>
@@ -34,7 +34,7 @@ export default function Risk() {
           </View>
         </View>
 
-        <RiskList searchVal={searchVal} />
+        <RiskList link={link} searchVal={searchVal} />
       </View>
     </View>
   );

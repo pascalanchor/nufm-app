@@ -42,25 +42,34 @@ export default function ContractorNavigation() {
             options={{ title: "Welcome" }}
           />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Contractor/Reset" component={Reset} />
+          <Stack.Screen name="Contractor/Reset">
+            {(props) => <Reset {...props} link="Contractor/" />}
+          </Stack.Screen>
           <Stack.Screen name="Contractor/Home">
             {(props) => <ContractorHome {...props} link="Contractor/" />}
           </Stack.Screen>
-          <Stack.Screen name="Contractor/Risk" component={Risk} />
-          <Stack.Screen
-            name="Contractor/Communication"
-            component={Communication}
-          />
-          <Stack.Screen
-            name="Contractor/Notification"
-            component={Notification}
-          />
-          <Stack.Screen name="Contractor/Sender" component={Sender} />
+          <Stack.Screen name="Contractor/Risk">
+            {(props) => <Risk {...props} link="Contractor/" />}
+          </Stack.Screen>
+
+          <Stack.Screen name="Contractor/Communication">
+            {(props) => <Communication {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Contractor/Notification">
+            {(props) => <Notification {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Contractor/Sender">
+            {(props) => <Sender {...props} link="Contractor/" />}
+          </Stack.Screen>
           <Stack.Screen name="Contractor/Incident">
             {(props) => <Incident {...props} link="Contractor/" />}
           </Stack.Screen>
-          <Stack.Screen name="Contractor/IncidentDet" component={IncidentDet} />
-          <Stack.Screen name="Contractor/RiskDet" component={RiskDet} />
+          <Stack.Screen name="Contractor/IncidentDet">
+            {(props) => <IncidentDet {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Contractor/RiskDet">
+            {(props) => <RiskDet {...props} link="Contractor/" />}
+          </Stack.Screen>
           <Stack.Screen name="Contractor/Facilities">
             {(props) => <Facilities {...props} link="Contractor/" />}
           </Stack.Screen>
@@ -70,14 +79,15 @@ export default function ContractorNavigation() {
           <Stack.Screen name="Contractor/Workers">
             {(props) => <Workers {...props} link="Contractor/" />}
           </Stack.Screen>
-          <Stack.Screen name="Contractor/AddWorker" component={AddWorker} />
+          <Stack.Screen name="Contractor/AddWorker">
+            {(props) => <AddWorker {...props} link="Contractor/" />}
+          </Stack.Screen>
           <Stack.Screen name="Contractor/Attendances">
             {(props) => <Attendances {...props} link="Contractor/" />}
           </Stack.Screen>
-          <Stack.Screen
-            name="Contractor/CheckAttendance"
-            component={CheckAttendance}
-          />
+          <Stack.Screen name="Contractor/CheckAttendance">
+            {(props) => <CheckAttendance {...props} link="Contractor/" />}
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </View>

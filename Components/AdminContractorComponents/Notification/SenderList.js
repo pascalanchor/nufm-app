@@ -12,7 +12,7 @@ import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Senders({ searchVal }) {
+export default function Senders({ link,searchVal }) {
   const navigation = useNavigation();
   const Senders = [
     { name: "Hussam Khaled", date: "28-09-2022", receiver: "Jana" },
@@ -69,7 +69,7 @@ export default function Senders({ searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate("Sender")}>
+              <TouchableOpacity onPress={() => navigation.navigate(link+"Sender")}>
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
                     <Text style={styles.txt}> {item.name}</Text>

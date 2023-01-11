@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
+import React, { useEffect } from "react";
 import { ScrollView } from "react-native-virtualized-view";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -20,27 +21,29 @@ import Support from "../../assets/Support.png";
 import Login from "../../assets/Login.png";
 import NUFM from "../../assets/NUFM.png";
 
-export default function CMenu({ modalVisible, setModal }) {
+export default function CMenu({ link, modalVisible, setModal }) {
   const navigation = useNavigation();
-
+  // useEffect(()=>{
+  //   console.log(link)
+  // },[])
   const navToHome = () => {
-    navigation.navigate("Home");
+    navigation.navigate(link + "Home");
     setModal(false);
   };
   const navToComm = () => {
-    navigation.navigate("Communication");
+    navigation.navigate(link + "Communication");
     setModal(false);
   };
   const navToIncident = () => {
-    navigation.navigate("Incident");
+    navigation.navigate(link + "Incident");
     setModal(false);
   };
   const navToSupport = () => {
-    navigation.navigate("Support");
+    navigation.navigate(link + "Support");
     setModal(false);
   };
   const navToRisk = () => {
-    navigation.navigate("Risk");
+    navigation.navigate(link + "Risk");
     setModal(false);
   };
   const MenuItems = [
@@ -110,7 +113,7 @@ export default function CMenu({ modalVisible, setModal }) {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.navigate("Reset");
+                    navigation.navigate(link + "Reset");
                     setModal(false);
                   }}
                   style={styles.reset}

@@ -8,16 +8,16 @@ import Header from "../../Components/SharedComponents/Header";
 import SearchInput from "../../Components/SharedComponents/SearchInput";
 import TabPannel from "../../Components/AdminContractorComponents/Communication/TabPannel";
 
-export default function Communication() {
+export default function Communication({link}) {
   const [searchVal, setSearchVal] = useState("");
 
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Communication" setModal={setModalVisible} />
+      <Header link={link} title="Communication" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> New Messages</Text>
         <SearchInput searchVal={searchVal} setSearchVal={setSearchVal} bgColor="#F1F1F1"/>

@@ -12,7 +12,7 @@ import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Risks({ searchVal }) {
+export default function Risks({link, searchVal }) {
   const navigation = useNavigation();
   const Risks = [
     { name: "Risk1", date: "28-09-2022", facilityName: "facility" },
@@ -54,7 +54,7 @@ export default function Risks({ searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate("RiskDet")}>
+              <TouchableOpacity onPress={() => navigation.navigate(link+"RiskDet")}>
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
                     <Text style={styles.txt}> {item.name}</Text>

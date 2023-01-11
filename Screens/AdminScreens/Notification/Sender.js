@@ -11,17 +11,17 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import SenderDetails from "../../../Components/AdminContractorComponents/Notification/SenderDetails.js";
 
-export default function Sender() {
+export default function Sender({link}) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Notification" setModal={setModalVisible} />
+      <Header link={link} title="Notification" setModal={setModalVisible} />
       <View style={{ marginVertical:"10%"}}>
-      <SenderDetails />
+      <SenderDetails link={link} />
       </View>
     </View>
   );

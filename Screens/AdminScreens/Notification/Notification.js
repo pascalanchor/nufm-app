@@ -7,7 +7,7 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import SenderList from "../../../Components/AdminContractorComponents/Notification/SenderList";
 
-export default function Notification() {
+export default function Notification({link}) {
   const handleChange = (searchVal) => {
     setSearchVal(searchVal);
   };
@@ -17,9 +17,9 @@ export default function Notification() {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Notification" setModal={setModalVisible} />
+      <Header link={link} title="Notification" setModal={setModalVisible} />
       <View style={styles.listBox}>
         <View style={styles.container}>
           <View style={styles.searchSection}>
@@ -34,7 +34,7 @@ export default function Notification() {
           </View>
         </View>
 
-        <SenderList searchVal={searchVal} />
+        <SenderList link={link} searchVal={searchVal} />
       </View>
     </View>
   );

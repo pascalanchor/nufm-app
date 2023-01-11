@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
-import ContractorMenu from "../../Components/SharedComponents/Contractor/ContractorMenu";
+import CMenu from "../../Components/SharedComponents/CMenu";
 import Header from "../../Components/SharedComponents/Header";
 import Cards from "../../Components/SharedComponents/Cards";
 import Facility from "../../assets/Facility-Management.png";
@@ -32,9 +32,9 @@ export default function ContractorHome({link}) {
   return (
     <View style={styles.box}>
       <View>
-        <ContractorMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Home" setModal={setModalVisible} />
+      <Header link={link} title="Home" setModal={setModalVisible} />
       <View style={styles.container}>
         <ScrollView>
           <FlatList

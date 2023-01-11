@@ -7,7 +7,7 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import IncidentList from "../../../Components/AdminContractorComponents/Incident/IncidentList";
 
-export default function Incident() {
+export default function Incident({link}) {
   const handleChange = (searchVal) => {
     setSearchVal(searchVal);
   };
@@ -17,9 +17,9 @@ export default function Incident() {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Incident" setModal={setModalVisible} />
+      <Header link={link} title="Incident" setModal={setModalVisible} />
       <View style={styles.listBox}>
         <View style={styles.container}>
           <View style={styles.searchSection}>
@@ -34,7 +34,7 @@ export default function Incident() {
           </View>
         </View>
 
-        <IncidentList searchVal={searchVal} />
+        <IncidentList link={link} searchVal={searchVal} />
       </View>
     </View>
   );

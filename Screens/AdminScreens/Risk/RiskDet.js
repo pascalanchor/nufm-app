@@ -11,15 +11,15 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import RiskDetails from "../../../Components/AdminContractorComponents/Risk/RiskDetails.js";
 
-export default function RiskDet() {
+export default function RiskDet({link}) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Risk" setModal={setModalVisible} />
+      <Header link={link} title="Risk" setModal={setModalVisible} />
       <View style={{ marginVertical:"10%"}}>
       <RiskDetails />
       </View>
