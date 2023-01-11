@@ -11,17 +11,30 @@ import AddStep3 from "../../../Components/AdminContractorComponents/Facility/Add
 export default function AddFacility() {
   const [page, setPage] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const [formData, setFormData] = useState({
+    facilityName: '',
+    facilityParent: '',
+    facilityType:'',
+    location:'',
+    street:'',
+    postCode:'',
+    sqm:'',
+    constYear:'',
+    date:'',
+    desc:'',
+    employment_status: null
+  });
 
   const multiStepForm = () => {
     switch (page) {
       case 0:
-        return <AddForm />;
+        return <AddForm formData={formData} setFormData={setFormData} />;
       case 1:
-        return <AddStep2 />;
+        return <AddStep2 formData={formData} setFormData={setFormData} />;
       case 2:
-        return <AddStep3 />;
+        return <AddStep3 formData={formData} setFormData={setFormData} />;
       default:
-        return <AddForm />;
+        return <AddForm formData={formData} setFormData={setFormData} />;
     }
   };
   function handleSubmit() {
@@ -114,8 +127,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "12%",
     marginHorizontal: "8%",
-    borderWidth:1.5,
-    borderColor:"#309694"
+    borderWidth: 1.5,
+    borderColor: "#309694",
   },
   addBack: {
     fontSize: RFPercentage(1.9),

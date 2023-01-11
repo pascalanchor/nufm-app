@@ -11,59 +11,59 @@ import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Ionicons, MaterialIcons, Entypo } from "@expo/vector-icons";
 
-export default function PrimaryContact() {
-  const [primary, setprimary] = useState([
+export default function Occupant() {
+  const [Occupant, setOccupant] = useState([
     {
       name: "",
       phone: "",
       email: "",
-      jobTitle: "",
+      note: "",
     },
   ]);
   const addInput = () => {
-    setprimary([
-      ...primary,
+    setOccupant([
+      ...Occupant,
       {
         name: "",
         phone: "",
         email: "",
-        jobTitle: "",
+        note: "",
       },
     ]);
   };
 
   const removeInput = (index) => {
-    const rows = [...primary];
+    const rows = [...Occupant];
     rows.pop();
-    setprimary(rows);
+    setOccupant(rows);
   };
   const handleChangeItemName = (index, value) => {
-    const list = [...primary];
+    const list = [...Occupant];
     list[index].name = value;
-    setprimary(list);
+    setOccupant(list);
   };
   const handleChangeItemEmail = (index, value) => {
-    const list = [...primary];
+    const list = [...Occupant];
     list[index].email = value;
-    setprimary(list);
+    setOccupant(list);
   };
   const handleChangeItemPhone = (index, value) => {
-    const list = [...primary];
+    const list = [...Occupant];
     list[index].phone = value;
-    setprimary(list);
+    setOccupant(list);
   };
-  const handleChangeItemJob = (index, value) => {
-    const list = [...primary];
-    list[index].jobTitle = value;
-    setprimary(list);
+  const handleChangeItemNote = (index, value) => {
+    const list = [...Occupant];
+    list[index].note = value;
+    setOccupant(list);
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.PrimaryCont}>
-        <Text style={styles.Primary}>Primary Contact</Text>
+      <View style={styles.OccupantCont}>
+        <Text style={styles.Occupant}>Occupant</Text>
       </View>
-      {primary.map((item, i) => (
+      {Occupant.map((item, i) => (
         <View key={i + 1} style={styles.multi}>
           <View style={styles.subCont}>
             <View>
@@ -100,13 +100,13 @@ export default function PrimaryContact() {
           </View>
           <View style={styles.subCont}>
             <View>
-              <Text style={styles.label}>Job Title</Text>
+              <Text style={styles.label}>Note</Text>
             </View>
             <TextInput
-              style={styles.input}
+              style={styles.note}
               keyboardType="default"
-              onChangeText={(value) => handleChangeItemJob(i, value)}
-              value={item.jobTitle}
+              onChangeText={(value) => handleChangeItemNote(i, value)}
+              value={item.note}
             />
           </View>
         </View>
@@ -157,10 +157,10 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "space-between",
   },
-  PrimaryCont: {
+  OccupantCont: {
     paddingHorizontal: "5%",
   },
-  Primary: {
+  Occupant: {
     textAlign: "left",
     fontWeight: "bold",
     color: "#666",
@@ -183,5 +183,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#F1F1F1",
     paddingBottom: "7%",
+  },
+  note: {
+    width: "100%",
+    aspectRatio: 4 / 1,
+    backgroundColor: "#F1F1F1",
+    borderRadius: 12,
+    paddingLeft: "4%",
+    marginTop: "1%",
+    fontSize: RFPercentage(1.5),
   },
 });

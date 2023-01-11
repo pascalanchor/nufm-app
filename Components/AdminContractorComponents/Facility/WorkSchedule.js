@@ -50,10 +50,28 @@ export default function WorkSchedule() {
     rows.pop();
     setWork(rows);
   };
-  const handleChangeItem = (index, value) => {
+  const handleChangeItemDFrom = (index, value) => {
     // const { name, value } = e.target;
     const list = [...work];
-    list[index] = value;
+    list[index].dayFrom = value;
+    setWork(list);
+  };
+  const handleChangeItemHFrom = (index, value) => {
+    // const { name, value } = e.target;
+    const list = [...work];
+    list[index].hourFrom = value;
+    setWork(list);
+  };
+  const handleChangeItemHTo = (index, value) => {
+    // const { name, value } = e.target;
+    const list = [...work];
+    list[index].hourTo = value;
+    setWork(list);
+  };
+  const handleChangeItemDTo = (index, value) => {
+    // const { name, value } = e.target;
+    const list = [...work];
+    list[index].dayTo = value;
     setWork(list);
   };
 
@@ -63,10 +81,7 @@ export default function WorkSchedule() {
         <Text style={styles.workeSch}>Work Schedule</Text>
       </View>
       {work.map((item, i) => (
-        <View
-          key={i + 1}
-          style={styles.multi}
-        >
+        <View key={i + 1} style={styles.multi}>
           <View style={styles.inputs}>
             <View style={styles.subCont}>
               <View>
@@ -110,7 +125,7 @@ export default function WorkSchedule() {
                 rowTextForSelection={(item, index) => {
                   return item;
                 }}
-                onChangeText={(event) => handleChangeItem(i, event)}
+                onChangeText={(value) => handleChangeItemDFrom(i, value)}
                 value={item.dayFrom}
               />
             </View>
@@ -119,7 +134,7 @@ export default function WorkSchedule() {
                 style={styles.input}
                 keyboardType="default"
                 placeholder="8:00 am"
-                onChangeText={(event) => handleChangeItem(i, event)}
+                onChangeText={(value) => handleChangeItemHFrom(i, value)}
                 value={item.hourFrom}
               />
             </View>
@@ -167,7 +182,7 @@ export default function WorkSchedule() {
                 rowTextForSelection={(item, index) => {
                   return item;
                 }}
-                onChangeText={(event) => handleChangeItem(i, event)}
+                onChangeText={(value) => handleChangeItemDTo(i, value)}
                 value={item.dayTo}
               />
             </View>
@@ -176,7 +191,7 @@ export default function WorkSchedule() {
                 style={styles.input}
                 keyboardType="default"
                 placeholder="5:00 pm"
-                onChangeText={(event) => handleChangeItem(i, event)}
+                onChangeText={(value) => handleChangeItemHTo(i, value)}
                 value={item.hourTo}
               />
             </View>

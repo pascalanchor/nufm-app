@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
-  Platform
+  Platform,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -15,9 +15,15 @@ import { Ionicons } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 
-export default function AddForm() {
+export default function AddForm({ formData, setFormData }) {
   const countries = ["Parent1", "FP2", "FP3", "Fp4"];
   const types = ["Education", "Retail"];
+  // const handleChange = (value)=>{
+  //   const obj = {...formData}
+  //   obj.facilityName = value;
+  //   setFormData(obj);
+  //   console.log(value)
+  // }
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -27,9 +33,8 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="default"
-
-          //   onChangeText={onChange}
-          //   value={value}
+          value={formData.facilityName}
+          // onChangeText={(val) => handleChange(val)}
         />
       </View>
 
@@ -66,15 +71,12 @@ export default function AddForm() {
             console.log(selectedItem, index);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            // text represented after item is selected
-            // if data array is an array of objects then return selectedItem.property to render after item is selected
             return selectedItem;
           }}
           rowTextForSelection={(item, index) => {
-            // text represented for each item in dropdown
-            // if data array is an array of objects then return item.property to represent item in dropdown
             return item;
           }}
+          value={formData.facilityParent}
         />
       </View>
 
@@ -120,6 +122,7 @@ export default function AddForm() {
             // if data array is an array of objects then return item.property to represent item in dropdown
             return item;
           }}
+          value={formData.facilityType}
         />
       </View>
 
@@ -130,9 +133,8 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="default"
-
           //   onChangeText={onChange}
-          //   value={value}
+          value={formData.location}
         />
       </View>
 
@@ -143,9 +145,8 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="default"
-
           //   onChangeText={onChange}
-          //   value={value}
+          value={formData.street}
         />
       </View>
       <View style={styles.subCont}>
@@ -155,9 +156,8 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-
           //   onChangeText={onChange}
-          //   value={value}
+          value={formData.postCode}
         />
       </View>
       <View style={styles.subCont}>
@@ -167,9 +167,8 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-
           //   onChangeText={onChange}
-          //   value={value}
+          value={formData.sqm}
         />
       </View>
 
@@ -180,16 +179,13 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-
           //   onChangeText={onChange}
-          //   value={value}
+          value={formData.constYear}
         />
       </View>
 
       <View style={styles.subCont}>
-        {Platform.OS ==="android" ?
-        <DatePickerAndroid /> :
-        <DatePickerIOS/>}
+        {Platform.OS === "android" ? <DatePickerAndroid /> : <DatePickerIOS />}
       </View>
 
       <View style={styles.subCont}>
@@ -199,9 +195,8 @@ export default function AddForm() {
         <TextInput
           style={styles.input}
           keyboardType="default"
-
           //   onChangeText={onChange}
-          //   value={value}
+          value={formData.desc}
         />
       </View>
     </View>
