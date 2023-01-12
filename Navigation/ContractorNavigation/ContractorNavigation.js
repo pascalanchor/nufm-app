@@ -19,7 +19,8 @@ import {
   AddFacility,
   Workers,
   AddWorker,
-  Attendances,
+  AttendancesC,
+  AddAttendance,
   CheckAttendance,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -82,8 +83,11 @@ export default function ContractorNavigation() {
           <Stack.Screen name="Contractor/AddWorker">
             {(props) => <AddWorker {...props} link="Contractor/" />}
           </Stack.Screen>
-          <Stack.Screen name="Contractor/Attendances">
-            {(props) => <Attendances {...props} link="Contractor/" />}
+          <Stack.Screen name="Contractor/AttendancesC">
+            {(props) => <AttendancesC {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Contractor/AddAttendance">
+            {(props) => <AddAttendance {...props} link="Contractor/" />}
           </Stack.Screen>
           <Stack.Screen name="Contractor/CheckAttendance">
             {(props) => <CheckAttendance {...props} link="Contractor/" />}

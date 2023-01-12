@@ -21,7 +21,7 @@ export default function ContractorHome({link}) {
     navigation.navigate(link+"Workers");
   };
   const navToAtt = () => {
-    navigation.navigate(link+"Attendances");
+    navigation.navigate(link+"AttendancesC");
   };
   const CardItems = [
     { name: "Facility Management", icon: Facility, link: navToFac },
