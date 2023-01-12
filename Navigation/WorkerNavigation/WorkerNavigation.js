@@ -4,10 +4,8 @@ import {
   Landing,
   Login,
   Reset,
-  ContractorHome,
-  Calendar,
-  Analytics,
-  Incident,
+  WorkerHome,
+  IncidentsW,
   Support,
   Risk,
   Communication,
@@ -15,11 +13,6 @@ import {
   Sender,
   IncidentDet,
   RiskDet,
-  Facilities,
-  AddFacility,
-  Workers,
-  AddWorker,
-  AttendancesC,
   AddAttendance,
   CheckAttendance,
 } from "../../Screens";
@@ -47,7 +40,7 @@ export default function ContractorNavigation() {
             {(props) => <Reset {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/Home">
-            {(props) => <ContractorHome {...props} link="Worker/" />}
+            {(props) => <WorkerHome {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/Risk">
             {(props) => <Risk {...props} link="Worker/" />}
@@ -62,29 +55,14 @@ export default function ContractorNavigation() {
           <Stack.Screen name="Worker/Sender">
             {(props) => <Sender {...props} link="Worker/" />}
           </Stack.Screen>
-          <Stack.Screen name="Worker/Incident">
-            {(props) => <Incident {...props} link="Worker/" />}
+          <Stack.Screen name="Worker/IncidentsW">
+            {(props) => <IncidentsW {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/IncidentDet">
             {(props) => <IncidentDet {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/RiskDet">
             {(props) => <RiskDet {...props} link="Worker/" />}
-          </Stack.Screen>
-          <Stack.Screen name="Worker/Facilities">
-            {(props) => <Facilities {...props} link="Worker/" />}
-          </Stack.Screen>
-          <Stack.Screen name="Worker/AddFacility">
-            {(props) => <AddFacility {...props} link="Worker/" />}
-          </Stack.Screen>
-          <Stack.Screen name="Worker/Workers">
-            {(props) => <Workers {...props} link="Worker/" />}
-          </Stack.Screen>
-          <Stack.Screen name="Worker/AddWorker">
-            {(props) => <AddWorker {...props} link="Worker/" />}
-          </Stack.Screen>
-          <Stack.Screen name="Worker/AttendancesC">
-            {(props) => <AttendancesC {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/AddAttendance">
             {(props) => <AddAttendance {...props} link="Worker/" />}

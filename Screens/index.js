@@ -20,3 +20,6 @@ export { default as CheckAttendance } from "./AdminScreens/Attendance/CheckAtten
 export { default as ContractorHome } from "./ContractorScreens/ContractorHome";
 export { default as AttendancesC } from "./ContractorScreens/AttendanceC/AttendancesC";
 export { default as AddAttendance } from "./ContractorScreens/AttendanceC/AddForm";
+//Worker
+export { default as WorkerHome } from "./WorkerScreens/WorkerHome";
+export { default as IncidentsW } from "./WorkerScreens/Incident/IncidentsW";
