@@ -5,15 +5,15 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import AttendanceCheck from "../../../Components/AdminContractorComponents/Attendance/AttendanceCheck";
 
-export default function CheckAttendance() {
+export default function CheckAttendance({link}) {
   const [modalVisible, setModalVisible] = useState(false);
   const dayDate = new Date().toLocaleString().substr(0, 10);
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Attendance" setModal={setModalVisible} />
+      <Header link={link} title="Attendance" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}>{dayDate}</Text>
         <AttendanceCheck />

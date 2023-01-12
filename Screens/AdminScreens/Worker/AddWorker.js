@@ -6,14 +6,14 @@ import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import AddForm from "../../../Components/AdminContractorComponents/Worker/AddForm";
 
-export default function AddWorker() {
+export default function AddWorker({link}) {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Worker" setModal={setModalVisible} />
+      <Header link={link} title="Worker" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Add Worker</Text>
         <ScrollView>

@@ -19,9 +19,9 @@ export default function Facilities({link}) {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Facility" setModal={setModalVisible} />
+      <Header link={link} title="Facility" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Facilities</Text>
         <SearchInput

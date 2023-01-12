@@ -8,7 +8,7 @@ import AddForm from "../../../Components/AdminContractorComponents/Facility/AddF
 import AddStep2 from "../../../Components/AdminContractorComponents/Facility/AddStep2";
 import AddStep3 from "../../../Components/AdminContractorComponents/Facility/AddStep3";
 
-export default function AddFacility() {
+export default function AddFacility({link}) {
   const [page, setPage] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -43,9 +43,9 @@ export default function AddFacility() {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Facility" setModal={setModalVisible} />
+      <Header link={link} title="Facility" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Add Facility Site</Text>
         <ScrollView>

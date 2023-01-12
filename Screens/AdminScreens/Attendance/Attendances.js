@@ -19,9 +19,9 @@ export default function Attendances({link}) {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Attendance" setModal={setModalVisible} />
+      <Header link={link} title="Attendance" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Attendances</Text>
         <SearchInput

@@ -19,9 +19,9 @@ export default function Workers({link}) {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Worker" setModal={setModalVisible} />
+      <Header link={link} title="Worker" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> Workers</Text>
         <SearchInput
