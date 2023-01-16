@@ -8,8 +8,8 @@ import WorkerNavigation from "./Navigation/WorkerNavigation/WorkerNavigation";
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <AdminNavigation /> */}
-      <ContractorNavigation />
+      <AdminNavigation />
+      {/* <ContractorNavigation /> */}
       {/* <WorkerNavigation /> */}
     </View>
   );

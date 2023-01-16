@@ -11,7 +11,7 @@ import Facility from "../../assets/Facility-Management.png";
 import Worker from "../../assets/Worker-Management.png";
 import Attendance from "../../assets/Attandence-Management.png";
 
-export default function Home() {
+export default function Home({link}) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const navToFac = () => {
@@ -32,9 +32,9 @@ export default function Home() {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header title="Home" setModal={setModalVisible} />
+      <Header link={link} title="Home" setModal={setModalVisible} />
       <View style={styles.container}>
         <ScrollView>
           <FlatList

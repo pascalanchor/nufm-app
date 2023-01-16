@@ -20,7 +20,7 @@ import {
   Workers,
   AddWorker,
   Attendances,
-  CheckAttendance
+  CheckAttendance,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -42,23 +42,51 @@ export default function LoginNavigation() {
             options={{ title: "Welcome" }}
           />
           <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Reset" component={Reset} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Risk" component={Risk} />
-          <Stack.Screen name="Communication" component={Communication} />
-          <Stack.Screen name="Notification" component={Notification} />
-          <Stack.Screen name="Sender" component={Sender} />
-          <Stack.Screen name="Incident" component={Incident} />
-          <Stack.Screen name="IncidentDet" component={IncidentDet} />
-          <Stack.Screen name="RiskDet" component={RiskDet} />
-          <Stack.Screen name="Facilities" component={Facilities} />
-          <Stack.Screen name="AddFacility" component={AddFacility} />
-          <Stack.Screen name="Workers" component={Workers} />
-          <Stack.Screen name="AddWorker" component={AddWorker} />
-          <Stack.Screen name="Attendances" component={Attendances} />
-          <Stack.Screen name="CheckAttendance" component={CheckAttendance} />
-
-          
+          <Stack.Screen name="Reset">
+            {(props) => <Reset {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Home">
+            {(props) => <Home {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Risk">
+            {(props) => <Risk {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Communication">
+            {(props) => <Communication {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Notification">
+            {(props) => <Notification {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Sender">
+            {(props) => <Sender {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Incident">
+            {(props) => <Incident {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="IncidentDet">
+            {(props) => <IncidentDet {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="RiskDet">
+            {(props) => <RiskDet {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Facilities">
+            {(props) => <Facilities {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="AddFacility">
+            {(props) => <AddFacility {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Workers">
+            {(props) => <Workers {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="AddWorker">
+            {(props) => <AddWorker {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Attendances">
+            {(props) => <Attendances {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="CheckAttendance">
+            {(props) => <CheckAttendance {...props} link="" />}
+          </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </View>
