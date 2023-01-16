@@ -10,7 +10,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default function DatePickerAndroid({ name, value }) {
+export default function DatePickerAndroid({ name, value, label }) {
   const [datePicker, setDatePicker] = useState(false);
 
   const [date, setDate] = useState(new Date());
@@ -26,7 +26,7 @@ export default function DatePickerAndroid({ name, value }) {
   return (
     <View>
       <View>
-        <Text style={styles.label}>Date Opened</Text>
+        <Text style={styles.label}>{label}</Text>
       </View>
       <TouchableOpacity onPress={showDatePicker}>
         <View style={styles.input}>

@@ -17,15 +17,15 @@ export default function ContractorHome({link}) {
   const navToInc = () => {
     navigation.navigate(link+"IncidentsW");
   };
-  const navToWorker = () => {
-    navigation.navigate(link+"Workers");
+  const navToOrders = () => {
+    navigation.navigate(link+"Orders");
   };
   const navToAtt = () => {
     navigation.navigate(link+"AddAttendance");
   };
   const CardItems = [
     { name: "Worker Attendance ", icon: Attendance, link: navToAtt},
-    { name: "View Order ", icon: Order, link: navToWorker },
+    { name: "View Order ", icon: Order, link: navToOrders },
     { name: "Incident ", icon: Incident, link: navToInc },
   ];
 

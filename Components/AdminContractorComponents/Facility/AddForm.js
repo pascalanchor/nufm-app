@@ -51,6 +51,8 @@ export default function AddForm({ formData, setFormData }) {
           rowTextStyle={{
             color: "#595959",
           }}
+          dropdownStyle={styles.dropdownHour}
+              rowTextStyle={styles.rows}
           buttonStyle={{
             backgroundColor: "#F1F1F1",
             borderRadius: 12,
@@ -93,6 +95,8 @@ export default function AddForm({ formData, setFormData }) {
           rowTextStyle={{
             color: "#595959",
           }}
+          dropdownStyle={styles.dropdownHour}
+          rowTextStyle={styles.rows}
           buttonStyle={{
             backgroundColor: "#F1F1F1",
             borderRadius: 12,
@@ -185,7 +189,11 @@ export default function AddForm({ formData, setFormData }) {
       </View>
 
       <View style={styles.subCont}>
-        {Platform.OS === "android" ? <DatePickerAndroid /> : <DatePickerIOS />}
+        {Platform.OS === "android" ? (
+          <DatePickerAndroid label="Date Opened" />
+        ) : (
+          <DatePickerIOS label="Date Opened" />
+        )}
       </View>
 
       <View style={styles.subCont}>
@@ -218,6 +226,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: "8%",
+  },
+  dropdownHour: {
+    borderRadius: 8,
+    marginTop: "-7%",
+  },
+  rows: {
+    fontSize: RFPercentage(1.8),
   },
   subCont: {
     flexDirection: "column",

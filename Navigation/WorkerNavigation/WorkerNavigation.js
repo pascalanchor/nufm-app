@@ -12,9 +12,12 @@ import {
   Notification,
   Sender,
   IncidentDet,
+  AddIncidentOW,
   RiskDet,
   AddAttendance,
   CheckAttendance,
+  Orders,
+  OrderDet
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -58,6 +61,9 @@ export default function ContractorNavigation() {
           <Stack.Screen name="Worker/IncidentsW">
             {(props) => <IncidentsW {...props} link="Worker/" />}
           </Stack.Screen>
+          <Stack.Screen name="Worker/AddIncident">
+            {(props) => <AddIncidentOW {...props} link="Worker/" />}
+          </Stack.Screen>
           <Stack.Screen name="Worker/IncidentDet">
             {(props) => <IncidentDet {...props} link="Worker/" />}
           </Stack.Screen>
@@ -69,6 +75,12 @@ export default function ContractorNavigation() {
           </Stack.Screen>
           <Stack.Screen name="Worker/CheckAttendance">
             {(props) => <CheckAttendance {...props} link="Worker/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Worker/Orders">
+            {(props) => <Orders {...props} link="Worker/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Worker/OrderDetails">
+            {(props) => <OrderDet {...props} link="Worker/" />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

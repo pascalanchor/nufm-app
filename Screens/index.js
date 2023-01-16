@@ -23,3 +23,8 @@ export { default as AddAttendance } from "./ContractorScreens/AttendanceC/AddFor
 //Worker
 export { default as WorkerHome } from "./WorkerScreens/WorkerHome";
 export { default as IncidentsW } from "./WorkerScreens/Incident/IncidentsW";
+export { default as AddIncidentOW } from "./WorkerScreens/Incident/AddIncidentOW";
+export { default as Orders } from "./WorkerScreens/Order/Orders";
+export { default as OrderDet } from "./WorkerScreens/Order/OrderDet";
+
+
