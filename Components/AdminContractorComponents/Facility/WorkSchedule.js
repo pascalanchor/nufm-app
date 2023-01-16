@@ -100,21 +100,10 @@ export default function WorkSchedule() {
                 rowTextStyle={{
                   color: "#595959",
                 }}
-                buttonStyle={{
-                  backgroundColor: "#F1F1F1",
-                  borderRadius: 12,
-                  paddingLeft: "4%",
-                  marginTop: "2%",
-                  height: 40,
-                  width: "100%",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-                buttonTextStyle={{
-                  fontSize: RFPercentage(1.8),
-                  color: "#595959",
-                  textAlign: "left",
-                }}
+                buttonStyle={styles.btnselectstyle}
+                buttonTextStyle={styles.btnselectxtstyle}
+                dropdownStyle={styles.dropdownHour}
+                rowTextStyle={styles.rows}
                 data={weekDays}
                 onSelect={(selectedItem, index) => {
                   console.log(selectedItem, index);
@@ -154,24 +143,10 @@ export default function WorkSchedule() {
                 )}
                 dropdownIconPosition="right"
                 defaultButtonText="Select day.."
-                rowTextStyle={{
-                  color: "#595959",
-                }}
-                buttonStyle={{
-                  backgroundColor: "#F1F1F1",
-                  borderRadius: 12,
-                  paddingLeft: "4%",
-                  marginTop: "2%",
-                  height: 40,
-                  width: "100%",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                }}
-                buttonTextStyle={{
-                  fontSize: RFPercentage(1.8),
-                  color: "#595959",
-                  textAlign: "left",
-                }}
+                buttonStyle={styles.btnselectstyle}
+                buttonTextStyle={styles.btnselectxtstyle}
+                dropdownStyle={styles.dropdownHour}
+                rowTextStyle={styles.rows}
                 data={weekDays}
                 onSelect={(selectedItem, index) => {
                   console.log(selectedItem, index);
@@ -268,5 +243,27 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#F1F1F1",
     paddingBottom: "7%",
+  },
+  dropdownHour: {
+    borderRadius: 8,
+    marginTop: "-7%",
+  },
+  rows: {
+    fontSize: RFPercentage(1.8),
+  },
+  btnselectstyle: {
+    backgroundColor: "#F1F1F1",
+    borderRadius: 12,
+    paddingLeft: "4%",
+    marginTop: "2%",
+    height: 40,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  btnselectxtstyle: {
+    fontSize: RFPercentage(1.8),
+    color: "#595959",
+    textAlign: "left",
   },
 });

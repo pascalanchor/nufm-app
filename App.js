@@ -9,8 +9,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       {/* <AdminNavigation /> */}
-      {/* <ContractorNavigation /> */}
-      <WorkerNavigation />
+      <ContractorNavigation />
+      {/* <WorkerNavigation /> */}
     </View>
   );
 }
