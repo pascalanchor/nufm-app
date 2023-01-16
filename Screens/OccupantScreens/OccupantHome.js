@@ -7,32 +7,36 @@ import { useNavigation } from "@react-navigation/native";
 import CMenu from "../../Components/SharedComponents/CMenu";
 import Header from "../../Components/SharedComponents/Header";
 import Cards from "../../Components/SharedComponents/Cards";
-import Attendance from "../../assets/Attandence-Management.png";
+import Risk from "../../assets/RiskHome.png";
 import Order from "../../assets/Order.png";
 import Incident from "../../assets/IncidentImg.png";
 
-export default function WorkerHome({link}) {
+export default function OccupantHome({ link }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const navToInc = () => {
-    navigation.navigate(link+"IncidentsW");
+    navigation.navigate(link + "IncidentsW");
   };
   const navToOrders = () => {
-    navigation.navigate(link+"Orders");
+    navigation.navigate(link + "Orders");
   };
-  const navToAtt = () => {
-    navigation.navigate(link+"AddAttendance");
+  const navToRisk = () => {
+    navigation.navigate(link + "Risk");
   };
   const CardItems = [
-    { name: "Worker Attendance ", icon: Attendance, link: navToAtt},
-    { name: "View Order ", icon: Order, link: navToOrders },
     { name: "Incident ", icon: Incident, link: navToInc },
+    { name: "Risk ", icon: Risk, link: navToRisk },
+    { name: "View Order ", icon: Order, link: navToOrders },
   ];
 
   return (
     <View style={styles.box}>
       <View>
-        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu
+          link={link}
+          modalVisible={modalVisible}
+          setModal={setModalVisible}
+        />
       </View>
       <Header link={link} title="Home" setModal={setModalVisible} />
       <View style={styles.container}>

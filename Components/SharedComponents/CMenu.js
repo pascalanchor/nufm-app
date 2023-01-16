@@ -80,6 +80,15 @@ export default function CMenu({ link, modalVisible, setModal }) {
       link: navToSupport,
     },
   ];
+  const MenuItemsOccupant = [
+    { name: "Home", icon: Home, link: navToHome },
+    { name: "Communication", icon: Communication, link: navToComm },
+    {
+      name: "Support",
+      icon: Support,
+      link: navToSupport,
+    },
+  ];
   return (
     <Modal animationType="fade" transparent={true} visible={modalVisible}>
       <TouchableWithoutFeedback onPress={() => setModal(false)}>
@@ -94,7 +103,13 @@ export default function CMenu({ link, modalVisible, setModal }) {
                 <ScrollView>
                   <FlatList
                     keyExtractor={(item) => item.name}
-                    data={link === "Worker/" ? MenuItemsWorker : MenuItems}
+                    data={
+                      link === "Worker/"
+                        ? MenuItemsWorker
+                        : link === "Occupant/"
+                        ? MenuItemsOccupant
+                        : MenuItems
+                    }
                     numColumns={1}
                     renderItem={({ item }) => {
                       return (

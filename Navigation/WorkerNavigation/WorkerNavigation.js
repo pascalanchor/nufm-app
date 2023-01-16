@@ -23,7 +23,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 
-export default function ContractorNavigation() {
+export default function WorkerNavigation() {
   return (
     <View style={styles.container}>
       <NavigationContainer>

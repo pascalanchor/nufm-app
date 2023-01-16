@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   container: {
     alignSelf:'center',
     flexDirection:'column',
-    width: "75%",
-    aspectRatio: 2.5 / 1,
+    width: "70%",
+    aspectRatio: 2.3 / 1,
     backgroundColor: "#FFF",
     borderRadius: 12,
     shadowColor: "#000",
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: RFPercentage(1.9),
     textAlign: "center",
-    paddingTop: "4%",
+    paddingTop: "5%",
   },
 img:{
     width:50,

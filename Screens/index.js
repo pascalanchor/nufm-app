@@ -26,5 +26,9 @@ export { default as IncidentsW } from "./WorkerScreens/Incident/IncidentsW";
 export { default as AddIncidentOW } from "./WorkerScreens/Incident/AddIncidentOW";
 export { default as Orders } from "./WorkerScreens/Order/Orders";
 export { default as OrderDet } from "./WorkerScreens/Order/OrderDet";
+//Occupant
+export { default as OccupantHome } from "./OccupantScreens/OccupantHome";
+export { default as RiskO } from "./OccupantScreens/Risk/RiskO";
+export { default as AddRisk } from "./OccupantScreens/Risk/AddRisk";
 
 
