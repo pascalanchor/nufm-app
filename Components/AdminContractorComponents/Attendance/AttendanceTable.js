@@ -9,44 +9,21 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as GetAttendancesActionCreator from "../../../Store/ActionCreator/Attendance/GetAttendancesActionCreator";
 
-export default function AttendanceTable({ searchVal, link }) {
+function AttendanceTable({
+  searchVal,
+  link,
+  Attendances,
+  getAttendances,
+  error,
+}) {
   const navigation = useNavigation();
-  const Attendances = [
-    {
-      name: "Attendance one",
-      Facility: "Fac1",
-      Email: "janjoune.97@hotmail.com",
-    },
-    {
-      name: "Attendance two",
-      Facility: "Fac2236",
-      Email: "Nufm@gmail.com",
-    },
-    {
-      name: "Attendance three",
-      Facility: "Fac2236",
-      Email: "janjoune.97@hotmail.com",
-    },
-    {
-      name: "Attendance four",
-      Facility: "Fac2236",
-      Email: "Nufm@gmail.com",
-    },
-    {
-      name: "Attendance five",
-      Facility: "Fac2236",
-      Email: "Nufm@gmail.com",
-    },
-    {
-      name: "Attendance six",
-      Facility: "Fac2236",
-      Email: "Nufm@gmail.com",
-    },
-  ];
 
   const [AttendancesArr, setAttendancesArr] = useState([]);
   useEffect(() => {
+    getAttendances();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -84,7 +61,9 @@ export default function AttendanceTable({ searchVal, link }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={()=>navigation.navigate(link+"CheckAttendance")}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(link + "CheckAttendance")}
+              >
                 <View style={styles.AttendanceContainer}>
                   <View style={styles.details}>
                     <Text style={styles.txt}> {item.name}</Text>
@@ -104,6 +83,21 @@ export default function AttendanceTable({ searchVal, link }) {
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Attendances: state.GetAttendancesR.Attendances,
+    error: state.GetAttendancesR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAttendances: () =>
+      dispatch(GetAttendancesActionCreator.getAttendances()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AttendanceTable);
 
 const styles = StyleSheet.create({
   box: {
