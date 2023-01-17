@@ -16,7 +16,9 @@
     "@react-navigation/material-top-tabs": "^6.5.1",
     "@react-navigation/native": "^6.1.1",
     "@react-navigation/stack": "^6.3.10",
+    "axios": "^1.2.2",
     "expo": "~47.0.8",
+    "expo-checkbox": "~2.2.2",
     "expo-status-bar": "~1.4.2",
     "lodash.filter": "^4.6.0",
     "react": "18.1.0",
@@ -33,7 +35,10 @@
     "react-native-tab-view": "^3.3.4",
     "react-native-virtualized-view": "^1.0.0",
     "react-navigation": "^4.4.4",
-    "expo-checkbox": "~2.2.2"
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.2",
+    "thunk": "^0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

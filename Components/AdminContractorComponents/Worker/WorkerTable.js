@@ -2,43 +2,13 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
+import { connect } from "react-redux";
+import * as GetWorkersActionCreator from "../../../Store/ActionCreator/Worker/GetWorkersActionCreator";
 
-export default function WorkerTable({ searchVal }) {
-  const Workers = [
-    {
-      name: "Worker one",
-      spec: "Cleaner",
-      phone: "78768345",
-    },
-    {
-      name: "Worker two",
-      spec: "Driver",
-      phone: "78768123",
-    },
-    {
-      name: "Worker three",
-      spec: "Driver",
-      phone: "9796767",
-    },
-    {
-      name: "Worker four",
-      spec: "Driver",
-      phone: "78768123",
-    },
-    {
-      name: "Worker five",
-      spec: "Driver",
-      phone: "78768123",
-    },
-    {
-      name: "Worker six",
-      spec: "Driver",
-      phone: "78768123",
-    },
-  ];
-
+function WorkerTable({ searchVal, Workers, getWorkers, error }) {
   const [WorkersArr, setWorkersArr] = useState([]);
   useEffect(() => {
+    getWorkers();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -90,6 +60,20 @@ export default function WorkerTable({ searchVal }) {
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Workers: state.GetWorkersR.Workers,
+    error: state.GetWorkersR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getWorkers: () => dispatch(GetWorkersActionCreator.getWorkers()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkerTable);
 
 const styles = StyleSheet.create({
   box: {
