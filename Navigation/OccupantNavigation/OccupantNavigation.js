@@ -17,7 +17,8 @@ import {
   RiskDet,
   AddAttendance,
   CheckAttendance,
-  Orders,
+  OrderO,
+  AddOrder,
   OrderDet,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -80,7 +81,10 @@ export default function OccupantNavigation() {
             {(props) => <CheckAttendance {...props} link="Occupant/" />}
           </Stack.Screen>
           <Stack.Screen name="Occupant/Orders">
-            {(props) => <Orders {...props} link="Occupant/" />}
+            {(props) => <OrderO {...props} link="Occupant/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Occupant/AddOrder">
+            {(props) => <AddOrder {...props} link="Occupant/" />}
           </Stack.Screen>
           <Stack.Screen name="Occupant/OrderDetails">
             {(props) => <OrderDet {...props} link="Occupant/" />}

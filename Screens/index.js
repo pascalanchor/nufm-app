@@ -1,13 +1,13 @@
-export { default as Landing } from './LoginScreens/Landing';
-export { default as Login } from './LoginScreens/Login';
-export { default as Reset } from './LoginScreens/Reset';
-export { default as Home } from './AdminScreens/Home';
-export { default as Incident } from './AdminScreens/Incident/Incident';
-export { default as Risk } from './AdminScreens/Risk/Risk';
-export { default as Communication } from './AdminScreens/Communication';
-export { default as Support } from './AdminScreens/Support';
-export { default as Notification } from './AdminScreens/Notification/Notification';
-export { default as Sender } from './AdminScreens/Notification/Sender';
+export { default as Landing } from "./LoginScreens/Landing";
+export { default as Login } from "./LoginScreens/Login";
+export { default as Reset } from "./LoginScreens/Reset";
+export { default as Home } from "./AdminScreens/Home";
+export { default as Incident } from "./AdminScreens/Incident/Incident";
+export { default as Risk } from "./AdminScreens/Risk/Risk";
+export { default as Communication } from "./AdminScreens/Communication";
+export { default as Support } from "./AdminScreens/Support";
+export { default as Notification } from "./AdminScreens/Notification/Notification";
+export { default as Sender } from "./AdminScreens/Notification/Sender";
 export { default as IncidentDet } from "./AdminScreens//Incident/IncidentDet";
 export { default as RiskDet } from "./AdminScreens/Risk/RiskDet";
 export { default as Facilities } from "./AdminScreens/Facility/Facilities";
@@ -30,5 +30,5 @@ export { default as OrderDet } from "./WorkerScreens/Order/OrderDet";
 export { default as OccupantHome } from "./OccupantScreens/OccupantHome";
 export { default as RiskO } from "./OccupantScreens/Risk/RiskO";
 export { default as AddRisk } from "./OccupantScreens/Risk/AddRisk";
-
-
+export { default as OrderO } from "./OccupantScreens/Order/OrderO";
+export { default as AddOrder } from "./OccupantScreens/Order/AddOrder";
