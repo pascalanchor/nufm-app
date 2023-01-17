@@ -14,12 +14,18 @@ import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 
 export default function AddForm() {
+  const [WName, setWName] = useState("");
+  const [specMsg, setSpecMsg] = useState("");
+  const [emailMsg, setEmailMsg] = useState("");
+  const [phoneMsg, setPhoneMsg] = useState("");
+
   const DATA = [
     { label: "Cleaner", value: "1" },
     { label: "Driver", value: "2" },
     { label: "Chef", value: "3" },
     { label: "Repair", value: "4" },
   ];
+
   const [selected, setSelected] = useState([]);
   const renderDataItem = (item) => {
     return (
@@ -33,7 +39,7 @@ export default function AddForm() {
       <View style={styles.container}>
         <View style={styles.subCont}>
           <View>
-            <Text style={styles.label}>Worker Name</Text>
+            <Text style={styles.label}>Worker Name *</Text>
           </View>
           <TextInput
             style={styles.input}
@@ -42,10 +48,11 @@ export default function AddForm() {
             //   onChangeText={onChange}
             //   value={value}
           />
+          {WName && <Text style={styles.validation}>{WName}</Text>}
         </View>
         <View style={styles.subCont}>
           <View>
-            <Text style={styles.label}>Specialisation</Text>
+            <Text style={styles.label}>Specialisation *</Text>
           </View>
           <MultiSelect
             style={styles.input}
@@ -81,11 +88,12 @@ export default function AddForm() {
               </View>
             )}
           />
+          {specMsg && <Text style={styles.validation}>{specMsg}</Text>}
         </View>
 
         <View style={styles.subCont}>
           <View>
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>Email *</Text>
           </View>
           <TextInput
             style={styles.input}
@@ -94,11 +102,12 @@ export default function AddForm() {
             //   onChangeText={onChange}
             //   value={value}
           />
+          {emailMsg && <Text style={styles.validation}>{emailMsg}</Text>}
         </View>
 
         <View style={styles.subCont}>
           <View>
-            <Text style={styles.label}>Phone Number</Text>
+            <Text style={styles.label}>Phone Number *</Text>
           </View>
           <TextInput
             style={styles.input}
@@ -107,6 +116,7 @@ export default function AddForm() {
             //   onChangeText={onChange}
             //   value={value}
           />
+          {phoneMsg && <Text style={styles.validation}>{phoneMsg}</Text>}
         </View>
       </View>
       <View style={{ flexDirection: "row", marginBottom: "3%" }}>
@@ -221,5 +231,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginLeft: "18%",
+  },
+  validation: {
+    color: "red",
+    paddingLeft: "1.5%",
+    paddingTop: "1%",
+    fontSize: RFPercentage(1.4),
   },
 });

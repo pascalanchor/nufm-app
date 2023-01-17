@@ -9,6 +9,8 @@ import AddStep2 from "../../../Components/AdminContractorComponents/Facility/Add
 import AddStep3 from "../../../Components/AdminContractorComponents/Facility/AddStep3";
 
 export default function AddFacility({link}) {
+  const [facName, setFacName] =useState("");
+  const [facParent, setFacParent] =useState("");
   const [page, setPage] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ export default function AddFacility({link}) {
   const multiStepForm = () => {
     switch (page) {
       case 0:
-        return <AddForm formData={formData} setFormData={setFormData} />;
+        return <AddForm facName={facName} facParent={facParent} formData={formData} setFormData={setFormData} />;
       case 1:
         return <AddStep2 formData={formData} setFormData={setFormData} />;
       case 2:
@@ -38,7 +40,20 @@ export default function AddFacility({link}) {
     }
   };
   function handleSubmit() {
-    setPage(page + 1);
+    if (page === 0) {
+      if (formData.facilityName === '' || formData.facilityName.length <= 1) {
+        return setFacName('Please enter a valid name');
+      } else if(formData.location === '') {
+        return setFacParent('Please select a parent');
+      }
+      else {
+        setPage(page + 1);
+      }
+    } else if (page === 1) {
+      // do form validation again
+    } else if (page === 2) {
+      // set page === 0 , and clear fields
+    } else setPage(page + 1);
   }
   return (
     <View style={styles.box}>

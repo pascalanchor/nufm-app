@@ -9,10 +9,10 @@ import OccupantNavigation from "./Navigation/OccupantNavigation/OccupantNavigati
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <AdminNavigation /> */}
+      <AdminNavigation />
       {/* <ContractorNavigation /> */}
       {/* <WorkerNavigation /> */}
-      <OccupantNavigation />
+      {/* <OccupantNavigation /> */}
     </View>
   );
 }
