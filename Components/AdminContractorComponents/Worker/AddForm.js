@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,13 +12,69 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { MultiSelect } from "react-native-element-dropdown";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { connect } from "react-redux";
+import * as AddWorkerActionCreator from "../../../Store/ActionCreator/Worker/AddWorkerActionCreator";
 
-export default function AddForm() {
+function AddForm({
+  getWorkerInfo,
+  addWorker,
+  email,
+  fullName,
+  phone,
+  specializations,
+  error,
+  loading,
+  eid,
+}) {
   const [WName, setWName] = useState("");
   const [specMsg, setSpecMsg] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [phoneMsg, setPhoneMsg] = useState("");
 
+  useEffect(() => {
+    getWorkerInfo("fullName", "");
+    getWorkerInfo("email", "");
+    getWorkerInfo("phone", "");
+    getWorkerInfo("specializations", "");
+    getWorkerInfo("error", "");
+  }, []);
+
+  const handleOnChangeName = (value) => {
+    if (!value || value.length > 24) {
+      setWName("Please Enter a valid name (1-24)");
+    } else {
+      setWName("");
+    }
+    getWorkerInfo("fullName", value);
+  };
+
+  const handleOnChangeEmail = (value) => {
+    if (!value) {
+      setEmailMsg("Please Enter a valid email");
+    } else {
+      setEmailMsg("");
+    }
+    getWorkerInfo("email", value);
+  };
+
+  const handleOnChangeSpecs = (value) => {
+    if (!value) {
+      setSpecMsg("Please Select a Specialization");
+    } else {
+      setSpecMsg("");
+      setSelected(value);
+    }
+    getWorkerInfo("specializations", value);
+  };
+
+  const handleOnChangePhone = (value) => {
+    if (!value || +value < 0) {
+      setPhoneMsg("Please Enter a valid number");
+    } else {
+      setPhoneMsg("");
+    }
+    getWorkerInfo("phone", value);
+  };
   const DATA = [
     { label: "Cleaner", value: "1" },
     { label: "Driver", value: "2" },
@@ -26,7 +82,34 @@ export default function AddForm() {
     { label: "Repair", value: "4" },
   ];
 
-  const [selected, setSelected] = useState([]);
+  const handleClick = () => {
+    var submit = true;
+    var specs = [];
+    for (let index = 0; index < specializations.length; index++) {
+      specs.push(specializations[index].value);
+    }
+    if (!fullName || fullName.length > 24) {
+      setWName("Please Enter a valid name (1-24)");
+      submit = false;
+    }
+    if (!phone || +phone < 0) {
+      setPhoneMsg("Please Enter a Number");
+      submit = false;
+    }
+    if (!email || !email.includes("@")) {
+      setEmailMsg("Please Enter an Email");
+      submit = false;
+    }
+    if (specializations.length === 0) {
+      setSpecMsg("Please Select a Specialization");
+      submit = false;
+    }
+    if (submit) {
+      addWorker(email, fullName, phone, specs);
+    }
+  };
+
+  const [selected, setSelected] = useState(specializations);
   const renderDataItem = (item) => {
     return (
       <View style={styles.item}>
@@ -44,9 +127,8 @@ export default function AddForm() {
           <TextInput
             style={styles.input}
             keyboardType="default"
-
-            //   onChangeText={onChange}
-            //   value={value}
+            onChangeText={(value) => handleOnChangeName(value)}
+            value={fullName}
           />
           {WName && <Text style={styles.validation}>{WName}</Text>}
         </View>
@@ -70,9 +152,7 @@ export default function AddForm() {
             valueField="value"
             placeholder="Select one or more.."
             value={selected}
-            onChange={(item) => {
-              setSelected(item);
-            }}
+            onChange={(item) => handleOnChangeSpecs(item)}
             renderRightIcon={() => (
               <Ionicons name="chevron-down-outline" size={20} color="#595959" />
             )}
@@ -98,9 +178,8 @@ export default function AddForm() {
           <TextInput
             style={styles.input}
             keyboardType="default"
-
-            //   onChangeText={onChange}
-            //   value={value}
+            onChangeText={(value) => handleOnChangeEmail(value)}
+            value={email}
           />
           {emailMsg && <Text style={styles.validation}>{emailMsg}</Text>}
         </View>
@@ -111,14 +190,19 @@ export default function AddForm() {
           </View>
           <TextInput
             style={styles.input}
-            keyboardType="default"
-
-            //   onChangeText={onChange}
-            //   value={value}
+            keyboardType="numeric"
+            onChangeText={(value) => handleOnChangePhone(value)}
+            value={phone}
           />
           {phoneMsg && <Text style={styles.validation}>{phoneMsg}</Text>}
         </View>
       </View>
+      {error && (
+        <View style={styles.errorMsg}>
+          <AntDesign name="checkcircle" size={24} color="#02A962" />
+          <Text style={styles.errorTxt}>{error}</Text>
+        </View>
+      )}
       <View style={{ flexDirection: "row", marginBottom: "3%" }}>
         <View style={{ width: "30%" }}>
           <TouchableOpacity>
@@ -128,7 +212,7 @@ export default function AddForm() {
           </TouchableOpacity>
         </View>
         <View style={{ width: "70%" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleClick}>
             <View style={styles.save}>
               <Text style={styles.addSite}>Save</Text>
             </View>
@@ -138,6 +222,35 @@ export default function AddForm() {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    email: state.AddWorkerR.email,
+    phone: state.AddWorkerR.phone,
+    specializations: state.AddWorkerR.specializations,
+    fullName: state.AddWorkerR.fullName,
+    error: state.AddWorkerR.error,
+    loading: state.AddWorkerR.loading,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getWorkerInfo: (name, value) =>
+      dispatch(AddWorkerActionCreator.getWorkerInfo(name, value)),
+    addWorker: (email, fullName, phone, specializations) =>
+      dispatch(
+        AddWorkerActionCreator.addWorker(
+          email,
+          fullName,
+          phone,
+          specializations
+        )
+      ),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
 
 const styles = StyleSheet.create({
   initialCont: {
@@ -158,7 +271,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "8%",
+    marginBottom: "6%",
   },
   subCont: {
     flexDirection: "column",
@@ -237,5 +350,19 @@ const styles = StyleSheet.create({
     paddingLeft: "1.5%",
     paddingTop: "1%",
     fontSize: RFPercentage(1.4),
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "7%",
+    backgroundColor: "#CAF3D1",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#595959",
   },
 });

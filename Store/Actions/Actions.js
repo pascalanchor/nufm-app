@@ -5,6 +5,13 @@ export const GetWorkers = {
     GETWORKERS_FAIL: "GETWORKERS_FAIL",
   };
 
+  export const AddWorker = {
+    ADD_WORKER:"ADD_WORKER",
+    ADD_WORKER_START:"ADD_WORKER_START",
+    ADD_WORKER_END:"ADD_WORKER_END",
+    ADD_WORKER_FAIL:"ADD_WORKER_FAIL",
+  }
+
   export const GetAttendances = {
     GET_ATTENDANCES: "GET_ATTENDANCES_",
     GET_ATTENDANCES_START: "GET_ATTENDANCES_START",

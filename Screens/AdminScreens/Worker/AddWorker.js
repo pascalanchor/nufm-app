@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
   },
   whiteBox: {
     display: "flex",
+    // flex:1,
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,

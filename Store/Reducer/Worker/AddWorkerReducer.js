@@ -1,0 +1,32 @@
+import * as actionTypes from "../../Actions/Actions";
+
+const initialState = {
+  email: "",
+  fullName: "",
+  phone: "",
+  specializations: [],
+  error: "",
+  loading: false,
+  eid: "",
+};
+
+const AddWorkerR = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.AddWorker.ADD_WORKER:
+      return { ...state, [action.name]: action.value };
+
+    case actionTypes.AddWorker.ADD_WORKER_START:
+      return { ...state, loading: true };
+
+    case actionTypes.AddWorker.ADD_WORKER_END:
+      return {...state,loading: false,error:'Added Successfully'};
+
+    case actionTypes.AddWorker.ADD_WORKER_FAIL:
+      return { ...state, loading: false };
+
+    default:
+      return state;
+  }
+};
+
+export default AddWorkerR;
