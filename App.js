@@ -13,6 +13,7 @@ import {
   GetAttendancesR,
   GetCheckByIdR,
   AddWorkerR,
+  GetFacilitiesR
 } from "./Store";
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   AddWorkerR: AddWorkerR,
   GetAttendancesR: GetAttendancesR,
   GetCheckByIdR: GetCheckByIdR,
+  GetFacilitiesR: GetFacilitiesR
 });
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 

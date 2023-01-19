@@ -2,43 +2,13 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
+import { connect } from "react-redux";
+import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
 
-export default function FacilityTable({ searchVal }) {
-  const Facilities = [
-    {
-      name: "Facility one",
-      location: "Tripoli- el tal",
-      type: "Education 345",
-    },
-    {
-      name: "Facility two",
-      location: "Tripoli",
-      type: "Education 123",
-    },
-    {
-      name: "Facility three",
-      location: "Tripoli",
-      type: "Retails",
-    },
-    {
-      name: "Facility four",
-      location: "Tripoli-Lebanon",
-      type: "Education 123",
-    },
-    {
-      name: "Facility five",
-      location: "Tripoli",
-      type: "Education 123",
-    },
-    {
-      name: "Facility six",
-      location: "Tripoli",
-      type: "Education 123",
-    },
-  ];
-
+function FacilityTable({ searchVal, Facilities, getFacilities, error }) {
   const [FacilitiesArr, setFacilitiesArr] = useState([]);
   useEffect(() => {
+    getFacilities();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -94,6 +64,20 @@ export default function FacilityTable({ searchVal }) {
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Facilities: state.GetFacilitiesR.Facilities,
+    error: state.GetFacilitiesR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FacilityTable);
 
 const styles = StyleSheet.create({
   box: {
