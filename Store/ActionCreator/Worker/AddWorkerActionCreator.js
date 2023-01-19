@@ -14,7 +14,7 @@ export const addWorker = (email,fullName,phone,specializations) => {
   return (dispatch) => {
     dispatch(addWorkerStart());
 
-    var token = 'Bearer '+localStorage.getItem('nufmtoken');
+    // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
       "email": email,

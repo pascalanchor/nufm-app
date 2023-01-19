@@ -22,32 +22,33 @@ export const getAttendances = () => {
         name: "Attendance one",
         Facility: "Fac1",
         Email: "janjoune.97@hotmail.com",
+        eid:"1"
       },
       {
         name: "Attendance two",
         Facility: "Fac2236",
         Email: "Nufm@gmail.com",
+        eid:"2"
       },
       {
         name: "Attendance three",
         Facility: "Fac2236",
         Email: "janjoune.97@hotmail.com",
+        eid:"3"
       },
       {
         name: "Attendance four",
         Facility: "Fac2236",
         Email: "Nufm@gmail.com",
+        eid:"4"
       },
       {
         name: "Attendance five",
         Facility: "Fac2236",
         Email: "Nufm@gmail.com",
+        eid:"5"
       },
-      {
-        name: "Attendance six",
-        Facility: "Fac2236",
-        Email: "Nufm@gmail.com",
-      },
+  
     ];
       dispatch(getAttendancesEnd(Attendances));
   };

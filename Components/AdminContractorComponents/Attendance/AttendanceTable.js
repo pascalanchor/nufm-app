@@ -62,7 +62,7 @@ function AttendanceTable({
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link + "CheckAttendance")}
+                onPress={() => navigation.navigate(link + "CheckAttendance",{ id: item.eid })}
               >
                 <View style={styles.AttendanceContainer}>
                   <View style={styles.details}>
