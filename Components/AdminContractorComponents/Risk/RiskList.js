@@ -11,32 +11,19 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as GetRisksActionCreator from "../../../Store/ActionCreator/Risk/GetRisksActionCreator";
 
-export default function Risks({link, searchVal }) {
+function Risks({ link, searchVal, Risks, getRisks, error }) {
+
   const navigation = useNavigation();
-  const Risks = [
-    { name: "Risk1", date: "28-09-2022", facilityName: "facility" },
-    { name: "Risk2", date: "28-09-2022", facilityName: "facility" },
-    {
-      name: "Risk3",
-      date: "28-09-2022",
-      facilityName: "facility",
-    },
-    {
-      name: "Risk4",
-      date: "28-09-2022",
-      facilityName: "facility",
-    },
-    {
-      name: "Risk5",
-      date: "28-09-2022",
-      facilityName: "facility",
-    },
-  ];
   const [RiskArr, setRiskArr] = useState([]);
+
   useEffect(() => {
+    getRisks();
     sortedArray();
   }, [searchVal]);
+  
   const sortedArray = () => {
     setRiskArr(
       Risks.filter((cntr) =>
@@ -54,7 +41,9 @@ export default function Risks({link, searchVal }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate(link+"RiskDet")}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(link + "RiskDet")}
+              >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
                     <Text style={styles.txt}> {item.name}</Text>
@@ -80,6 +69,20 @@ export default function Risks({link, searchVal }) {
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Risks: state.GetRisksR.Risks,
+    error: state.GetRisksR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getRisks: () => dispatch(GetRisksActionCreator.getRisks()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Risks);
 
 const styles = StyleSheet.create({
   box: {

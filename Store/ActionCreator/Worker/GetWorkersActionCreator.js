@@ -19,31 +19,37 @@ export const getWorkers = () => {
 
     const Wr = [
         {
+          eid:"1",
           name: "Worker one",
           spec: "Cleaner",
           phone: "78768345",
         },
         {
+          eid:"2",
           name: "Worker two",
           spec: "Driver",
           phone: "78768123",
         },
         {
+          eid:"3",
           name: "Worker three",
           spec: "Driver",
           phone: "9796767",
         },
         {
+          eid:"4",
           name: "Worker four",
           spec: "Driver",
           phone: "78768123",
         },
         {
+          eid:"5",
           name: "Worker five",
           spec: "Driver",
           phone: "78768123",
         },
         {
+          eid:"6",
           name: "Worker six",
           spec: "Driver",
           phone: "78768123",
