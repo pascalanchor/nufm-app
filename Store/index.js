@@ -7,3 +7,5 @@ export { default as GetRisksR } from "./Reducer/Risk/GetRisksReducer";
 export { default as GetRiskDetailsR } from "./Reducer/Risk/GetRiskDetailsReducer";
 export { default as GetIncidentsR } from "./Reducer/Incident/GetIncidentsReducer";
 export { default as GetIncidentDetailsR } from "./Reducer/Incident/GetIncidentDetailsReducer";
+export { default as GetNotificationsR } from "./Reducer/Notification/GetNotificationsReducer";
+export { default as GetNotificationDetailsR } from "./Reducer/Notification/GetNotifDetailsReducer";

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,28 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { connect } from "react-redux";
+import * as GetNotifDetailsActionCreator from "../../../Store/ActionCreator/Notification/GetNotifDetailsActionCreator";
 
-export default function SenderDetails() {
+function SenderDetails({
+  sender,
+  status,
+  receiver,
+  date,
+  note,
+  error,
+  getNotificationDetails,
+}) {
+  const route = useRoute();
+  const id = route.params.id;
   const navigation = useNavigation();
+  useEffect(() => {
+    getNotificationDetails(id);
+    console.log(id);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -38,37 +54,57 @@ export default function SenderDetails() {
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sender</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{sender}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Status</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{status}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Receiver</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{receiver}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Date</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{date}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Note</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{note}</Text>
           </View>
         </View>
       </View>
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    sender: state.GetNotificationDetailsR.sender,
+    status: state.GetNotificationDetailsR.status,
+    receiver: state.GetNotificationDetailsR.receiver,
+    date: state.GetNotificationDetailsR.date,
+    eid: state.GetNotificationDetailsR.eid,
+    error: state.GetNotificationDetailsR.error,
+    note: state.GetNotificationDetailsR.note,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getNotificationDetails: (eid) =>
+      dispatch(GetNotifDetailsActionCreator.getNotificationDetails(eid)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SenderDetails);
 
 const styles = StyleSheet.create({
   container: {

@@ -11,50 +11,19 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as GetNotificationsActionCreator from "../../../Store/ActionCreator/Notification/GetNotificationsActionCreator";
 
-export default function Senders({ link,searchVal }) {
+function Senders({ link, searchVal, getNotifications, Notifications, error }) {
   const navigation = useNavigation();
-  const Senders = [
-    { name: "Hussam Khaled", date: "28-09-2022", receiver: "Jana" },
-    { name: "Jana Zreika", date: "28-09-2022", receiver: "Jana" },
-    {
-      name: "Samir Sam",
-      date: "28-09-2022",
-      receiver: "Jana",
-    },
-    {
-      name: "Hussam Khaled99",
-      date: "28-09-2022",
-      receiver: "Jana",
-    },
-    {
-      name: "Samir Sam44",
-      date: "28-09-2022",
-      receiver: "Jana",
-    },
-    {
-      name: "Hussam Khaled22",
-      date: "28-09-2022",
-      receiver: "Jana",
-    },
-    {
-      name: "Samir Sam33",
-      date: "28-09-2022",
-      receiver: "Jana",
-    },
-    {
-      name: "Hussam Khaled28",
-      date: "28-09-2022",
-      receiver: "Jana",
-    },
-  ];
   const [SenderArr, setSenderArr] = useState([]);
   useEffect(() => {
+    getNotifications();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
     setSenderArr(
-      Senders.filter((cntr) =>
+      Notifications.filter((cntr) =>
         cntr.name.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
@@ -64,12 +33,16 @@ export default function Senders({ link,searchVal }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
-          data={SenderArr && SenderArr.length > 0 ? SenderArr : Senders}
+          keyExtractor={(item) => item.eid}
+          data={SenderArr && SenderArr.length > 0 ? SenderArr : Notifications}
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity onPress={() => navigation.navigate(link+"Sender")}>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate(link + "Sender", { id: item.eid })
+                }
+              >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
                     <Text style={styles.txt}> {item.name}</Text>
@@ -96,6 +69,21 @@ export default function Senders({ link,searchVal }) {
   );
 }
 
+const mapStateToProps = (state) => {
+  return {
+    Notifications: state.GetNotificationsR.Notifications,
+    error: state.GetNotificationsR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getNotifications: () =>
+      dispatch(GetNotificationsActionCreator.getNotifications()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Senders);
 const styles = StyleSheet.create({
   box: {
     flex: 1,
