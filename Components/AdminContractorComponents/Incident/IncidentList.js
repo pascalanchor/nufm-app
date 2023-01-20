@@ -11,30 +11,14 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as GetIncidentsActionCreator from "../../../Store/ActionCreator/Incident/GetIncidentsActionCreator";
 
-export default function Incidents({ searchVal,link }) {
+function Incidents({ searchVal, link, getIncidents, Incidents, error }) {
   const navigation = useNavigation();
-  const Incidents = [
-    { name: "Hussam Khaled", date: "28-09-2022", facilityName: "facility" },
-    { name: "Jana Zreika", date: "28-09-2022", facilityName: "facility" },
-    {
-      name: "Samir Sam",
-      date: "28-09-2022",
-      facilityName: "facility",
-    },
-    {
-      name: "Hussam Khaled99",
-      date: "28-09-2022",
-      facilityName: "facility",
-    },
-    {
-      name: "Samir Sam44",
-      date: "28-09-2022",
-      facilityName: "facility",
-    },
-  ];
   const [IncidentArr, setIncidentArr] = useState([]);
   useEffect(() => {
+    getIncidents();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -49,13 +33,15 @@ export default function Incidents({ searchVal,link }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.eid}
           data={IncidentArr && IncidentArr.length > 0 ? IncidentArr : Incidents}
           numColumns={1}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link+"IncidentDet")}
+                onPress={() =>
+                  navigation.navigate(link + "IncidentDet", { id: item.eid })
+                }
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
@@ -82,6 +68,21 @@ export default function Incidents({ searchVal,link }) {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    Incidents: state.GetIncidentsR.Incidents,
+    error: state.GetIncidentsR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getIncidents: () => dispatch(GetIncidentsActionCreator.getIncidents()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Incidents);
 
 const styles = StyleSheet.create({
   box: {

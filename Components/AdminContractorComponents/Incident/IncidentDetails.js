@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,29 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { connect } from "react-redux";
+import * as GetIncidentDetailsActionCreator from "../../../Store/ActionCreator/Incident/GetIncidentDetailsActionCreator";
 
-export default function IncidentDetails() {
+function IncidentDetails({
+  getIncidentDetails,
+  sender,
+  site,
+  facility,
+  task,
+  incident,
+  note,
+  eid,
+  error,
+}) {
+  const route = useRoute();
+  const id = route.params.id;
   const navigation = useNavigation();
+  useEffect(() => {
+    getIncidentDetails(id);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -24,7 +41,7 @@ export default function IncidentDetails() {
           }}
         >
           <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Ionicons name="chevron-back-circle" size={30} color="#309694" />
+            <Ionicons name="chevron-back-circle" size={30} color="#309694" />
           </TouchableOpacity>
           <TouchableOpacity>
             <AntDesign
@@ -38,43 +55,64 @@ export default function IncidentDetails() {
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sender</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{sender}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sites</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{site}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Facility</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{facility}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Task</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{task}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Incident</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{incident}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Note</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{note}</Text>
           </View>
         </View>
       </View>
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    sender: state.GetIncidentDetailsR.sender,
+    site: state.GetIncidentDetailsR.site,
+    facility: state.GetIncidentDetailsR.facility,
+    task: state.GetIncidentDetailsR.task,
+    eid: state.GetIncidentDetailsR.eid,
+    error: state.GetIncidentDetailsR.error,
+    incident: state.GetIncidentDetailsR.incident,
+    note: state.GetIncidentDetailsR.note,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getIncidentDetails: (eid) =>
+      dispatch(GetIncidentDetailsActionCreator.getIncidentDetails(eid)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IncidentDetails);
 
 const styles = StyleSheet.create({
   container: {
@@ -126,5 +164,4 @@ const styles = StyleSheet.create({
     marginLeft: "2%",
     paddingLeft: "2%",
   },
-
 });

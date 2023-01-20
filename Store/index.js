@@ -5,3 +5,5 @@ export { default as GetCheckByIdR } from "./Reducer/Attendance/AttendanceCheckRe
 export { default as GetFacilitiesR } from "./Reducer/Facility/GetFacilitiesReducer";
 export { default as GetRisksR } from "./Reducer/Risk/GetRisksReducer";
 export { default as GetRiskDetailsR } from "./Reducer/Risk/GetRiskDetailsReducer";
+export { default as GetIncidentsR } from "./Reducer/Incident/GetIncidentsReducer";
+export { default as GetIncidentDetailsR } from "./Reducer/Incident/GetIncidentDetailsReducer";
