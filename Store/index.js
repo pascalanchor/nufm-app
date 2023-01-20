@@ -1,3 +1,4 @@
+export { default as LoginR } from "./Reducer/Login/LoginReducer";
 export { default as GetWorkersR } from "./Reducer/Worker/GetWorkersReducer";
 export { default as AddWorkerR } from "./Reducer/Worker/AddWorkerReducer";
 export { default as GetAttendancesR } from "./Reducer/Attendance/GetAttendancesReducer";
@@ -9,3 +10,4 @@ export { default as GetIncidentsR } from "./Reducer/Incident/GetIncidentsReducer
 export { default as GetIncidentDetailsR } from "./Reducer/Incident/GetIncidentDetailsReducer";
 export { default as GetNotificationsR } from "./Reducer/Notification/GetNotificationsReducer";
 export { default as GetNotificationDetailsR } from "./Reducer/Notification/GetNotifDetailsReducer";
+export { default as AddFacilityR } from "./Reducer/Facility/AddFacilityReducer";

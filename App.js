@@ -9,11 +9,13 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import {
+  LoginR,
   GetWorkersR,
   GetAttendancesR,
   GetCheckByIdR,
   AddWorkerR,
   GetFacilitiesR,
+  AddFacilityR,
   GetRisksR,
   GetRiskDetailsR,
   GetIncidentsR,
@@ -27,11 +29,13 @@ const composeEnhancers =
     : null) || compose;
 
 const reducer = combineReducers({
+  LoginR: LoginR,
   GetWorkersR: GetWorkersR,
   AddWorkerR: AddWorkerR,
   GetAttendancesR: GetAttendancesR,
   GetCheckByIdR: GetCheckByIdR,
   GetFacilitiesR: GetFacilitiesR,
+  AddFacilityR: AddFacilityR,
   GetRisksR: GetRisksR,
   GetRiskDetailsR: GetRiskDetailsR,
   GetIncidentsR: GetIncidentsR,
