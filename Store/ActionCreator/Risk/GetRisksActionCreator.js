@@ -18,22 +18,25 @@ export const getRisks = () => {
     //   });
 
     const Risks = [
-      { name: "Risk1", date: "28-09-2022", facilityName: "facility" },
-      { name: "Risk2", date: "28-09-2022", facilityName: "facility" },
+      { name: "Risk1", date: "28-09-2022", facilityName: "facility", eid: "1" },
+      { name: "Risk2", date: "28-09-2022", facilityName: "facility", eid: "2" },
       {
         name: "Risk3",
         date: "28-09-2022",
         facilityName: "facility",
+        eid: "3",
       },
       {
         name: "Risk4",
         date: "28-09-2022",
         facilityName: "facility",
+        eid: "4",
       },
       {
         name: "Risk5",
         date: "28-09-2022",
         facilityName: "facility",
+        eid: "5",
       },
     ];
     dispatch(getRisksEnd(Risks));

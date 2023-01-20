@@ -38,3 +38,8 @@ export const GetRisks = {
   GET_RISKS_END: "GET_RISKS_END",
   GET_RISKS_FAIL: "GET_RISKS_FAIL",
 };
+
+export const GetRiskDetails = {
+  GET_RISK_DETAILS_END: "GET_RISK_DETAILS_END",
+  GET_RISK_DETAILS_FAIL: "GET_RISK_DETAILS_FAIL",
+};

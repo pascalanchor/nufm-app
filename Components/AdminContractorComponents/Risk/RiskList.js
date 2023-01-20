@@ -42,7 +42,7 @@ function Risks({ link, searchVal, Risks, getRisks, error }) {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link + "RiskDet")}
+                onPress={() => navigation.navigate(link + "RiskDet", {id: item.eid})}
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
