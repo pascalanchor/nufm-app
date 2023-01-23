@@ -22,6 +22,8 @@ import {
   AttendancesC,
   AddAttendance,
   CheckAttendance,
+  Orders,
+  OrderDet
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -91,6 +93,12 @@ export default function ContractorNavigation() {
           </Stack.Screen>
           <Stack.Screen name="Contractor/CheckAttendance">
             {(props) => <CheckAttendance {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Contractor/Orders">
+            {(props) => <Orders {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Contractor/OrderDetails">
+            {(props) => <OrderDet {...props} link="Contractor/" />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

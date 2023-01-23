@@ -21,6 +21,8 @@ import {
   AddWorker,
   Attendances,
   CheckAttendance,
+  Orders,
+  OrderDet
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -86,6 +88,12 @@ export default function LoginNavigation() {
           </Stack.Screen>
           <Stack.Screen name="CheckAttendance">
             {(props) => <CheckAttendance {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="Orders">
+            {(props) => <Orders {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="OrderDetails">
+            {(props) => <OrderDet {...props} link="" />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

@@ -9,6 +9,7 @@ import Header from "../../Components/SharedComponents/Header";
 import Cards from "../../Components/SharedComponents/Cards";
 import Facility from "../../assets/Facility-Management.png";
 import Worker from "../../assets/Worker-Management.png";
+import Order from "../../assets/Order.png";
 import Attendance from "../../assets/Attandence-Management.png";
 
 export default function Home({link}) {
@@ -20,6 +21,9 @@ export default function Home({link}) {
   const navToWorker = () => {
     navigation.navigate("Workers");
   };
+  const navToOrders = () => {
+    navigation.navigate(link + "Orders");
+  };
   const navToAtt = () => {
     navigation.navigate("Attendances");
   };
@@ -27,6 +31,7 @@ export default function Home({link}) {
     { name: "Facility Management", icon: Facility, link: navToFac },
     { name: "Worker Management", icon: Worker, link: navToWorker },
     { name: "Attendance Management", icon: Attendance, link: navToAtt },
+    { name: "View Order ", icon: Order, link: navToOrders },
   ];
 
   return (

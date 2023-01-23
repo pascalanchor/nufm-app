@@ -18,22 +18,22 @@ export const getOrders = () => {
     //   });
 
     const Orders = [
-      { name: "Risk1", date: "28-09-2022", sender: "sender", eid: "1" },
-      { name: "Risk2", date: "28-09-2022", sender: "sender", eid: "2" },
+      { name: "Order1", date: "28-09-2022", sender: "sender", eid: "1" },
+      { name: "Order2", date: "28-09-2022", sender: "sender", eid: "2" },
       {
-        name: "Risk3",
+        name: "Order3",
         date: "28-09-2022",
         sender: "sender",
         eid: "3",
       },
       {
-        name: "Risk4",
+        name: "Order4",
         date: "28-09-2022",
         sender: "sender",
         eid: "4",
       },
       {
-        name: "Risk5",
+        name: "Order5",
         date: "28-09-2022",
         sender: "sender",
         eid: "5",

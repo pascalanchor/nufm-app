@@ -11,5 +11,7 @@ export { default as GetIncidentDetailsR } from "./Reducer/Incident/GetIncidentDe
 export { default as GetNotificationsR } from "./Reducer/Notification/GetNotificationsReducer";
 export { default as GetNotificationDetailsR } from "./Reducer/Notification/GetNotifDetailsReducer";
 export { default as AddFacilityR } from "./Reducer/Facility/AddFacilityReducer";
+export { default as GetAllParentR } from "./Reducer/Facility/GetFacParentReducer";
 export { default as GetOrdersR } from "./Reducer/Order/GetOrdersReducer";
 export { default as GetOrderDetailsR } from "./Reducer/Order/GetOrderdetailsReducer";
+export { default as AddOrderR } from "./Reducer/Order/AddOrderReducer";

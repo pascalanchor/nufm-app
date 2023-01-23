@@ -46,6 +46,12 @@ export const AddFacility = {
   ADD_FACILITY_FAIL: "ADD_FACILITY_FAIL",
 };
 
+export const GetAllParent = {
+  GET_ALL_PARENT_START: "GET_ALL_PARENT_START",
+  GET_ALL_PARENT_END: "GET_ALL_PARENT_END",
+  GET_ALL_PARENT_FAIL: "GET_ALL_PARENT_FAIL",
+};
+
 //Risk
 export const GetRisks = {
   GET_RISKS_START: "GET_RISKS_START",
@@ -91,4 +97,11 @@ export const GetOrders = {
 export const GetOrderDetails = {
   GET_ORDER_DETAILS_END: "GET_ORDER_DETAILS_END",
   GET_ORDER_DETAILS_FAIL: "GET_ORDER_DETAILS_FAIL",
+};
+
+export const AddOrder = {
+  ADD_ORDER: "ADD_ORDER",
+  ADD_ORDER_START: "ADD_ORDER_START",
+  ADD_ORDER_END: "ADD_ORDER_END",
+  ADD_ORDER_FAIL: "ADD_ORDER_FAIL",
 };

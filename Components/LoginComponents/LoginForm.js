@@ -27,7 +27,7 @@ export default function LoginForm() {
       <Buttons
         text="Login"
         onPress={() => {
-          navigation.navigate("Worker/Home");
+          navigation.navigate("Occupant/Home");
         }}
       />
     </View>

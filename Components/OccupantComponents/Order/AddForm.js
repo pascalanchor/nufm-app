@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,14 +10,52 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as AddOrderActionCreator from "../../../Store/ActionCreator/Order/AddOrderActionCreator";
+import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
+import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
+import * as GetWorkersActionCreator from "../../../Store/ActionCreator/Worker/GetWorkersActionCreator";
 
-export default function AddForm() {
-  const parent = ["Parent1", "FP2", "FP3", "Fp4"];
-  const sites = ["site1", "site2", "site3"];
-  const to = ["c1", "c2", "c3"];
-  const [selected, setSelected] = useState([]);
+function AddForm({
+  getOrderInfo,
+  addOrder,
+  facilityParent,
+  facilitySite,
+  receiver,
+  order,
+  comment,
+  error,
+  loading,
+  Facilities,
+  getFacilities,
+  getAllParent,
+  parent,
+  Workers,
+  getWorkers,
+}) {
+  useEffect(() => {
+    getFacilities();
+    getAllParent();
+    getWorkers();
+    getOrderInfo("facilityParent", "");
+    getOrderInfo("facilitySite", "");
+    getOrderInfo("receiver", "");
+    getOrderInfo("order", "");
+    getOrderInfo("comment", "");
+    getOrderInfo("error", "");
+  }, []);
   const navigation = useNavigation();
+  const siteName = Facilities.map((fn) => fn.name);
+  const parentName = parent.map((pr) => pr.name);
+  const workerName = Workers.map((wr) => wr.name);
 
+  const handleOnChange = (value, name) => {
+    getOrderInfo(name, value);
+  };
+
+  const handleClick = () => {
+    addOrder(facilityParent, facilitySite, receiver, order, comment);
+  };
   return (
     <View style={styles.initialCont}>
       <View style={styles.iconsTop}>
@@ -51,9 +89,9 @@ export default function AddForm() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={parent}
+            data={parentName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilityParent");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -61,7 +99,7 @@ export default function AddForm() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilityParent}
           />
         </View>
         <View style={styles.subCont}>
@@ -81,9 +119,9 @@ export default function AddForm() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={sites}
+            data={siteName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilitySite");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -91,7 +129,7 @@ export default function AddForm() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilitySite}
           />
         </View>
 
@@ -104,7 +142,7 @@ export default function AddForm() {
               <Ionicons name="chevron-down-outline" size={20} color="#595959" />
             )}
             dropdownIconPosition="right"
-            defaultButtonText="Select a task.."
+            defaultButtonText=" "
             rowTextStyle={{
               color: "#595959",
             }}
@@ -112,9 +150,9 @@ export default function AddForm() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={to}
+            data={workerName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "receiver");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -122,7 +160,7 @@ export default function AddForm() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={receiver}
           />
         </View>
 
@@ -133,8 +171,8 @@ export default function AddForm() {
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            onChangeText={(value) => handleOnChange(value, "order")}
+            value={order}
           />
         </View>
 
@@ -145,12 +183,18 @@ export default function AddForm() {
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            onChangeText={(value) => handleOnChange(value, "comment")}
+            value={comment}
+            multiline={true}
           />
         </View>
       </View>
-
+      {error && (
+        <View style={styles.errorMsg}>
+          <AntDesign name="checkcircle" size={24} color="#02A962" />
+          <Text style={styles.errorTxt}>{error}</Text>
+        </View>
+      )}
       <View style={{ flexDirection: "row", marginBottom: "3%" }}>
         <View style={{ width: "30%" }}>
           <TouchableOpacity>
@@ -160,7 +204,7 @@ export default function AddForm() {
           </TouchableOpacity>
         </View>
         <View style={{ width: "70%" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleClick}>
             <View style={styles.save}>
               <Text style={styles.addSite}>ADD</Text>
             </View>
@@ -170,6 +214,43 @@ export default function AddForm() {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    facilityParent: state.AddOrderR.facilityParent,
+    facilitySite: state.AddOrderR.facilitySite,
+    receiver: state.AddOrderR.receiver,
+    order: state.AddOrderR.order,
+    comment: state.AddOrderR.comment,
+    error: state.AddOrderR.error,
+    loading: state.AddOrderR.loading,
+    Facilities: state.GetFacilitiesR.Facilities,
+    parent: state.GetAllParentR.parent,
+    Workers: state.GetWorkersR.Workers,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
+    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+    getWorkers: () => dispatch(GetWorkersActionCreator.getWorkers()),
+    getOrderInfo: (name, value) =>
+      dispatch(AddOrderActionCreator.getOrderInfo(name, value)),
+    addOrder: (facilityParent, facilitySite, receiver, order, comment) =>
+      dispatch(
+        AddOrderActionCreator.addOrder(
+          facilityParent,
+          facilitySite,
+          receiver,
+          order,
+          comment
+        )
+      ),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
 
 const styles = StyleSheet.create({
   initialCont: {
@@ -329,5 +410,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginLeft: "18%",
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "7%",
+    backgroundColor: "#CAF3D1",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#595959",
   },
 });
