@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,12 +7,31 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { connect } from "react-redux";
+import * as GetOrderDetailsActionCreator from "../../../Store/ActionCreator/Order/GetOrderDetailsActionCreator";
 
-export default function OrderDetails() {
+function OrderDetails({
+  sender,
+  site,
+  email,
+  phone,
+  facilityParent,
+  date,
+  order,
+  comment,
+  eid,
+  error,
+  getOrderDetails,
+}) {
+  const route = useRoute();
+  const id = route.params.id;
   const navigation = useNavigation();
+  useEffect(() => {
+    getOrderDetails(id);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -38,55 +57,78 @@ export default function OrderDetails() {
         <View style={styles.txtInput}>
           <Text style={styles.txt}>From</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{sender}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Email</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{email}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txtMulti}>Phone Number</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{phone}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txtMulti}>Facility Parent</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{facilityParent}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Site</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{site}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Date</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{date}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Order</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{order}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Comment</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}></Text>
+            <Text style={styles.txtInside}>{comment}</Text>
           </View>
         </View>
       </View>
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    sender: state.GetOrderDetailsR.sender,
+    site: state.GetOrderDetailsR.site,
+    facilityParent: state.GetOrderDetailsR.facilityParent,
+    email: state.GetOrderDetailsR.email,
+    eid: state.GetOrderDetailsR.eid,
+    error: state.GetOrderDetailsR.error,
+    order: state.GetOrderDetailsR.order,
+    date: state.GetOrderDetailsR.date,
+    phone: state.GetOrderDetailsR.phone,
+    comment: state.GetOrderDetailsR.comment,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getOrderDetails: (eid) =>
+      dispatch(GetOrderDetailsActionCreator.getOrderDetails(eid)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDetails);
 
 const styles = StyleSheet.create({
   container: {

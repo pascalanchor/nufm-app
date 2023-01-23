@@ -11,30 +11,15 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as GetOrdersActionCreator from "../../../Store/ActionCreator/Order/GetOrdersActionCreator";
 
-export default function OrderList({ searchVal, link }) {
+function OrderList({ searchVal, link, Orders, error, getOrders }) {
   const navigation = useNavigation();
-  const Orders = [
-    { name: "Order 1", date: "28-09-2022", sender: "sender" },
-    { name: "Order 2", date: "28-09-2022", sender: "sender" },
-    {
-      name: "Order 3",
-      date: "28-09-2022",
-      sender: "sender",
-    },
-    {
-      name: "Order 4",
-      date: "28-09-2022",
-      sender: "sender",
-    },
-    {
-      name: "Order 5",
-      date: "28-09-2022",
-      sender: "sender",
-    },
-  ];
+
   const [OrderArr, setOrderArr] = useState([]);
   useEffect(() => {
+    getOrders();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -49,13 +34,13 @@ export default function OrderList({ searchVal, link }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.eid}
           data={OrderArr && OrderArr.length > 0 ? OrderArr : Orders}
           numColumns={1}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link + "OrderDetails")}
+                onPress={() => navigation.navigate(link + "OrderDetails", { id: item.eid})}
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
@@ -82,6 +67,21 @@ export default function OrderList({ searchVal, link }) {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    Orders: state.GetOrdersR.Orders,
+    error: state.GetOrdersR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getOrders: () => dispatch(GetOrdersActionCreator.getOrders()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderList);
 
 const styles = StyleSheet.create({
   box: {
