@@ -64,6 +64,13 @@ export const GetRiskDetails = {
   GET_RISK_DETAILS_FAIL: "GET_RISK_DETAILS_FAIL",
 };
 
+export const AddRisk = {
+  ADD_RISK: "ADD_RISK",
+  ADD_RISK_START: "ADD_RISK_START",
+  ADD_RISK_END: "ADD_RISK_END",
+  ADD_RISK_FAIL: "ADD_RISK_FAIL",
+};
+
 //Incidents
 export const GetIncidents = {
   GET_INCIDENTS_START: "GET_INCIDENTS_START",
@@ -74,6 +81,13 @@ export const GetIncidents = {
 export const GetIncidentDetails = {
   GET_INCIDENT_DETAILS_END: "GET_INCIDENT_DETAILS_END",
   GET_INCIDENT_DETAILS_FAIL: "GET_INCIDENT_DETAILS_FAIL",
+};
+
+export const AddIncident = {
+  ADD_INCIDENT: "ADD_INCIDENT",
+  ADD_INCIDENT_START: "ADD_INCIDENT_START",
+  ADD_INCIDENT_END: "ADD_INCIDENT_END",
+  ADD_INCIDENT_FAIL: "ADD_INCIDENT_FAIL",
 };
 
 //Notification
@@ -104,4 +118,10 @@ export const AddOrder = {
   ADD_ORDER_START: "ADD_ORDER_START",
   ADD_ORDER_END: "ADD_ORDER_END",
   ADD_ORDER_FAIL: "ADD_ORDER_FAIL",
+};
+
+//Task
+export const GetAllTasks = {
+  GET_ALL_TASKS_END: "GET_ALL_TASKS_END",
+  GET_ALL_TASKS_FAIL: "GET_ALL_TASKS_FAIL",
 };

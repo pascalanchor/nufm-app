@@ -6,8 +6,10 @@ export { default as GetCheckByIdR } from "./Reducer/Attendance/AttendanceCheckRe
 export { default as GetFacilitiesR } from "./Reducer/Facility/GetFacilitiesReducer";
 export { default as GetRisksR } from "./Reducer/Risk/GetRisksReducer";
 export { default as GetRiskDetailsR } from "./Reducer/Risk/GetRiskDetailsReducer";
+export { default as AddRiskR } from "./Reducer/Risk/AddRiskReducer";
 export { default as GetIncidentsR } from "./Reducer/Incident/GetIncidentsReducer";
 export { default as GetIncidentDetailsR } from "./Reducer/Incident/GetIncidentDetailsReducer";
+export { default as AddIncidentR } from "./Reducer/Incident/AddIncidentReducer";
 export { default as GetNotificationsR } from "./Reducer/Notification/GetNotificationsReducer";
 export { default as GetNotificationDetailsR } from "./Reducer/Notification/GetNotifDetailsReducer";
 export { default as AddFacilityR } from "./Reducer/Facility/AddFacilityReducer";
@@ -15,3 +17,4 @@ export { default as GetAllParentR } from "./Reducer/Facility/GetFacParentReducer
 export { default as GetOrdersR } from "./Reducer/Order/GetOrdersReducer";
 export { default as GetOrderDetailsR } from "./Reducer/Order/GetOrderdetailsReducer";
 export { default as AddOrderR } from "./Reducer/Order/AddOrderReducer";
+export { default as GetAllTasksR } from "./Reducer/Task/GetTasksReducer";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,13 +14,45 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as AddRiskActionCreator from "../../../Store/ActionCreator/Risk/AddRiskActionCreator";
+import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
+import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
 
-export default function AddRiskO() {
-  const parent = ["Parent1", "FP2", "FP3", "Fp4"];
-  const sites = ["site1", "site2", "site3"];
-  const [selected, setSelected] = useState([]);
+function AddRiskO({
+  getRiskInfo,
+  addRisk,
+  facilityParent,
+  facilitySite,
+  incident,
+  comment,
+  error,
+  loading,
+  Facilities,
+  getFacilities,
+  getAllParent,
+  parent,
+}) {
+  useEffect(() => {
+    getFacilities();
+    getAllParent();
+    getRiskInfo("facilityParent", "");
+    getRiskInfo("facilitySite", "");
+    getRiskInfo("incident", "");
+    getRiskInfo("comment", "");
+    getRiskInfo("error", "");
+  }, []);
   const navigation = useNavigation();
+  const siteName = Facilities.map((fn) => fn.name);
+  const parentName = parent.map((pr) => pr.name);
 
+  const handleOnChange = (value, name) => {
+    getRiskInfo(name, value);
+  };
+
+  const handleClick = () => {
+    addRisk(facilityParent, facilitySite, incident, comment);
+  };
   return (
     <View style={styles.initialCont}>
       <View style={styles.iconsTop}>
@@ -54,9 +86,9 @@ export default function AddRiskO() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={parent}
+            data={parentName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilityParent");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -64,7 +96,7 @@ export default function AddRiskO() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilityParent}
           />
         </View>
         <View style={styles.subCont}>
@@ -84,9 +116,9 @@ export default function AddRiskO() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={sites}
+            data={siteName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilitySite");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -94,7 +126,7 @@ export default function AddRiskO() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilitySite}
           />
         </View>
 
@@ -105,8 +137,9 @@ export default function AddRiskO() {
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            multiline={true}
+            onChangeText={(value) => handleOnChange(value, "incident")}
+            value={incident}
           />
         </View>
 
@@ -117,12 +150,18 @@ export default function AddRiskO() {
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            multiline={true}
+            onChangeText={(value) => handleOnChange(value, "comment")}
+            value={comment}
           />
         </View>
       </View>
-
+      {error && (
+        <View style={styles.errorMsg}>
+          <AntDesign name="checkcircle" size={24} color="#02A962" />
+          <Text style={styles.errorTxt}>{error}</Text>
+        </View>
+      )}
       <View style={{ flexDirection: "row", marginBottom: "3%" }}>
         <View style={{ width: "30%" }}>
           <TouchableOpacity>
@@ -132,7 +171,7 @@ export default function AddRiskO() {
           </TouchableOpacity>
         </View>
         <View style={{ width: "70%" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleClick}>
             <View style={styles.save}>
               <Text style={styles.addSite}>ADD</Text>
             </View>
@@ -142,6 +181,38 @@ export default function AddRiskO() {
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    facilityParent: state.AddRiskR.facilityParent,
+    facilitySite: state.AddRiskR.facilitySite,
+    incident: state.AddRiskR.incident,
+    comment: state.AddRiskR.comment,
+    error: state.AddRiskR.error,
+    loading: state.AddRiskR.loading,
+    Facilities: state.GetFacilitiesR.Facilities,
+    parent: state.GetAllParentR.parent,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
+    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+    getRiskInfo: (name, value) =>
+      dispatch(AddRiskActionCreator.getRiskInfo(name, value)),
+    addRisk: (facilityParent, facilitySite, incident, comment) =>
+      dispatch(
+        AddRiskActionCreator.addRisk(
+          facilityParent,
+          facilitySite,
+          incident,
+          comment
+        )
+      ),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRiskO);
 
 const styles = StyleSheet.create({
   initialCont: {
@@ -262,5 +333,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginLeft: "18%",
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "7%",
+    backgroundColor: "#CAF3D1",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#595959",
   },
 });

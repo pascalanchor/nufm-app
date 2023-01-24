@@ -121,7 +121,6 @@ export default function AddAttendance({ link }) {
             disabled={false}
             color="#309694"
             style={{ borderRadius: 4, color: "#309694" }}
-            value={toggleCheckBox2}
             value={toggleCheckBox}
             onValueChange={(newValue) => setToggleCheckBox(newValue)}
           />

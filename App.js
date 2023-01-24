@@ -19,13 +19,16 @@ import {
   GetAllParentR,
   GetRisksR,
   GetRiskDetailsR,
+  AddRiskR,
   GetIncidentsR,
   GetIncidentDetailsR,
+  AddIncidentR,
   GetNotificationsR,
   GetNotificationDetailsR,
   GetOrdersR,
   GetOrderDetailsR,
-  AddOrderR
+  AddOrderR,
+  GetAllTasksR
 } from "./Store";
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -43,13 +46,16 @@ const reducer = combineReducers({
   GetAllParentR: GetAllParentR,
   GetRisksR: GetRisksR,
   GetRiskDetailsR: GetRiskDetailsR,
+  AddRiskR: AddRiskR,
   GetIncidentsR: GetIncidentsR,
   GetIncidentDetailsR: GetIncidentDetailsR,
+  AddIncidentR: AddIncidentR,
   GetNotificationsR: GetNotificationsR,
   GetNotificationDetailsR: GetNotificationDetailsR,
   GetOrdersR: GetOrdersR,
   GetOrderDetailsR: GetOrderDetailsR,
-  AddOrderR: AddOrderR
+  AddOrderR: AddOrderR,
+  GetAllTasksR: GetAllTasksR
 });
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 

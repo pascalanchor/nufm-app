@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,14 +14,71 @@ import { Ionicons, AntDesign } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 import { useNavigation } from "@react-navigation/native";
+import { connect } from "react-redux";
+import * as AddIncidentActionCreator from "../../../Store/ActionCreator/Incident/AddIncidentActionCreator";
+import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
+import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
+import * as GetTasksActionCreator from "../../../Store/ActionCreator/Task/GetTasksActionCreator";
 
-export default function AddIncident() {
-  const parent = ["Parent1", "FP2", "FP3", "Fp4"];
-  const sites = ["site1", "site2", "site3"];
-  const tasks = ["task1", "task2", "task3"];
-  const hour = ["AM", "PM"];
-  const [selected, setSelected] = useState([]);
+function AddIncident({
+  getIncidentInfo,
+  addIncident,
+  facilityParent,
+  facilitySite,
+  task,
+  date,
+  hour,
+  time,
+  incident,
+  comment,
+  email,
+  error,
+  loading,
+  Facilities,
+  getFacilities,
+  getAllParent,
+  parent,
+  tasks,
+  getAllTaskInfo,
+}) {
+  useEffect(() => {
+    getFacilities();
+    getAllParent();
+    getAllTaskInfo();
+    getIncidentInfo("facilityParent", "");
+    getIncidentInfo("facilitySite", "");
+    getIncidentInfo("task", "");
+    getIncidentInfo("date", "");
+    getIncidentInfo("hour", "");
+    getIncidentInfo("time", "");
+    getIncidentInfo("incident", "");
+    getIncidentInfo("comment", "");
+    getIncidentInfo("email", "");
+    getIncidentInfo("error", "");
+  }, []);
   const navigation = useNavigation();
+  const siteName = Facilities.map((fn) => fn.name);
+  const parentName = parent.map((pr) => pr.name);
+  const Tasks = tasks.map((wr) => wr.name);
+  const timeH = ["AM", "PM"];
+
+  const handleOnChange = (value, name) => {
+    getIncidentInfo(name, value);
+  };
+
+  const handleClick = () => {
+    addIncident(
+      facilityParent,
+      facilitySite,
+      task,
+      date,
+      hour,
+      time,
+      incident,
+      comment,
+      email
+    );
+  };
 
   return (
     <View style={styles.initialCont}>
@@ -56,9 +113,9 @@ export default function AddIncident() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={parent}
+            data={parentName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilityParent");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -66,7 +123,7 @@ export default function AddIncident() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilityParent}
           />
         </View>
         <View style={styles.subCont}>
@@ -86,9 +143,9 @@ export default function AddIncident() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={sites}
+            data={siteName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilitySite");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -96,7 +153,7 @@ export default function AddIncident() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilitySite}
           />
         </View>
 
@@ -117,9 +174,9 @@ export default function AddIncident() {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={tasks}
+            data={Tasks}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "task");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -127,14 +184,22 @@ export default function AddIncident() {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={task}
           />
         </View>
         <View style={styles.subCont}>
           {Platform.OS === "android" ? (
-            <DatePickerAndroid label="Date" />
+            <DatePickerAndroid
+              label="Date"
+              value={date}
+              handleOnChange={(value) => handleOnChange(value, "date")}
+            />
           ) : (
-            <DatePickerIOS label="Date" />
+            <DatePickerIOS
+              label="Date"
+              value={date}
+              handleOnChange={(value) => handleOnChange(value, "date")}
+            />
           )}
         </View>
 
@@ -146,8 +211,8 @@ export default function AddIncident() {
             <TextInput
               style={styles.inputHour}
               keyboardType="numeric"
-              //   onChangeText={onChange}
-              //   value={formData.constYear}
+              onChangeText={(value) => handleOnChange(value, "hour")}
+              value={hour}
             />
 
             <SelectDropdown
@@ -165,11 +230,11 @@ export default function AddIncident() {
               }}
               buttonStyle={styles.btnHourStyle}
               buttonTextStyle={styles.btnselectxtstyle}
-              data={hour}
+              data={timeH}
               dropdownStyle={styles.dropdownHour}
               rowTextStyle={styles.rows}
               onSelect={(selectedItem, index) => {
-                console.log(selectedItem, index);
+                handleOnChange(selectedItem, "time");
               }}
               buttonTextAfterSelection={(selectedItem, index) => {
                 return selectedItem;
@@ -177,7 +242,7 @@ export default function AddIncident() {
               rowTextForSelection={(item, index) => {
                 return item;
               }}
-              //   value={facilityParent}
+              value={time}
             />
           </View>
         </View>
@@ -189,8 +254,9 @@ export default function AddIncident() {
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            onChangeText={(value) => handleOnChange(value, "incident")}
+            value={incident}
+            multiline={true}
           />
         </View>
 
@@ -201,8 +267,9 @@ export default function AddIncident() {
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            onChangeText={(value) => handleOnChange(value, "comment")}
+            value={comment}
+            multiline={true}
           />
         </View>
 
@@ -213,12 +280,17 @@ export default function AddIncident() {
           <TextInput
             style={styles.input}
             keyboardType="default"
-            //   onChangeText={onChange}
-            //   value={formData.constYear}
+            onChangeText={(value) => handleOnChange(value, "email")}
+            value={email}
           />
         </View>
       </View>
-
+      {error && (
+        <View style={styles.errorMsg}>
+          <AntDesign name="checkcircle" size={24} color="#02A962" />
+          <Text style={styles.errorTxt}>{error}</Text>
+        </View>
+      )}
       <View style={{ flexDirection: "row", marginBottom: "3%" }}>
         <View style={{ width: "30%" }}>
           <TouchableOpacity>
@@ -228,7 +300,7 @@ export default function AddIncident() {
           </TouchableOpacity>
         </View>
         <View style={{ width: "70%" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleClick}>
             <View style={styles.save}>
               <Text style={styles.addSite}>Send</Text>
             </View>
@@ -238,6 +310,56 @@ export default function AddIncident() {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    facilityParent: state.AddIncidentR.facilityParent,
+    facilitySite: state.AddIncidentR.facilitySite,
+    receiver: state.AddIncidentR.receiver,
+    comment: state.AddIncidentR.comment,
+    error: state.AddIncidentR.error,
+    loading: state.AddIncidentR.loading,
+    Facilities: state.GetFacilitiesR.Facilities,
+    parent: state.GetAllParentR.parent,
+    tasks: state.GetAllTasksR.tasks,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
+    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+    getAllTaskInfo: () => dispatch(GetTasksActionCreator.getAllTaskInfo()),
+    getIncidentInfo: (name, value) =>
+      dispatch(AddIncidentActionCreator.getIncidentInfo(name, value)),
+    addIncident: (
+      facilityParent,
+      facilitySite,
+      task,
+      date,
+      hour,
+      time,
+      incident,
+      comment,
+      email
+    ) =>
+      dispatch(
+        AddIncidentActionCreator.addIncident(
+          facilityParent,
+          facilitySite,
+          task,
+          date,
+          hour,
+          time,
+          incident,
+          comment,
+          email
+        )
+      ),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddIncident);
 
 const styles = StyleSheet.create({
   initialCont: {
@@ -397,5 +519,19 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginLeft: "18%",
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "7%",
+    backgroundColor: "#CAF3D1",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#595959",
   },
 });

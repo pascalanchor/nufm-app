@@ -173,6 +173,7 @@ function AddForm({
             keyboardType="default"
             onChangeText={(value) => handleOnChange(value, "order")}
             value={order}
+            multiline={true}
           />
         </View>
 

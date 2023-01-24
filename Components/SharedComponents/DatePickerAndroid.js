@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,11 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default function DatePickerAndroid({ name, value, label }) {
+export default function DatePickerAndroid({value, label, handleOnChange }) {
+
+  useEffect(()=>{
+    handleOnChange(date,"date")
+  }, [date])
   const [datePicker, setDatePicker] = useState(false);
 
   const [date, setDate] = useState(new Date());
@@ -40,7 +44,6 @@ export default function DatePickerAndroid({ name, value, label }) {
           display={Platform.OS === "ios" ? "spinner" : "default"}
           is24Hour={true}
           onChange={onDateSelected}
-          name={name}
         />
       )}
     </View>
