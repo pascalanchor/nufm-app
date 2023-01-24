@@ -11,40 +11,13 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import Avatar from "../../../assets/avatar.png";
+import { connect } from "react-redux";
+import * as GetOccupantsActionCreator from "../../../Store/ActionCreator/Occupants/GetOccupantsActionCreator";
 
-export default function Occupants({ searchVal }) {
-  const Occupants = [
-    {
-      name: "Hussam Khaled",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70580011",
-    },
-    {
-      name: "Jana Zreika",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "03358475",
-    },
-    {
-      name: "Tarek Zreika",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70322027",
-    },
-    {
-      name: "Hussam Khaled2",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70580011",
-    },
-  ];
+function Occupants({ searchVal, Occupants, getOccupants }) {
   const [OccupantsArr, setOccupantsArr] = useState([]);
   useEffect(() => {
+    getOccupants();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -75,7 +48,7 @@ export default function Occupants({ searchVal }) {
               >
                 <View style={styles.workerContainer}>
                   <View style={styles.workerImg}>
-                    <Image source={item.icon} style={styles.img} />
+                    <Image source={Avatar} style={styles.img} />
                     <Text style={styles.txt}> {item.name}</Text>
                   </View>
                   <View>
@@ -91,6 +64,19 @@ export default function Occupants({ searchVal }) {
     </View>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    Occupants: state.GetOccupantsR.Occupants,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getOccupants: () => dispatch(GetOccupantsActionCreator.getOccupants()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Occupants);
 
 const styles = StyleSheet.create({
   box: {

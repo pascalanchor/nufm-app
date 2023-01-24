@@ -11,54 +11,14 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import Avatar from "../../../assets/avatar.png";
+import { connect } from "react-redux";
+import * as GetContractorsActionCreator from "../../../Store/ActionCreator/Contractor/GetContractorsActionCreator";
 
-export default function Contractors({ searchVal }) {
-  const Contractors = [
-    {
-      name: "Hussam Khaled",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70580011",
-    },
-    {
-      name: "Jana Zreika",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "03358475",
-    },
-    {
-      name: "Tarek Zreika",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70322027",
-    },
-    {
-      name: "Hussam Khaled2",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70580011",
-    },
-    {
-      name: "Jana Zreika9",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "03358475",
-    },
-    {
-      name: "Samir Sam7",
-      icon: Avatar,
-      date: "28-09-2022",
-      time: "9:00AM",
-      phone: "70322027",
-    },
-  ];
+function Contractors({ searchVal, Contractors, getContractors }) {
+ 
   const [contractorsArr, setContractorsArr] = useState([]);
   useEffect(() => {
+    getContractors();
     sortedArray();
   }, [searchVal]);
   const sortedArray = () => {
@@ -91,7 +51,7 @@ export default function Contractors({ searchVal }) {
               >
                 <View style={styles.workerContainer}>
                   <View style={styles.workerImg}>
-                    <Image source={item.icon} style={styles.img} />
+                    <Image source={Avatar} style={styles.img} />
                     <Text style={styles.txt}> {item.name}</Text>
                   </View>
                   <View>
@@ -107,6 +67,20 @@ export default function Contractors({ searchVal }) {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    Contractors: state.GetContractorsR.Contractors,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getContractors: () => dispatch(GetContractorsActionCreator.getContractors()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contractors);
 
 const styles = StyleSheet.create({
   box: {

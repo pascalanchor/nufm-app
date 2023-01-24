@@ -6,7 +6,7 @@ export default function BasicInput({
   placeholder,
   KeyboardType,
   value,
-  onChange,
+  onChangeText,
   bool,
 }) {
   return (
@@ -20,7 +20,7 @@ export default function BasicInput({
           placeholder={placeholder}
           keyboardType={KeyboardType}
           secureTextEntry={bool}
-          onChangeText={onChange}
+          onChangeText={onChangeText}
           value={value}
         />
       </View>

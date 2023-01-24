@@ -2,88 +2,89 @@ import axios from "axios";
 import * as actionTypes from "../../Actions/Actions";
 import { server, privatePath } from "../Constants";
 
-export const getWorkers = () => {
+export const getContractors = () => {
   return (dispatch) => {
-    // dispatch(getWorkersStart());
-    // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    // var link = server + privatePath + "/workers";
+    // dispatch(getContractorsStart());
+
+    // // var token = 'Bearer '+localStorage.getItem('nufmtoken');
+
+    // var link = server + privatePath + "/contractors";
     // axios
     //   .get(link, {
-    //     headers: {/*'Authorization': token,*/},})
+    //     headers: {
+    //       /*'Authorization': token,*/
+    //     },
+    //   })
     //   .then((res) => {
-    //     dispatch(getWorkersEnd(res.data));
+    //     dispatch(getContractorsEnd(res.data));
     //   })
     //   .catch((err) => {
-    //     dispatch(getWorkersFail(err));
+    //     dispatch(getContractorsFail(err));
     //   });
-
-    const Wr = [
+    const Contractors = [
         {
-          eid:"1",
           name: "Hussam Khaled",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "70580011",
-          spec:"Driver"
         },
         {
-          eid:"2",
           name: "Jana Zreika",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "03358475",
-          spec:"Driver"
         },
         {
-          eid:"3",
           name: "Tarek Zreika",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "70322027",
-          spec:"Driver"
         },
         {
-          eid:"4",
           name: "Hussam Khaled2",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "70580011",
-          spec:"Driver"
         },
         {
-          eid:"5",
           name: "Jana Zreika9",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "03358475",
-          spec:"Driver"
-        }
+        },
+        {
+          name: "Samir Sam7",
+          profileImage: "",
+          date: "28-09-2022",
+          time: "9:00AM",
+          phone: "70322027",
+        },
       ];
-      dispatch(getWorkersEnd(Wr));
+      dispatch(getContractorsEnd(Contractors));
   };
 };
 
-export const getWorkersStart = () => {
+export const getContractorsStart = () => {
   return {
-    type: actionTypes.GetWorkers.GETWORKERS_START,
+    type: actionTypes.GetContractors.GETCONTRACTORS_START,
   };
 };
 
-export const getWorkersFail = (err) => {
+export const getContractorsFail = (err) => {
   return {
-    type: actionTypes.GetWorkers.GETWORKERS_FAIL,
+    type: actionTypes.GetContractors.GETCONTRACTORS_FAIL,
     error: err,
   };
 };
 
-export const getWorkersEnd = (data) => {
+export const getContractorsEnd = (data) => {
   return {
-    type: actionTypes.GetWorkers.GETWORKERS_END,
-    data: data,
+    type: actionTypes.GetContractors.GETCONTRACTORS_END,
+    contractorInfo: data,
   };
 };

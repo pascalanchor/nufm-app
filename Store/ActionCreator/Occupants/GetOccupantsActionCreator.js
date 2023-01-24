@@ -2,88 +2,71 @@ import axios from "axios";
 import * as actionTypes from "../../Actions/Actions";
 import { server, privatePath } from "../Constants";
 
-export const getWorkers = () => {
+export const getOccupants = () => {
   return (dispatch) => {
-    // dispatch(getWorkersStart());
+    // dispatch(getOccupantsStart());
     // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    // var link = server + privatePath + "/workers";
+    // var link = server + privatePath + "/occupants";
     // axios
     //   .get(link, {
     //     headers: {/*'Authorization': token,*/},})
     //   .then((res) => {
-    //     dispatch(getWorkersEnd(res.data));
+    //     dispatch(getOccupantsEnd(res.data));
     //   })
     //   .catch((err) => {
-    //     dispatch(getWorkersFail(err));
+    //     dispatch(getOccupantsFail(err));
     //   });
 
-    const Wr = [
+    const Occupants = [
         {
-          eid:"1",
           name: "Hussam Khaled",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "70580011",
-          spec:"Driver"
         },
         {
-          eid:"2",
           name: "Jana Zreika",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "03358475",
-          spec:"Driver"
         },
         {
-          eid:"3",
           name: "Tarek Zreika",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "70322027",
-          spec:"Driver"
         },
         {
-          eid:"4",
           name: "Hussam Khaled2",
           profileImage: "",
           date: "28-09-2022",
           time: "9:00AM",
           phone: "70580011",
-          spec:"Driver"
         },
-        {
-          eid:"5",
-          name: "Jana Zreika9",
-          profileImage: "",
-          date: "28-09-2022",
-          time: "9:00AM",
-          phone: "03358475",
-          spec:"Driver"
-        }
       ];
-      dispatch(getWorkersEnd(Wr));
+      dispatch(getOccupantsEnd(Occupants));
   };
 };
 
-export const getWorkersStart = () => {
+export const getOccupantsStart = () => {
   return {
-    type: actionTypes.GetWorkers.GETWORKERS_START,
+    type: actionTypes.GetOccupants.GETOCCUPANTS_START,
   };
 };
 
-export const getWorkersFail = (err) => {
+export const getOccupantsFail = (err) => {
   return {
-    type: actionTypes.GetWorkers.GETWORKERS_FAIL,
+    type: actionTypes.GetOccupants.GETOCCUPANTS_FAIL,
     error: err,
   };
 };
 
-export const getWorkersEnd = (data) => {
+export const getOccupantsEnd = (data) => {
   return {
-    type: actionTypes.GetWorkers.GETWORKERS_END,
+    type: actionTypes.GetOccupants.GETOCCUPANTS_END,
     data: data,
   };
 };
