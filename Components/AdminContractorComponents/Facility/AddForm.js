@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -24,6 +24,10 @@ export default function AddForm({ formData, setFormData, facName, facParent }) {
     setFormData(obj);
     console.log(value);
   };
+
+  const handleOnChange = (v,n) =>{
+
+  }
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -196,10 +200,17 @@ export default function AddForm({ formData, setFormData, facName, facParent }) {
 
       <View style={styles.subCont}>
         {Platform.OS === "android" ? (
-          <DatePickerAndroid label="Date Opened" />
-        ) : (
-          <DatePickerIOS label="Date Opened" />
-        )}
+               <DatePickerAndroid
+               label="Date Opened"
+              //  value={date}
+               handleOnChange={(value) => handleOnChange(value, "date")}
+             />
+           ) : (
+             <DatePickerIOS
+               label="Date Opened"
+              //  value={date}
+               handleOnChange={(value) => handleOnChange(value, "date")}
+             />)}
       </View>
 
       <View style={styles.subCont}>

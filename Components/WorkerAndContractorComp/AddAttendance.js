@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,  useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,6 +12,8 @@ import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CheckBox from "expo-checkbox";
 
+import * as Location from 'expo-location';
+
 export default function AddAttendance({ link }) {
   const parent = ["Parent1", "FP2", "FP3", "Fp4"];
   const sites = ["site1", "site2", "site3"];
@@ -20,9 +22,33 @@ export default function AddAttendance({ link }) {
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
   const [selected, setSelected] = useState([]);
 
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location.coords.latitude);
+  }
   return (
     <View style={styles.initialCont}>
       <View style={styles.container}>
+        <Text>{text}</Text>
         <View style={styles.subCont}>
           <View>
             <Text style={styles.label}>Facility Parent</Text>
