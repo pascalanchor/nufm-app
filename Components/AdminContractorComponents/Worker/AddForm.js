@@ -14,8 +14,12 @@ import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import * as AddWorkerActionCreator from "../../../Store/ActionCreator/Worker/AddWorkerActionCreator";
+import * as GetSpecializationActionCreator from "../../../Store/ActionCreator/Worker/GetSpecializationActionCreator";
+
 
 function AddForm({
+  getSpecialization,
+  spec,
   getWorkerInfo,
   addWorker,
   email,
@@ -32,6 +36,7 @@ function AddForm({
   const [phoneMsg, setPhoneMsg] = useState("");
 
   useEffect(() => {
+    getSpecialization();
     getWorkerInfo("fullName", "");
     getWorkerInfo("email", "");
     getWorkerInfo("phone", "");
@@ -75,12 +80,12 @@ function AddForm({
     }
     getWorkerInfo("phone", value);
   };
-  const DATA = [
-    { label: "Cleaner", value: "1" },
-    { label: "Driver", value: "2" },
-    { label: "Chef", value: "3" },
-    { label: "Repair", value: "4" },
-  ];
+  // const DATA = [
+  //   { label: "Cleaner", value: "1" },
+  //   { label: "Driver", value: "2" },
+  //   { label: "Chef", value: "3" },
+  //   { label: "Repair", value: "4" },
+  // ];
 
   const handleClick = () => {
     var submit = true;
@@ -113,7 +118,7 @@ function AddForm({
   const renderDataItem = (item) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.selectedTextStyle}>{item.label}</Text>
+        <Text style={styles.selectedTextStyle}>{item.name}</Text>
       </View>
     );
   };
@@ -147,7 +152,7 @@ function AddForm({
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             iconStyle={styles.iconStyle}
-            data={DATA}
+            data={spec}
             labelField="label"
             valueField="value"
             placeholder="Select one or more.."
@@ -161,7 +166,7 @@ function AddForm({
               <View style={{ justifyContent: "center" }}>
                 <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
                   <View style={styles.selectedStyle}>
-                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
+                    <Text style={styles.textSelectedStyle}>{item.name}</Text>
                     <AntDesign name="close" size={16} color="#595959" />
                   </View>
                 </TouchableOpacity>
@@ -231,11 +236,14 @@ const mapStateToProps = (state) => {
     fullName: state.AddWorkerR.fullName,
     error: state.AddWorkerR.error,
     loading: state.AddWorkerR.loading,
+    spec: state.GetSpecializationR.spec,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getSpecialization: () =>
+    dispatch(GetSpecializationActionCreator.getSpecialization()),
     getWorkerInfo: (name, value) =>
       dispatch(AddWorkerActionCreator.getWorkerInfo(name, value)),
     addWorker: (email, fullName, phone, specializations) =>

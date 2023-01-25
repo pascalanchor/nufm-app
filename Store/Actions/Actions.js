@@ -19,6 +19,11 @@ export const AddWorker = {
   ADD_WORKER_FAIL: "ADD_WORKER_FAIL",
 };
 
+export const GetSpecialization = {
+  GET_SPECIALIZATION_END: "GET_SPECIALIZATION_END",
+  GET_SPECIALIZATION_FAIL: "GET_SPECIALIZATION_FAIL",
+};
+
 //Attendance
 export const GetAttendances = {
   GET_ATTENDANCES: "GET_ATTENDANCES_",
