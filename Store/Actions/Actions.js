@@ -78,6 +78,12 @@ export const AddRisk = {
   ADD_RISK_FAIL: "ADD_RISK_FAIL",
 };
 
+export const DeleteRisk = {
+  DELETE_RISK_INFO: "DELETE_RISK_INFO",
+  DELETE_RISK_END: "DELETE_RISK_END",
+  DELETE_RISK_FAIL: "DELETE_RISK_FAIL",
+};
+
 //Incidents
 export const GetIncidents = {
   GET_INCIDENTS_START: "GET_INCIDENTS_START",
@@ -97,6 +103,11 @@ export const AddIncident = {
   ADD_INCIDENT_FAIL: "ADD_INCIDENT_FAIL",
 };
 
+export const DeleteIncident = {
+  DELETE_INCIDENT_INFO: "DELETE_INCIDENT_INFO",
+  DELETE_INCIDENT_END: "DELETE_INCIDENT_END",
+  DELETE_INCIDENT_FAIL: "DELETE_INCIDENT_FAIL",
+};
 //Notification
 export const GetNotifications = {
   GET_NOTIFICATIONS_START: "GET_NOTIFICATIONS_START",

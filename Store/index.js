@@ -8,9 +8,11 @@ export { default as GetFacilitiesR } from "./Reducer/Facility/GetFacilitiesReduc
 export { default as GetRisksR } from "./Reducer/Risk/GetRisksReducer";
 export { default as GetRiskDetailsR } from "./Reducer/Risk/GetRiskDetailsReducer";
 export { default as AddRiskR } from "./Reducer/Risk/AddRiskReducer";
+export { default as DeleteRiskR } from "./Reducer/Risk/DeleteRiskReducer";
 export { default as GetIncidentsR } from "./Reducer/Incident/GetIncidentsReducer";
 export { default as GetIncidentDetailsR } from "./Reducer/Incident/GetIncidentDetailsReducer";
 export { default as AddIncidentR } from "./Reducer/Incident/AddIncidentReducer";
+export { default as DeleteIncidentR } from "./Reducer/Incident/DeleteIncidentReducer";
 export { default as GetNotificationsR } from "./Reducer/Notification/GetNotificationsReducer";
 export { default as GetNotificationDetailsR } from "./Reducer/Notification/GetNotifDetailsReducer";
 export { default as AddFacilityR } from "./Reducer/Facility/AddFacilityReducer";

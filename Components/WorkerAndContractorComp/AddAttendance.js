@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,26 +11,75 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CheckBox from "expo-checkbox";
+import * as Location from "expo-location";
+import { connect } from "react-redux";
+import * as AddAttendanceActionCreator from "../../Store/ActionCreator/Attendance/AddAttendanceActionCreator";
+import * as GetFacilitiesActionCreator from "../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
+import * as GetFacParentActionCreator from "../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
+import * as GetTasksActionCreator from "../../Store/ActionCreator/Task/GetTasksActionCreator";
 
-import * as Location from 'expo-location';
+function AddAttendance({
+  link,
+  addAttendance,
+  getAttendanceInfo,
+  facilityParent,
+  facilitySite,
+  task,
+  lngIn,
+  longOut,
+  latIn,
+  latOut,
+  error,
+  loading,
+  Facilities,
+  getFacilities,
+  getAllParent,
+  parent,
+  tasks,
+  getAllTaskInfo,
+}) {
+  useEffect(() => {
+    getFacilities();
+    getAllParent();
+    getAllTaskInfo();
+    getAttendanceInfo("facilityParent", "");
+    getAttendanceInfo("facilitySite", "");
+    getAttendanceInfo("task", "");
+    getAttendanceInfo("error", "");
+  }, []);
+  const siteName = Facilities.map((fn) => fn.name);
+  const parentName = parent.map((pr) => pr.name);
+  const Tasks = tasks.map((wr) => wr.name);
 
-export default function AddAttendance({ link }) {
-  const parent = ["Parent1", "FP2", "FP3", "Fp4"];
-  const sites = ["site1", "site2", "site3"];
-  const tasks = ["task1", "task2", "task3"];
+  const handleOnChange = (value, name) => {
+    getAttendanceInfo(name, value);
+  };
+
+  const handleClick = () => {
+    addAttendance(
+      facilityParent,
+      facilitySite,
+      task,
+      lngIn,
+      latIn,
+      longOut,
+      latOut
+    );
+  };
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
   const [selected, setSelected] = useState([]);
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
+  const [lat, setLat] = useState("");
+  const [long, setLong] = useState("");
 
   useEffect(() => {
     (async () => {
-      
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
         return;
       }
 
@@ -39,16 +88,30 @@ export default function AddAttendance({ link }) {
     })();
   }, []);
 
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location.coords.latitude);
-  }
+  // let text = "Waiting..";
+  // if (errorMsg) {
+  //   text = errorMsg;
+  // } else if (location) {
+  //   text = JSON.stringify(location.coords.latitude);
+  // }
+
+  const handleCheck = (value) => {
+    if (!toggleCheckBox) {
+      setLat(JSON.stringify(location.coords.latitude));
+      setLong(JSON.stringify(location.coords.longitude));
+      setToggleCheckBox(value);
+    } else {
+      setLat("");
+      setLong("");
+      setToggleCheckBox(value);
+    }
+  };
   return (
     <View style={styles.initialCont}>
       <View style={styles.container}>
-        <Text>{text}</Text>
+        <Text>
+          {lat}/{long}
+        </Text>
         <View style={styles.subCont}>
           <View>
             <Text style={styles.label}>Facility Parent</Text>
@@ -66,9 +129,9 @@ export default function AddAttendance({ link }) {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={parent}
+            data={parentName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilityParent");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -76,7 +139,7 @@ export default function AddAttendance({ link }) {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilityParent}
           />
         </View>
         <View style={styles.subCont}>
@@ -96,9 +159,9 @@ export default function AddAttendance({ link }) {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={sites}
+            data={siteName}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "facilitySite");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -106,7 +169,7 @@ export default function AddAttendance({ link }) {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={facilitySite}
           />
         </View>
 
@@ -127,9 +190,9 @@ export default function AddAttendance({ link }) {
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
-            data={tasks}
+            data={Tasks}
             onSelect={(selectedItem, index) => {
-              console.log(selectedItem, index);
+              handleOnChange(selectedItem, "task");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -137,7 +200,7 @@ export default function AddAttendance({ link }) {
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            //   value={facilityParent}
+            value={task}
           />
         </View>
       </View>
@@ -148,7 +211,7 @@ export default function AddAttendance({ link }) {
             color="#309694"
             style={{ borderRadius: 4, color: "#309694" }}
             value={toggleCheckBox}
-            onValueChange={(newValue) => setToggleCheckBox(newValue)}
+            onValueChange={(newValue) => handleCheck(newValue)}
           />
           <Text style={styles.checkText}>Check In</Text>
           <Ionicons name="location" size={26} color="#023D26" />
@@ -174,7 +237,7 @@ export default function AddAttendance({ link }) {
           </TouchableOpacity>
         </View>
         <View style={{ width: "70%" }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleClick}>
             <View style={styles.save}>
               <Text style={styles.addSite}>Save</Text>
             </View>
@@ -184,6 +247,55 @@ export default function AddAttendance({ link }) {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    facilityParent: state.AddAttendanceR.facilityParent,
+    facilitySite: state.AddAttendanceR.facilitySite,
+    task: state.AddAttendanceR.task,
+    latIn: state.AddAttendanceR.latIn,
+    latOut: state.AddAttendanceR.latOut,
+    longOut: state.AddAttendanceR.longOut,
+    lngIn: state.AddAttendanceR.lngIn,
+    error: state.AddAttendanceR.error,
+    loading: state.AddAttendanceR.loading,
+    Facilities: state.GetFacilitiesR.Facilities,
+    parent: state.GetAllParentR.parent,
+    tasks: state.GetAllTasksR.tasks,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
+    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+    getAllTaskInfo: () => dispatch(GetTasksActionCreator.getAllTaskInfo()),
+    getAttendanceInfo: (name, value) =>
+      dispatch(AddAttendanceActionCreator.getAttendanceInfo(name, value)),
+    addAttendance: (
+      facilityParent,
+      facilitySite,
+      task,
+      lngIn,
+      latIn,
+      longOut,
+      latOut
+    ) =>
+      dispatch(
+        AddAttendanceActionCreator.addAttendance(
+          facilityParent,
+          facilitySite,
+          task,
+          lngIn,
+          latIn,
+          longOut,
+          latOut
+        )
+      ),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAttendance);
 
 const styles = StyleSheet.create({
   initialCont: {

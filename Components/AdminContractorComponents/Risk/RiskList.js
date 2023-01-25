@@ -13,9 +13,19 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as GetRisksActionCreator from "../../../Store/ActionCreator/Risk/GetRisksActionCreator";
+import * as DeleteRiskActionCreator from "../../../Store/ActionCreator/Risk/DeleteRiskActionCreator";
 
-function Risks({ link, searchVal, Risks, getRisks, error }) {
-
+function Risks({
+  link,
+  searchVal,
+  Risks,
+  getRisks,
+  error,
+  deleteRiskInfo,
+  deleteRisk,
+  deleteRsk,
+  eid,
+}) {
   const navigation = useNavigation();
   const [RiskArr, setRiskArr] = useState([]);
 
@@ -23,13 +33,24 @@ function Risks({ link, searchVal, Risks, getRisks, error }) {
     getRisks();
     sortedArray();
   }, [searchVal]);
-  
+
   const sortedArray = () => {
     setRiskArr(
       Risks.filter((cntr) =>
         cntr.name.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
+  };
+
+  useEffect(() => {
+    if (deleteRsk) {
+      deleteRiskInfo("deleteRsk", false);
+      getRisks();
+    }
+  }, [deleteRsk]);
+
+  const handleDeleteRisk = (eid) => {
+    deleteRisk(eid);
   };
 
   return (
@@ -42,7 +63,9 @@ function Risks({ link, searchVal, Risks, getRisks, error }) {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link + "RiskDet", {id: item.eid})}
+                onPress={() =>
+                  navigation.navigate(link + "RiskDet", { id: item.eid })
+                }
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
@@ -50,7 +73,9 @@ function Risks({ link, searchVal, Risks, getRisks, error }) {
                     <Text style={styles.receiver}> {item.facilityName}</Text>
                   </View>
                   <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => handleDeleteRisk(item.eid)}
+                    >
                       <AntDesign
                         name="close"
                         size={20}
@@ -73,12 +98,17 @@ const mapStateToProps = (state) => {
   return {
     Risks: state.GetRisksR.Risks,
     error: state.GetRisksR.error,
+    deleteRsk: state.DeleteRiskR.deleteRsk,
+    eid: state.DeleteRiskR.eid,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getRisks: () => dispatch(GetRisksActionCreator.getRisks()),
+    deleteRiskInfo: (name, value) =>
+      dispatch(DeleteRiskActionCreator.deleteRiskInfo(name, value)),
+    deleteRisk: (eid) => dispatch(DeleteRiskActionCreator.deleteRisk(eid)),
   };
 };
 

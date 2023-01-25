@@ -13,20 +13,42 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as GetIncidentsActionCreator from "../../../Store/ActionCreator/Incident/GetIncidentsActionCreator";
+import * as DeleteIncidentActionCreator from "../../../Store/ActionCreator/Incident/DeleteIncidentActionCreator";
 
-function Incidents({ searchVal, link, getIncidents, Incidents, error }) {
+function Incidents({
+  searchVal,
+  link,
+  getIncidents,
+  Incidents,
+  error,
+  deleteIncidentInfo,
+  deleteIncident,
+  deleteInc,
+  eid,
+}) {
   const navigation = useNavigation();
   const [IncidentArr, setIncidentArr] = useState([]);
   useEffect(() => {
     getIncidents();
     sortedArray();
   }, [searchVal]);
+
   const sortedArray = () => {
     setIncidentArr(
       Incidents.filter((cntr) =>
         cntr.name.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
+  };
+  useEffect(() => {
+    if (deleteInc) {
+      deleteIncidentInfo("deleteInc", false);
+      getIncidents();
+    }
+  }, [deleteInc]);
+
+  const handleDeleteIncident = (eid) => {
+    deleteIncident(eid);
   };
 
   return (
@@ -49,7 +71,9 @@ function Incidents({ searchVal, link, getIncidents, Incidents, error }) {
                     <Text style={styles.receiver}> {item.facilityName}</Text>
                   </View>
                   <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => handleDeleteIncident(item.eid)}
+                    >
                       <AntDesign
                         name="close"
                         size={20}
@@ -73,12 +97,18 @@ const mapStateToProps = (state) => {
   return {
     Incidents: state.GetIncidentsR.Incidents,
     error: state.GetIncidentsR.error,
+    deleteInc: state.DeleteIncidentR.deleteInc,
+    eid: state.DeleteIncidentR.eid,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getIncidents: () => dispatch(GetIncidentsActionCreator.getIncidents()),
+    deleteIncidentInfo: (name, value) =>
+      dispatch(DeleteIncidentActionCreator.deleteIncidentInfo(name, value)),
+    deleteIncident: (eid) =>
+      dispatch(DeleteIncidentActionCreator.deleteIncident(eid)),
   };
 };
 

@@ -15,19 +15,24 @@ import { Ionicons } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 
-export default function AddForm({ formData, setFormData, facName, facParent }) {
+export default function AddForm({ formData, setFormData, facName, facParent, handleOnChangeName}) {
   const countries = ["Parent1", "FP2", "FP3", "Fp4"];
   const types = ["Education", "Retail"];
-  const handleChange = (value) => {
-    const obj = { ...formData };
-    obj.facilityName = value;
-    setFormData(obj);
-    console.log(value);
-  };
 
+  const handleChange = (value) => {
+    // const obj = { ...formData };
+    // obj.facilityName = value;
+    // setFormData(obj);
+    // console.log(value);
+    setFormData({
+      ...formData,
+      facilityName: value,
+    });
+  };
   const handleOnChange = (v,n) =>{
 
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.subCont}>
@@ -38,14 +43,14 @@ export default function AddForm({ formData, setFormData, facName, facParent }) {
           style={styles.input}
           keyboardType="default"
           value={formData.facilityName}
-          onChangeText={(val) => handleChange(val)}
+          onChangeText={(value) => handleOnChangeName(value,"facilityName")}
         />
         {facName && <Text style={styles.validation}>{facName}</Text>}
       </View>
 
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Facility Parent *</Text>
+          <Text style={styles.label}>Facility Parent</Text>
         </View>
         <SelectDropdown
           renderDropdownIcon={() => (
@@ -84,7 +89,7 @@ export default function AddForm({ formData, setFormData, facName, facParent }) {
             return item;
           }}
           value={formData.facilityParent}
-          onChangeText={(val) => handleChange(val)}
+          // onChangeText={(val) => handleChange(val)}
 
         />
         {facParent && <Text style={styles.validation}>{facParent}</Text>}
@@ -145,7 +150,7 @@ export default function AddForm({ formData, setFormData, facName, facParent }) {
         <TextInput
           style={styles.input}
           keyboardType="default"
-          onChangeText={(val) => handleChange(val)}
+          // onChangeText={(val) => handleChange(val)}
 
           value={formData.location}
         />

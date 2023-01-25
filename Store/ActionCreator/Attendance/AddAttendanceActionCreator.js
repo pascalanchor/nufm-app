@@ -19,7 +19,7 @@ export const addAttendance = (facilityParent,facilitySite,task,lngIn,latIn, long
     const params = { 
       "facilityParent": facilityParent,
       "facilitySite": facilitySite,
-      "task:"task,
+      "task":task,
       "lngIn": lngIn,
       "latIn":latIn,
       "longOut":longOut,

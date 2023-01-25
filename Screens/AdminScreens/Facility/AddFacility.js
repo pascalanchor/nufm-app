@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
@@ -7,30 +7,73 @@ import Header from "../../../Components/SharedComponents/Header";
 import AddForm from "../../../Components/AdminContractorComponents/Facility/AddForm";
 import AddStep2 from "../../../Components/AdminContractorComponents/Facility/AddStep2";
 import AddStep3 from "../../../Components/AdminContractorComponents/Facility/AddStep3";
+import { connect } from "react-redux";
+import * as AddFacilityActionCreator from "../../../Store/ActionCreator/Fcaility/AddFacilityActionCreator";
+// import * as AddFacilityOccupantActionCreator from "../../../store/ActionCreator/Facility/AddFacilityOccupantActionCreator";
+import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
 
-export default function AddFacility({link}) {
-  const [facName, setFacName] =useState("");
-  const [facParent, setFacParent] =useState("");
+function AddFacility({
+  link,
+  parentId,
+  name,
+  type,
+  location,
+  sqm,
+  const_year,
+  date_opened,
+  street,
+  post_code,
+  description,
+  primaryEmail,
+  workSchedule,
+  eid,
+  error,
+  loading,
+  getFacilityInfo,
+  addFacility,
+  parent,
+  getAllParent,
+}) {
+  const [facName, setFacName] = useState("");
+  const [facParent, setFacParent] = useState("");
   const [page, setPage] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [formData, setFormData] = useState({
-    facilityName: '',
-    facilityParent: '',
-    facilityType:'',
-    location:'',
-    street:'',
-    postCode:'',
-    sqm:'',
-    constYear:'',
-    date:'',
-    desc:'',
-    employment_status: null
+    facilityName: name,
+    facilityParent: parentId,
+    facilityType: type,
+    location: location,
+    street: street,
+    postCode: post_code,
+    sqm: sqm,
+    constYear: const_year,
+    date: date_opened,
+    desc: description,
+    employment_status: null,
   });
-
+useEffect(()=>{
+  console.log(formData.facilityName)
+},[])
+const handleOnChangeName = (value, name) => {
+  // if (!value || value > 24) {
+  //   setIsNameValid(false);
+  // } else {
+  //   setIsNameValid(true);
+  // }
+  getFacilityInfo("facilityName", value);
+};
   const multiStepForm = () => {
     switch (page) {
       case 0:
-        return <AddForm facName={facName} facParent={facParent} formData={formData} setFormData={setFormData} />;
+        return (
+          <AddForm
+          handleOnChangeName={handleOnChangeName}
+            facName={facName}
+            facParent={facParent}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        );
       case 1:
         return <AddStep2 formData={formData} setFormData={setFormData} />;
       case 2:
@@ -41,12 +84,11 @@ export default function AddFacility({link}) {
   };
   function handleSubmit() {
     if (page === 0) {
-      if (formData.facilityName === '' || formData.facilityName.length <= 1) {
-        return setFacName('Please enter a valid name');
-      } else if(formData.location === '') {
-        return setFacParent('Please select a parent');
-      }
-      else {
+      if (formData.facilityName === "" || formData.facilityName.length <= 1) {
+        return setFacName("Please enter a valid name");
+      } else if (formData.location === "") {
+        return setFacParent("Please select a parent");
+      } else {
         setPage(page + 1);
       }
     } else if (page === 1) {
@@ -58,7 +100,11 @@ export default function AddFacility({link}) {
   return (
     <View style={styles.box}>
       <View>
-        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu
+          link={link}
+          modalVisible={modalVisible}
+          setModal={setModalVisible}
+        />
       </View>
       <Header link={link} title="Facility" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
@@ -106,6 +152,67 @@ export default function AddFacility({link}) {
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    parentId: state.AddFacilityR.parentId,
+    name: state.AddFacilityR.name,
+    type: state.AddFacilityR.type,
+    location: state.AddFacilityR.location,
+    sqm: state.AddFacilityR.sqm,
+    const_year: state.AddFacilityR.const_year,
+    date_opened: state.AddFacilityR.date_opened,
+    workSchedule: state.AddFacilityR.workSchedule,
+    primaryEmail: state.AddFacilityR.primaryEmail,
+    street: state.AddFacilityR.street,
+    post_code: state.AddFacilityR.post_code,
+    description: state.AddFacilityR.description,
+    eid: state.AddFacilityR.eid,
+    error: state.AddFacilityR.error,
+    loading: state.AddFacilityR.loading,
+    parent: state.GetAllParentR.parent,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+    getFacilityInfo: (name, value) =>
+      dispatch(AddFacilityActionCreator.getFacilityInfo(name, value)),
+    addFacility: (
+      parentId,
+      name,
+      type,
+      location,
+      sqm,
+      const_year,
+      date_opened,
+      street,
+      post_code,
+      description,
+      primaryEmail,
+      workSchedul
+    ) =>
+      dispatch(
+        AddFacilityActionCreator.addFacility(
+          parentId,
+          name,
+          type,
+          location,
+          sqm,
+          const_year,
+          date_opened,
+          street,
+          post_code,
+          description,
+          primaryEmail,
+          workSchedule
+        )
+      ),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddFacility);
 
 const styles = StyleSheet.create({
   box: {
