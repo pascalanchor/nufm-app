@@ -29,7 +29,7 @@ function AttendanceTable({
   const sortedArray = () => {
     setAttendancesArr(
       Attendances.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.user.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -37,7 +37,7 @@ function AttendanceTable({
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.eid}
           ListHeaderComponent={() => {
             return (
               <View style={styles.listhead}>
@@ -62,17 +62,21 @@ function AttendanceTable({
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link + "CheckAttendance",{ id: item.eid })}
+                onPress={() =>
+                  navigation.navigate(link + "CheckAttendance", {
+                    id: item.eid,
+                  })
+                }
               >
                 <View style={styles.AttendanceContainer}>
                   <View style={styles.details}>
-                    <Text style={styles.txt}> {item.name}</Text>
+                    <Text style={styles.txt}> {item.user.fullName}</Text>
                   </View>
                   <View style={styles.details}>
-                    <Text style={styles.Facility}>{item.Facility}</Text>
+                    <Text style={styles.Facility}>{item.facility.name}</Text>
                   </View>
                   <View style={styles.details3}>
-                    <Text style={styles.Email}>{item.Email}</Text>
+                    <Text style={styles.Email}>{item.user.email}</Text>
                   </View>
                 </View>
               </TouchableOpacity>

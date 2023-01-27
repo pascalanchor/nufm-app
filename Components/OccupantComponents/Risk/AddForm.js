@@ -22,9 +22,10 @@ import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcailit
 function AddRiskO({
   getRiskInfo,
   addRisk,
+  senderId,
   facilityParent,
-  facilitySite,
-  incident,
+  facilityId,
+  risk,
   comment,
   error,
   loading,
@@ -36,9 +37,10 @@ function AddRiskO({
   useEffect(() => {
     getFacilities();
     getAllParent();
+    getRiskInfo("senderId", "");
     getRiskInfo("facilityParent", "");
-    getRiskInfo("facilitySite", "");
-    getRiskInfo("incident", "");
+    getRiskInfo("facilityId", "");
+    getRiskInfo("risk", "");
     getRiskInfo("comment", "");
     getRiskInfo("error", "");
   }, []);
@@ -51,7 +53,7 @@ function AddRiskO({
   };
 
   const handleClick = () => {
-    addRisk(facilityParent, facilitySite, incident, comment);
+    addRisk(senderId, facilityParent, facilityId, risk, comment);
   };
   return (
     <View style={styles.initialCont}>
@@ -118,7 +120,7 @@ function AddRiskO({
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilitySite");
+              handleOnChange(selectedItem, "facilityId");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -126,20 +128,20 @@ function AddRiskO({
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            value={facilitySite}
+            value={facilityId}
           />
         </View>
 
         <View style={styles.subCont}>
           <View>
-            <Text style={styles.label}>Incident</Text>
+            <Text style={styles.label}>Risk</Text>
           </View>
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
             multiline={true}
-            onChangeText={(value) => handleOnChange(value, "incident")}
-            value={incident}
+            onChangeText={(value) => handleOnChange(value, "risk")}
+            value={risk}
           />
         </View>
 
@@ -183,9 +185,10 @@ function AddRiskO({
 }
 const mapStateToProps = (state) => {
   return {
+    senderId: state.AddRiskR.senderId,
     facilityParent: state.AddRiskR.facilityParent,
-    facilitySite: state.AddRiskR.facilitySite,
-    incident: state.AddRiskR.incident,
+    facilityId: state.AddRiskR.facilityId,
+    risk: state.AddRiskR.risk,
     comment: state.AddRiskR.comment,
     error: state.AddRiskR.error,
     loading: state.AddRiskR.loading,
@@ -200,12 +203,13 @@ const mapDispatchToProps = (dispatch) => {
     getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
     getRiskInfo: (name, value) =>
       dispatch(AddRiskActionCreator.getRiskInfo(name, value)),
-    addRisk: (facilityParent, facilitySite, incident, comment) =>
+    addRisk: (senderId, facilityParent, facilityId, risk, comment) =>
       dispatch(
         AddRiskActionCreator.addRisk(
+          senderId,
           facilityParent,
-          facilitySite,
-          incident,
+          facilityId,
+          risk,
           comment
         )
       ),

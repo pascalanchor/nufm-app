@@ -23,7 +23,7 @@ function Occupants({ searchVal, Occupants, getOccupants }) {
   const sortedArray = () => {
     setOccupantsArr(
       Occupants.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -32,7 +32,7 @@ function Occupants({ searchVal, Occupants, getOccupants }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.email}
           data={
             OccupantsArr && OccupantsArr.length > 0 ? OccupantsArr : Occupants
           }
@@ -49,11 +49,15 @@ function Occupants({ searchVal, Occupants, getOccupants }) {
                 <View style={styles.workerContainer}>
                   <View style={styles.workerImg}>
                     <Image source={Avatar} style={styles.img} />
-                    <Text style={styles.txt}> {item.name}</Text>
+                    <Text style={styles.txt}> {item.fullName}</Text>
                   </View>
                   <View>
-                    <Text style={styles.time}>{item.time}</Text>
-                    <Text style={styles.date}>{item.date}</Text>
+                    <Text style={styles.time}>
+                      {item.createdAt.substring(11, 19)}
+                    </Text>
+                    <Text style={styles.date}>
+                      {item.createdAt.substring(0, 10)}
+                    </Text>
                   </View>
                 </View>
               </TouchableOpacity>

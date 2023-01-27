@@ -1,14 +1,16 @@
 import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
+  senderId:"",
+  receiverId:"",
+  date:"",
+  email:"",
   facilityParent: "",
-  facilitySite: "",
-  receiver: "",
-  order: "",
+  facilityId: "",
+  orderContent: "",
   comment:"",
   error: "",
   loading: false,
-  eid: "",
 };
 
 const AddOrderR = (state = initialState, action) => {

@@ -6,7 +6,7 @@ export const getRisks = () => {
   return (dispatch) => {
     // dispatch(getRisksStart());
     // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    // var link = server + privatePath + "/Risks";
+    // var link = server + privatePath + "/risk/all";
     // axios
     //   .get(link, {
     //     headers: {/*'Authorization': token,*/},})
@@ -18,25 +18,23 @@ export const getRisks = () => {
     //   });
 
     const Risks = [
-      { name: "Risk1", date: "28-09-2022", facilityName: "facility", eid: "1" },
-      { name: "Risk2", date: "28-09-2022", facilityName: "facility", eid: "2" },
       {
-        name: "Risk3",
+        sender: { fullName: "Hussam Khaled", nb: "2" },
         date: "28-09-2022",
-        facilityName: "facility",
-        eid: "3",
+        facility: { name: "facility", nbr: "1" },
+        id: "1",
       },
       {
-        name: "Risk4",
+        sender: { fullName: "Hussam Khaled", nb: "2" },
         date: "28-09-2022",
-        facilityName: "facility",
-        eid: "4",
+        facility: { name: "facility", nbr: "1" },
+        id: "2",
       },
       {
-        name: "Risk5",
+        sender: { fullName: "Hussam Khaled", nb: "2" },
         date: "28-09-2022",
-        facilityName: "facility",
-        eid: "5",
+        facility: { name: "facility", nbr: "1" },
+        id: "3",
       },
     ];
     dispatch(getRisksEnd(Risks));

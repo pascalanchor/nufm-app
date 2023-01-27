@@ -37,7 +37,7 @@ function Risks({
   const sortedArray = () => {
     setRiskArr(
       Risks.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -57,24 +57,24 @@ function Risks({
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) =>item.id}
           data={RiskArr && RiskArr.length > 0 ? RiskArr : Risks}
           numColumns={1}
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate(link + "RiskDet", { id: item.eid })
+                  navigation.navigate(link + "RiskDet", { id: item.id })
                 }
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
-                    <Text style={styles.txt}> {item.name}</Text>
-                    <Text style={styles.receiver}> {item.facilityName}</Text>
+                  <Text style={styles.txt}> {item.sender.fullName}</Text>
+                    <Text style={styles.receiver}> {item.facility.name}</Text>
                   </View>
                   <View>
                     <TouchableOpacity
-                      onPress={() => handleDeleteRisk(item.eid)}
+                      onPress={() => handleDeleteRisk(item.id)}
                     >
                       <AntDesign
                         name="close"

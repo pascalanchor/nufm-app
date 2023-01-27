@@ -23,12 +23,12 @@ function AddAttendance({
   addAttendance,
   getAttendanceInfo,
   facilityParent,
-  facilitySite,
+  facility,
+  user,
+  type,
   task,
-  lngIn,
-  longOut,
-  latIn,
-  latOut,
+  lng,
+  lat,
   error,
   loading,
   Facilities,
@@ -43,7 +43,11 @@ function AddAttendance({
     getAllParent();
     getAllTaskInfo();
     getAttendanceInfo("facilityParent", "");
-    getAttendanceInfo("facilitySite", "");
+    getAttendanceInfo("facility", "");
+    getAttendanceInfo("user", "");
+    getAttendanceInfo("type", "");
+    getAttendanceInfo("lng", "");
+    getAttendanceInfo("lat", "");
     getAttendanceInfo("task", "");
     getAttendanceInfo("error", "");
   }, []);
@@ -54,26 +58,29 @@ function AddAttendance({
   const handleOnChange = (value, name) => {
     getAttendanceInfo(name, value);
   };
-
-  const handleClick = () => {
-    addAttendance(
-      facilityParent,
-      facilitySite,
-      task,
-      lngIn,
-      latIn,
-      longOut,
-      latOut
-    );
-  };
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
+  const [checkType, setCheckType] = useState("");
   const [selected, setSelected] = useState([]);
 
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
-  const [lat, setLat] = useState("");
+  const [latitude, setLat] = useState("");
   const [long, setLong] = useState("");
+
+  const handleClick = () => {
+    addAttendance(
+      facilityParent,
+      facility,
+      user,
+      task,
+      checkType,
+      long,
+      latitude
+    );
+    console.log(checkType);
+    console.log(latitude);
+  };
 
   useEffect(() => {
     (async () => {
@@ -88,15 +95,9 @@ function AddAttendance({
     })();
   }, []);
 
-  // let text = "Waiting..";
-  // if (errorMsg) {
-  //   text = errorMsg;
-  // } else if (location) {
-  //   text = JSON.stringify(location.coords.latitude);
-  // }
-
   const handleCheck = (value) => {
     if (!toggleCheckBox) {
+      setCheckType("Check In");
       setLat(JSON.stringify(location.coords.latitude));
       setLong(JSON.stringify(location.coords.longitude));
       setToggleCheckBox(value);
@@ -106,11 +107,24 @@ function AddAttendance({
       setToggleCheckBox(value);
     }
   };
+
+  const handleCheckOut = (value) => {
+    if (!toggleCheckBox2) {
+      setCheckType("Check Out");
+      setLat(JSON.stringify(location.coords.latitude));
+      setLong(JSON.stringify(location.coords.longitude));
+      setToggleCheckBox2(value);
+    } else {
+      setLat("");
+      setLong("");
+      setToggleCheckBox2(value);
+    }
+  };
   return (
     <View style={styles.initialCont}>
       <View style={styles.container}>
         <Text>
-          {lat}/{long}
+          {latitude}/{long}
         </Text>
         <View style={styles.subCont}>
           <View>
@@ -161,7 +175,7 @@ function AddAttendance({
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilitySite");
+              handleOnChange(selectedItem, "facility");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -169,7 +183,7 @@ function AddAttendance({
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            value={facilitySite}
+            value={facility}
           />
         </View>
 
@@ -222,7 +236,7 @@ function AddAttendance({
             color="#309694"
             style={{ borderRadius: 4, color: "#309694" }}
             value={toggleCheckBox2}
-            onValueChange={(newValue) => setToggleCheckBox2(newValue)}
+            onValueChange={(newValue) => handleCheckOut(newValue)}
           />
           <Text style={styles.checkText}>Check Out</Text>
           <Ionicons name="location" size={26} color="#023D26" />
@@ -251,12 +265,12 @@ function AddAttendance({
 const mapStateToProps = (state) => {
   return {
     facilityParent: state.AddAttendanceR.facilityParent,
-    facilitySite: state.AddAttendanceR.facilitySite,
+    facility: state.AddAttendanceR.facility,
     task: state.AddAttendanceR.task,
-    latIn: state.AddAttendanceR.latIn,
-    latOut: state.AddAttendanceR.latOut,
-    longOut: state.AddAttendanceR.longOut,
-    lngIn: state.AddAttendanceR.lngIn,
+    lat: state.AddAttendanceR.lat,
+    user: state.AddAttendanceR.user,
+    type: state.AddAttendanceR.type,
+    lng: state.AddAttendanceR.lng,
     error: state.AddAttendanceR.error,
     loading: state.AddAttendanceR.loading,
     Facilities: state.GetFacilitiesR.Facilities,
@@ -272,24 +286,16 @@ const mapDispatchToProps = (dispatch) => {
     getAllTaskInfo: () => dispatch(GetTasksActionCreator.getAllTaskInfo()),
     getAttendanceInfo: (name, value) =>
       dispatch(AddAttendanceActionCreator.getAttendanceInfo(name, value)),
-    addAttendance: (
-      facilityParent,
-      facilitySite,
-      task,
-      lngIn,
-      latIn,
-      longOut,
-      latOut
-    ) =>
+    addAttendance: (facilityParent, facility, user, task, type, lng, lat) =>
       dispatch(
         AddAttendanceActionCreator.addAttendance(
           facilityParent,
-          facilitySite,
+          facility,
+          user,
           task,
-          lngIn,
-          latIn,
-          longOut,
-          latOut
+          type,
+          lng,
+          lat
         )
       ),
   };

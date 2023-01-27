@@ -25,7 +25,7 @@ function OrderList({ searchVal, link, Orders, error, getOrders }) {
   const sortedArray = () => {
     setOrderArr(
       Orders.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -40,12 +40,17 @@ function OrderList({ searchVal, link, Orders, error, getOrders }) {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate(link + "OrderDetails", { id: item.eid})}
+                onPress={() =>
+                  navigation.navigate(link + "OrderDetails", { id: item.eid })
+                }
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
-                    <Text style={styles.txt}> {item.name}</Text>
-                    <Text style={styles.receiver}> {item.sender}</Text>
+                    <Text style={styles.txt}> {item.sender.fullName}</Text>
+                    <Text style={styles.receiver}>
+                      {" "}
+                      {item.receiver.fullName}
+                    </Text>
                   </View>
                   <View>
                     <TouchableOpacity>

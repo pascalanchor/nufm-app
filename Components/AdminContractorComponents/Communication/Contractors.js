@@ -24,7 +24,7 @@ function Contractors({ searchVal, Contractors, getContractors }) {
   const sortedArray = () => {
     setContractorsArr(
       Contractors.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -33,7 +33,7 @@ function Contractors({ searchVal, Contractors, getContractors }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.fullName}
           data={
             contractorsArr && contractorsArr.length > 0
               ? contractorsArr
@@ -52,11 +52,11 @@ function Contractors({ searchVal, Contractors, getContractors }) {
                 <View style={styles.workerContainer}>
                   <View style={styles.workerImg}>
                     <Image source={Avatar} style={styles.img} />
-                    <Text style={styles.txt}> {item.name}</Text>
+                    <Text style={styles.txt}> {item.fullName}</Text>
                   </View>
                   <View>
-                    <Text style={styles.time}>{item.time}</Text>
-                    <Text style={styles.date}>{item.date}</Text>
+                    <Text style={styles.time}>{item.createdAt.substring(11,19)}</Text>
+                    <Text style={styles.date}>{item.createdAt.substring(0,10)}</Text>
                   </View>
                 </View>
               </TouchableOpacity>

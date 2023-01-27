@@ -2,8 +2,8 @@ import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
   facilityParent: "",
-  facilitySite: "",
-  task: "",
+  facilityId: "",
+  taskId: "",
   date:"",
   hour:"",
   time:"",

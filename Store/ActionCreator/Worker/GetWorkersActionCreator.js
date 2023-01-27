@@ -19,46 +19,46 @@ export const getWorkers = () => {
 
     const Wr = [
         {
-          eid:"1",
-          name: "Hussam Khaled",
+          email:"1",
+          fullName: "Hussam Khaled",
           profileImage: "",
-          date: "28-09-2022",
+          createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "70580011",
           spec:"Driver"
         },
         {
-          eid:"2",
-          name: "Jana Zreika",
+          email:"2",
+          fullName: "Jana Zreika",
           profileImage: "",
-          date: "28-09-2022",
+          createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "03358475",
           spec:"Driver"
         },
         {
-          eid:"3",
-          name: "Tarek Zreika",
+          email:"3",
+          fullName: "Jana Zreika",
           profileImage: "",
-          date: "28-09-2022",
+          createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "70322027",
           spec:"Driver"
         },
         {
-          eid:"4",
-          name: "Hussam Khaled2",
+          email:"4",
+          fullName: "Hussam Khaled2",
           profileImage: "",
-          date: "28-09-2022",
+          createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "70580011",
           spec:"Driver"
         },
         {
-          eid:"5",
-          name: "Jana Zreika9",
+          email:"5",
+          fullName: "Jana Zreika9",
           profileImage: "",
-          date: "28-09-2022",
+          createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "03358475",
           spec:"Driver"

@@ -10,7 +10,7 @@ export const getIncidentInfo = (name, value) => {
   };
 };
 
-export const addIncident = (facilityParent,facilitySite,task,date, hour,time, incident, comment, email) => {
+export const addIncident = (facilityParent,facilityId,taskId,date, hour,time, incident, comment, email) => {
   return (dispatch) => {
     dispatch(addIncidentStart());
 
@@ -18,8 +18,8 @@ export const addIncident = (facilityParent,facilitySite,task,date, hour,time, in
 
     const params = { 
       "facilityParent": facilityParent,
-      "facilitySite": facilitySite,
-      "task": task,
+      "facilityId": facilityId,
+      "taskId": taskId,
       "date":date,
       "hour":hour,
       "time":time,

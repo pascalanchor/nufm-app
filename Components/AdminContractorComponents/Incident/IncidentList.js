@@ -36,7 +36,7 @@ function Incidents({
   const sortedArray = () => {
     setIncidentArr(
       Incidents.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -67,8 +67,8 @@ function Incidents({
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
-                    <Text style={styles.txt}> {item.name}</Text>
-                    <Text style={styles.receiver}> {item.facilityName}</Text>
+                    <Text style={styles.txt}> {item.sender.fullName}</Text>
+                    <Text style={styles.receiver}> {item.facility.name}</Text>
                   </View>
                   <View>
                     <TouchableOpacity

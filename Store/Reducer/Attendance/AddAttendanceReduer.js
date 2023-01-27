@@ -2,12 +2,12 @@ import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
   facilityParent: "",
-  facilitySite: "",
+  facility: "",
+  user:"",
   task: "",
-  lngIn:"",
-  longOut:"",
-  latIn:"",
-  latOut: "",
+  type:"",
+  lng:"",
+  lat:"",
   error: "",
   loading: false,
   eid: "",

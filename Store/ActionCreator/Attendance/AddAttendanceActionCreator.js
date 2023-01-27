@@ -10,7 +10,7 @@ export const getAttendanceInfo = (name, value) => {
   };
 };
 
-export const addAttendance = (facilityParent,facilitySite,task,lngIn,latIn, longOut,latOut) => {
+export const addAttendance = (facilityParent,facility , user,task,type,lng,lat) => {
   return (dispatch) => {
     dispatch(addAttendanceStart());
 
@@ -18,12 +18,12 @@ export const addAttendance = (facilityParent,facilitySite,task,lngIn,latIn, long
 
     const params = { 
       "facilityParent": facilityParent,
-      "facilitySite": facilitySite,
+      "facility": facility,
+      "user":user,
       "task":task,
-      "lngIn": lngIn,
-      "latIn":latIn,
-      "longOut":longOut,
-      "latOut":latOut,
+      "type":type,
+      "lng": lng,
+      "lat":lat,
     }
 
     var link = server +  privatePath + "/attendance/add";

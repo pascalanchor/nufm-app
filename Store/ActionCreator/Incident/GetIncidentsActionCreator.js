@@ -18,28 +18,26 @@ export const getIncidents = () => {
     //   });
 
     const Incidents = [
-      { name: "Hussam Khaled", date: "28-09-2022", facilityName: "facility", eid: "1" },
-      { name: "Jana Zreika", date: "28-09-2022", facilityName: "facility", eid: "2" },
       {
-        name: "Sam",
+        sender: { fullName: "Hussam Khaled", nb: "2" },
         date: "28-09-2022",
-        facilityName: "facility",
+        facility: { name: "facility", nbr: "1" },
+        eid: "1",
+      },
+      {
+        sender: { fullName: "Jana Zreika", nb: "3" },
+        date: "28-09-2022",
+        facility: { name: "facility", nbr: 4 },
+        eid: "2",
+      },
+      {
+        sender: { fullName: "Sam", nb: "%" },
+        date: "28-09-2022",
+        facility: { name: "facility", nbr: "6" },
         eid: "3",
       },
-      {
-        name: "Hussam Khaled",
-        date: "28-09-2022",
-        facilityName: "facility",
-        eid: "4",
-      },
-      {
-        name: "Jana Zreika",
-        date: "28-09-2022",
-        facilityName: "facility",
-        eid: "5",
-      },
     ];
-    
+
     dispatch(getIncidentsEnd(Incidents));
   };
 };

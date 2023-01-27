@@ -6,7 +6,7 @@ export const getOrders = () => {
   return (dispatch) => {
     // dispatch(getOrdersStart());
     // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    // var link = server + privatePath + "/Orders";
+    // var link = server + privatePath + "/orders";
     // axios
     //   .get(link, {
     //     headers: {/*'Authorization': token,*/},})
@@ -18,25 +18,29 @@ export const getOrders = () => {
     //   });
 
     const Orders = [
-      { name: "Order1", date: "28-09-2022", sender: "sender", eid: "1" },
-      { name: "Order2", date: "28-09-2022", sender: "sender", eid: "2" },
       {
-        name: "Order3",
+        sender: { fullName: "Jana Zreika", nb: "2" },
         date: "28-09-2022",
-        sender: "sender",
+        receiver: { fullName: "Hussam", nb: "2" },
+        eid: "1",
+      },
+      {
+        sender: { fullName: "Hussam Khaled", nb: "2" },
+        date: "28-09-2022",
+        receiver: { fullName: "Jana", nb: "2" },
+        eid: "2",
+      },
+      {
+        sender: { fullName: "Hussam Khaled", nb: "2" },
+        date: "28-09-2022",
+        receiver: { fullName: "Jana", nb: "2" },
         eid: "3",
       },
       {
-        name: "Order4",
+        sender: { fullName: "Hussam Khaled", nb: "2" },
         date: "28-09-2022",
-        sender: "sender",
+        receiver: { fullName: "Jana", nb: "2" },
         eid: "4",
-      },
-      {
-        name: "Order5",
-        date: "28-09-2022",
-        sender: "sender",
-        eid: "5",
       },
     ];
     dispatch(getOrdersEnd(Orders));

@@ -1,13 +1,13 @@
 import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
+  senderId:"",
   facilityParent: "",
-  facilitySite: "",
-  incident: "",
+  facilitId: "",
+  risk: "",
   comment: "",
   error: "",
   loading: false,
-  eid: "",
 };
 
 const AddRiskR = (state = initialState, action) => {

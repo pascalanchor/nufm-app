@@ -19,10 +19,13 @@ import * as GetWorkersActionCreator from "../../../Store/ActionCreator/Worker/Ge
 function AddForm({
   getOrderInfo,
   addOrder,
+  senderId,
+  email,
+  date,
   facilityParent,
-  facilitySite,
-  receiver,
-  order,
+  facilityId,
+  receiverId,
+  orderContent,
   comment,
   error,
   loading,
@@ -37,24 +40,37 @@ function AddForm({
     getFacilities();
     getAllParent();
     getWorkers();
+    getOrderInfo("senderId", "");
+    getOrderInfo("email", "");
+    getOrderInfo("date", "");
     getOrderInfo("facilityParent", "");
-    getOrderInfo("facilitySite", "");
-    getOrderInfo("receiver", "");
-    getOrderInfo("order", "");
+    getOrderInfo("facilityId", "");
+    getOrderInfo("receiverId", "");
+    getOrderInfo("orderContent", "");
     getOrderInfo("comment", "");
     getOrderInfo("error", "");
   }, []);
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
   const parentName = parent.map((pr) => pr.name);
-  const workerName = Workers.map((wr) => wr.name);
+  const workerName = Workers.map((wr) => wr.fullName);
 
   const handleOnChange = (value, name) => {
     getOrderInfo(name, value);
   };
 
   const handleClick = () => {
-    addOrder(facilityParent, facilitySite, receiver, order, comment);
+    addOrder(
+      senderId,
+      receiverId,
+      email,
+      phoneNumber,
+      facilityParent,
+      facilityId,
+      date,
+      orderContent,
+      comment
+    );
   };
   return (
     <View style={styles.initialCont}>
@@ -121,7 +137,7 @@ function AddForm({
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilitySite");
+              handleOnChange(selectedItem, "facilityId");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -129,7 +145,7 @@ function AddForm({
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            value={facilitySite}
+            value={facilityId}
           />
         </View>
 
@@ -152,7 +168,7 @@ function AddForm({
             rowTextStyle={styles.rows}
             data={workerName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "receiver");
+              handleOnChange(selectedItem, "receiverId");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -160,7 +176,7 @@ function AddForm({
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            value={receiver}
+            value={receiverId}
           />
         </View>
 
@@ -171,8 +187,8 @@ function AddForm({
           <TextInput
             style={styles.inputInc}
             keyboardType="default"
-            onChangeText={(value) => handleOnChange(value, "order")}
-            value={order}
+            onChangeText={(value) => handleOnChange(value, "orderContent")}
+            value={orderContent}
             multiline={true}
           />
         </View>
@@ -219,9 +235,12 @@ function AddForm({
 const mapStateToProps = (state) => {
   return {
     facilityParent: state.AddOrderR.facilityParent,
-    facilitySite: state.AddOrderR.facilitySite,
-    receiver: state.AddOrderR.receiver,
-    order: state.AddOrderR.order,
+    facilityId: state.AddOrderR.facilityId,
+    receiverId: state.AddOrderR.receiverId,
+    senderId: state.AddOrderR.senderId,
+    date: state.AddOrderR.date,
+    email: state.AddOrderR.email,
+    orderContent: state.AddOrderR.orderContent,
     comment: state.AddOrderR.comment,
     error: state.AddOrderR.error,
     loading: state.AddOrderR.loading,
@@ -238,13 +257,27 @@ const mapDispatchToProps = (dispatch) => {
     getWorkers: () => dispatch(GetWorkersActionCreator.getWorkers()),
     getOrderInfo: (name, value) =>
       dispatch(AddOrderActionCreator.getOrderInfo(name, value)),
-    addOrder: (facilityParent, facilitySite, receiver, order, comment) =>
+    addOrder: (
+      senderId,
+      receiverId,
+      email,
+      phoneNumber,
+      facilityParent,
+      facilityId,
+      date,
+      orderContent,
+      commentt
+    ) =>
       dispatch(
         AddOrderActionCreator.addOrder(
+          senderId,
+          receiverId,
+          email,
+          phoneNumber,
           facilityParent,
-          facilitySite,
-          receiver,
-          order,
+          facilityId,
+          date,
+          orderContent,
           comment
         )
       ),

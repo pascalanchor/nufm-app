@@ -24,8 +24,8 @@ function AddIncident({
   getIncidentInfo,
   addIncident,
   facilityParent,
-  facilitySite,
-  task,
+  facilityId,
+  taskId,
   date,
   hour,
   time,
@@ -46,8 +46,8 @@ function AddIncident({
     getAllParent();
     getAllTaskInfo();
     getIncidentInfo("facilityParent", "");
-    getIncidentInfo("facilitySite", "");
-    getIncidentInfo("task", "");
+    getIncidentInfo("facilityId", "");
+    getIncidentInfo("taskId", "");
     getIncidentInfo("date", "");
     getIncidentInfo("hour", "");
     getIncidentInfo("time", "");
@@ -69,8 +69,8 @@ function AddIncident({
   const handleClick = () => {
     addIncident(
       facilityParent,
-      facilitySite,
-      task,
+      facilityId,
+      taskId,
       date,
       hour,
       time,
@@ -145,7 +145,7 @@ function AddIncident({
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilitySite");
+              handleOnChange(selectedItem, "facilityId");
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -153,7 +153,7 @@ function AddIncident({
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            value={facilitySite}
+            value={facilityId}
           />
         </View>
 
@@ -184,7 +184,7 @@ function AddIncident({
             rowTextForSelection={(item, index) => {
               return item;
             }}
-            value={task}
+            value={taskId}
           />
         </View>
         <View style={styles.subCont}>
@@ -314,7 +314,8 @@ function AddIncident({
 const mapStateToProps = (state) => {
   return {
     facilityParent: state.AddIncidentR.facilityParent,
-    facilitySite: state.AddIncidentR.facilitySite,
+    facilityId: state.AddIncidentR.facilityId,
+    taskId: state.AddIncidentR.taskId,
     receiver: state.AddIncidentR.receiver,
     comment: state.AddIncidentR.comment,
     error: state.AddIncidentR.error,
@@ -334,8 +335,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(AddIncidentActionCreator.getIncidentInfo(name, value)),
     addIncident: (
       facilityParent,
-      facilitySite,
-      task,
+      facilityId,
+      taskId,
       date,
       hour,
       time,
@@ -346,8 +347,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(
         AddIncidentActionCreator.addIncident(
           facilityParent,
-          facilitySite,
-          task,
+          facilityId,
+          taskId,
           date,
           hour,
           time,
