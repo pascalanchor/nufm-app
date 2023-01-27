@@ -35,7 +35,8 @@ import {
   GetContractorsR,
   GetOccupantsR,
   GetSpecializationR,
-  AddFacilityOccupantR
+  AddFacilityOccupantR,
+  DeleteOrderR
 } from "./Store";
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -69,7 +70,8 @@ const reducer = combineReducers({
   GetContractorsR: GetContractorsR,
   GetOccupantsR: GetOccupantsR,
   GetSpecializationR: GetSpecializationR,
-  AddFacilityOccupantR: AddFacilityOccupantR
+  AddFacilityOccupantR: AddFacilityOccupantR,
+  DeleteOrderR: DeleteOrderR
 });
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
@@ -79,8 +81,8 @@ export default function App() {
       <View style={styles.container}>
         {/* <AdminNavigation /> */}
         {/* <ContractorNavigation /> */}
-        <WorkerNavigation />
-        {/* <OccupantNavigation /> */}
+        {/* <WorkerNavigation /> */}
+        <OccupantNavigation />
       </View>
     </Provider>
   );

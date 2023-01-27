@@ -10,7 +10,7 @@ export const getOrderInfo = (name, value) => {
   };
 };
 
-export const addOrder = (senderId,receiverId,email,phoneNumber,facilityParent,facilityId,date,orderContent, comment) => {
+export const addOrder = (senderId,receiverId,email,phoneNumber,facilityId,date,orderContent, comment) => {
   return (dispatch) => {
     dispatch(addOrderStart());
 
@@ -21,7 +21,6 @@ export const addOrder = (senderId,receiverId,email,phoneNumber,facilityParent,fa
       "receiverId": receiver,
       "email":email,
       "phoneNumber":phoneNumber,
-      "facilityParent": facilityParent,
       "facilityId": facilityId,
       "date": date,
       "orderContent": orderContent,

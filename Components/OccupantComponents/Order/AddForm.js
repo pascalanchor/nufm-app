@@ -22,7 +22,6 @@ function AddForm({
   senderId,
   email,
   date,
-  facilityParent,
   facilityId,
   receiverId,
   orderContent,
@@ -43,7 +42,6 @@ function AddForm({
     getOrderInfo("senderId", "");
     getOrderInfo("email", "");
     getOrderInfo("date", "");
-    getOrderInfo("facilityParent", "");
     getOrderInfo("facilityId", "");
     getOrderInfo("receiverId", "");
     getOrderInfo("orderContent", "");
@@ -52,7 +50,6 @@ function AddForm({
   }, []);
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
-  const parentName = parent.map((pr) => pr.name);
   const workerName = Workers.map((wr) => wr.fullName);
 
   const handleOnChange = (value, name) => {
@@ -65,7 +62,6 @@ function AddForm({
       receiverId,
       email,
       phoneNumber,
-      facilityParent,
       facilityId,
       date,
       orderContent,
@@ -88,36 +84,6 @@ function AddForm({
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <View style={styles.subCont}>
-          <View>
-            <Text style={styles.label}>Facility Parent</Text>
-          </View>
-          <SelectDropdown
-            renderDropdownIcon={() => (
-              <Ionicons name="chevron-down-outline" size={20} color="#595959" />
-            )}
-            dropdownIconPosition="right"
-            defaultButtonText="Select a parent.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
-            buttonStyle={styles.btnselectstyle}
-            buttonTextStyle={styles.btnselectxtstyle}
-            dropdownStyle={styles.dropdownHour}
-            rowTextStyle={styles.rows}
-            data={parentName}
-            onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityParent");
-            }}
-            buttonTextAfterSelection={(selectedItem, index) => {
-              return selectedItem;
-            }}
-            rowTextForSelection={(item, index) => {
-              return item;
-            }}
-            value={facilityParent}
-          />
-        </View>
         <View style={styles.subCont}>
           <View>
             <Text style={styles.label}>Facility Site</Text>
@@ -234,7 +200,6 @@ function AddForm({
 
 const mapStateToProps = (state) => {
   return {
-    facilityParent: state.AddOrderR.facilityParent,
     facilityId: state.AddOrderR.facilityId,
     receiverId: state.AddOrderR.receiverId,
     senderId: state.AddOrderR.senderId,
@@ -262,11 +227,10 @@ const mapDispatchToProps = (dispatch) => {
       receiverId,
       email,
       phoneNumber,
-      facilityParent,
       facilityId,
       date,
       orderContent,
-      commentt
+      comment
     ) =>
       dispatch(
         AddOrderActionCreator.addOrder(
@@ -274,7 +238,6 @@ const mapDispatchToProps = (dispatch) => {
           receiverId,
           email,
           phoneNumber,
-          facilityParent,
           facilityId,
           date,
           orderContent,

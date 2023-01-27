@@ -25,3 +25,4 @@ export { default as GetContractorsR } from "./Reducer/Contractor/GetContractorsR
 export { default as GetOccupantsR } from "./Reducer/Occupant/GetOccupantsReducer";
 export { default as GetSpecializationR } from "./Reducer/Worker/GetSpecializationReducer";
 export { default as AddFacilityOccupantR } from "./Reducer/Facility/AddFacilityOccupantReducer";
+export { default as DeleteOrderR } from "./Reducer/Order/DeleteOrderReducer";

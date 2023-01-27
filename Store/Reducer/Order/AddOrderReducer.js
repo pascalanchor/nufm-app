@@ -5,7 +5,6 @@ const initialState = {
   receiverId:"",
   date:"",
   email:"",
-  facilityParent: "",
   facilityId: "",
   orderContent: "",
   comment:"",
@@ -22,7 +21,7 @@ const AddOrderR = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case actionTypes.AddOrder.ADD_ORDER_END:
-      return {...state,loading: false,error:'Added Successfully'};
+      return {...state,loading: false,error:'Order Sent Successfully'};
 
     case actionTypes.AddOrder.ADD_ORDER_FAIL:
       return { ...state, loading: false };

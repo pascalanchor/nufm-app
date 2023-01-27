@@ -15,15 +15,17 @@ import * as GetOrderDetailsActionCreator from "../../../Store/ActionCreator/Orde
 
 function OrderDetails({
   sender,
-  site,
+  receiver,
   email,
-  phone,
-  facilityParent,
+  status,
+  phoneNumber,
+  facility,
   date,
-  order,
+  orderContent,
   comment,
   eid,
   error,
+  loading,
   getOrderDetails,
 }) {
   const route = useRoute();
@@ -57,7 +59,7 @@ function OrderDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txt}>From</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{sender}</Text>
+            <Text style={styles.txtInside}>{sender.fullName}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
@@ -69,19 +71,13 @@ function OrderDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txtMulti}>Phone Number</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{phone}</Text>
+            <Text style={styles.txtInside}>{phoneNumber}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txtMulti}>Facility Parent</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{facilityParent}</Text>
-          </View>
-        </View>
-        <View style={styles.txtInput}>
-          <Text style={styles.txt}>Site</Text>
-          <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{site}</Text>
+            {/* <Text style={styles.txtInside}>{facility.parent.name}</Text> */}
           </View>
         </View>
         <View style={styles.txtInput}>
@@ -93,7 +89,7 @@ function OrderDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Order</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}>{order}</Text>
+            <Text style={styles.txtInside}>{orderContent}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
@@ -109,12 +105,12 @@ function OrderDetails({
 const mapStateToProps = (state) => {
   return {
     sender: state.GetOrderDetailsR.sender,
-    site: state.GetOrderDetailsR.site,
-    facilityParent: state.GetOrderDetailsR.facilityParent,
+    receiver: state.GetOrderDetailsR.receiver,
+    facility: state.GetOrderDetailsR.facility,
     email: state.GetOrderDetailsR.email,
     eid: state.GetOrderDetailsR.eid,
     error: state.GetOrderDetailsR.error,
-    order: state.GetOrderDetailsR.order,
+    orderContent: state.GetOrderDetailsR.orderContent,
     date: state.GetOrderDetailsR.date,
     phone: state.GetOrderDetailsR.phone,
     comment: state.GetOrderDetailsR.comment,

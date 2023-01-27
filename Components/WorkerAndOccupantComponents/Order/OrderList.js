@@ -13,8 +13,19 @@ import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as GetOrdersActionCreator from "../../../Store/ActionCreator/Order/GetOrdersActionCreator";
+import * as DeleteOrderActionCreator from "../../../Store/ActionCreator/Order/DeleteOrderActionCreator";
 
-function OrderList({ searchVal, link, Orders, error, getOrders }) {
+function OrderList({
+  searchVal,
+  link,
+  Orders,
+  error,
+  getOrders,
+  deleteOrderInfo,
+  deleteOrder,
+  deleteOrd,
+  eid,
+}) {
   const navigation = useNavigation();
 
   const [OrderArr, setOrderArr] = useState([]);
@@ -28,6 +39,17 @@ function OrderList({ searchVal, link, Orders, error, getOrders }) {
         cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
+  };
+
+  useEffect(() => {
+    if (deleteOrd) {
+      deleteOrderInfo("deleteOrd", false);
+      getOrders();
+    }
+  }, [deleteOrd]);
+
+  const handleDeleteOrder = (eid) => {
+    deleteOrder(eid);
   };
 
   return (
@@ -53,7 +75,9 @@ function OrderList({ searchVal, link, Orders, error, getOrders }) {
                     </Text>
                   </View>
                   <View>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => handleDeleteOrder(item.eid)}
+                    >
                       <AntDesign
                         name="close"
                         size={20}
@@ -77,12 +101,17 @@ const mapStateToProps = (state) => {
   return {
     Orders: state.GetOrdersR.Orders,
     error: state.GetOrdersR.error,
+    deleteOrd: state.DeleteOrderR.deleteOrd,
+    eid: state.DeleteOrderR.eid,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getOrders: () => dispatch(GetOrdersActionCreator.getOrders()),
+    deleteOrderInfo: (name, value) =>
+      dispatch(DeleteOrderActionCreator.deleteOrderInfo(name, value)),
+    deleteOrder: (eid) => dispatch(DeleteOrderActionCreator.deleteOrder(eid)),
   };
 };
 

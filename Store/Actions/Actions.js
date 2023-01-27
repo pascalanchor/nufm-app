@@ -150,6 +150,12 @@ export const AddOrder = {
   ADD_ORDER_FAIL: "ADD_ORDER_FAIL",
 };
 
+export const DeleteOrder = {
+  DELETE_ORDER_INFO: "DELETE_ORDER_INFO",
+  DELETE_ORDER_END: "DELETE_ORDER_END",
+  DELETE_ORDER_FAIL: "DELETE_ORDER_FAIL",
+};
+
 //Task
 export const GetAllTasks = {
   GET_ALL_TASKS_END: "GET_ALL_TASKS_END",
