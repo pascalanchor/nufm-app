@@ -20,15 +20,15 @@ function RiskDetails({
   facility,
   task,
   risk,
-  note,
-  eid,
+  comment,
+  id,
   error,
 }) {
   const route = useRoute();
-  const id = route.params.id;
+  const eid = route.params.id;
   const navigation = useNavigation();
   useEffect(() => {
-    getRiskDetails(id);
+    getRiskDetails(eid);
   }, []);
   return (
     <View style={styles.container}>
@@ -55,25 +55,19 @@ function RiskDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sender</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{sender}</Text>
-          </View>
-        </View>
-        <View style={styles.txtInput}>
-          <Text style={styles.txt}>Sites</Text>
-          <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{site}</Text>
+            <Text style={styles.txtInside}>{sender.fullName}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Facility</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{facility}</Text>
+            <Text style={styles.txtInside}>{facility.name}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Task</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{task}</Text>
+            <Text style={styles.txtInside}>{task.name}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
@@ -85,7 +79,7 @@ function RiskDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Note</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}>{note}</Text>
+            <Text style={styles.txtInside}>{comment}</Text>
           </View>
         </View>
       </View>
@@ -96,20 +90,19 @@ function RiskDetails({
 const mapStateToProps = (state) => {
   return {
     sender: state.GetRiskDetailsR.sender,
-    site: state.GetRiskDetailsR.site,
     facility: state.GetRiskDetailsR.facility,
     task: state.GetRiskDetailsR.task,
-    eid: state.GetRiskDetailsR.eid,
+    id: state.GetRiskDetailsR.id,
     error: state.GetRiskDetailsR.error,
     risk: state.GetRiskDetailsR.risk,
-    note: state.GetRiskDetailsR.note,
+    comment: state.GetRiskDetailsR.comment,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getRiskDetails: (eid) =>
-      dispatch(GetRiskDetailsActionCreator.getRiskDetails(eid)),
+    getRiskDetails: (id) =>
+      dispatch(GetRiskDetailsActionCreator.getRiskDetails(id)),
   };
 };
 

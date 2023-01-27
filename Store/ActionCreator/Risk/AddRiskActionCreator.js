@@ -10,7 +10,7 @@ export const getRiskInfo = (name, value) => {
   };
 };
 
-export const addRisk = (senderId,facilityParent,facilityId,risk,comment) => {
+export const addRisk = (senderId,facilityId,risk,comment) => {
   return (dispatch) => {
     dispatch(addRiskStart());
 
@@ -18,7 +18,6 @@ export const addRisk = (senderId,facilityParent,facilityId,risk,comment) => {
 
     const params = { 
       "senderId": senderId,
-      "facilityParent": facilityParent,
       "facilityId": facilityId,
       "risk": risk,
       "comment": comment

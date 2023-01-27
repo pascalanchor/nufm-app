@@ -2,12 +2,11 @@ import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
   sender: "",
-  site: "",
   facility: "",
   task: "",
   risk: "",
-  note: "",
-  eid: "",
+  comment: "",
+  id: "",
   error: "",
   loading: false,
 };
@@ -18,12 +17,11 @@ const GetRiskDetailsR = (state = initialState, action) => {
       return {
         ...state,
         sender: action.data.sender,
-        site: action.data.site,
         facility: action.data.facility,
         task: action.data.task,
         risk: action.data.risk,
-        note: action.data.note,
-        eid: action.data.eid,
+        comment: action.data.comment,
+        id: action.data.id,
         loading: false,
       };
 

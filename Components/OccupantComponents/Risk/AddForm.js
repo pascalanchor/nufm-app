@@ -23,7 +23,6 @@ function AddRiskO({
   getRiskInfo,
   addRisk,
   senderId,
-  facilityParent,
   facilityId,
   risk,
   comment,
@@ -38,7 +37,6 @@ function AddRiskO({
     getFacilities();
     getAllParent();
     getRiskInfo("senderId", "");
-    getRiskInfo("facilityParent", "");
     getRiskInfo("facilityId", "");
     getRiskInfo("risk", "");
     getRiskInfo("comment", "");
@@ -46,14 +44,13 @@ function AddRiskO({
   }, []);
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
-  const parentName = parent.map((pr) => pr.name);
 
   const handleOnChange = (value, name) => {
     getRiskInfo(name, value);
   };
 
   const handleClick = () => {
-    addRisk(senderId, facilityParent, facilityId, risk, comment);
+    addRisk(senderId, facilityId, risk, comment);
   };
   return (
     <View style={styles.initialCont}>
@@ -71,36 +68,6 @@ function AddRiskO({
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <View style={styles.subCont}>
-          <View>
-            <Text style={styles.label}>Facility Parent</Text>
-          </View>
-          <SelectDropdown
-            renderDropdownIcon={() => (
-              <Ionicons name="chevron-down-outline" size={20} color="#595959" />
-            )}
-            dropdownIconPosition="right"
-            defaultButtonText="Select a parent.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
-            buttonStyle={styles.btnselectstyle}
-            buttonTextStyle={styles.btnselectxtstyle}
-            dropdownStyle={styles.dropdownHour}
-            rowTextStyle={styles.rows}
-            data={parentName}
-            onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityParent");
-            }}
-            buttonTextAfterSelection={(selectedItem, index) => {
-              return selectedItem;
-            }}
-            rowTextForSelection={(item, index) => {
-              return item;
-            }}
-            value={facilityParent}
-          />
-        </View>
         <View style={styles.subCont}>
           <View>
             <Text style={styles.label}>Facility Site</Text>
@@ -175,7 +142,7 @@ function AddRiskO({
         <View style={{ width: "70%" }}>
           <TouchableOpacity onPress={handleClick}>
             <View style={styles.save}>
-              <Text style={styles.addSite}>ADD</Text>
+              <Text style={styles.addSite}>Send</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -186,7 +153,6 @@ function AddRiskO({
 const mapStateToProps = (state) => {
   return {
     senderId: state.AddRiskR.senderId,
-    facilityParent: state.AddRiskR.facilityParent,
     facilityId: state.AddRiskR.facilityId,
     risk: state.AddRiskR.risk,
     comment: state.AddRiskR.comment,
@@ -203,15 +169,9 @@ const mapDispatchToProps = (dispatch) => {
     getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
     getRiskInfo: (name, value) =>
       dispatch(AddRiskActionCreator.getRiskInfo(name, value)),
-    addRisk: (senderId, facilityParent, facilityId, risk, comment) =>
+    addRisk: (senderId, facilityId, risk, comment) =>
       dispatch(
-        AddRiskActionCreator.addRisk(
-          senderId,
-          facilityParent,
-          facilityId,
-          risk,
-          comment
-        )
+        AddRiskActionCreator.addRisk(senderId, facilityId, risk, comment)
       ),
   };
 };
