@@ -22,15 +22,12 @@ import * as GetTasksActionCreator from "../../../Store/ActionCreator/Task/GetTas
 function AddIncident({
   getIncidentInfo,
   addIncident,
-  facilityParent,
   facilityId,
   taskId,
   date,
-  hour,
-  time,
+  ihour,
   incident,
   comment,
-  email,
   error,
   loading,
   Facilities,
@@ -41,15 +38,12 @@ function AddIncident({
   useEffect(() => {
     getFacilities();
     getAllTaskInfo();
-    getIncidentInfo("facilityParent", "");
     getIncidentInfo("facilityId", "");
     getIncidentInfo("taskId", "");
     getIncidentInfo("date", "");
-    getIncidentInfo("hour", "");
-    getIncidentInfo("time", "");
+    getIncidentInfo("ihour", "");
     getIncidentInfo("incident", "");
     getIncidentInfo("comment", "");
-    getIncidentInfo("email", "");
     getIncidentInfo("error", "");
   }, []);
   const navigation = useNavigation();
@@ -61,17 +55,7 @@ function AddIncident({
   };
 
   const handleClick = () => {
-    addIncident(
-      facilityParent,
-      facilityId,
-      taskId,
-      date,
-      hour,
-      time,
-      incident,
-      comment,
-      email
-    );
+    addIncident(senderId, facilityId, taskId, date, ihour, incident, comment);
   };
 
   return (
@@ -175,7 +159,7 @@ function AddIncident({
             style={styles.input}
             keyboardType="numeric"
             onChangeText={(value) => handleOnChange(value, "hour")}
-            value={hour}
+            value={ihour}
           />
         </View>
 
@@ -252,27 +236,23 @@ const mapDispatchToProps = (dispatch) => {
     getIncidentInfo: (name, value) =>
       dispatch(AddIncidentActionCreator.getIncidentInfo(name, value)),
     addIncident: (
-      facilityParent,
+      senderId,
       facilityId,
       taskId,
       date,
-      hour,
-      time,
+      ihour,
       incident,
-      comment,
-      email
+      comment
     ) =>
       dispatch(
         AddIncidentActionCreator.addIncident(
-          facilityParent,
+          senderId,
           facilityId,
           taskId,
           date,
-          hour,
-          time,
+          ihour,
           incident,
-          comment,
-          email
+          comment
         )
       ),
   };

@@ -113,7 +113,7 @@ function LoginForm({
           onChangeText={(value) => handleOnChange(value, "password")}
         />
       </View>
-      <Buttons text="Login" onPress={()=> navigation.navigate("Contractor/Home")} />
+      <Buttons text="Login" onPress={()=> navigation.navigate("Worker/Home")} />
     </View>
   );
 }

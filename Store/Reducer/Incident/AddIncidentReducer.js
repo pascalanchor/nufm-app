@@ -1,15 +1,16 @@
 import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
-  facilityParent: "",
+  sender: "",
+  facility: "",
+  task: "",
+  senderId: "",
   facilityId: "",
   taskId: "",
-  date:"",
-  hour:"",
-  time:"",
+  date: "",
+  ihour: "",
   incident: "",
-  comment:"",
-  email:"",
+  comment: "",
   error: "",
   loading: false,
   eid: "",
@@ -24,7 +25,7 @@ const AddIncidentR = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case actionTypes.AddIncident.ADD_INCIDENT_END:
-      return {...state,loading: false,error:'Added Successfully'};
+      return { ...state, loading: false, error: "Added Successfully" };
 
     case actionTypes.AddIncident.ADD_INCIDENT_FAIL:
       return { ...state, loading: false };

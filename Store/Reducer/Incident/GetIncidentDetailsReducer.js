@@ -2,11 +2,12 @@ import * as actionTypes from "../../Actions/Actions";
 
 const initialState = {
   sender: "",
-  site: "",
   facility: "",
   task: "",
+  date:"",
+  ihour:"",
   incident: "",
-  note: "",
+  comment: "",
   eid: "",
   error: "",
   loading: false,
@@ -18,11 +19,12 @@ const GetIncidentDetailsR = (state = initialState, action) => {
       return {
         ...state,
         sender: action.data.sender,
-        site: action.data.site,
         facility: action.data.facility,
         task: action.data.task,
         incident: action.data.incident,
-        note: action.data.note,
+        comment: action.data.comment,
+        task: action.data.task,
+        ihour: action.data.ihour,
         eid: action.data.eid,
         loading: false,
       };

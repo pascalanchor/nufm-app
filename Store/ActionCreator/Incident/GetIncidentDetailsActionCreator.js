@@ -2,10 +2,10 @@ import axios from "axios";
 import * as actionTypes from "../../Actions/Actions";
 import { server, privatePath } from "../Constants";
 
-export const getIncidentDetails = (email) => {
+export const getIncidentDetails = (eid) => {
   return (dispatch) => {
     // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    var link = server + privatePath + "/incidentsByUser/" + email;
+    var link = server + privatePath + "//incidentById/" + eid;
 
     axios
       .get(link, {

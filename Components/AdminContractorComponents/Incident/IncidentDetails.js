@@ -16,11 +16,12 @@ import * as GetIncidentDetailsActionCreator from "../../../Store/ActionCreator/I
 function IncidentDetails({
   getIncidentDetails,
   sender,
-  site,
+  date,
+  ihour,
   facility,
   task,
   incident,
-  note,
+  comment,
   eid,
   error,
 }) {
@@ -55,25 +56,21 @@ function IncidentDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sender</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{sender}</Text>
+            <Text style={styles.txtInside}>{sender.fullName}</Text>
           </View>
         </View>
-        <View style={styles.txtInput}>
-          <Text style={styles.txt}>Sites</Text>
-          <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{site}</Text>
-          </View>
-        </View>
+    
+       
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Facility</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{facility}</Text>
+            <Text style={styles.txtInside}>{facility.name}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Task</Text>
           <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{task}</Text>
+            <Text style={styles.txtInside}>{task.name}</Text>
           </View>
         </View>
         <View style={styles.txtInput}>
@@ -85,7 +82,7 @@ function IncidentDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Note</Text>
           <View style={styles.txtarea}>
-            <Text style={styles.txtInside}>{note}</Text>
+            <Text style={styles.txtInside}>{comment}</Text>
           </View>
         </View>
       </View>
@@ -95,7 +92,8 @@ function IncidentDetails({
 const mapStateToProps = (state) => {
   return {
     sender: state.GetIncidentDetailsR.sender,
-    site: state.GetIncidentDetailsR.site,
+    date: state.GetIncidentDetailsR.date,
+    ihour: state.GetIncidentDetailsR.ihour,
     facility: state.GetIncidentDetailsR.facility,
     task: state.GetIncidentDetailsR.task,
     eid: state.GetIncidentDetailsR.eid,

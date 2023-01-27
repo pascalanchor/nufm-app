@@ -10,22 +10,20 @@ export const getIncidentInfo = (name, value) => {
   };
 };
 
-export const addIncident = (facilityParent,facilityId,taskId,date, hour,time, incident, comment, email) => {
+export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, comment) => {
   return (dispatch) => {
     dispatch(addIncidentStart());
 
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "facilityParent": facilityParent,
+      "senderId":senderId,
       "facilityId": facilityId,
       "taskId": taskId,
       "date":date,
-      "hour":hour,
-      "time":time,
+      "ihour":ihour,
       "incident": incident,
       "comment": comment,
-      "email": email
     }
 
     var link = server +  privatePath + "/incident/add";

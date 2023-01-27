@@ -78,8 +78,8 @@ export default function App() {
     <Provider store={store}>
       <View style={styles.container}>
         {/* <AdminNavigation /> */}
-        <ContractorNavigation />
-        {/* <WorkerNavigation /> */}
+        {/* <ContractorNavigation /> */}
+        <WorkerNavigation />
         {/* <OccupantNavigation /> */}
       </View>
     </Provider>
