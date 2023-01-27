@@ -10,14 +10,13 @@ export const getAttendanceInfo = (name, value) => {
   };
 };
 
-export const addAttendance = (facilityParent,facility , user,task,type,lng,lat) => {
+export const addAttendance = (facility , user,task,type,lng,lat) => {
   return (dispatch) => {
     dispatch(addAttendanceStart());
 
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "facilityParent": facilityParent,
       "facility": facility,
       "user":user,
       "task":task,

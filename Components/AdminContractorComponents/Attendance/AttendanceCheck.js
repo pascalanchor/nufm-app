@@ -8,10 +8,11 @@ import * as AttendanceCheckActionCreator from "../../../Store/ActionCreator/Atte
 
 function AttendanceCheck({
   getCheckById,
-  checkInDate,
-  checkOutDate,
-  checkInTime,
-  checkOutTime,
+  checkIn,
+  checkOut,
+  user,
+  facility,
+  task,
   eid,
   error,
   loading,
@@ -30,7 +31,7 @@ function AttendanceCheck({
         <View style={styles.greyBox}>
           <Text style={styles.Check}>Check In</Text>
           <Text style={styles.datetime}>
-            {checkInDate} / {checkInTime}
+            {/* {checkIn.date} / {facility.name} */}
           </Text>
         </View>
         <Ionicons name="location" size={30} color="#023D26" />
@@ -39,7 +40,7 @@ function AttendanceCheck({
         <View style={styles.greyBox}>
           <Text style={styles.Check}>Check Out</Text>
           <Text style={styles.datetime}>
-            {checkOutDate}/ {checkOutTime}
+            {/* {checkOut.date} / {facility.name} */}
           </Text>
         </View>
         <Ionicons name="location" size={30} color="#023D26" />
@@ -50,10 +51,11 @@ function AttendanceCheck({
 
 const mapStateToProps = (state) => {
   return {
-    checkInDate: state.GetCheckByIdR.checkInDate,
-    checkOutDate: state.GetCheckByIdR.checkOutDate,
-    checkInTime: state.GetCheckByIdR.checkInTime,
-    checkOutTime: state.GetCheckByIdR.checkOutTime,
+    checkIn: state.GetCheckByIdR.checkIn,
+    checkOut: state.GetCheckByIdR.checkOut,
+    user: state.GetCheckByIdR.user,
+    task: state.GetCheckByIdR.task,
+    facility: state.GetCheckByIdR.facility,
     eid: state.GetCheckByIdR.eid,
     error: state.GetCheckByIdR.error,
     loading: state.GetCheckByIdR.loading,

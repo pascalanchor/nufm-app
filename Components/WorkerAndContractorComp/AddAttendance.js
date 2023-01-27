@@ -15,14 +15,12 @@ import * as Location from "expo-location";
 import { connect } from "react-redux";
 import * as AddAttendanceActionCreator from "../../Store/ActionCreator/Attendance/AddAttendanceActionCreator";
 import * as GetFacilitiesActionCreator from "../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
-import * as GetFacParentActionCreator from "../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
 import * as GetTasksActionCreator from "../../Store/ActionCreator/Task/GetTasksActionCreator";
 
 function AddAttendance({
   link,
   addAttendance,
   getAttendanceInfo,
-  facilityParent,
   facility,
   user,
   type,
@@ -40,9 +38,7 @@ function AddAttendance({
 }) {
   useEffect(() => {
     getFacilities();
-    getAllParent();
     getAllTaskInfo();
-    getAttendanceInfo("facilityParent", "");
     getAttendanceInfo("facility", "");
     getAttendanceInfo("user", "");
     getAttendanceInfo("type", "");
@@ -52,7 +48,6 @@ function AddAttendance({
     getAttendanceInfo("error", "");
   }, []);
   const siteName = Facilities.map((fn) => fn.name);
-  const parentName = parent.map((pr) => pr.name);
   const Tasks = tasks.map((wr) => wr.name);
 
   const handleOnChange = (value, name) => {
@@ -69,15 +64,7 @@ function AddAttendance({
   const [long, setLong] = useState("");
 
   const handleClick = () => {
-    addAttendance(
-      facilityParent,
-      facility,
-      user,
-      task,
-      checkType,
-      long,
-      latitude
-    );
+    addAttendance(facility, user, task, checkType, long, latitude);
     console.log(checkType);
     console.log(latitude);
   };
@@ -123,39 +110,6 @@ function AddAttendance({
   return (
     <View style={styles.initialCont}>
       <View style={styles.container}>
-        <Text>
-          {latitude}/{long}
-        </Text>
-        <View style={styles.subCont}>
-          <View>
-            <Text style={styles.label}>Facility Parent</Text>
-          </View>
-          <SelectDropdown
-            renderDropdownIcon={() => (
-              <Ionicons name="chevron-down-outline" size={20} color="#595959" />
-            )}
-            dropdownIconPosition="right"
-            defaultButtonText="Select a parent.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
-            buttonStyle={styles.btnselectstyle}
-            buttonTextStyle={styles.btnselectxtstyle}
-            dropdownStyle={styles.dropdownHour}
-            rowTextStyle={styles.rows}
-            data={parentName}
-            onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityParent");
-            }}
-            buttonTextAfterSelection={(selectedItem, index) => {
-              return selectedItem;
-            }}
-            rowTextForSelection={(item, index) => {
-              return item;
-            }}
-            value={facilityParent}
-          />
-        </View>
         <View style={styles.subCont}>
           <View>
             <Text style={styles.label}>Facility Site</Text>
@@ -264,7 +218,6 @@ function AddAttendance({
 
 const mapStateToProps = (state) => {
   return {
-    facilityParent: state.AddAttendanceR.facilityParent,
     facility: state.AddAttendanceR.facility,
     task: state.AddAttendanceR.task,
     lat: state.AddAttendanceR.lat,
@@ -274,7 +227,6 @@ const mapStateToProps = (state) => {
     error: state.AddAttendanceR.error,
     loading: state.AddAttendanceR.loading,
     Facilities: state.GetFacilitiesR.Facilities,
-    parent: state.GetAllParentR.parent,
     tasks: state.GetAllTasksR.tasks,
   };
 };
@@ -282,14 +234,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
-    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
     getAllTaskInfo: () => dispatch(GetTasksActionCreator.getAllTaskInfo()),
     getAttendanceInfo: (name, value) =>
       dispatch(AddAttendanceActionCreator.getAttendanceInfo(name, value)),
-    addAttendance: (facilityParent, facility, user, task, type, lng, lat) =>
+    addAttendance: (facility, user, task, type, lng, lat) =>
       dispatch(
         AddAttendanceActionCreator.addAttendance(
-          facilityParent,
           facility,
           user,
           task,
