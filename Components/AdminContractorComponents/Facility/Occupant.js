@@ -18,6 +18,8 @@ export default function Occupant() {
       phone: "",
       email: "",
       note: "",
+      landline:"",
+      jobTitle:"",
     },
   ]);
   const addInput = () => {
@@ -28,6 +30,8 @@ export default function Occupant() {
         phone: "",
         email: "",
         note: "",
+        landline:"",
+        jobTitle:"",
       },
     ]);
   };
@@ -57,11 +61,21 @@ export default function Occupant() {
     list[index].note = value;
     setOccupant(list);
   };
+  const handleChangeItemLandline = (index, value) => {
+    const list = [...Occupant];
+    list[index].landline = value;
+    setOccupant(list);
+  };
+  const handleChangeItemJob = (index, value) => {
+    const list = [...Occupant];
+    list[index].jobTitle = value;
+    setOccupant(list);
+  };
 
   return (
     <View style={styles.container}>
       <View style={styles.OccupantCont}>
-        <Text style={styles.Occupant}>Occupant</Text>
+        <Text style={styles.Occupant}>Occupant(s)</Text>
       </View>
       {Occupant.map((item, i) => (
         <View key={i + 1} style={styles.multi}>
@@ -100,6 +114,28 @@ export default function Occupant() {
           </View>
           <View style={styles.subCont}>
             <View>
+              <Text style={styles.label}>Landline</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              keyboardType="default"
+              onChangeText={(value) => handleChangeItemLandline(i, value)}
+              value={item.email}
+            />
+          </View>
+          <View style={styles.subCont}>
+            <View>
+              <Text style={styles.label}>Job Title</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              keyboardType="default"
+              onChangeText={(value) => handleChangeItemJob(i, value)}
+              value={item.email}
+            />
+          </View>
+          <View style={styles.subCont}>
+            <View>
               <Text style={styles.label}>Note</Text>
             </View>
             <TextInput
@@ -109,6 +145,7 @@ export default function Occupant() {
               value={item.note}
             />
           </View>
+          
         </View>
       ))}
       <View style={styles.addRemove}>

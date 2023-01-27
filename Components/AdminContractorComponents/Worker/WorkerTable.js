@@ -14,7 +14,7 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
   const sortedArray = () => {
     setWorkersArr(
       Workers.filter((cntr) =>
-        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+        cntr.fullName.toLowerCase().includes(searchVal.toLowerCase())
       )
     );
   };
@@ -44,10 +44,10 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
             return (
               <View style={styles.FacilityContainer}>
                 <View style={styles.details}>
-                  <Text style={styles.txt}> {item.name}</Text>
+                  <Text style={styles.txt}> {item.fullName}</Text>
                 </View>
                 <View style={styles.details}>
-                  <Text style={styles.spec}>{item.spec}</Text>
+                  <Text style={styles.spec}>{item.specializations}</Text>
                 </View>
                 <View style={styles.details}>
                   <Text style={styles.phone}>{item.phone}</Text>

@@ -35,6 +35,7 @@ import {
   GetContractorsR,
   GetOccupantsR,
   GetSpecializationR,
+  AddFacilityOccupantR
 } from "./Store";
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -68,6 +69,7 @@ const reducer = combineReducers({
   GetContractorsR: GetContractorsR,
   GetOccupantsR: GetOccupantsR,
   GetSpecializationR: GetSpecializationR,
+  AddFacilityOccupantR: AddFacilityOccupantR
 });
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 

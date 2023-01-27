@@ -25,7 +25,7 @@ export const getWorkers = () => {
           createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "70580011",
-          spec:"Driver"
+          specializations:"Driver"
         },
         {
           email:"2",
@@ -34,7 +34,7 @@ export const getWorkers = () => {
           createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "03358475",
-          spec:"Driver"
+          specializations:"Driver"
         },
         {
           email:"3",
@@ -43,7 +43,7 @@ export const getWorkers = () => {
           createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "70322027",
-          spec:"Driver"
+          specializations:"Driver"
         },
         {
           email:"4",
@@ -52,7 +52,7 @@ export const getWorkers = () => {
           createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "70580011",
-          spec:"Driver"
+          specializations:"Driver"
         },
         {
           email:"5",
@@ -61,7 +61,7 @@ export const getWorkers = () => {
           createdAt: "2022-11-30T15:56:42.078+00:00",
           time: "9:00AM",
           phone: "03358475",
-          spec:"Driver"
+          specializations:"Driver"
         }
       ];
       dispatch(getWorkersEnd(Wr));

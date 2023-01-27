@@ -9,7 +9,7 @@ import AddStep2 from "../../../Components/AdminContractorComponents/Facility/Add
 import AddStep3 from "../../../Components/AdminContractorComponents/Facility/AddStep3";
 import { connect } from "react-redux";
 import * as AddFacilityActionCreator from "../../../Store/ActionCreator/Fcaility/AddFacilityActionCreator";
-// import * as AddFacilityOccupantActionCreator from "../../../store/ActionCreator/Facility/AddFacilityOccupantActionCreator";
+import * as AddFacilityOccupantActionCreator from "../../../Store/ActionCreator/Fcaility/AddFacilityOccupantActionCreator";
 import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
 
 function AddFacility({
@@ -33,6 +33,13 @@ function AddFacility({
   addFacility,
   parent,
   getAllParent,
+  getFacilityOccupantInfo,
+  addFacilityOccupant,
+  email,
+  fullName,
+  phone,
+  notes,
+  profileImage,
 }) {
   const [facName, setFacName] = useState("");
   const [facParent, setFacParent] = useState("");
@@ -51,23 +58,23 @@ function AddFacility({
     desc: description,
     employment_status: null,
   });
-useEffect(()=>{
-  console.log(formData.facilityName)
-},[])
-const handleOnChangeName = (value, name) => {
-  // if (!value || value > 24) {
-  //   setIsNameValid(false);
-  // } else {
-  //   setIsNameValid(true);
-  // }
-  getFacilityInfo("facilityName", value);
-};
+  useEffect(() => {
+    console.log(formData.facilityName);
+  }, []);
+  const handleOnChangeName = (value, name) => {
+    // if (!value || value > 24) {
+    //   setIsNameValid(false);
+    // } else {
+    //   setIsNameValid(true);
+    // }
+    getFacilityInfo("facilityName", value);
+  };
   const multiStepForm = () => {
     switch (page) {
       case 0:
         return (
           <AddForm
-          handleOnChangeName={handleOnChangeName}
+            handleOnChangeName={handleOnChangeName}
             facName={facName}
             facParent={facParent}
             formData={formData}
@@ -84,14 +91,16 @@ const handleOnChangeName = (value, name) => {
   };
   function handleSubmit() {
     if (page === 0) {
-      if (formData.facilityName === "" || formData.facilityName.length <= 1) {
-        return setFacName("Please enter a valid name");
-      } else if (formData.location === "") {
-        return setFacParent("Please select a parent");
-      } else {
+      // if (formData.facilityName === "" || formData.facilityName.length <= 1) {
+      //   return setFacName("Please enter a valid name");
+      // } else if (formData.location === "") {
+      //   return setFacParent("Please select a parent");
+      // } else {
         setPage(page + 1);
-      }
+      // }
     } else if (page === 1) {
+      setPage(page + 1);
+
       // do form validation again
     } else if (page === 2) {
       // set page === 0 , and clear fields
@@ -171,14 +180,35 @@ const mapStateToProps = (state) => {
     error: state.AddFacilityR.error,
     loading: state.AddFacilityR.loading,
     parent: state.GetAllParentR.parent,
+    email: state.AddFacilityOccupantR.email,
+    fullName: state.AddFacilityOccupantR.fullName,
+    phone: state.AddFacilityOccupantR.phone,
+    notes: state.AddFacilityOccupantR.notes,
+    profileImage: state.AddFacilityOccupantR.profileImage,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getFacilityOccupantInfo: (name, value) =>
+      dispatch(
+        AddFacilityOccupantActionCreator.getFacilityOccupantInfo(name, value)
+      ),
+    addFacilityOccupant: (email, fullName, phone, notes, profileImage, eid) =>
+      dispatch(
+        AddFacilityOccupantActionCreator.addFacilityOccupant(
+          email,
+          fullName,
+          phone,
+          notes,
+          profileImage,
+          eid
+        )
+      ),
     getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
     getFacilityInfo: (name, value) =>
       dispatch(AddFacilityActionCreator.getFacilityInfo(name, value)),
+
     addFacility: (
       parentId,
       name,

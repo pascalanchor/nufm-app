@@ -18,6 +18,7 @@ export default function PrimaryContact() {
       phone: "",
       email: "",
       jobTitle: "",
+      cell:"",
     },
   ]);
   const addInput = () => {
@@ -28,6 +29,7 @@ export default function PrimaryContact() {
         phone: "",
         email: "",
         jobTitle: "",
+        cell:"",
       },
     ]);
   };
@@ -58,10 +60,16 @@ export default function PrimaryContact() {
     setprimary(list);
   };
 
+  const handleChangeItemCell = (index, value) => {
+    const list = [...primary];
+    list[index].cell = value;
+    setprimary(list);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.PrimaryCont}>
-        <Text style={styles.Primary}>Primary Contact</Text>
+        <Text style={styles.Primary}>Primary Contact(s)</Text>
       </View>
       {primary.map((item, i) => (
         <View key={i + 1} style={styles.multi}>
@@ -106,6 +114,17 @@ export default function PrimaryContact() {
               style={styles.input}
               keyboardType="default"
               onChangeText={(value) => handleChangeItemJob(i, value)}
+              value={item.jobTitle}
+            />
+          </View>
+          <View style={styles.subCont}>
+            <View>
+              <Text style={styles.label}>Cell</Text>
+            </View>
+            <TextInput
+              style={styles.input}
+              keyboardType="numeric"
+              onChangeText={(value) => handleChangeItemCell(i, value)}
               value={item.jobTitle}
             />
           </View>

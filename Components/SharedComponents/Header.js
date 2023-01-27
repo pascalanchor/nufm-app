@@ -6,7 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
-export default function Header({link, title, setModal }) {
+export default function Header({ link, title, setModal }) {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -19,7 +19,9 @@ export default function Header({link, title, setModal }) {
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate(link+"Notification")}>
+        <TouchableOpacity
+        // onPress={() => navigation.navigate(link+"Notification")}
+        >
           <View>
             <Ionicons name="notifications-outline" size={26} color="#023D26" />
           </View>
