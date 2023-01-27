@@ -22,7 +22,7 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.eid}
+          keyExtractor={(item) => item.email}
           ListHeaderComponent={() => {
             return (
               <View style={styles.listhead}>

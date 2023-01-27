@@ -26,7 +26,8 @@ export const addFacility = (
 ) => {
   return (dispatch) => {
     dispatch(addFacilityStart());
-    var params = {
+    var fd = new FormData();
+    var facilityData = JSON.stringify({
       "parentId": parentId,
       "name": name,
       "type": type,
@@ -37,13 +38,23 @@ export const addFacility = (
       "street": street,
       "post_code": post_code,
       "description": description,
-      "primaryEmail": primaryEmail,
-      "workSchedyle": workSchedule,
-    };
-   
+    });
+    fd.append("facilityDoc", docs);
+    fd.append("facilityData", facilityData);
+    fd.append("facilityPrimaryEmail", JSON.stringify(primaryEmail));
+    fd.append("facilityWorkSchedule", JSON.stringify(workSchedule));
+    console.log(facilityData)
+    console.log(primaryEmail)
+    console.log(workSchedule);
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
-    var link = server +  privatePath + "/facility/add";
-    axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
+    var link = server + "/avh/nufm/v1/private/facility/add";
+    axios
+      ({
+        method: "post",
+        url: link,
+        data: fd,
+        headers: { "Content-Type": "multipart/form-data", 'Authorization': token },
+      })
       .then((res) => {
 
         if (res.data.message === "facility name  already exists") {
@@ -55,7 +66,7 @@ export const addFacility = (
         }
       })
       .catch((err) => {
-       
+       console.log(err)
         dispatch(addFacilityFail(err));
       });
   };

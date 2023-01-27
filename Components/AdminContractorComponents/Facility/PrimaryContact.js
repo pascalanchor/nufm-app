@@ -11,7 +11,7 @@ import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { Ionicons, MaterialIcons, Entypo } from "@expo/vector-icons";
 
-export default function PrimaryContact() {
+export default function PrimaryContact({formData, setFormData}) {
   const [primary, setprimary] = useState([
     {
       name: "",

@@ -10,21 +10,58 @@ export const getWorkerInfo = (name, value) => {
   };
 };
 
-export const addWorker = (email,fullName,phone,specializations) => {
+export const addWorker = (
+  email,
+  fullName,
+  phone,
+  specializations,
+  street,
+  address,
+  facilityId,
+  department,
+  city,
+  dob,
+  jobTitle,
+  startDate,
+  workType,
+  zipCode,
+  linkBack,
+  certification,
+  profileImage,
+) => {
   return (dispatch) => {
     dispatch(addWorkerStart());
 
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
-
-    const params = { 
+    var fd = new FormData();
+    var data = JSON.stringify({
       "email": email,
       "fullName": fullName,
       "specializations": specializations,
       "phone": phone,
-    }
+      "street": street,
+      "address": address,
+      "facilityId": facilityId,
+      "department":department,
+      "city": city,
+      "dob": dob,
+      "jobTitle": jobTitle,
+      "startDate": startDate,
+      "workType": workType,
+      "zipCode":zipCode,
+      "linkBack": linkBack
+    });
+    fd.append("data", data);
+    fd.append("profileImage", profileImage);
+    fd.append("certification", certification);
 
-    var link = server +  privatePath + "/worker/add";
-    axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
+    var link = server + "/avh/nufm/v1/private/worker/add";
+    axios({
+      method: "post",
+      url: link,
+      data: fd,
+      headers :{ 'Authorization': token, "Content-Type": "multipart/form-data" ,} ,
+    })
       .then((res) => {
         if (res.data.message === "expectation failed") {
           dispatch(addWorkerFail("expectation failed"));
@@ -33,6 +70,7 @@ export const addWorker = (email,fullName,phone,specializations) => {
         }
       })
       .catch((err) => {
+        console.log(err)
         dispatch(addWorkerFail(err));
       });
   };

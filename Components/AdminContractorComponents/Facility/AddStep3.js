@@ -5,7 +5,7 @@ import Occupant from "./Occupant";
 export default function AddStep3({formData, setFormData}) {
   return (
     <View>
-      <Occupant />
+      <Occupant formData={formData} setFormData={setFormData} />
     </View>
   );
 }

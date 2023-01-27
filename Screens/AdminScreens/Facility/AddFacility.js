@@ -45,8 +45,9 @@ function AddFacility({
   const [facParent, setFacParent] = useState("");
   const [page, setPage] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  
   const [formData, setFormData] = useState({
-    facilityName: name,
+    facilityName: "hhhhhh",
     facilityParent: parentId,
     facilityType: type,
     location: location,
@@ -56,18 +57,23 @@ function AddFacility({
     constYear: const_year,
     date: date_opened,
     desc: description,
+    primaryEmail: [],
+    workSchedul: [],
     employment_status: null,
   });
   useEffect(() => {
     console.log(formData.facilityName);
   }, []);
-  const handleOnChangeName = (value, name) => {
+  const handleOnChangeName = (value) => {
     // if (!value || value > 24) {
     //   setIsNameValid(false);
     // } else {
     //   setIsNameValid(true);
     // }
-    getFacilityInfo("facilityName", value);
+    setFormData({
+      ...formData,
+      facilityName:value,
+    })
   };
   const multiStepForm = () => {
     switch (page) {
@@ -96,7 +102,7 @@ function AddFacility({
       // } else if (formData.location === "") {
       //   return setFacParent("Please select a parent");
       // } else {
-        setPage(page + 1);
+      setPage(page + 1);
       // }
     } else if (page === 1) {
       setPage(page + 1);

@@ -14,7 +14,7 @@ import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, MaterialIcons, Entypo } from "@expo/vector-icons";
 
-export default function WorkSchedule() {
+export default function WorkSchedule({formData, setFormData}) {
   const weekDays = [
     "Monday",
     "Tuesday",

@@ -15,7 +15,7 @@ import { Ionicons } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 
-export default function AddForm({ formData, setFormData, facName, facParent, handleOnChangeName}) {
+export default function AddForm({ formData, setFormData, facName, facParent, handleOnChangeName, facilityNamet, setFacilityNamet}) {
   const countries = ["Parent1", "FP2", "FP3", "Fp4"];
   const types = ["Education", "Retail"];
 
@@ -43,7 +43,7 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
           style={styles.input}
           keyboardType="default"
           value={formData.facilityName}
-          onChangeText={(value) => handleOnChangeName(value,"facilityName")}
+          onChangeText={(value) => handleOnChangeName(value)}
         />
         {facName && <Text style={styles.validation}>{facName}</Text>}
       </View>

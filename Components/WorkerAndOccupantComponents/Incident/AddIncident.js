@@ -17,7 +17,6 @@ import { useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as AddIncidentActionCreator from "../../../Store/ActionCreator/Incident/AddIncidentActionCreator";
 import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
-import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
 import * as GetTasksActionCreator from "../../../Store/ActionCreator/Task/GetTasksActionCreator";
 
 function AddIncident({
@@ -36,14 +35,11 @@ function AddIncident({
   loading,
   Facilities,
   getFacilities,
-  getAllParent,
-  parent,
   tasks,
   getAllTaskInfo,
 }) {
   useEffect(() => {
     getFacilities();
-    getAllParent();
     getAllTaskInfo();
     getIncidentInfo("facilityParent", "");
     getIncidentInfo("facilityId", "");
@@ -58,9 +54,7 @@ function AddIncident({
   }, []);
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
-  const parentName = parent.map((pr) => pr.name);
   const Tasks = tasks.map((wr) => wr.name);
-  const timeH = ["AM", "PM"];
 
   const handleOnChange = (value, name) => {
     getIncidentInfo(name, value);
@@ -96,36 +90,6 @@ function AddIncident({
         </TouchableOpacity>
       </View>
       <View style={styles.container}>
-        <View style={styles.subCont}>
-          <View>
-            <Text style={styles.label}>Facility Parent</Text>
-          </View>
-          <SelectDropdown
-            renderDropdownIcon={() => (
-              <Ionicons name="chevron-down-outline" size={20} color="#595959" />
-            )}
-            dropdownIconPosition="right"
-            defaultButtonText="Select a parent.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
-            buttonStyle={styles.btnselectstyle}
-            buttonTextStyle={styles.btnselectxtstyle}
-            dropdownStyle={styles.dropdownHour}
-            rowTextStyle={styles.rows}
-            data={parentName}
-            onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityParent");
-            }}
-            buttonTextAfterSelection={(selectedItem, index) => {
-              return selectedItem;
-            }}
-            rowTextForSelection={(item, index) => {
-              return item;
-            }}
-            value={facilityParent}
-          />
-        </View>
         <View style={styles.subCont}>
           <View>
             <Text style={styles.label}>Facility Site</Text>
@@ -207,44 +171,12 @@ function AddIncident({
           <View>
             <Text style={styles.label}>Hour</Text>
           </View>
-          <View style={styles.inputSelect}>
-            <TextInput
-              style={styles.inputHour}
-              keyboardType="numeric"
-              onChangeText={(value) => handleOnChange(value, "hour")}
-              value={hour}
-            />
-
-            <SelectDropdown
-              renderDropdownIcon={() => (
-                <Ionicons
-                  name="chevron-down-outline"
-                  size={20}
-                  color="#595959"
-                />
-              )}
-              dropdownIconPosition="right"
-              defaultButtonText="AM"
-              rowTextStyle={{
-                color: "#595959",
-              }}
-              buttonStyle={styles.btnHourStyle}
-              buttonTextStyle={styles.btnselectxtstyle}
-              data={timeH}
-              dropdownStyle={styles.dropdownHour}
-              rowTextStyle={styles.rows}
-              onSelect={(selectedItem, index) => {
-                handleOnChange(selectedItem, "time");
-              }}
-              buttonTextAfterSelection={(selectedItem, index) => {
-                return selectedItem;
-              }}
-              rowTextForSelection={(item, index) => {
-                return item;
-              }}
-              value={time}
-            />
-          </View>
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            onChangeText={(value) => handleOnChange(value, "hour")}
+            value={hour}
+          />
         </View>
 
         <View style={styles.subCont}>
@@ -270,18 +202,6 @@ function AddIncident({
             onChangeText={(value) => handleOnChange(value, "comment")}
             value={comment}
             multiline={true}
-          />
-        </View>
-
-        <View style={styles.subCont}>
-          <View>
-            <Text style={styles.label}>Send Email</Text>
-          </View>
-          <TextInput
-            style={styles.input}
-            keyboardType="default"
-            onChangeText={(value) => handleOnChange(value, "email")}
-            value={email}
           />
         </View>
       </View>
@@ -321,7 +241,6 @@ const mapStateToProps = (state) => {
     error: state.AddIncidentR.error,
     loading: state.AddIncidentR.loading,
     Facilities: state.GetFacilitiesR.Facilities,
-    parent: state.GetAllParentR.parent,
     tasks: state.GetAllTasksR.tasks,
   };
 };
@@ -329,7 +248,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
-    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
     getAllTaskInfo: () => dispatch(GetTasksActionCreator.getAllTaskInfo()),
     getIncidentInfo: (name, value) =>
       dispatch(AddIncidentActionCreator.getIncidentInfo(name, value)),
@@ -394,17 +312,6 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(1.5),
     paddingRight: "2%",
   },
-  inputHour: {
-    width: "68%",
-    aspectRatio: 5.8 / 1,
-    backgroundColor: "#F1F1F1",
-    borderRadius: 12,
-    paddingLeft: "4%",
-    marginTop: "1%",
-    fontSize: RFPercentage(1.5),
-    paddingRight: "2%",
-    marginRight: "2%",
-  },
   dropdownHour: {
     borderRadius: 8,
     marginTop: "-7%",
@@ -448,11 +355,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "90%",
     marginTop: "3%",
-  },
-  inputSelect: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end",
   },
   label: {
     paddingLeft: "1.5%",

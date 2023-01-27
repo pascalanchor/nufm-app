@@ -16,7 +16,6 @@ import { connect } from "react-redux";
 import * as AddWorkerActionCreator from "../../../Store/ActionCreator/Worker/AddWorkerActionCreator";
 import * as GetSpecializationActionCreator from "../../../Store/ActionCreator/Worker/GetSpecializationActionCreator";
 
-
 function AddForm({
   getSpecialization,
   spec,
@@ -26,6 +25,19 @@ function AddForm({
   fullName,
   phone,
   specializations,
+  street,
+  address,
+  facilityId,
+  department,
+  city,
+  dob,
+  jobTitle,
+  startDate,
+  workType,
+  zipCode,
+  linkBack,
+  profileImage,
+  certification,
   error,
   loading,
   eid,
@@ -110,7 +122,25 @@ function AddForm({
       submit = false;
     }
     if (submit) {
-      addWorker(email, fullName, phone, specs);
+      addWorker(
+        email,
+        fullName,
+        phone,
+        specializations,
+        street,
+        address,
+        facilityId,
+        department,
+        city,
+        dob,
+        jobTitle,
+        startDate,
+        workType,
+        zipCode,
+        linkBack,
+        certification,
+        profileImage
+      );
     }
   };
 
@@ -232,10 +262,24 @@ const mapStateToProps = (state) => {
   return {
     email: state.AddWorkerR.email,
     phone: state.AddWorkerR.phone,
-    specializations: state.AddWorkerR.specializations,
     fullName: state.AddWorkerR.fullName,
-    error: state.AddWorkerR.error,
+    specializations: state.AddWorkerR.specializations,
+    profileImage: state.AddWorkerR.profileImage,
+    dob: state.AddWorkerR.dob,
+    address: state.AddWorkerR.address,
+    jobTitle: state.AddWorkerR.jobTitle,
+    facilityId: state.AddWorkerR.facilityId,
+    department: state.AddWorkerR.department,
+    city: state.AddWorkerR.city,
+    street: state.AddWorkerR.street,
+    zipCode: state.AddWorkerR.zipCode,
+    linkBack: state.AddWorkerR.linkBack,
+    certification: state.AddWorkerR.certification,
+    workType: state.AddWorkerR.workType,
+    startDate: state.AddWorkerR.startDate,
     loading: state.AddWorkerR.loading,
+    eid: state.AddWorkerR.eid,
+    error: state.AddWorkerR.error,
     spec: state.GetSpecializationR.spec,
   };
 };
@@ -243,16 +287,47 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getSpecialization: () =>
-    dispatch(GetSpecializationActionCreator.getSpecialization()),
+      dispatch(GetSpecializationActionCreator.getSpecialization()),
     getWorkerInfo: (name, value) =>
       dispatch(AddWorkerActionCreator.getWorkerInfo(name, value)),
-    addWorker: (email, fullName, phone, specializations) =>
+    addWorker: (
+      email,
+      fullName,
+      phone,
+      specializations,
+      street,
+      address,
+      facilityId,
+      department,
+      city,
+      dob,
+      jobTitle,
+      startDate,
+      workType,
+      zipCode,
+      linkBack,
+      certification,
+      profileImage
+    ) =>
       dispatch(
         AddWorkerActionCreator.addWorker(
           email,
           fullName,
           phone,
-          specializations
+          specializations,
+          street,
+          address,
+          facilityId,
+          department,
+          city,
+          dob,
+          jobTitle,
+          startDate,
+          workType,
+          zipCode,
+          linkBack,
+          certification,
+          profileImage
         )
       ),
   };

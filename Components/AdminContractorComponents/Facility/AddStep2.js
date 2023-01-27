@@ -5,8 +5,8 @@ import PrimaryContact from "./PrimaryContact";
 export default function AddStep2({formData, setFormData}) {
   return (
     <View>
-      <WorkSchedule />
-      <PrimaryContact />
+      <WorkSchedule formData={formData} setFormData={setFormData} />
+      <PrimaryContact formData={formData} setFormData={setFormData} />
     </View>
   );
 }
