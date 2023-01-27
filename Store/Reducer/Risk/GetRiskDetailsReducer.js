@@ -3,7 +3,6 @@ import * as actionTypes from "../../Actions/Actions";
 const initialState = {
   sender: "",
   facility: "",
-  task: "",
   risk: "",
   comment: "",
   id: "",
@@ -18,7 +17,6 @@ const GetRiskDetailsR = (state = initialState, action) => {
         ...state,
         sender: action.data.sender,
         facility: action.data.facility,
-        task: action.data.task,
         risk: action.data.risk,
         comment: action.data.comment,
         id: action.data.id,

@@ -18,7 +18,6 @@ function RiskDetails({
   sender,
   site,
   facility,
-  task,
   risk,
   comment,
   id,
@@ -65,12 +64,6 @@ function RiskDetails({
           </View>
         </View>
         <View style={styles.txtInput}>
-          <Text style={styles.txt}>Task</Text>
-          <View style={styles.disabledInput}>
-            <Text style={styles.txtInside}>{task.name}</Text>
-          </View>
-        </View>
-        <View style={styles.txtInput}>
           <Text style={styles.txt}>Risk</Text>
           <View style={styles.txtarea}>
             <Text style={styles.txtInside}>{risk}</Text>
@@ -91,7 +84,6 @@ const mapStateToProps = (state) => {
   return {
     sender: state.GetRiskDetailsR.sender,
     facility: state.GetRiskDetailsR.facility,
-    task: state.GetRiskDetailsR.task,
     id: state.GetRiskDetailsR.id,
     error: state.GetRiskDetailsR.error,
     risk: state.GetRiskDetailsR.risk,
