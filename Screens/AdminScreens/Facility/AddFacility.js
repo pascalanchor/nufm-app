@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
 import AddForm from "../../../Components/AdminContractorComponents/Facility/AddForm";
@@ -42,12 +43,19 @@ function AddFacility({
   profileImage,
 }) {
   const [facName, setFacName] = useState("");
-  const [facParent, setFacParent] = useState("");
+  const [facType, setFacType] = useState("");
+  const [locMsg, setLocMsg] = useState("");
+  const [streetMsg, setStreetMsg] = useState("");
+  const [codeMsg, setCodeMsg] = useState("");
+  const [yearMsg, setYearMsg] = useState("");
+  const [dateMsg, setDateMsg] = useState("");
+  const [descMsg, setDescMsg] = useState("");
+
   const [page, setPage] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
-  
+
   const [formData, setFormData] = useState({
-    facilityName: "hhhhhh",
+    facilityName: "",
     facilityParent: parentId,
     facilityType: type,
     location: location,
@@ -62,7 +70,7 @@ function AddFacility({
     employment_status: null,
   });
   useEffect(() => {
-    console.log(formData.facilityName);
+    // console.log(formData.facilityName);
   }, []);
   const handleOnChangeName = (value) => {
     // if (!value || value > 24) {
@@ -72,8 +80,8 @@ function AddFacility({
     // }
     setFormData({
       ...formData,
-      facilityName:value,
-    })
+      facilityName: value,
+    });
   };
   const multiStepForm = () => {
     switch (page) {
@@ -82,7 +90,6 @@ function AddFacility({
           <AddForm
             handleOnChangeName={handleOnChangeName}
             facName={facName}
-            facParent={facParent}
             formData={formData}
             setFormData={setFormData}
           />
@@ -126,6 +133,15 @@ function AddFacility({
         <Text style={styles.txt}> Add Facility Site</Text>
         <ScrollView>
           {multiStepForm()}
+          {/* {error &&  */}
+          {page > 1 ? (
+            <View style={styles.errorMsg}>
+              <AntDesign name="checkcircle" size={24} color="#02A962" />
+              <Text style={styles.errorTxt}>hi</Text>
+            </View>
+          ) : (
+            <Text></Text>
+          )}
           <View
             style={{
               flexDirection: page > 0 ? "row" : "column",
@@ -152,7 +168,7 @@ function AddFacility({
                     paddingVertical: page > 0 ? "5%" : "3%",
                     justifyContent: "center",
                     marginBottom: page > 0 ? "12%" : "7%",
-                    marginHorizontal: page > 0 ? "8%" : "4.5%",
+                    marginHorizontal: page > 0 ? "8%" : "3.5%",
                   }}
                 >
                   <Text style={styles.addSite}>
@@ -293,5 +309,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#309694",
     paddingLeft: "2%",
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "7%",
+    backgroundColor: "#CAF3D1",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#595959",
   },
 });

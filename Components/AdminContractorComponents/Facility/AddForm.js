@@ -11,27 +11,39 @@ import {
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, AntDesign } from "@expo/vector-icons";
 import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
+import { connect } from "react-redux";
+import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
 
-export default function AddForm({ formData, setFormData, facName, facParent, handleOnChangeName, facilityNamet, setFacilityNamet}) {
-  const countries = ["Parent1", "FP2", "FP3", "Fp4"];
+function AddForm({
+  formData,
+  setFormData,
+  facName,
+  handleOnChangeName,
+  getAllParent,
+  parent,
+}) {
   const types = ["Education", "Retail"];
 
+  useEffect(() => {
+    getAllParent();
+  }, []);
+  const parentName = parent.map((pr) => pr.name);
+  const [facilityName1, setFacName]=useState(formData.facilityName);
   const handleChange = (value) => {
     // const obj = { ...formData };
     // obj.facilityName = value;
     // setFormData(obj);
     // console.log(value);
-    setFormData({
-      ...formData,
-      facilityName: value,
-    });
+    // setFormData({
+    //   ...formData,
+    //   facilityName: value,
+    // });
+    setFacName(value);
   };
-  const handleOnChange = (v,n) =>{
-
-  }
+  const handleOnChange = (v, n) => {};
 
   return (
     <View style={styles.container}>
@@ -42,10 +54,10 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
         <TextInput
           style={styles.input}
           keyboardType="default"
-          value={formData.facilityName}
-          onChangeText={(value) => handleOnChangeName(value)}
+          value={facilityName1}
+          onChangeText={(value) => handleChange(value)}
         />
-        {facName && <Text style={styles.validation}>{facName}</Text>}
+        {/* {facName && <Text style={styles.validation}>{facName}</Text>} */}
       </View>
 
       <View style={styles.subCont}>
@@ -61,24 +73,11 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
           rowTextStyle={{
             color: "#595959",
           }}
+          buttonStyle={styles.btnselectstyle}
+          buttonTextStyle={styles.btnselectxtstyle}
           dropdownStyle={styles.dropdownHour}
           rowTextStyle={styles.rows}
-          buttonStyle={{
-            backgroundColor: "#F1F1F1",
-            borderRadius: 12,
-            paddingLeft: "4%",
-            marginTop: "2%",
-            height: 40,
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "flex-start",
-          }}
-          buttonTextStyle={{
-            fontSize: RFPercentage(1.8),
-            color: "#595959",
-            textAlign: "left",
-          }}
-          data={countries}
+          data={parentName}
           onSelect={(selectedItem, index) => {
             console.log(selectedItem, index);
           }}
@@ -90,14 +89,12 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
           }}
           value={formData.facilityParent}
           // onChangeText={(val) => handleChange(val)}
-
         />
-        {facParent && <Text style={styles.validation}>{facParent}</Text>}
       </View>
 
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Facility Type</Text>
+          <Text style={styles.label}>Facility Type *</Text>
         </View>
         <SelectDropdown
           renderDropdownIcon={() => (
@@ -108,35 +105,18 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
           rowTextStyle={{
             color: "#595959",
           }}
+          buttonStyle={styles.btnselectstyle}
+          buttonTextStyle={styles.btnselectxtstyle}
           dropdownStyle={styles.dropdownHour}
           rowTextStyle={styles.rows}
-          buttonStyle={{
-            backgroundColor: "#F1F1F1",
-            borderRadius: 12,
-            paddingLeft: "4%",
-            marginTop: "2%",
-            height: 40,
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "flex-start",
-          }}
-          buttonTextStyle={{
-            fontSize: RFPercentage(1.8),
-            color: "#595959",
-            textAlign: "left",
-          }}
           data={types}
           onSelect={(selectedItem, index) => {
             console.log(selectedItem, index);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
-            // text represented after item is selected
-            // if data array is an array of objects then return selectedItem.property to render after item is selected
             return selectedItem;
           }}
           rowTextForSelection={(item, index) => {
-            // text represented for each item in dropdown
-            // if data array is an array of objects then return item.property to represent item in dropdown
             return item;
           }}
           value={formData.facilityType}
@@ -145,7 +125,7 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
 
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Location</Text>
+          <Text style={styles.label}>Location *</Text>
         </View>
         <TextInput
           style={styles.input}
@@ -154,12 +134,11 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
 
           value={formData.location}
         />
-        {facParent && <Text style={styles.validation}>{facParent}</Text>}
       </View>
 
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Street</Text>
+          <Text style={styles.label}>Street *</Text>
         </View>
         <TextInput
           style={styles.input}
@@ -170,7 +149,7 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
       </View>
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Post code</Text>
+          <Text style={styles.label}>Post code *</Text>
         </View>
         <TextInput
           style={styles.input}
@@ -193,7 +172,7 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
 
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Construction Year</Text>
+          <Text style={styles.label}>Construction Year *</Text>
         </View>
         <TextInput
           style={styles.input}
@@ -205,22 +184,23 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
 
       <View style={styles.subCont}>
         {Platform.OS === "android" ? (
-               <DatePickerAndroid
-               label="Date Opened"
-              //  value={date}
-               handleOnChange={(value) => handleOnChange(value, "date")}
-             />
-           ) : (
-             <DatePickerIOS
-               label="Date Opened"
-              //  value={date}
-               handleOnChange={(value) => handleOnChange(value, "date")}
-             />)}
+          <DatePickerAndroid
+            label="Date Opened *"
+            //  value={date}
+            handleOnChange={(value) => handleOnChange(value, "date")}
+          />
+        ) : (
+          <DatePickerIOS
+            label="Date Opened *"
+            //  value={date}
+            handleOnChange={(value) => handleOnChange(value, "date")}
+          />
+        )}
       </View>
 
       <View style={styles.subCont}>
         <View>
-          <Text style={styles.label}>Description</Text>
+          <Text style={styles.label}>Description *</Text>
         </View>
         <TextInput
           style={styles.input}
@@ -232,6 +212,20 @@ export default function AddForm({ formData, setFormData, facName, facParent, han
     </View>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    parent: state.GetAllParentR.parent,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
 
 const styles = StyleSheet.create({
   input: {
@@ -255,6 +249,31 @@ const styles = StyleSheet.create({
   },
   rows: {
     fontSize: RFPercentage(1.8),
+  },
+  btnselectstyle: {
+    backgroundColor: "#F1F1F1",
+    borderRadius: 12,
+    paddingLeft: "4%",
+    marginTop: "2%",
+    height: 40,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  btnHourStyle: {
+    backgroundColor: "#F1F1F1",
+    borderRadius: 12,
+    paddingLeft: "4%",
+    marginTop: "2%",
+    height: 40,
+    width: "30%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  btnselectxtstyle: {
+    fontSize: RFPercentage(1.8),
+    color: "#595959",
+    textAlign: "left",
   },
   subCont: {
     flexDirection: "column",

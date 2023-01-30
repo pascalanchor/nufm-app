@@ -4,45 +4,19 @@ import { server, privatePath } from "../Constants";
 
 export const getAttendances = () => {
   return (dispatch) => {
-    // dispatch(getAttendancesStart());
+    dispatch(getAttendancesStart());
     // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    // var link = server + privatePath + "/attendances";
-    // axios
-    //   .get(link, {
-    //     headers: {/*'Authorization': token,*/},})
-    //   .then((res) => {
-    //     dispatch(getAttendancesEnd(res.data));
-    //   })
-    //   .catch((err) => {
-    //     dispatch(getAttendancesFail(err));
-    //   });
-
-    const Attendances = [
-      {
-        user:{
-        fullName: "Attendance one",
-        email: "janjoune.97@hotmail.com",
-        },
-        eid:"1",
-        facility:{
-          name:"fac1",
-          nb:"1"
-        }
-      },
-      {
-        user:{
-        fullName: "Attendance two",
-        email: "Nufm@gmail.com",
-        },
-        eid:"2",
-        facility:{
-          name:"fac1",
-          nb:"1"
-        }
-      },
-  
-    ];
-      dispatch(getAttendancesEnd(Attendances));
+    var link = server + privatePath + "/attendances";
+    axios
+      .get(link, {
+        headers: {/*'Authorization': token,*/},})
+      .then((res) => {
+        dispatch(getAttendancesEnd(res.data));
+      })
+      .catch((err) => {
+        console.log(err)
+        dispatch(getAttendancesFail(err));
+      });
   };
 };
 

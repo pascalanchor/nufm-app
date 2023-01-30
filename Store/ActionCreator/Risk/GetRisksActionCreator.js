@@ -4,40 +4,20 @@ import { server, privatePath } from "../Constants";
 
 export const getRisks = () => {
   return (dispatch) => {
-    // dispatch(getRisksStart());
+    dispatch(getRisksStart());
     // var token = "Bearer " + localStorage.getItem("nufmtoken");
-    // var link = server + privatePath + "/risk/all";
-    // axios
-    //   .get(link, {
-    //     headers: {/*'Authorization': token,*/},})
-    //   .then((res) => {
-    //     dispatch(getRisksEnd(res.data));
-    //   })
-    //   .catch((err) => {
-    //     dispatch(getRisksFail(err));
-    //   });
+    var link = server + privatePath + "/risk/all";
+    axios
+      .get(link, {
+        headers: {/*'Authorization': token,*/},})
+      .then((res) => {
+        dispatch(getRisksEnd(res.data));
+      })
+      .catch((err) => {
+        console.log(err)
+        dispatch(getRisksFail(err));
+      });
 
-    const Risks = [
-      {
-        sender: { fullName: "Hussam Khaled", nb: "2" },
-        date: "28-09-2022",
-        facility: { name: "facility", nbr: "1" },
-        id: "1",
-      },
-      {
-        sender: { fullName: "Hussam Khaled", nb: "2" },
-        date: "28-09-2022",
-        facility: { name: "facility", nbr: "1" },
-        id: "2",
-      },
-      {
-        sender: { fullName: "Hussam Khaled", nb: "2" },
-        date: "28-09-2022",
-        facility: { name: "facility", nbr: "1" },
-        id: "3",
-      },
-    ];
-    dispatch(getRisksEnd(Risks));
   };
 };
 
