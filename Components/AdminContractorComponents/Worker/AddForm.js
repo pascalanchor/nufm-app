@@ -169,7 +169,7 @@ function AddForm({
         </View>
         <View style={styles.subCont}>
           <View>
-            <Text style={styles.label}>Specialisation *</Text>
+            <Text style={styles.label}>Specialization(s) *</Text>
           </View>
           <MultiSelect
             style={styles.input}
