@@ -15,16 +15,16 @@ import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcailit
 
 function AddFacility({
   link,
-  parentId,
-  name,
-  type,
-  location,
-  sqm,
-  const_year,
-  date_opened,
-  street,
-  post_code,
-  description,
+  // parentId,
+  // name,
+  // type,
+  // location,
+  // sqm,
+  // const_year,
+  // date_opened,
+  // street,
+  // post_code,
+  // description,
   primaryEmail,
   workSchedule,
   eid,
@@ -55,22 +55,22 @@ function AddFacility({
   const [modalVisible, setModalVisible] = useState(false);
 
   const [formData, setFormData] = useState({
-    facilityName: "",
-    facilityParent: parentId,
-    facilityType: type,
-    location: location,
-    street: street,
-    postCode: post_code,
-    sqm: sqm,
-    constYear: const_year,
-    date: date_opened,
-    desc: description,
-    primaryEmail: [],
-    workSchedul: [],
-    employment_status: null,
+    // facilityName: "",
+    // facilityParent: parentId,
+    // facilityType: type,
+    // location: location,
+    // street: street,
+    // postCode: post_code,
+    // sqm: sqm,
+    // constYear: const_year,
+    // date: date_opened,
+    // desc: description,
+    // primaryEmail: [],
+    // workSchedul: [],
+    // employment_status: null,
   });
   useEffect(() => {
-    // console.log(formData.facilityName);
+    console.log("Facility")
   }, []);
   const handleOnChangeName = (value) => {
     // if (!value || value > 24) {
@@ -78,20 +78,22 @@ function AddFacility({
     // } else {
     //   setIsNameValid(true);
     // }
-    setFormData({
-      ...formData,
-      facilityName: value,
-    });
+    // setFormData({
+    //   ...formData,
+    //   facilityName: value,
+    // });
+
+    // getFacilityInfo("name",value);
   };
   const multiStepForm = () => {
     switch (page) {
       case 0:
         return (
           <AddForm
-            handleOnChangeName={handleOnChangeName}
-            facName={facName}
-            formData={formData}
-            setFormData={setFormData}
+            // handleOnChangeName={handleOnChangeName}
+            // facName={facName}
+            // formData={formData}
+            // setFormData={setFormData}
           />
         );
       case 1:
@@ -103,22 +105,25 @@ function AddFacility({
     }
   };
   function handleSubmit() {
-    if (page === 0) {
-      // if (formData.facilityName === "" || formData.facilityName.length <= 1) {
-      //   return setFacName("Please enter a valid name");
-      // } else if (formData.location === "") {
-      //   return setFacParent("Please select a parent");
-      // } else {
-      setPage(page + 1);
-      // }
-    } else if (page === 1) {
-      setPage(page + 1);
+    // if (page === 0) {
+    //   // if (formData.facilityName === "" || formData.facilityName.length <= 1) {
+    //   //   return setFacName("Please enter a valid name");
+    //   // } else if (formData.location === "") {
+    //   //   return setFacParent("Please select a parent");
+    //   // } else {
+    //   setPage(page + 1);
+    //   // }
+    // } else if (page === 1) {
+    //   setPage(page + 1);
 
-      // do form validation again
-    } else if (page === 2) {
-      // set page === 0 , and clear fields
-    } else setPage(page + 1);
+    //   // do form validation again
+    // } else if (page === 2) {
+    //   // set page === 0 , and clear fields
+    // } else 
+    setPage(page + 1);
   }
+
+
   return (
     <View style={styles.box}>
       <View>
@@ -133,6 +138,14 @@ function AddFacility({
         <Text style={styles.txt}> Add Facility Site</Text>
         <ScrollView>
           {multiStepForm()}
+          
+           {/* <AddForm
+            // handleOnChangeName={getFacilityInfo}
+            // facName={facName}
+            // formData={formData}
+            // setFormData={setFormData}
+            // name={name}
+          /> */}
           {/* {error &&  */}
           {page > 1 ? (
             <View style={styles.errorMsg}>
@@ -186,18 +199,18 @@ function AddFacility({
 
 const mapStateToProps = (state) => {
   return {
-    parentId: state.AddFacilityR.parentId,
-    name: state.AddFacilityR.name,
-    type: state.AddFacilityR.type,
-    location: state.AddFacilityR.location,
-    sqm: state.AddFacilityR.sqm,
-    const_year: state.AddFacilityR.const_year,
-    date_opened: state.AddFacilityR.date_opened,
-    workSchedule: state.AddFacilityR.workSchedule,
+    // parentId: state.AddFacilityR.parentId,
+    // // name: state.AddFacilityR.name,
+    // type: state.AddFacilityR.type,
+    // location: state.AddFacilityR.location,
+    // sqm: state.AddFacilityR.sqm,
+    // const_year: state.AddFacilityR.const_year,
+    // date_opened: state.AddFacilityR.date_opened,
+    // workSchedule: state.AddFacilityR.workSchedule,
     primaryEmail: state.AddFacilityR.primaryEmail,
-    street: state.AddFacilityR.street,
-    post_code: state.AddFacilityR.post_code,
-    description: state.AddFacilityR.description,
+    // street: state.AddFacilityR.street,
+    // post_code: state.AddFacilityR.post_code,
+    // description: state.AddFacilityR.description,
     eid: state.AddFacilityR.eid,
     error: state.AddFacilityR.error,
     loading: state.AddFacilityR.loading,

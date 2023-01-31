@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,34 +16,78 @@ import DatePickerAndroid from "../../SharedComponents/DatePickerAndroid";
 import DatePickerIOS from "../../SharedComponents/DatePickerIOS";
 import { connect } from "react-redux";
 import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
+import * as AddFacilityActionCreator from "../../../Store/ActionCreator/Fcaility/AddFacilityActionCreator";
 
 function AddForm({
-  formData,
-  setFormData,
-  facName,
-  handleOnChangeName,
-  getAllParent,
+  // formData,
+  // setFormData,
+  // facName,
+  // handleOnChangeName,
+  // getAllParent,
+  // parent,
+
+  link,
+  parentId,
+  name,
+  type,
+  location,
+  sqm,
+  const_year,
+  date_opened,
+  street,
+  post_code,
+  description,
+  primaryEmail,
+  workSchedule,
+  eid,
+  error,
+  loading,
+  getFacilityInfo,
+  addFacility,
   parent,
+  getAllParent,
+  getFacilityOccupantInfo,
+  addFacilityOccupant,
+  email,
+  fullName,
+  phone,
+  notes,
+  profileImage,
 }) {
   const types = ["Education", "Retail"];
 
-  useEffect(() => {
-    getAllParent();
-  }, []);
-  const parentName = parent.map((pr) => pr.name);
-  const [facilityName1, setFacName]=useState(formData.facilityName);
-  const handleChange = (value) => {
-    // const obj = { ...formData };
-    // obj.facilityName = value;
-    // setFormData(obj);
-    // console.log(value);
-    // setFormData({
-    //   ...formData,
-    //   facilityName: value,
-    // });
-    setFacName(value);
+  // useEffect(() => {
+  //   // getAllParent();
+  // }, []);
+  const prnt = [
+    {
+        "name": "Parent",
+        "iid": "15c23281-c294-456f-8f84-ccfe38655553"
+    },
+    {
+      "name": "Par",
+      "iid": "15c23281-c294-456f-8f84-ccfe38655553"
+  }
+]
+  const parentName = prnt.map((pr) => pr.name);
+
+  const handleChange = (n,e) =>{
+    getFacilityInfo(n,e);
+  }
+
+  const handleChangeParent = (index) =>{
+      getFacilityInfo("parentId",prnt[index].iid);
+  }
+
+  const handleChangeType = (index) =>{
+    console.log(types[index]);
+    getFacilityInfo("type",types[index]);
+}
+
+  const handleOnChange = (v, n) => {
+    getFacilityInfo(n,v);
   };
-  const handleOnChange = (v, n) => {};
+
 
   return (
     <View style={styles.container}>
@@ -54,8 +98,10 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="default"
-          value={facilityName1}
-          onChangeText={(value) => handleChange(value)}
+          value={name}
+          // onChangeText={(v) => handleChange(v, "name")}
+          onChangeText={(e)=>handleChange("name",e)}
+          // onEndEditing={()=>endNameEditing()}
         />
         {/* {facName && <Text style={styles.validation}>{facName}</Text>} */}
       </View>
@@ -79,7 +125,8 @@ function AddForm({
           rowTextStyle={styles.rows}
           data={parentName}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            handleChangeParent(index);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -87,7 +134,7 @@ function AddForm({
           rowTextForSelection={(item, index) => {
             return item;
           }}
-          value={formData.facilityParent}
+          // value={formData.facilityParent}
           // onChangeText={(val) => handleChange(val)}
         />
       </View>
@@ -111,7 +158,8 @@ function AddForm({
           rowTextStyle={styles.rows}
           data={types}
           onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
+            // console.log(selectedItem, index);
+            handleChangeType(index);
           }}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
@@ -119,7 +167,7 @@ function AddForm({
           rowTextForSelection={(item, index) => {
             return item;
           }}
-          value={formData.facilityType}
+          // value={formData.facilityType}
         />
       </View>
 
@@ -130,9 +178,10 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="default"
-          // onChangeText={(val) => handleChange(val)}
+          value={location}
+          onChangeText={(val) => handleChange("location",val)}
 
-          value={formData.location}
+          // value={formData.location}
         />
       </View>
 
@@ -143,8 +192,9 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="default"
+          onChangeText={(val) => handleChange("street",val)}
           //   onChangeText={onChange}
-          value={formData.street}
+          value={street}
         />
       </View>
       <View style={styles.subCont}>
@@ -154,8 +204,9 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-          //   onChangeText={onChange}
-          value={formData.postCode}
+            // onChangeText={onChange}
+            onChangeText={(val) => handleChange("post_code",val)}
+          value={post_code}
         />
       </View>
       <View style={styles.subCont}>
@@ -165,8 +216,10 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="numeric"
+          onChangeText={(val) => handleChange("sqm",val)}
+
           //   onChangeText={onChange}
-          value={formData.sqm}
+          value={sqm}
         />
       </View>
 
@@ -177,8 +230,10 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="numeric"
+          onChangeText={(val) => handleChange("const_year",val)}
+
           //   onChangeText={onChange}
-          value={formData.constYear}
+          value={const_year}
         />
       </View>
 
@@ -187,13 +242,13 @@ function AddForm({
           <DatePickerAndroid
             label="Date Opened *"
             //  value={date}
-            handleOnChange={(value) => handleOnChange(value, "date")}
+            handleOnChange={(value) => handleOnChange(value, "date_opened")}
           />
         ) : (
           <DatePickerIOS
             label="Date Opened *"
             //  value={date}
-            handleOnChange={(value) => handleOnChange(value, "date")}
+            handleOnChange={(value) => handleOnChange(value, "date_opened")}
           />
         )}
       </View>
@@ -205,8 +260,10 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="default"
+          onChangeText={(val) => handleChange("description",val)}
+
           //   onChangeText={onChange}
-          value={formData.desc}
+          value={description}
         />
       </View>
     </View>
@@ -216,12 +273,66 @@ function AddForm({
 const mapStateToProps = (state) => {
   return {
     parent: state.GetAllParentR.parent,
+    parentId: state.AddFacilityR.parentId,
+    name: state.AddFacilityR.name,
+    type: state.AddFacilityR.type,
+    location: state.AddFacilityR.location,
+    sqm: state.AddFacilityR.sqm,
+    const_year: state.AddFacilityR.const_year,
+    date_opened: state.AddFacilityR.date_opened,
+    workSchedule: state.AddFacilityR.workSchedule,
+    primaryEmail: state.AddFacilityR.primaryEmail,
+    street: state.AddFacilityR.street,
+    post_code: state.AddFacilityR.post_code,
+    description: state.AddFacilityR.description,
+    eid: state.AddFacilityR.eid,
+    error: state.AddFacilityR.error,
+    loading: state.AddFacilityR.loading,
+    parent: state.GetAllParentR.parent,
+    email: state.AddFacilityOccupantR.email,
+    fullName: state.AddFacilityOccupantR.fullName,
+    phone: state.AddFacilityOccupantR.phone,
+    notes: state.AddFacilityOccupantR.notes,
+    profileImage: state.AddFacilityOccupantR.profileImage,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllParent: () => dispatch(GetFacParentActionCreator.getAllParent()),
+    getFacilityInfo: (name, value) =>
+    dispatch(AddFacilityActionCreator.getFacilityInfo(name, value)),
+
+  addFacility: (
+    parentId,
+    name,
+    type,
+    location,
+    sqm,
+    const_year,
+    date_opened,
+    street,
+    post_code,
+    description,
+    primaryEmail,
+    workSchedul
+  ) =>
+    dispatch(
+      AddFacilityActionCreator.addFacility(
+        parentId,
+        name,
+        type,
+        location,
+        sqm,
+        const_year,
+        date_opened,
+        street,
+        post_code,
+        description,
+        primaryEmail,
+        workSchedule
+      )
+    ),
   };
 };
 

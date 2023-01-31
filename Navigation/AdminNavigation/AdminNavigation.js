@@ -24,6 +24,8 @@ import {
   Orders,
   OrderDet
 } from "../../Screens";
+
+// import AddForm from '../../Components/AdminContractorComponents/Facility/AddForm';
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
@@ -76,6 +78,7 @@ export default function LoginNavigation() {
           </Stack.Screen>
           <Stack.Screen name="AddFacility">
             {(props) => <AddFacility {...props} link="" />}
+            {/* {(props) => <AddForm {...props} link="" />} */}
           </Stack.Screen>
           <Stack.Screen name="Workers">
             {(props) => <Workers {...props} link="" />}
