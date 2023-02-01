@@ -40,7 +40,6 @@ function AddStep3({
   notes,
   landline,
   jobTitle,
-  profileImage,
   getFacilityOccupantInfo,
   addFacilityOccupant,
 }) {
@@ -88,7 +87,6 @@ function AddStep3({
           Occupant[i].notes,
           Occupant[i].landline,
           Occupant[i].jobTitle,
-          Occupant[i].profileImage,
           eid
         );
       }
@@ -157,19 +155,37 @@ function AddStep3({
 
   const handleSubmit = () => {
     var submit = true;
-    if (!fullName) {
-      setNameMsg("Please Enter a Name");
-      submit = false;
+    for (let j = 0; j<Occupant.length; j++){
+      if (Occupant[j].fullName.length<1) {
+        setNameMsg("Please Enter a Name");
+        submit = false;
+      }
+      if (Occupant[j].phone < 0) {
+        setPhoneMsg("Please Enter a Phone Number");
+        submit = false;
+      }
+      if (!Occupant[j].email.includes("@")) {
+        setEmailMsg("Please Enter an Email");
+        submit = false;
+      }
     }
-    if (!phone || +phone < 0) {
-      setPhoneMsg("Please Enter a Phone Number");
-      submit = false;
-    }
-    if (!email || !email.includes("@")) {
-      setEmailMsg("Please Enter an Email");
-      submit = false;
-    }
+    
     if (submit) {
+      console.log("00000000000000000")
+      console.log(parentId,
+        name,
+        type,
+        location,
+        sqm,
+        const_year,
+        date_opened,
+        street,
+        post_code,
+        description,
+        primaryEmail,
+        workSchedule);
+      console.log("00000000000000000")
+
       addFacility(
         parentId,
         name,
@@ -182,8 +198,7 @@ function AddStep3({
         post_code,
         description,
         primaryEmail,
-        workSchedule,
-        docs
+        workSchedule
       );
     }
   };
@@ -239,7 +254,7 @@ function AddStep3({
                 style={styles.input}
                 keyboardType="default"
                 onChangeText={(value) => handleChangeItemLandline(i, value)}
-                value={item.email}
+                value={item.landline}
               />
             </View>
             <View style={styles.subCont}>
@@ -250,7 +265,7 @@ function AddStep3({
                 style={styles.input}
                 keyboardType="default"
                 onChangeText={(value) => handleChangeItemJob(i, value)}
-                value={item.email}
+                value={item.jobTitle}
               />
             </View>
             <View style={styles.subCont}>
@@ -338,7 +353,6 @@ const mapDispatchToProps = (dispatch) => {
       notes,
       landline,
       jobTitle,
-      profileImage,
       eid
     ) =>
       dispatch(
@@ -349,7 +363,6 @@ const mapDispatchToProps = (dispatch) => {
           notes,
           landline,
           jobTitle,
-          profileImage,
           eid
         )
       ),
@@ -368,8 +381,7 @@ const mapDispatchToProps = (dispatch) => {
       post_code,
       description,
       primaryEmail,
-      workSchedul,
-      docs
+      workSchedule
     ) =>
       dispatch(
         AddFacilityActionCreator.addFacility(
@@ -384,8 +396,7 @@ const mapDispatchToProps = (dispatch) => {
           post_code,
           description,
           primaryEmail,
-          workSchedule,
-          docs
+          workSchedule
         )
       ),
   };

@@ -17,12 +17,9 @@ export const addOrder = (senderId,receiverId,email,phoneNumber,facilityId,date,o
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "senderId": senderId,
-      "receiverId": receiver,
-      "email":email,
-      "phoneNumber":phoneNumber,
+      "senderId": "houssam11998877@gmail.com",
+      "receiverId": receiverId,
       "facilityId": facilityId,
-      "date": date,
       "orderContent": orderContent,
       "comment": comment
     }
@@ -30,6 +27,7 @@ export const addOrder = (senderId,receiverId,email,phoneNumber,facilityId,date,o
     var link = server +  privatePath + "/order";
     axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
       .then((res) => {
+        console.log(res.data)
         if (res.data.message === "expectation failed") {
           dispatch(addOrderFail("expectation failed"));
         } else {
@@ -37,6 +35,7 @@ export const addOrder = (senderId,receiverId,email,phoneNumber,facilityId,date,o
         }
       })
       .catch((err) => {
+        console.log(err)
         dispatch(addOrderFail(err));
       });
   };

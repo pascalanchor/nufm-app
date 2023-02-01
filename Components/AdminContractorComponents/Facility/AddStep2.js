@@ -32,20 +32,20 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
 
   const [work, setWork] = useState([
     {
-      dayFrom: "",
-      hourFrom: "",
-      dayTo: "",
-      hourTo: "",
+      fromDay: "",
+      fromHour: "",
+      toDay: "",
+      toHour: "",
     },
   ]);
   const addInputW = () => {
     setWork([
       ...work,
       {
-        dayFrom: "",
-        hourFrom: "",
-        dayTo: "",
-        hourTo: "",
+        fromDay: "",
+      fromHour: "",
+      toDay: "",
+      toHour: "",
       },
     ]);
   };
@@ -57,26 +57,29 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
   };
   const handleChangeItemDFrom = (index, value) => {
     // const { name, value } = e.target;
+    console.log(index);
+
     const list = [...work];
-    list[index].dayFrom = value;
+    list[index].fromDay = value;
     setWork(list);
   };
   const handleChangeItemHFrom = (index, value) => {
     // const { name, value } = e.target;
+
     const list = [...work];
-    list[index].hourFrom = value;
+    list[index].fromHour = value;
     setWork(list);
   };
   const handleChangeItemHTo = (index, value) => {
     // const { name, value } = e.target;
     const list = [...work];
-    list[index].hourTo = value;
+    list[index].toHour = value;
     setWork(list);
   };
   const handleChangeItemDTo = (index, value) => {
-    // const { name, value } = e.target;
+    console.log(index);
     const list = [...work];
-    list[index].dayTo = value;
+    list[index].toDay = value;
     setWork(list);
   };
 
@@ -135,8 +138,12 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
   };
 
   const handleNav3 = () => {
+    console.log(primary);
+    console.log(work);
+
     getFacilityInfo("primaryEmail", primary);
     getFacilityInfo("workSchedule", work);
+    
     navigation.navigate(link+"AddFacility3");
   };
 
@@ -170,8 +177,8 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 dropdownStyle={styles.dropdownHour}
                 rowTextStyle={styles.rows}
                 data={weekDays}
-                onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                onSelect={(selectedItem, ind) => {
+                  handleChangeItemDFrom(i, selectedItem)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -179,8 +186,8 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 rowTextForSelection={(item, index) => {
                   return item;
                 }}
-                onChangeText={(value) => handleChangeItemDFrom(i, value)}
-                value={item.dayFrom}
+                // onChangeText={(value) => handleChangeItemDFrom(i, value)}
+                value={item.fromDay}
               />
             </View>
             <View style={styles.subContW}>
@@ -189,7 +196,7 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 keyboardType="default"
                 placeholder="8:00 am"
                 onChangeText={(value) => handleChangeItemHFrom(i, value)}
-                value={item.hourFrom}
+                value={item.fromHour}
               />
             </View>
           </View>
@@ -213,8 +220,8 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 dropdownStyle={styles.dropdownHour}
                 rowTextStyle={styles.rows}
                 data={weekDays}
-                onSelect={(selectedItem, index) => {
-                  console.log(selectedItem, index);
+                onSelect={(selectedItem, ind) => {
+                  handleChangeItemDTo(i, selectedItem)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -222,8 +229,8 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 rowTextForSelection={(item, index) => {
                   return item;
                 }}
-                onChangeText={(value) => handleChangeItemDTo(i, value)}
-                value={item.dayTo}
+                // onChangeText={(value) => handleChangeItemDTo(i, value)}
+                value={item.toDay}
               />
             </View>
             <View style={styles.subContW}>
@@ -232,7 +239,7 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 keyboardType="default"
                 placeholder="5:00 pm"
                 onChangeText={(value) => handleChangeItemHTo(i, value)}
-                value={item.hourTo}
+                value={item.toHour}
               />
             </View>
           </View>

@@ -15,6 +15,7 @@ export const getAllParent = () => {
         },
       })
       .then((res) => {
+        // console.log(res.data);
         dispatch(getAllParentEnd(res.data));
       })
       .catch((err) => {

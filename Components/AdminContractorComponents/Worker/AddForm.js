@@ -8,13 +8,14 @@ import {
   Platform,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
+import SelectDropdown from "react-native-select-dropdown";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { MultiSelect } from "react-native-element-dropdown";
-import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import * as AddWorkerActionCreator from "../../../Store/ActionCreator/Worker/AddWorkerActionCreator";
 import * as GetSpecializationActionCreator from "../../../Store/ActionCreator/Worker/GetSpecializationActionCreator";
+import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
 
 function AddForm({
   getSpecialization,
@@ -41,6 +42,7 @@ function AddForm({
   error,
   loading,
   eid,
+  Facilities, getFacilities
 }) {
   const [WName, setWName] = useState("");
   const [specMsg, setSpecMsg] = useState("");
@@ -48,6 +50,8 @@ function AddForm({
   const [phoneMsg, setPhoneMsg] = useState("");
 
   useEffect(() => {
+    getFacilities();
+
     getSpecialization();
     getWorkerInfo("fullName", "");
     getWorkerInfo("email", "");
@@ -56,6 +60,7 @@ function AddForm({
     getWorkerInfo("error", "");
   }, []);
 
+  const facilityName = Facilities.map((pr) => pr.name);
   const handleOnChangeName = (value) => {
     if (!value || value.length > 24) {
       setWName("Please Enter a valid name (1-24)");
@@ -75,6 +80,7 @@ function AddForm({
   };
 
   const handleOnChangeSpecs = (value) => {
+    console.log(value);
     if (!value) {
       setSpecMsg("Please Select a Specialization");
     } else {
@@ -92,12 +98,29 @@ function AddForm({
     }
     getWorkerInfo("phone", value);
   };
+
+  const [specState,setSpecState] = useState([]);
+  useEffect(()=>{
+    if(spec.length>0){
+      var arrSpec = [];
+      for(let i = 0; i < spec.length; i++){
+        var obj = { label: spec[i].label, value: spec[i].eid };
+        arrSpec.push(obj);
+      }
+      
+      setSpecState(arrSpec);
+    }
+  },[spec]);
   // const DATA = [
   //   { label: "Cleaner", value: "1" },
   //   { label: "Driver", value: "2" },
   //   { label: "Chef", value: "3" },
   //   { label: "Repair", value: "4" },
   // ];
+
+  const handleChangeFacility= (index) => {
+    getWorkerInfo("facilityId", Facilities[index].eid);
+  };
 
   const handleClick = () => {
     var submit = true;
@@ -127,28 +150,29 @@ function AddForm({
         fullName,
         phone,
         specializations,
-        street,
-        address,
+        // street,
+        // address,
         facilityId,
-        department,
-        city,
-        dob,
-        jobTitle,
-        startDate,
-        workType,
-        zipCode,
-        linkBack,
-        certification,
-        profileImage
+        // department,
+        // city,
+        // dob,
+        // jobTitle,
+        // startDate,
+        // workType,
+        // zipCode,
+        // linkBack,
+        // certification,
+        // profileImage
       );
     }
   };
+
 
   const [selected, setSelected] = useState(specializations);
   const renderDataItem = (item) => {
     return (
       <View style={styles.item}>
-        <Text style={styles.selectedTextStyle}>{item.name}</Text>
+        <Text style={styles.selectedTextStyle}>{item.label}</Text>
       </View>
     );
   };
@@ -171,7 +195,7 @@ function AddForm({
           <View>
             <Text style={styles.label}>Specialization(s) *</Text>
           </View>
-          <MultiSelect
+          {specState.length > 0 &&<MultiSelect
             style={styles.input}
             containerStyle={{
               backgroundColor: "#FFF",
@@ -182,7 +206,7 @@ function AddForm({
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             iconStyle={styles.iconStyle}
-            data={spec}
+            data={specState}
             labelField="label"
             valueField="value"
             placeholder="Select one or more.."
@@ -196,15 +220,46 @@ function AddForm({
               <View style={{ justifyContent: "center" }}>
                 <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
                   <View style={styles.selectedStyle}>
-                    <Text style={styles.textSelectedStyle}>{item.name}</Text>
+                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
                     <AntDesign name="close" size={16} color="#595959" />
                   </View>
                 </TouchableOpacity>
               </View>
             )}
           />
+            }
           {specMsg && <Text style={styles.validation}>{specMsg}</Text>}
         </View>
+
+        <View style={styles.subCont}>
+        <View>
+          <Text style={styles.label}>Facility *</Text>
+        </View>
+        <SelectDropdown
+          renderDropdownIcon={() => (
+            <Ionicons name="chevron-down-outline" size={20} color="#595959" />
+          )}
+          dropdownIconPosition="right"
+          defaultButtonText="Select a facility.."
+          // rowTextStyle={{
+          //   color: "#595959",
+          // }}
+          buttonStyle={styles.btnselectstyle}
+          buttonTextStyle={styles.btnselectxtstyle}
+          dropdownStyle={styles.dropdownHour}
+          rowTextStyle={styles.rows}
+          data={facilityName}
+          onSelect={(selectedItem, index) => {
+            handleChangeFacility(index);
+          }}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
+        />
+      </View>
 
         <View style={styles.subCont}>
           <View>
@@ -281,11 +336,14 @@ const mapStateToProps = (state) => {
     eid: state.AddWorkerR.eid,
     error: state.AddWorkerR.error,
     spec: state.GetSpecializationR.spec,
+    Facilities: state.GetFacilitiesR.Facilities,
+    // error: state.GetFacilitiesR.error,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
     getSpecialization: () =>
       dispatch(GetSpecializationActionCreator.getSpecialization()),
     getWorkerInfo: (name, value) =>
@@ -295,19 +353,19 @@ const mapDispatchToProps = (dispatch) => {
       fullName,
       phone,
       specializations,
-      street,
-      address,
+      // street,
+      // address,
       facilityId,
-      department,
-      city,
-      dob,
-      jobTitle,
-      startDate,
-      workType,
-      zipCode,
-      linkBack,
-      certification,
-      profileImage
+      // department,
+      // city,
+      // dob,
+      // jobTitle,
+      // startDate,
+      // workType,
+      // zipCode,
+      // linkBack,
+      // certification,
+      // profileImage
     ) =>
       dispatch(
         AddWorkerActionCreator.addWorker(
@@ -315,19 +373,19 @@ const mapDispatchToProps = (dispatch) => {
           fullName,
           phone,
           specializations,
-          street,
-          address,
+          // street,
+          // address,
           facilityId,
-          department,
-          city,
-          dob,
-          jobTitle,
-          startDate,
-          workType,
-          zipCode,
-          linkBack,
-          certification,
-          profileImage
+          // department,
+          // city,
+          // dob,
+          // jobTitle,
+          // startDate,
+          // workType,
+          // zipCode,
+          // linkBack,
+          // certification,
+          // profileImage
         )
       ),
   };
@@ -360,6 +418,38 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: "90%",
     marginTop: "4%",
+  },
+  dropdownHour: {
+    borderRadius: 8,
+    marginTop: "-7%",
+  },
+  rows: {
+    fontSize: RFPercentage(1.8),
+  },
+  btnselectstyle: {
+    backgroundColor: "#F1F1F1",
+    borderRadius: 12,
+    paddingLeft: "4%",
+    marginTop: "2%",
+    height: 40,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  btnHourStyle: {
+    backgroundColor: "#F1F1F1",
+    borderRadius: 12,
+    paddingLeft: "4%",
+    marginTop: "2%",
+    height: 40,
+    width: "30%",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  btnselectxtstyle: {
+    fontSize: RFPercentage(1.8),
+    color: "#595959",
+    textAlign: "left",
   },
   label: {
     paddingLeft: "1.5%",

@@ -48,8 +48,9 @@ function OrderList({
     }
   }, [deleteOrd]);
 
-  const handleDeleteOrder = (eid) => {
-    deleteOrder(eid);
+  const handleDeleteOrder = (e) => {
+    deleteOrder(e);
+    getOrders();
   };
 
   return (

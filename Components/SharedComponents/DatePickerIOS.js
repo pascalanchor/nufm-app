@@ -10,13 +10,13 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default function DatePickerIOS({value , label, handleOnChange}) {
+export default function DatePickerIOS({value , label, handleOnChange, name}) {
   const [datePicker, setDatePicker] = useState(false);
   const [hideBtns, setHideBtns] = useState(false);
   const [date, setDate] = useState(new Date());
 
   useEffect(()=>{
-    handleOnChange(date,"date")
+    handleOnChange(name,date)
   }, [date])
 
   function showDatePicker() {

@@ -63,7 +63,7 @@ function AddForm({
 
   const navigation = useNavigation();
   useEffect(() => {
-    // getAllParent();
+    getAllParent();
     getFacilityInfo("name", "");
     getFacilityInfo("parentId", "");
     getFacilityInfo("type", "");
@@ -76,17 +76,8 @@ function AddForm({
     getFacilityInfo("description", "");
     getFacilityInfo("error", "");
   }, []);
-  const prnt = [
-    {
-      name: "Parent",
-      iid: "15c23281-c294-456f-8f84-ccfe38655553",
-    },
-    {
-      name: "Par",
-      iid: "15c23281-c294-456f-8f84-ccfe38655553",
-    },
-  ];
-  const parentName = prnt.map((pr) => pr.name);
+  
+  const parentName = parent.map((pr) => pr.name);
 
   const handleChangeName = (n, e) => {
     if (!name || name.length > 24) {
@@ -133,12 +124,13 @@ function AddForm({
   };
 
   const handleChangeDate = (n, e) => {
-    if (!date_opened) {
+   
+    if (e.length <1) {
       setDateMsg("Please Enter a valid Date");
     } else {
       setDateMsg("");
     }
-    getFacilityInfo(n, e);
+    getFacilityInfo("date_opened", e);
   };
 
   const handleChangeDesc = (n, e) => {
@@ -159,11 +151,11 @@ function AddForm({
   };
 
   const handleChangeParent = (index) => {
-    getFacilityInfo("parentId", prnt[index].iid);
+    getFacilityInfo("parentId", parent[index].iid);
   };
 
   const handleChangeType = (index) => {
-    if (!type || type.length > 24) {
+    if (types[index].length <1 ) {
       setFacType("Please Select a Type");
     } else {
       setFacType("");
@@ -211,6 +203,7 @@ function AddForm({
       submit = false;
     }
     if (submit) {
+      console.log(name,parentId,type,location, const_year, date_opened, street, post_code, description)
       navigation.navigate(link + "AddFacility2");
     }
   };
@@ -335,7 +328,7 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-          onChangeText={(val) => handleChange("sqm", val)}
+          onChangeText={(val) => handleOnChange(val,"sqm")}
           value={sqm}
         />
       </View>
@@ -357,12 +350,14 @@ function AddForm({
         {Platform.OS === "android" ? (
           <DatePickerAndroid
             label="Date Opened *"
-            handleOnChange={(value) => handleOnChange(value, "date_opened")}
+            handleOnChange={handleChangeDate}
+            name="date_opened"
           />
         ) : (
           <DatePickerIOS
             label="Date Opened *"
-            handleOnChange={(value) => handleOnChange(value, "date_opened")}
+            handleOnChange={handleChangeDate}
+            name="date_opened"
           />
         )}
         {dateMsg && <Text style={styles.validation}>{dateMsg}</Text>}
@@ -375,7 +370,7 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="default"
-          onChangeText={(val) => handleChange("description", val)}
+          onChangeText={(val) => handleChangeDesc("description", val)}
           value={description}
         />
         {descMsg && <Text style={styles.validation}>{descMsg}</Text>}

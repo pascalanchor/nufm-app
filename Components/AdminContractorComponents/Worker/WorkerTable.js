@@ -47,7 +47,7 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
                   <Text style={styles.txt}> {item.fullName}</Text>
                 </View>
                 <View style={styles.details}>
-                  <Text style={styles.spec}>{item.specializations}</Text>
+                  <Text style={styles.spec}>{item.specializations.join(", ")}</Text>
                 </View>
                 <View style={styles.details}>
                   <Text style={styles.phone}>{item.phone}</Text>

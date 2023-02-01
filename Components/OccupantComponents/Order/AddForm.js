@@ -33,6 +33,7 @@ function AddForm({
   getAllParent,
   parent,
   Workers,
+  phoneNumber,
   getWorkers,
 }) {
   useEffect(() => {
@@ -55,6 +56,16 @@ function AddForm({
   const handleOnChange = (value, name) => {
     getOrderInfo(name, value);
   };
+
+  const handleOnChangeFacility = (index) => {
+    getOrderInfo("facilityId",Facilities[index].eid);
+  };
+
+  const handleOnChangeWorker = (index) => {
+    getOrderInfo("receiverId",Workers[index].email);
+
+  };
+
 
   const handleClick = () => {
     addOrder(
@@ -103,7 +114,7 @@ function AddForm({
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityId");
+              handleOnChangeFacility(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -134,7 +145,7 @@ function AddForm({
             rowTextStyle={styles.rows}
             data={workerName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "receiverId");
+              handleOnChangeWorker(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -205,6 +216,7 @@ const mapStateToProps = (state) => {
     senderId: state.AddOrderR.senderId,
     date: state.AddOrderR.date,
     email: state.AddOrderR.email,
+    phoneNumber: state.AddOrderR.phoneNumber,
     orderContent: state.AddOrderR.orderContent,
     comment: state.AddOrderR.comment,
     error: state.AddOrderR.error,
