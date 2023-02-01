@@ -16,7 +16,9 @@ import {
   IncidentDet,
   RiskDet,
   Facilities,
-  AddFacility,
+  AddFacility1,
+  AddFacility2,
+  AddFacility3,
   Workers,
   AddWorker,
   AttendancesC,
@@ -76,8 +78,14 @@ export default function ContractorNavigation() {
           <Stack.Screen name="Contractor/Facilities">
             {(props) => <Facilities {...props} link="Contractor/" />}
           </Stack.Screen>
-          <Stack.Screen name="Contractor/AddFacility">
-            {(props) => <AddFacility {...props} link="Contractor/" />}
+          <Stack.Screen name="AddFacility">
+            {(props) => <AddFacility1 {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="AddFacility2">
+            {(props) => <AddFacility2 {...props} link="Contractor/" />}
+          </Stack.Screen>
+          <Stack.Screen name="AddFacility3">
+            {(props) => <AddFacility3 {...props} link="Contractor/" />}
           </Stack.Screen>
           <Stack.Screen name="Contractor/Workers">
             {(props) => <Workers {...props} link="Contractor/" />}

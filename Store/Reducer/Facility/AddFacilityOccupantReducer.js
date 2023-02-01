@@ -5,6 +5,8 @@ const initialState = {
   fullName: "",
   phone: "",
   notes: "",
+  landline:"",
+  jobTitle:"",
   profileImage: "",
   loading: false,
   eid: "",

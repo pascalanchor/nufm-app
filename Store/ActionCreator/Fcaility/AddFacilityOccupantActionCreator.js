@@ -15,6 +15,8 @@ email,
 fullName,
 phone,
 notes,
+landline,
+jobTitle,
 profileImage,
 eid
 ) => {
@@ -25,7 +27,9 @@ eid
       "email":email,
       "fullName": fullName,
       "phone": phone,
-      "notes": notes
+      "notes": notes,
+      "landline": landline,
+      "jobTitle":jobTitle
     });
     fd.append("occupantData", occupantData);
     fd.append("profileImage", profileImage);

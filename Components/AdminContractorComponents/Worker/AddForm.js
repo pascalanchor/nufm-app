@@ -66,7 +66,7 @@ function AddForm({
   };
 
   const handleOnChangeEmail = (value) => {
-    if (!value) {
+    if (!value || !value.includes("@")) {
       setEmailMsg("Please Enter a valid email");
     } else {
       setEmailMsg("");

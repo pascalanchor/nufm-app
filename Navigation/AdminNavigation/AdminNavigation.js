@@ -22,10 +22,11 @@ import {
   Attendances,
   CheckAttendance,
   Orders,
-  OrderDet
+  OrderDet,
+  AddFacility1,
+  AddFacility2,
+  AddFacility3
 } from "../../Screens";
-
-// import AddForm from '../../Components/AdminContractorComponents/Facility/AddForm';
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
@@ -77,8 +78,13 @@ export default function LoginNavigation() {
             {(props) => <Facilities {...props} link="" />}
           </Stack.Screen>
           <Stack.Screen name="AddFacility">
-            {(props) => <AddFacility {...props} link="" />}
-            {/* {(props) => <AddForm {...props} link="" />} */}
+            {(props) => <AddFacility1 {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="AddFacility2">
+            {(props) => <AddFacility2 {...props} link="" />}
+          </Stack.Screen>
+          <Stack.Screen name="AddFacility3">
+            {(props) => <AddFacility3 {...props} link="" />}
           </Stack.Screen>
           <Stack.Screen name="Workers">
             {(props) => <Workers {...props} link="" />}
