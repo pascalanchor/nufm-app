@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
-  Landing,
-  Login,
   Reset,
   Home,
   Calendar,
@@ -41,15 +39,9 @@ export default function LoginNavigation() {
             headerShown: false,
           }}
         >
-          <Stack.Screen
-            name="Landing"
-            component={Landing}
-            options={{ title: "Welcome" }}
-          />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Reset">
+          {/* <Stack.Screen name="Reset">
             {(props) => <Reset {...props} link="" />}
-          </Stack.Screen>
+          </Stack.Screen> */}
           <Stack.Screen name="Home">
             {(props) => <Home {...props} link="" />}
           </Stack.Screen>

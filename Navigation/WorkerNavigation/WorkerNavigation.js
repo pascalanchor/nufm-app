@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
-  Landing,
-  Login,
   Reset,
   WorkerHome,
   IncidentsW,
@@ -33,15 +31,9 @@ export default function WorkerNavigation() {
             headerShown: false,
           }}
         >
-          <Stack.Screen
-            name="Landing"
-            component={Landing}
-            options={{ title: "Welcome" }}
-          />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Worker/Reset">
+          {/* <Stack.Screen name="Worker/Reset">
             {(props) => <Reset {...props} link="Worker/" />}
-          </Stack.Screen>
+          </Stack.Screen> */}
           <Stack.Screen name="Worker/Home">
             {(props) => <WorkerHome {...props} link="Worker/" />}
           </Stack.Screen>

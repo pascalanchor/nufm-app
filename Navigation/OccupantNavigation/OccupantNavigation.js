@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
-  Landing,
-  Login,
   Reset,
   OccupantHome,
   IncidentsW,
@@ -35,15 +33,9 @@ export default function OccupantNavigation() {
             headerShown: false,
           }}
         >
-          <Stack.Screen
-            name="Landing"
-            component={Landing}
-            options={{ title: "Welcome" }}
-          />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Occupant/Reset">
+          {/* <Stack.Screen name="Occupant/Reset">
             {(props) => <Reset {...props} link="Occupant/" />}
-          </Stack.Screen>
+          </Stack.Screen> */}
           <Stack.Screen name="Occupant/Home">
             {(props) => <OccupantHome {...props} link="Occupant/" />}
           </Stack.Screen>

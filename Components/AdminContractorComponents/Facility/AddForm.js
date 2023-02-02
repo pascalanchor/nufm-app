@@ -64,6 +64,7 @@ function AddForm({
 
   const navigation = useNavigation();
   useEffect(() => {
+    console.log(link)
     getAllParent();
     getFacilityInfo("name", "");
     getFacilityInfo("parentId", "");

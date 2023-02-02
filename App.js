@@ -5,6 +5,7 @@ import AdminNavigation from "./Navigation/AdminNavigation/AdminNavigation";
 import ContractorNavigation from "./Navigation/ContractorNavigation/ContractorNavigation";
 import WorkerNavigation from "./Navigation/WorkerNavigation/WorkerNavigation";
 import OccupantNavigation from "./Navigation/OccupantNavigation/OccupantNavigation";
+import MainNavigation from "./Navigation/MainNavigation/MainNavigation";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -79,10 +80,11 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        <AdminNavigation />
+        <MainNavigation/>
+        {/* <AdminNavigation />
         <ContractorNavigation />
         <WorkerNavigation />
-        <OccupantNavigation /> 
+        <OccupantNavigation />  */}
       </View>
     </Provider>
   );
