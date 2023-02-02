@@ -10,7 +10,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as GetIncidentsActionCreator from "../../../Store/ActionCreator/Incident/GetIncidentsActionCreator";
 import * as DeleteIncidentActionCreator from "../../../Store/ActionCreator/Incident/DeleteIncidentActionCreator";
@@ -32,6 +32,17 @@ function Incidents({
     getIncidents();
     sortedArray();
   }, [searchVal]);
+
+  const onLoadFunc = () =>{
+    getIncidents();
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
 
   const sortedArray = () => {
     setIncidentArr(

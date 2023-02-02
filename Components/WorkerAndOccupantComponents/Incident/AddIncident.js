@@ -52,6 +52,10 @@ function AddIncident({
   const siteName = Facilities.map((fn) => fn.name);
   const Tasks = tasks.map((wr) => wr.name);
 
+  const handleOnChangeDate = (name,value) => {
+    getIncidentInfo(name, value);
+  };
+
   const handleOnChange = (value, name) => {
     getIncidentInfo(name, value);
   };
@@ -59,6 +63,15 @@ function AddIncident({
   const handleClick = () => {
     addIncident(senderId, facilityId, taskId, date, ihour, incident, comment);
   };
+
+  const handleOnChangeTask = (i) =>{
+    getIncidentInfo("taskId", tasks[i].eid);
+  }
+
+  const handleOnChangeFacility = (i) =>{
+    getIncidentInfo("facilityId", Facilities[i].eid);
+  }
+  
 
   return (
     <View style={styles.initialCont}>
@@ -86,16 +99,14 @@ function AddIncident({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a site.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
+            
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityId");
+              handleOnChangeFacility(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -117,16 +128,14 @@ function AddIncident({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a task.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
+            
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
             data={Tasks}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "task");
+              handleOnChangeTask(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -141,14 +150,16 @@ function AddIncident({
           {Platform.OS === "android" ? (
             <DatePickerAndroid
               label="Date"
-              value={date}
-              handleOnChange={(value) => handleOnChange(value, "date")}
+              // value={date}
+              handleOnChange={handleOnChangeDate}
+              name="date"
             />
           ) : (
             <DatePickerIOS
               label="Date"
-              value={date}
-              handleOnChange={(value) => handleOnChange(value, "date")}
+              // value={date}
+              handleOnChange={handleOnChangeDate}
+              name="date"
             />
           )}
         </View>
@@ -160,7 +171,7 @@ function AddIncident({
           <TextInput
             style={styles.input}
             keyboardType="numeric"
-            onChangeText={(value) => handleOnChange(value, "hour")}
+            onChangeText={(value) => handleOnChange(value, "ihour")}
             value={ihour}
           />
         </View>
@@ -235,6 +246,9 @@ const mapStateToProps = (state) => {
     taskId: state.AddIncidentR.taskId,
     receiver: state.AddIncidentR.receiver,
     senderId: state.AddIncidentR.senderId,
+    ihour: state.AddIncidentR.ihour,
+    incident: state.AddIncidentR.incident,
+    date: state.AddIncidentR.date,
     comment: state.AddIncidentR.comment,
     error: state.AddIncidentR.error,
     loading: state.AddIncidentR.loading,

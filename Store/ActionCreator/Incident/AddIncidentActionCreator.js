@@ -17,7 +17,7 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "senderId":senderId,
+      "senderId":"janjoune.9@gmail.com",
       "facilityId": facilityId,
       "taskId": taskId,
       "date":date,
@@ -26,9 +26,12 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
       "comment": comment,
     }
 
+    console.log(params);
+
     var link = server +  privatePath + "/incident/add";
     axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
       .then((res) => {
+        console.log(res.data)
         if (res.data.message === "expectation failed") {
           dispatch(addIncidentFail("expectation failed"));
         } else {
@@ -36,6 +39,7 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
         }
       })
       .catch((err) => {
+        console.log(err)
         dispatch(addIncidentFail(err));
       });
   };

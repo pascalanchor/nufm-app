@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as GetAttendancesActionCreator from "../../../Store/ActionCreator/Attendance/GetAttendancesActionCreator";
 
@@ -26,6 +26,19 @@ function AttendanceTable({
     getAttendances();
     sortedArray();
   }, [searchVal]);
+
+
+  const onLoadFunc = () =>{
+    getAttendances();
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
+
   const sortedArray = () => {
     setAttendancesArr(
       Attendances.filter((cntr) =>
@@ -48,7 +61,7 @@ function AttendanceTable({
                   <Text style={styles.header2}>Facility</Text>
                 </View>
                 <View style={styles.headTitle3}>
-                  <Text style={styles.header3}>Email </Text>
+                  <Text style={styles.header3}>Task </Text>
                 </View>
               </View>
             );
@@ -76,7 +89,7 @@ function AttendanceTable({
                     <Text style={styles.Facility}>{item.facility.name}</Text>
                   </View>
                   <View style={styles.details3}>
-                    <Text style={styles.Email}>{item.user.email}</Text>
+                    <Text style={styles.Email}>{item.task.name}</Text>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -189,6 +202,6 @@ const styles = StyleSheet.create({
     textAlign: "left",
     paddingLeft: "10%",
   },
-  details: { width: "30%", alignItems: "center" },
+  details: { width: "40%", alignItems: "center" },
   details3: { width: "40%", alignItems: "center" },
 });

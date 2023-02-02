@@ -42,14 +42,14 @@ function RiskDetails({
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back-circle" size={30} color="#309694" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <AntDesign
               name="close"
               size={24}
               color="#898989"
               style={styles.close}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sender</Text>

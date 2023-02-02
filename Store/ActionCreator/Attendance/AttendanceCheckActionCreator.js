@@ -4,8 +4,9 @@ import { server, privatePath } from "../Constants";
 
 export const getCheckById = (eid) => {
   return (dispatch) => {
+   
     // var token = "Bearer " + localStorage.getItem("nufmtoken"); 
-    var link = server + privatePath + "/attendanceById/" + eid;
+    var link = server + privatePath + "/attendanceById?attendance=" + eid;
 
     axios
       .get(link, {
@@ -14,6 +15,9 @@ export const getCheckById = (eid) => {
         },
       })
       .then((res) => {
+        console.log(res.data)
+   
+
         if (res.data.message === "expectation failed") {
           dispatch(getCheckByIdFail("expectation failed"));
         } else {
@@ -21,6 +25,7 @@ export const getCheckById = (eid) => {
         }
       })
       .catch((err) => {
+        console.log(err)
         dispatch(getCheckByIdFail(err));
       });
   };
@@ -35,7 +40,7 @@ export const getCheckByIdEnd = (data) => {
 
 export const getCheckByIdFail = (err) => {
   return {
-    type: actionTypes.GetCheckById.GET_CHECK_BY_ID_END,
+    type: actionTypes.GetCheckById.GET_CHECK_BY_ID_FAIL,
     error: err,
   };
 };

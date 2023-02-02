@@ -25,6 +25,7 @@ export const submitLogin = (username, password) => {
         { headers: { "Content-Type": "application/json" } }
       )
       .then((res) => {
+        console.log(res.data)
         if (res.data.message === "wrong password for the user " + username) {
           dispatch(loginFail("wrong password"));
         } else if (

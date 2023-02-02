@@ -10,7 +10,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export default function DatePickerAndroid({value, label, handleOnChange, name }) {
+export default function DatePickerAndroid({ label, handleOnChange, name }) {
 
   useEffect(()=>{
     

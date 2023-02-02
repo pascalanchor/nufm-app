@@ -16,6 +16,7 @@ function AttendanceCheck({
   eid,
   error,
   loading,
+  setFacilityName
 }) {
   
   const route = useRoute();
@@ -25,22 +26,28 @@ function AttendanceCheck({
     console.log(id);
   }, []);
 
+  useEffect(()=>{
+    if(facility != ""){
+    setFacilityName(facility.name)
+    }
+  },[facility])
+
   return (
     <View style={styles.container}>
       <View style={styles.boxIcon}>
         <View style={styles.greyBox}>
-          <Text style={styles.Check}>Check In</Text>
+          <Text style={styles.Check}>Check In ({checkIn.date})</Text>
           <Text style={styles.datetime}>
-            {/* {checkIn.date} / {facility.name} */}
+            {checkIn.lng} / {checkIn.lat}
           </Text>
         </View>
         <Ionicons name="location" size={30} color="#023D26" />
       </View>
       <View style={styles.boxIcon}>
         <View style={styles.greyBox}>
-          <Text style={styles.Check}>Check Out</Text>
+          <Text style={styles.Check}>Check Out ({checkOut.date})</Text>
           <Text style={styles.datetime}>
-            {/* {checkOut.date} / {facility.name} */}
+            {checkOut.lng} / {checkOut.lat}
           </Text>
         </View>
         <Ionicons name="location" size={30} color="#023D26" />
@@ -82,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   greyBox: {
-    aspectRatio: 4.5 / 1,
+    aspectRatio: 4.0 / 1,
     backgroundColor: "#F0F0F0",
     width: "85%",
     borderRadius: 15,

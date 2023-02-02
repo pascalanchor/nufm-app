@@ -1,3 +1,4 @@
+import { useFocusEffect } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -11,6 +12,19 @@ function FacilityTable({ searchVal, Facilities, getFacilities, error }) {
     getFacilities();
     sortedArray();
   }, [searchVal]);
+
+
+  const onLoadFunc = () =>{
+    getFacilities();
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
+
   const sortedArray = () => {
     setFacilitiesArr(
       Facilities.filter((cntr) =>

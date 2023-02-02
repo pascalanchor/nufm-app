@@ -8,6 +8,8 @@ import AttendanceCheck from "../../../Components/AdminContractorComponents/Atten
 export default function CheckAttendance({link}) {
   const [modalVisible, setModalVisible] = useState(false);
   const dayDate = new Date().toLocaleString().substr(0, 10);
+
+  const [facilityName, setFacilityName] = useState("");
   return (
     <View style={styles.box}>
       <View>
@@ -15,8 +17,8 @@ export default function CheckAttendance({link}) {
       </View>
       <Header link={link} title="Attendance" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
-        <Text style={styles.txt}>{dayDate}</Text>
-        <AttendanceCheck />
+        <Text style={styles.txt}>{facilityName}</Text>
+        <AttendanceCheck facilityName={facilityName} setFacilityName={setFacilityName}/>
       </View>
     </View>
   );

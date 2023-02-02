@@ -50,6 +50,10 @@ function AddRiskO({
     getRiskInfo(name, value);
   };
 
+  const handleOnChangeFacility = (i)=>{
+    getRiskInfo("facilityId",Facilities[i].eid);
+  }
+
   const handleClick = () => {
     addRisk(senderId, facilityId, risk, comment);
   };
@@ -79,16 +83,13 @@ function AddRiskO({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a site.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facilityId");
+              handleOnChangeFacility(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;

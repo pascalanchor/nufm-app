@@ -47,14 +47,14 @@ function OrderDetails({
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back-circle" size={30} color="#309694" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <AntDesign
               name="close"
               size={24}
               color="#898989"
               style={styles.close}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>From</Text>
@@ -62,7 +62,7 @@ function OrderDetails({
             <Text style={styles.txtInside}>{sender.fullName}</Text>
           </View>
         </View>
-        <View style={styles.txtInput}>
+        {/* <View style={styles.txtInput}>
           <Text style={styles.txt}>Email</Text>
           <View style={styles.disabledInput}>
             <Text style={styles.txtInside}>{email}</Text>
@@ -77,9 +77,9 @@ function OrderDetails({
         <View style={styles.txtInput}>
           <Text style={styles.txtMulti}>Facility Parent</Text>
           <View style={styles.disabledInput}>
-            {/* <Text style={styles.txtInside}>{facility.parent.name}</Text> */}
+           
           </View>
-        </View>
+        </View> */}
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Date</Text>
           <View style={styles.disabledInput}>
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "white",
     borderRadius: 25,
-    aspectRatio: 0.64 / 1,
+    aspectRatio: 0.9 / 1,
     width: "100%",
     paddingHorizontal: "6%",
     paddingVertical: "5%",

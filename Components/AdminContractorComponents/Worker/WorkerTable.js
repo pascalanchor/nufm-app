@@ -1,3 +1,4 @@
+import { useFocusEffect } from "@react-navigation/native";
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, FlatList } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -11,6 +12,18 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
     getWorkers();
     sortedArray();
   }, [searchVal]);
+
+  const onLoadFunc = () =>{
+    getWorkers();
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
+
   const sortedArray = () => {
     setWorkersArr(
       Workers.filter((cntr) =>
@@ -33,7 +46,7 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
                   <Text style={styles.header2}>Specilization</Text>
                 </View>
                 <View style={styles.headTitle}>
-                  <Text style={styles.header3}>Phone Number</Text>
+                  <Text style={styles.header3}>Phone</Text>
                 </View>
               </View>
             );

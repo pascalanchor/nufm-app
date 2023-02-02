@@ -44,14 +44,14 @@ function IncidentDetails({
           <TouchableOpacity onPress={() => navigation.goBack()}>
             <Ionicons name="chevron-back-circle" size={30} color="#309694" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <AntDesign
               name="close"
               size={24}
               color="#898989"
               style={styles.close}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.txtInput}>
           <Text style={styles.txt}>Sender</Text>
@@ -94,6 +94,7 @@ const mapStateToProps = (state) => {
     sender: state.GetIncidentDetailsR.sender,
     date: state.GetIncidentDetailsR.date,
     ihour: state.GetIncidentDetailsR.ihour,
+    comment: state.GetIncidentDetailsR.comment,
     facility: state.GetIncidentDetailsR.facility,
     task: state.GetIncidentDetailsR.task,
     eid: state.GetIncidentDetailsR.eid,

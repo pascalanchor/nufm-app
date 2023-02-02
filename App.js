@@ -79,10 +79,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <View style={styles.container}>
-        {/* <AdminNavigation /> */}
-        {/* <ContractorNavigation /> */}
-        {/* <WorkerNavigation /> */}
-        <OccupantNavigation />
+        <AdminNavigation />
+        <ContractorNavigation />
+        <WorkerNavigation />
+        <OccupantNavigation /> 
       </View>
     </Provider>
   );

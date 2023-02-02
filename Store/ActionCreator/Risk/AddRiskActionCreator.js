@@ -17,7 +17,7 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "senderId": senderId,
+      "senderId": "janjoune.9@gmail.com",
       "facilityId": facilityId,
       "risk": risk,
       "comment": comment
@@ -26,6 +26,7 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
     var link = server +  privatePath + "/risk";
     axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
       .then((res) => {
+        console.log(res.data)
         if (res.data.message === "expectation failed") {
           dispatch(addRiskFail("expectation failed"));
         } else {
@@ -33,6 +34,7 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
         }
       })
       .catch((err) => {
+        console.log(err)
         dispatch(addRiskFail(err));
       });
   };

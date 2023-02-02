@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
@@ -28,6 +29,22 @@ function Risks({
 }) {
   const navigation = useNavigation();
   const [RiskArr, setRiskArr] = useState([]);
+
+  const onLoadFunc = () =>{
+    getRisks();
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
+
+  // useEffect(() => {
+  //   console.log("Risk screen table")
+  //   getRisks();
+  // }, []);
 
   useEffect(() => {
     getRisks();

@@ -66,8 +66,8 @@ function AddAttendance({
 
   const handleClick = () => {
     addAttendance(facility, user, task, checkType, long, latitude);
-    console.log(checkType);
-    console.log(latitude);
+    // console.log(checkType);
+    // console.log(latitude);
   };
 
   useEffect(() => {
@@ -85,7 +85,7 @@ function AddAttendance({
 
   const handleCheck = (value) => {
     if (!toggleCheckBox) {
-      setCheckType("Check In");
+      setCheckType("CheckIn");
       setLat(JSON.stringify(location.coords.latitude));
       setLong(JSON.stringify(location.coords.longitude));
       setToggleCheckBox(value);
@@ -98,7 +98,7 @@ function AddAttendance({
 
   const handleCheckOut = (value) => {
     if (!toggleCheckBox2) {
-      setCheckType("Check Out");
+      setCheckType("CheckOut");
       setLat(JSON.stringify(location.coords.latitude));
       setLong(JSON.stringify(location.coords.longitude));
       setToggleCheckBox2(value);
@@ -108,6 +108,14 @@ function AddAttendance({
       setToggleCheckBox2(value);
     }
   };
+
+  const handleOnChangeFacility = (i) =>{
+    getAttendanceInfo("facility",Facilities[i].eid);
+  }
+
+  const handleOnChangeTask = (i) =>{
+    getAttendanceInfo("task",tasks[i].eid);
+  }
   return (
     <View style={styles.initialCont}>
       <View style={styles.container}>
@@ -121,16 +129,14 @@ function AddAttendance({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a site.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
+           
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
             data={siteName}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "facility");
+              handleOnChangeFacility(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -152,16 +158,14 @@ function AddAttendance({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a task.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
+           
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
             rowTextStyle={styles.rows}
             data={Tasks}
             onSelect={(selectedItem, index) => {
-              handleOnChange(selectedItem, "task");
+              handleOnChangeTask(index);
             }}
             buttonTextAfterSelection={(selectedItem, index) => {
               return selectedItem;
@@ -375,5 +379,19 @@ const styles = StyleSheet.create({
     color: "#595959",
     fontWeight: "bold",
     fontSize: RFPercentage(1.5),
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "7%",
+    backgroundColor: "#CAF3D1",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#595959",
   },
 });

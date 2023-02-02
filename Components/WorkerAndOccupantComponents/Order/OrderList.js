@@ -10,7 +10,7 @@ import {
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
 import { AntDesign } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
 import * as GetOrdersActionCreator from "../../../Store/ActionCreator/Order/GetOrdersActionCreator";
 import * as DeleteOrderActionCreator from "../../../Store/ActionCreator/Order/DeleteOrderActionCreator";
@@ -33,6 +33,18 @@ function OrderList({
     getOrders();
     sortedArray();
   }, [searchVal]);
+
+  const onLoadFunc = () =>{
+    getOrders();
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
+
   const sortedArray = () => {
     setOrderArr(
       Orders.filter((cntr) =>
