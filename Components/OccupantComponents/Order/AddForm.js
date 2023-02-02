@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  ActivityIndicator
 } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
@@ -197,13 +198,24 @@ function AddForm({
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "70%" }}>
-          <TouchableOpacity onPress={handleClick}>
-            <View style={styles.save}>
-              <Text style={styles.addSite}>ADD</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        {!loading ? (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity onPress={handleClick}>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Send</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Sending... </Text>
+                <ActivityIndicator size="small" color="#fff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -408,6 +420,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
+    flexDirection:"row"
   },
   cancel: {
     borderWidth: 1.5,

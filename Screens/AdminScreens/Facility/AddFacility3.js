@@ -13,9 +13,9 @@ export default function AddFacility3({link}) {
       <View>
         <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header link={link} title="Worker" setModal={setModalVisible} />
+      <Header link={link} title="Facility" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
-        <Text style={styles.txt}> Add Worker</Text>
+        <Text style={styles.txt}> Add Facility</Text>
         <ScrollView>
           <AddStep3 link={link} />
         </ScrollView>

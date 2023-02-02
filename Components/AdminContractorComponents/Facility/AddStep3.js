@@ -6,9 +6,11 @@ import {
   TouchableOpacity,
   TextInput,
   Button,
+  ActivityIndicator,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import { useNavigation } from "@react-navigation/native";
 import { Ionicons, MaterialIcons, Entypo, AntDesign } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import * as AddFacilityOccupantActionCreator from "../../../Store/ActionCreator/Fcaility/AddFacilityOccupantActionCreator";
@@ -46,6 +48,8 @@ function AddStep3({
   const [nameMsg, setNameMsg] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [phoneMsg, setPhoneMsg] = useState("");
+
+  const navigation = useNavigation();
 
   const [Occupant, setOccupant] = useState([
     {
@@ -155,8 +159,8 @@ function AddStep3({
 
   const handleSubmit = () => {
     var submit = true;
-    for (let j = 0; j<Occupant.length; j++){
-      if (Occupant[j].fullName.length<1) {
+    for (let j = 0; j < Occupant.length; j++) {
+      if (Occupant[j].fullName.length < 1) {
         setNameMsg("Please Enter a Name");
         submit = false;
       }
@@ -169,10 +173,11 @@ function AddStep3({
         submit = false;
       }
     }
-    
+
     if (submit) {
-      console.log("00000000000000000")
-      console.log(parentId,
+      console.log("00000000000000000");
+      console.log(
+        parentId,
         name,
         type,
         location,
@@ -183,8 +188,9 @@ function AddStep3({
         post_code,
         description,
         primaryEmail,
-        workSchedule);
-      console.log("00000000000000000")
+        workSchedule
+      );
+      console.log("00000000000000000");
 
       addFacility(
         parentId,
@@ -300,12 +306,33 @@ function AddStep3({
           <Text style={styles.errorTxt}>{error}</Text>
         </View>
       )}
-      <View style={{ width: "90%" }}>
-        <TouchableOpacity onPress={handleSubmit}>
-          <View style={styles.nextBtn}>
-            <Text style={styles.addSite}>Submit</Text>
+      <View style={styles.btns}>
+        <View style={{ width: "50%" }}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <View style={styles.btnBack}>
+              <Text style={styles.addBack}>Back</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        {!loading ? (
+          <View style={{ width: "50%" }}>
+            <TouchableOpacity onPress={handleSubmit}>
+              <View style={styles.nextBtn}>
+                <Text style={styles.addSite}>Save</Text>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
+        ) : (
+          <View style={{ width: "50%" }}>
+            <TouchableOpacity>
+              <View style={styles.nextBtn}>
+                <Text style={styles.addSite}>Saving... </Text>
+                <ActivityIndicator size="small" color="#fff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -476,9 +503,11 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: "2%",
     alignItems: "center",
-    paddingVertical: "3%",
+    paddingVertical: "5%",
     justifyContent: "center",
-    marginBottom: "8%",
+    marginBottom: "12%",
+    marginHorizontal: "8%",
+    flexDirection: "row",
   },
   addSite: {
     fontSize: RFPercentage(1.9),
@@ -506,5 +535,29 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingHorizontal: "4%",
     color: "#595959",
+  },
+  btns: {
+    flexDirection: "row",
+    paddingHorizontal: "1%",
+    marginBottom: "5%",
+  },
+  btnBack: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    paddingHorizontal: "2%",
+    alignItems: "center",
+    paddingVertical: "4.2%",
+    justifyContent: "center",
+    marginBottom: "12%",
+    marginHorizontal: "8%",
+    borderWidth: 1.5,
+    borderColor: "#309694",
+  },
+  addBack: {
+    fontSize: RFPercentage(1.9),
+    fontWeight: "bold",
+    color: "#309694",
+    paddingLeft: "2%",
   },
 });

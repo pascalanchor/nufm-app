@@ -7,6 +7,7 @@ import {
   TextInput,
   Button,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -76,7 +77,7 @@ function AddForm({
     getFacilityInfo("description", "");
     getFacilityInfo("error", "");
   }, []);
-  
+
   const parentName = parent.map((pr) => pr.name);
 
   const handleChangeName = (n, e) => {
@@ -124,8 +125,7 @@ function AddForm({
   };
 
   const handleChangeDate = (n, e) => {
-   
-    if (e.length <1) {
+    if (e.length < 1) {
       setDateMsg("Please Enter a valid Date");
     } else {
       setDateMsg("");
@@ -155,7 +155,7 @@ function AddForm({
   };
 
   const handleChangeType = (index) => {
-    if (types[index].length <1 ) {
+    if (types[index].length < 1) {
       setFacType("Please Select a Type");
     } else {
       setFacType("");
@@ -203,7 +203,17 @@ function AddForm({
       submit = false;
     }
     if (submit) {
-      console.log(name,parentId,type,location, const_year, date_opened, street, post_code, description)
+      console.log(
+        name,
+        parentId,
+        type,
+        location,
+        const_year,
+        date_opened,
+        street,
+        post_code,
+        description
+      );
       navigation.navigate(link + "AddFacility2");
     }
   };
@@ -328,7 +338,7 @@ function AddForm({
         <TextInput
           style={styles.input}
           keyboardType="numeric"
-          onChangeText={(val) => handleOnChange(val,"sqm")}
+          onChangeText={(val) => handleOnChange(val, "sqm")}
           value={sqm}
         />
       </View>

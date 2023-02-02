@@ -5,6 +5,7 @@ import {
   View,
   TouchableOpacity,
   TextInput,
+  ActivityIndicator
 } from "react-native";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -196,6 +197,12 @@ function AddAttendance({
           <Ionicons name="location" size={26} color="#023D26" />
         </View>
       </View>
+      {error && (
+        <View style={styles.errorMsg}>
+          <AntDesign name="checkcircle" size={24} color="#02A962" />
+          <Text style={styles.errorTxt}>{error}</Text>
+        </View>
+      )}
       <View style={{ flexDirection: "row", marginBottom: "3%" }}>
         <View style={{ width: "30%" }}>
           <TouchableOpacity>
@@ -204,13 +211,24 @@ function AddAttendance({
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "70%" }}>
-          <TouchableOpacity onPress={handleClick}>
-            <View style={styles.save}>
-              <Text style={styles.addSite}>Save</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        {!loading ? (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity onPress={handleClick}>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Save</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Saving... </Text>
+                <ActivityIndicator size="small" color="#fff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -328,6 +346,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
+    flexDirection:"row"
   },
   cancel: {
     borderWidth: 1.5,

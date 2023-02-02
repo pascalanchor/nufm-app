@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import SelectDropdown from "react-native-select-dropdown";
@@ -42,7 +43,8 @@ function AddForm({
   error,
   loading,
   eid,
-  Facilities, getFacilities
+  Facilities,
+  getFacilities,
 }) {
   const [WName, setWName] = useState("");
   const [specMsg, setSpecMsg] = useState("");
@@ -99,26 +101,20 @@ function AddForm({
     getWorkerInfo("phone", value);
   };
 
-  const [specState,setSpecState] = useState([]);
-  useEffect(()=>{
-    if(spec.length>0){
+  const [specState, setSpecState] = useState([]);
+  useEffect(() => {
+    if (spec.length > 0) {
       var arrSpec = [];
-      for(let i = 0; i < spec.length; i++){
+      for (let i = 0; i < spec.length; i++) {
         var obj = { label: spec[i].label, value: spec[i].eid };
         arrSpec.push(obj);
       }
-      
+
       setSpecState(arrSpec);
     }
-  },[spec]);
-  // const DATA = [
-  //   { label: "Cleaner", value: "1" },
-  //   { label: "Driver", value: "2" },
-  //   { label: "Chef", value: "3" },
-  //   { label: "Repair", value: "4" },
-  // ];
+  }, [spec]);
 
-  const handleChangeFacility= (index) => {
+  const handleChangeFacility = (index) => {
     getWorkerInfo("facilityId", Facilities[index].eid);
   };
 
@@ -145,28 +141,9 @@ function AddForm({
       submit = false;
     }
     if (submit) {
-      addWorker(
-        email,
-        fullName,
-        phone,
-        specializations,
-        // street,
-        // address,
-        facilityId,
-        // department,
-        // city,
-        // dob,
-        // jobTitle,
-        // startDate,
-        // workType,
-        // zipCode,
-        // linkBack,
-        // certification,
-        // profileImage
-      );
+      addWorker(email, fullName, phone, specializations, facilityId);
     }
   };
-
 
   const [selected, setSelected] = useState(specializations);
   const renderDataItem = (item) => {
@@ -195,71 +172,76 @@ function AddForm({
           <View>
             <Text style={styles.label}>Specialization(s) *</Text>
           </View>
-          {specState.length > 0 &&<MultiSelect
-            style={styles.input}
-            containerStyle={{
-              backgroundColor: "#FFF",
-              marginTop: Platform.OS === "android" ? "-9.5%" : 0,
-              borderRadius: 12,
-            }}
-            activeColor="#F1F1F1"
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            iconStyle={styles.iconStyle}
-            data={specState}
-            labelField="label"
-            valueField="value"
-            placeholder="Select one or more.."
-            value={selected}
-            onChange={(item) => handleOnChangeSpecs(item)}
-            renderRightIcon={() => (
-              <Ionicons name="chevron-down-outline" size={20} color="#595959" />
-            )}
-            renderItem={renderDataItem}
-            renderSelectedItem={(item, unSelect) => (
-              <View style={{ justifyContent: "center" }}>
-                <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
-                  <View style={styles.selectedStyle}>
-                    <Text style={styles.textSelectedStyle}>{item.label}</Text>
-                    <AntDesign name="close" size={16} color="#595959" />
-                  </View>
-                </TouchableOpacity>
-              </View>
-            )}
-          />
-            }
+          {specState.length > 0 && (
+            <MultiSelect
+              style={styles.input}
+              containerStyle={{
+                backgroundColor: "#FFF",
+                marginTop: Platform.OS === "android" ? "-9.5%" : 0,
+                borderRadius: 12,
+              }}
+              activeColor="#F1F1F1"
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              iconStyle={styles.iconStyle}
+              data={specState}
+              labelField="label"
+              valueField="value"
+              placeholder="Select one or more.."
+              value={selected}
+              onChange={(item) => handleOnChangeSpecs(item)}
+              renderRightIcon={() => (
+                <Ionicons
+                  name="chevron-down-outline"
+                  size={20}
+                  color="#595959"
+                />
+              )}
+              renderItem={renderDataItem}
+              renderSelectedItem={(item, unSelect) => (
+                <View style={{ justifyContent: "center" }}>
+                  <TouchableOpacity onPress={() => unSelect && unSelect(item)}>
+                    <View style={styles.selectedStyle}>
+                      <Text style={styles.textSelectedStyle}>{item.label}</Text>
+                      <AntDesign name="close" size={16} color="#595959" />
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          )}
           {specMsg && <Text style={styles.validation}>{specMsg}</Text>}
         </View>
 
         <View style={styles.subCont}>
-        <View>
-          <Text style={styles.label}>Facility *</Text>
+          <View>
+            <Text style={styles.label}>Facility *</Text>
+          </View>
+          <SelectDropdown
+            renderDropdownIcon={() => (
+              <Ionicons name="chevron-down-outline" size={20} color="#595959" />
+            )}
+            dropdownIconPosition="right"
+            defaultButtonText="Select a facility.."
+            // rowTextStyle={{
+            //   color: "#595959",
+            // }}
+            buttonStyle={styles.btnselectstyle}
+            buttonTextStyle={styles.btnselectxtstyle}
+            dropdownStyle={styles.dropdownHour}
+            rowTextStyle={styles.rows}
+            data={facilityName}
+            onSelect={(selectedItem, index) => {
+              handleChangeFacility(index);
+            }}
+            buttonTextAfterSelection={(selectedItem, index) => {
+              return selectedItem;
+            }}
+            rowTextForSelection={(item, index) => {
+              return item;
+            }}
+          />
         </View>
-        <SelectDropdown
-          renderDropdownIcon={() => (
-            <Ionicons name="chevron-down-outline" size={20} color="#595959" />
-          )}
-          dropdownIconPosition="right"
-          defaultButtonText="Select a facility.."
-          // rowTextStyle={{
-          //   color: "#595959",
-          // }}
-          buttonStyle={styles.btnselectstyle}
-          buttonTextStyle={styles.btnselectxtstyle}
-          dropdownStyle={styles.dropdownHour}
-          rowTextStyle={styles.rows}
-          data={facilityName}
-          onSelect={(selectedItem, index) => {
-            handleChangeFacility(index);
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem;
-          }}
-          rowTextForSelection={(item, index) => {
-            return item;
-          }}
-        />
-      </View>
 
         <View style={styles.subCont}>
           <View>
@@ -301,13 +283,24 @@ function AddForm({
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "70%" }}>
-          <TouchableOpacity onPress={handleClick}>
-            <View style={styles.save}>
-              <Text style={styles.addSite}>Save</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        {!loading ? (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity onPress={handleClick}>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Save</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Saving... </Text>
+                <ActivityIndicator size="small" color="#fff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -355,7 +348,7 @@ const mapDispatchToProps = (dispatch) => {
       specializations,
       // street,
       // address,
-      facilityId,
+      facilityId
       // department,
       // city,
       // dob,
@@ -375,7 +368,7 @@ const mapDispatchToProps = (dispatch) => {
           specializations,
           // street,
           // address,
-          facilityId,
+          facilityId
           // department,
           // city,
           // dob,
@@ -506,6 +499,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
+    flexDirection: "row",
   },
   cancel: {
     borderWidth: 1.5,

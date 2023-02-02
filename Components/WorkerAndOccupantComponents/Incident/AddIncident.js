@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
+  ActivityIndicator
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -23,6 +24,7 @@ function AddIncident({
   getIncidentInfo,
   addIncident,
   facilityId,
+  senderId,
   taskId,
   date,
   ihour,
@@ -203,13 +205,24 @@ function AddIncident({
             </View>
           </TouchableOpacity>
         </View>
-        <View style={{ width: "70%" }}>
-          <TouchableOpacity onPress={handleClick}>
-            <View style={styles.save}>
-              <Text style={styles.addSite}>Send</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        {!loading ? (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity onPress={handleClick}>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Send</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View style={{ width: "70%" }}>
+            <TouchableOpacity>
+              <View style={styles.save}>
+                <Text style={styles.addSite}>Sending... </Text>
+                <ActivityIndicator size="small" color="#fff" />
+              </View>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   );
@@ -221,6 +234,7 @@ const mapStateToProps = (state) => {
     facilityId: state.AddIncidentR.facilityId,
     taskId: state.AddIncidentR.taskId,
     receiver: state.AddIncidentR.receiver,
+    senderId: state.AddIncidentR.senderId,
     comment: state.AddIncidentR.comment,
     error: state.AddIncidentR.error,
     loading: state.AddIncidentR.loading,
@@ -391,6 +405,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
+    flexDirection:"row"
   },
   cancel: {
     borderWidth: 1.5,
