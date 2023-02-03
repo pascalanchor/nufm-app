@@ -106,10 +106,9 @@ function LoginForm({
     submitLogin(email, password);
     // console.log(email,password)
   };
-  useEffect(() => {
-    getLoginInfo("error","");
-    // console.log(fName, ntoken);
-  });
+  // useEffect(() => {
+  //   // console.log(fName, ntoken);
+  // });
 
   return (
     <View style={styles.container}>
