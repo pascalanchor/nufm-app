@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import {AntDesign } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import Buttons from "../../Components/SharedComponents/Buttons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -46,6 +46,8 @@ function LoginForm({
       const fn = await AsyncStorage.getItem("fullName");
       if (fn !== null) {
         setFname(fn);
+        console.log("----------------");
+        console.log(fName);
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -58,8 +60,8 @@ function LoginForm({
       if (nt !== null) {
         setNtoken(nt);
       }
-      // console.log("0000000000000000000")
-      // console.log(ntoken)
+      console.log("----------------");
+      console.log(ntoken);
     } catch (e) {
       alert("Failed to fetch the token from storage");
     }
@@ -107,8 +109,8 @@ function LoginForm({
     // console.log(email,password)
   };
   // useEffect(() => {
-  //   // console.log(fName, ntoken);
-  // });
+  //   console.log(fName, ntoken);
+  // },[]);
 
   return (
     <View style={styles.container}>
@@ -136,8 +138,8 @@ function LoginForm({
           <AntDesign name="checkcircle" size={24} color="#D60C0C" />
           <Text style={styles.errorTxt}>{error}</Text>
         </View>
-      )} 
-      {/* <Buttons text="Login" onPress={()=> navigation.navigate("Worker/Home")} /> */}
+      )}
+      {/* <Buttons text="Login" onPress={()=> navigation.navigate("Home")} /> */}
       <Buttons text="Login" onPress={submitForm} loading={loading} />
     </View>
   );

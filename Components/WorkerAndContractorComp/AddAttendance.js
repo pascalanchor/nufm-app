@@ -56,6 +56,10 @@ function AddAttendance({
   };
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
+  const [disableCheck, setDisableCheck] = useState(false);
+  const [disableCheck2, setDisableCheck2] = useState(false)
+
+
   const [checkType, setCheckType] = useState("");
   const [selected, setSelected] = useState([]);
 
@@ -89,10 +93,12 @@ function AddAttendance({
       setLat(JSON.stringify(location.coords.latitude));
       setLong(JSON.stringify(location.coords.longitude));
       setToggleCheckBox(value);
+      setDisableCheck2(true);
     } else {
       setLat("");
       setLong("");
       setToggleCheckBox(value);
+      setDisableCheck2(false);
     }
   };
 
@@ -102,10 +108,12 @@ function AddAttendance({
       setLat(JSON.stringify(location.coords.latitude));
       setLong(JSON.stringify(location.coords.longitude));
       setToggleCheckBox2(value);
+      setDisableCheck(true);
     } else {
       setLat("");
       setLong("");
       setToggleCheckBox2(value);
+      setDisableCheck(false);
     }
   };
 
@@ -180,7 +188,7 @@ function AddAttendance({
       <View style={styles.checkboxes}>
         <View style={styles.checkAlign}>
           <CheckBox
-            disabled={false}
+            disabled={disableCheck}
             color="#309694"
             style={{ borderRadius: 4, color: "#309694" }}
             value={toggleCheckBox}
@@ -191,7 +199,7 @@ function AddAttendance({
         </View>
         <View style={styles.checkAlign}>
           <CheckBox
-            disabled={false}
+            disabled={disableCheck2}
             color="#309694"
             style={{ borderRadius: 4, color: "#309694" }}
             value={toggleCheckBox2}

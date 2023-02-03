@@ -57,7 +57,7 @@ function AttendanceTable({
                 <View style={styles.headTitle}>
                   <Text style={styles.header1}>Name</Text>
                 </View>
-                <View style={styles.headTitle}>
+                <View style={styles.headTitle2}>
                   <Text style={styles.header2}>Facility</Text>
                 </View>
                 <View style={styles.headTitle3}>
@@ -85,7 +85,7 @@ function AttendanceTable({
                   <View style={styles.details}>
                     <Text style={styles.txt}> {item.user.fullName}</Text>
                   </View>
-                  <View style={styles.details}>
+                  <View style={styles.details2}>
                     <Text style={styles.Facility}>{item.facility.name}</Text>
                   </View>
                   <View style={styles.details3}>
@@ -144,11 +144,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: "5%",
   },
   headTitle: {
-    width: "30%",
+    width: "35%",
+    alignItems: "center",
+  },
+  headTitle2: {
+    width: "35%",
     alignItems: "center",
   },
   headTitle3: {
-    width: "40%",
+    width: "30%",
     alignItems: "center",
   },
   header1: {
@@ -164,7 +168,7 @@ const styles = StyleSheet.create({
     color: "#535353",
     width: "100%",
     textAlign: "left",
-    paddingLeft: "8%",
+    // paddingLeft: "8%",
   },
   header3: {
     fontWeight: "bold",
@@ -186,7 +190,6 @@ const styles = StyleSheet.create({
     color: "#9A9999",
     fontSize: RFPercentage(1.3),
     textAlign: "left",
-
     width: "100%",
   },
   Email: {
@@ -200,8 +203,9 @@ const styles = StyleSheet.create({
     fontSize: RFPercentage(1.3),
     width: "100%",
     textAlign: "left",
-    paddingLeft: "10%",
+    // paddingLeft: "10%",
   },
-  details: { width: "40%", alignItems: "center" },
-  details3: { width: "40%", alignItems: "center" },
+  details: { width: "34%", alignItems: "center" },
+  details2: { width: "34%", alignItems: "center" },
+  details3: { width: "29%", alignItems: "center" },
 });

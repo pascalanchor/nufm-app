@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -37,6 +38,7 @@ import {
   OrderO,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
@@ -58,9 +60,6 @@ export default function LoginNavigation() {
           <Stack.Screen name="Login" component={Login} />
 
           {/* Admin Nav */}
-          <Stack.Screen name="Reset">
-            {(props) => <Reset {...props} link="" />}
-          </Stack.Screen>
           <Stack.Screen name="Home">
             {(props) => <Home {...props} link="" />}
           </Stack.Screen>
@@ -115,11 +114,11 @@ export default function LoginNavigation() {
           <Stack.Screen name="OrderDetails">
             {(props) => <OrderDet {...props} link="" />}
           </Stack.Screen>
+          <Stack.Screen name="Reset">
+            {(props) => <Reset {...props} link="" />}
+          </Stack.Screen>
 
           {/* ------------Contractor Nav-------------  */}
-          <Stack.Screen name="Contractor/Reset">
-            {(props) => <Reset {...props} link="Contractor/" />}
-          </Stack.Screen>
           <Stack.Screen name="Contractor/Home">
             {(props) => <ContractorHome {...props} link="Contractor/" />}
           </Stack.Screen>
@@ -178,10 +177,10 @@ export default function LoginNavigation() {
           <Stack.Screen name="Contractor/OrderDetails">
             {(props) => <OrderDet {...props} link="Contractor/" />}
           </Stack.Screen>
-          {/*--------------- Worker Nav ------------- */}
-          <Stack.Screen name="Worker/Reset">
-            {(props) => <Reset {...props} link="Worker/" />}
+          <Stack.Screen name="Contractor/Reset">
+            {(props) => <Reset {...props} link="Contractor/" />}
           </Stack.Screen>
+          {/*--------------- Worker Nav ------------- */}
           <Stack.Screen name="Worker/Home">
             {(props) => <WorkerHome {...props} link="Worker/" />}
           </Stack.Screen>
@@ -222,11 +221,11 @@ export default function LoginNavigation() {
           <Stack.Screen name="Worker/OrderDetails">
             {(props) => <OrderDet {...props} link="Worker/" />}
           </Stack.Screen>
+          <Stack.Screen name="Worker/Reset">
+            {(props) => <Reset {...props} link="Worker/" />}
+          </Stack.Screen>
 
           {/*----------- Occupant Nav ------------------- */}
-          <Stack.Screen name="Occupant/Reset">
-            {(props) => <Reset {...props} link="Occupant/" />}
-          </Stack.Screen>
           <Stack.Screen name="Occupant/Home">
             {(props) => <OccupantHome {...props} link="Occupant/" />}
           </Stack.Screen>
@@ -271,6 +270,9 @@ export default function LoginNavigation() {
           </Stack.Screen>
           <Stack.Screen name="Occupant/OrderDetails">
             {(props) => <OrderDet {...props} link="Occupant/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Occupant/Reset">
+            {(props) => <Reset {...props} link="Occupant/" />}
           </Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>

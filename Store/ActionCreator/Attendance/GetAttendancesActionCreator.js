@@ -9,14 +9,22 @@ export const getAttendances = () => {
     var link = server + privatePath + "/attendances";
     axios
       .get(link, {
-        headers: {/*'Authorization': token,*/},})
+        headers: {
+          /*'Authorization': token,*/
+        },
+      })
       .then((res) => {
         dispatch(getAttendancesEnd(res.data));
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         dispatch(getAttendancesFail(err));
       });
+    //   dispatch(getAttendancesEnd([{
+    //     user:{fullName:"Janaaa", nb:"1"},
+    //     facility:{name:"facone", nb:"2"},
+    //     task:{name:"taskkkk", nb:"3"},
+    // }]))
   };
 };
 

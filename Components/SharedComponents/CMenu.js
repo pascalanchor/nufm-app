@@ -21,8 +21,17 @@ import Support from "../../assets/Support.png";
 import Login from "../../assets/Login.png";
 import NUFM from "../../assets/NUFM.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { connect } from "react-redux";
+import * as LoginActionCreators from "../../Store/ActionCreator/Login/LoginActionCreator";
 
-export default function CMenu({ link, modalVisible, setModal }) {
+function CMenu({
+  link,
+  modalVisible,
+  setModal,
+  error,
+  token,
+  getLoginInfo,
+}) {
   const navigation = useNavigation();
   // useEffect(()=>{
   //   console.log(link)
@@ -106,6 +115,26 @@ export default function CMenu({ link, modalVisible, setModal }) {
     fN();
     // console.log(adminName);
   }, []);
+
+  // const clearStorage = async () => {
+  //   try {
+  //     await AsyncStorage.clear();
+  //     alert('Storage successfully cleared!');
+  //   } catch (e) {
+  //     alert("Failed to clear the async storage.");
+  //   }
+  // };
+
+  // const handleClick = () => {
+  //   clearStorage();
+  //   setModal(false);
+  //   getLoginInfo("fullName", "");
+  //   getLoginInfo("password", "");
+  //   getLoginInfo("error", "");
+  //   getLoginInfo("email","");
+  //   setTimeout(() => navigation.navigate("Login"), 1000);
+  // };
+
   return (
     <Modal animationType="fade" transparent={true} visible={modalVisible}>
       <TouchableWithoutFeedback onPress={() => setModal(false)}>
@@ -148,7 +177,10 @@ export default function CMenu({ link, modalVisible, setModal }) {
                   alignItems: "center",
                 }}
               >
-                <TouchableOpacity style={styles.logout}>
+                <TouchableOpacity
+                  style={styles.logout}
+                  // onPress={handleClick}
+                >
                   <View style={styles.flexlog}>
                     <MaterialCommunityIcons
                       name="logout"
@@ -177,6 +209,31 @@ export default function CMenu({ link, modalVisible, setModal }) {
     </Modal>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    email: state.LoginR.email,
+    roles: state.LoginR.roles,
+    password: state.LoginR.password,
+    fullName: state.LoginR.fullName,
+    token: state.LoginR.token,
+    profileImage: state.LoginR.profileImage,
+    phone: state.LoginR.phone,
+    loading: state.LoginR.loading,
+    creationDate: state.LoginR.creationDate,
+    message: state.LoginR.message,
+    error: state.LoginR.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLoginInfo: (name, value) =>
+      dispatch(LoginActionCreators.getLoginInfo(name, value)),
+    submitLogin: (email, password) =>
+      dispatch(LoginActionCreators.submitLogin(email, password)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CMenu);
 
 const styles = StyleSheet.create({
   container: {
