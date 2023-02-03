@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { ScrollView } from "react-native-virtualized-view";
@@ -9,6 +9,9 @@ import SearchInput from "../../Components/SharedComponents/SearchInput";
 import TabPannel from "../../Components/AdminContractorComponents/Communication/TabPannel";
 
 export default function Communication({link}) {
+  useEffect(()=>{
+    console.log(link)
+  },[])
   const [searchVal, setSearchVal] = useState("");
 
   const [modalVisible, setModalVisible] = useState(false);

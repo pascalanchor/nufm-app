@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native-virtualized-view";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -20,6 +20,7 @@ import Risk from "../../assets/Risk.png";
 import Support from "../../assets/Support.png";
 import Login from "../../assets/Login.png";
 import NUFM from "../../assets/NUFM.png";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CMenu({ link, modalVisible, setModal }) {
   const navigation = useNavigation();
@@ -89,6 +90,22 @@ export default function CMenu({ link, modalVisible, setModal }) {
       link: navToSupport,
     },
   ];
+  const [adminName, setAdminName] = useState("");
+  const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("fullName");
+      if (adname !== null) {
+        setAdminName(adname);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
+
+  useEffect(() => {
+    fN();
+    // console.log(adminName);
+  }, []);
   return (
     <Modal animationType="fade" transparent={true} visible={modalVisible}>
       <TouchableWithoutFeedback onPress={() => setModal(false)}>
@@ -96,7 +113,7 @@ export default function CMenu({ link, modalVisible, setModal }) {
           <View style={styles.subCont}>
             <View style={styles.txtImg}>
               <Image source={NUFM} style={styles.img} />
-              <Text style={styles.txt}>Welcome, John</Text>
+              <Text style={styles.txt}>Welcome, {adminName}</Text>
             </View>
             <View style={styles.flexView}>
               <View>

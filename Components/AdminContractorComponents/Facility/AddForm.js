@@ -57,14 +57,31 @@ function AddForm({
   const [streetMsg, setStreetMsg] = useState("");
   const [codeMsg, setCodeMsg] = useState("");
   const [yearMsg, setYearMsg] = useState("");
-  const [dateMsg, setDateMsg] = useState("");
   const [descMsg, setDescMsg] = useState("");
 
-  const types = ["Education", "Retail"];
+  const types = [
+    "Aged Care",
+    " Education",
+    "Commercial",
+    "Industrial",
+    "Clubs",
+    "Health",
+    "Strata",
+    "Apartments",
+    "Student Accommodation",
+    "Hotel 5 Star",
+    "Hotel 4 Star",
+    "Hotel 3 Star",
+    "Hotel 2 Star and below",
+    "Retail - Shopping Centre",
+    "Retail - Store",
+    "Entertainment - Theatre",
+    "Entertainment - Venue",
+  ];
 
   const navigation = useNavigation();
   useEffect(() => {
-    console.log(link)
+    console.log(link);
     getAllParent();
     getFacilityInfo("name", "");
     getFacilityInfo("parentId", "");
@@ -126,11 +143,6 @@ function AddForm({
   };
 
   const handleChangeDate = (n, e) => {
-    if (e.length < 1) {
-      setDateMsg("Please Enter a valid Date");
-    } else {
-      setDateMsg("");
-    }
     getFacilityInfo("date_opened", e);
   };
 
@@ -185,10 +197,6 @@ function AddForm({
     }
     if (+const_year < 0 || const_year.length !== 4) {
       setYearMsg("Please Enter a Year");
-      submit = false;
-    }
-    if (!date_opened) {
-      setDateMsg("Please Select a Date");
       submit = false;
     }
     if (!street) {
@@ -360,18 +368,17 @@ function AddForm({
       <View style={styles.subCont}>
         {Platform.OS === "android" ? (
           <DatePickerAndroid
-            label="Date Opened *"
+            label="Establishment Date"
             handleOnChange={handleChangeDate}
             name="date_opened"
           />
         ) : (
           <DatePickerIOS
-            label="Date Opened *"
+            label="Establishment Date"
             handleOnChange={handleChangeDate}
             name="date_opened"
           />
         )}
-        {dateMsg && <Text style={styles.validation}>{dateMsg}</Text>}
       </View>
 
       <View style={styles.subCont}>

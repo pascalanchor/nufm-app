@@ -33,6 +33,8 @@ import {
   OccupantHome,
   AddOrder,
   AddRisk,
+  RiskO,
+  OrderO,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 

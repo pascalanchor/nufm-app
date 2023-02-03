@@ -218,7 +218,7 @@ function AddStep3({
           <View key={i + 1} style={styles.multi}>
             <View style={styles.subCont}>
               <View>
-                <Text style={styles.label}>Name</Text>
+                <Text style={styles.label}>Name *</Text>
               </View>
               <TextInput
                 style={styles.input}
@@ -230,7 +230,7 @@ function AddStep3({
             </View>
             <View style={styles.subCont}>
               <View>
-                <Text style={styles.label}>Phone Number</Text>
+                <Text style={styles.label}>Phone Number *</Text>
               </View>
               <TextInput
                 style={styles.input}
@@ -242,7 +242,7 @@ function AddStep3({
             </View>
             <View style={styles.subCont}>
               <View>
-                <Text style={styles.label}>Email</Text>
+                <Text style={styles.label}>Email *</Text>
               </View>
               <TextInput
                 style={styles.input}

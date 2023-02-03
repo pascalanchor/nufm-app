@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -24,14 +24,9 @@ function LoginForm({
   submitLogin,
 }) {
   const navigation = useNavigation();
-
-  const handleOnChange = (value, name) => {
-    getLoginInfo(name, value);
-  };
-
-  const submitForm = () => {
-    submitLogin(email, password);
-  };
+  let STORAGE_KEY = "@user_token";
+  const [fName, setFname] = useState("");
+  const [ntoken, setNtoken] = useState("");
 
   const saveData = async () => {
     try {
@@ -47,7 +42,10 @@ function LoginForm({
 
   const fN = async () => {
     try {
-      await AsyncStorage.getItem("fullName");
+      const fn = await AsyncStorage.getItem("fullName");
+      if (fn !== null) {
+        setFname(fn);
+      }
     } catch (e) {
       alert("Failed to fetch the input from storage");
     }
@@ -55,14 +53,21 @@ function LoginForm({
 
   const nT = async () => {
     try {
-      await AsyncStorage.getItem("nufmtoken");
+      const nt = await AsyncStorage.getItem("nufmtoken");
+      if (nt !== null) {
+        setNtoken(nt);
+      }
+      // console.log("0000000000000000000")
+      // console.log(ntoken)
     } catch (e) {
       alert("Failed to fetch the token from storage");
     }
   };
 
   useEffect(() => {
-    if (fN !== fullName && nT !== token) {
+    nT();
+    fN();
+    if (fName !== fullName && ntoken !== token) {
       saveData();
     } else {
     }
@@ -72,25 +77,37 @@ function LoginForm({
     const role = roles[0];
     switch (role) {
       case "ROLE_WORKER":
-        navigation.navigate("Worker/Home");
+        setTimeout(() => navigation.navigate("Worker/Home"), 3000);
         break;
       case "ROLE_ADMIN":
-        navigation.navigate("Home");
+        setTimeout(() => navigation.navigate("Home"), 3000);
         break;
       case "ROLE_OCCUPANT":
-        navigation.navigate("Occupant/Home");
+        setTimeout(() => navigation.navigate("Occupant/Home"), 3000);
         break;
       case "ROLE_CONTRACTOR":
-        navigation.navigate("Contractor/Home");
+        setTimeout(() => navigation.navigate("Contractor/Home"), 3000);
         break;
       case "ROLE_OWNER":
-        navigation.navigate("Owner");
+        setTimeout(() => navigation.navigate("Owner"), 3000);
         break;
       default:
-        navigation.navigate("Landing");
+        setTimeout(() => navigation.navigate("Landing"), 3500);
         break;
     }
   }
+
+  const handleOnChange = (value, name) => {
+    getLoginInfo(name, value);
+  };
+
+  const submitForm = () => {
+    submitLogin(email, password);
+    // console.log(email,password)
+  };
+  // useEffect(() => {
+  //   console.log(fName, ntoken);
+  // });
 
   return (
     <View style={styles.container}>
@@ -114,7 +131,7 @@ function LoginForm({
         />
       </View>
       {/* <Buttons text="Login" onPress={()=> navigation.navigate("Worker/Home")} /> */}
-      <Buttons text="Login" onPress={submitForm} />
+      <Buttons text="Login" onPress={submitForm} loading={loading} />
     </View>
   );
 }

@@ -26,8 +26,8 @@ export default function DatePickerAndroid({ label, handleOnChange, name }) {
 
   function onDateSelected(event, value) {
     handleOnChange(name,value)
-    setDate(value);
     setDatePicker(false);
+    setDate(value);
   }
   return (
     <View>
