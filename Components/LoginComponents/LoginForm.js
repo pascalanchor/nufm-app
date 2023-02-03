@@ -46,8 +46,8 @@ function LoginForm({
       const fn = await AsyncStorage.getItem("fullName");
       if (fn !== null) {
         setFname(fn);
-        console.log("----------------");
-        console.log(fName);
+        // console.log("----------------");
+        // console.log(fName);
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -60,16 +60,16 @@ function LoginForm({
       if (nt !== null) {
         setNtoken(nt);
       }
-      console.log("----------------");
-      console.log(ntoken);
+      // console.log("----------------");
+      // console.log(ntoken);
     } catch (e) {
       alert("Failed to fetch the token from storage");
     }
   };
 
   useEffect(() => {
-    nT();
     fN();
+    nT();
     if (fName !== fullName && ntoken !== token) {
       saveData();
     } else {
@@ -107,9 +107,11 @@ function LoginForm({
   const submitForm = () => {
     submitLogin(email, password);
     // console.log(email,password)
+    console.log({"fullname":fName, "token": ntoken});
+
   };
   // useEffect(() => {
-  //   console.log(fName, ntoken);
+    // console.log(fName, ntoken);
   // },[]);
 
   return (
