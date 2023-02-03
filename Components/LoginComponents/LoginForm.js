@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import {AntDesign } from "@expo/vector-icons";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import Buttons from "../../Components/SharedComponents/Buttons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -105,9 +106,10 @@ function LoginForm({
     submitLogin(email, password);
     // console.log(email,password)
   };
-  // useEffect(() => {
-  //   console.log(fName, ntoken);
-  // });
+  useEffect(() => {
+    getLoginInfo("error","");
+    // console.log(fName, ntoken);
+  });
 
   return (
     <View style={styles.container}>
@@ -130,6 +132,12 @@ function LoginForm({
           onChangeText={(value) => handleOnChange(value, "password")}
         />
       </View>
+      {error && (
+        <View style={styles.errorMsg}>
+          <AntDesign name="checkcircle" size={24} color="#D60C0C" />
+          <Text style={styles.errorTxt}>{error}</Text>
+        </View>
+      )} 
       {/* <Buttons text="Login" onPress={()=> navigation.navigate("Worker/Home")} /> */}
       <Buttons text="Login" onPress={submitForm} loading={loading} />
     </View>
@@ -193,5 +201,20 @@ const styles = StyleSheet.create({
   inputs: {
     width: "100%",
     marginBottom: "8%",
+  },
+  errorMsg: {
+    marginHorizontal: "5%",
+    marginBottom: "3%",
+    backgroundColor: "#F9B7B7",
+    flexDirection: "row",
+    padding: "3.5%",
+    borderRadius: 12,
+    alignItems: "center",
+    width: "87%",
+  },
+  errorTxt: {
+    fontWeight: "bold",
+    paddingHorizontal: "4%",
+    color: "#D60C0C",
   },
 });
