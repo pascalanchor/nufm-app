@@ -1,6 +1,9 @@
 import axios from "axios";
 import * as actionTypes from "../../Actions/Actions";
 import { server , privatePath} from "../Constants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState } from "react";
+
 
 export const getOrderInfo = (name, value) => {
   return {
@@ -10,19 +13,36 @@ export const getOrderInfo = (name, value) => {
   };
 };
 
+var semail = "";
+
+
+const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("email");
+      if (adname !== null) {
+        semail = adname;
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
+
 export const addOrder = (senderId,receiverId,email,phoneNumber,facilityId,date,orderContent, comment) => {
+  fN();
   return (dispatch) => {
     dispatch(addOrderStart());
 
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "senderId": "houssam11998877@gmail.com",
+      "senderId": senderId,
       "receiverId": receiverId,
       "facilityId": facilityId,
       "orderContent": orderContent,
       "comment": comment
     }
+
+    console.log(params);
 
     var link = server +  privatePath + "/order";
     axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})

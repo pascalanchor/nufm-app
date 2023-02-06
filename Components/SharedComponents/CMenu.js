@@ -116,24 +116,20 @@ function CMenu({
     // console.log(adminName);
   }, []);
 
-  // const clearStorage = async () => {
-  //   try {
-  //     await AsyncStorage.clear();
-  //     alert('Storage successfully cleared!');
-  //   } catch (e) {
-  //     alert("Failed to clear the async storage.");
-  //   }
-  // };
+  const clearStorage = async () => {
+    try {
+      await AsyncStorage.clear();
+      // alert('Storage successfully cleared!');
+    } catch (e) {
+      // alert("Failed to clear the async storage.");
+    }
+  };
 
-  // const handleClick = () => {
-  //   clearStorage();
-  //   setModal(false);
-  //   getLoginInfo("fullName", "");
-  //   getLoginInfo("password", "");
-  //   getLoginInfo("error", "");
-  //   getLoginInfo("email","");
-  //   setTimeout(() => navigation.navigate("Login"), 1000);
-  // };
+  const handleClick = () => {
+    clearStorage();
+    setModal(false);
+    setTimeout(() => navigation.navigate("Login"), 1000);
+  };
 
   return (
     <Modal animationType="fade" transparent={true} visible={modalVisible}>
@@ -179,7 +175,7 @@ function CMenu({
               >
                 <TouchableOpacity
                   style={styles.logout}
-                  // onPress={handleClick}
+                  onPress={handleClick}
                 >
                   <View style={styles.flexlog}>
                     <MaterialCommunityIcons

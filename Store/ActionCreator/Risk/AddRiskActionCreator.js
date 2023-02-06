@@ -17,7 +17,7 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "senderId": "janjoune.9@gmail.com",
+      "senderId": senderId,
       "facilityId": facilityId,
       "risk": risk,
       "comment": comment

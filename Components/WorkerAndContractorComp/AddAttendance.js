@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import * as AddAttendanceActionCreator from "../../Store/ActionCreator/Attendance/AddAttendanceActionCreator";
 import * as GetFacilitiesActionCreator from "../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
 import * as GetTasksActionCreator from "../../Store/ActionCreator/Task/GetTasksActionCreator";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function AddAttendance({
   link,
@@ -38,6 +39,7 @@ function AddAttendance({
   getAllTaskInfo,
 }) {
   useEffect(() => {
+    fN();
     getFacilities();
     getAllTaskInfo();
     getAttendanceInfo("facility", "");
@@ -48,6 +50,18 @@ function AddAttendance({
     getAttendanceInfo("task", "");
     getAttendanceInfo("error", "");
   }, []);
+
+  const [semail, setSEmail] = useState("");
+  const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("email");
+      if (adname !== null) {
+        setSEmail(adname);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
   const siteName = Facilities.map((fn) => fn.name);
   const Tasks = tasks.map((wr) => wr.name);
 
@@ -69,7 +83,7 @@ function AddAttendance({
   const [long, setLong] = useState("");
 
   const handleClick = () => {
-    addAttendance(facility, user, task, checkType, long, latitude);
+    addAttendance(facility, semail, task, checkType, long, latitude);
     // console.log(checkType);
     // console.log(latitude);
   };

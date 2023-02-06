@@ -18,7 +18,7 @@ export const addAttendance = (facility , user,task,type,lng,lat) => {
 
     const params = { 
       "facility": facility,
-      "user":"janjoune.97@hotmail.com",
+      "user":user,
       "task":task,
       "type":type,
       "lng": lng,

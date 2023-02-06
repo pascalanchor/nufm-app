@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 import * as AddIncidentActionCreator from "../../../Store/ActionCreator/Incident/AddIncidentActionCreator";
 import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
 import * as GetTasksActionCreator from "../../../Store/ActionCreator/Task/GetTasksActionCreator";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function AddIncident({
   getIncidentInfo,
@@ -38,6 +39,7 @@ function AddIncident({
   getAllTaskInfo,
 }) {
   useEffect(() => {
+    fN();
     getFacilities();
     getAllTaskInfo();
     getIncidentInfo("facilityId", "");
@@ -48,6 +50,19 @@ function AddIncident({
     getIncidentInfo("comment", "");
     getIncidentInfo("error", "");
   }, []);
+
+  const [semail, setSEmail] = useState("");
+  const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("email");
+      if (adname !== null) {
+        setSEmail(adname);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
+
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
   const Tasks = tasks.map((wr) => wr.name);
@@ -61,7 +76,7 @@ function AddIncident({
   };
 
   const handleClick = () => {
-    addIncident(senderId, facilityId, taskId, date, ihour, incident, comment);
+    addIncident(semail, facilityId, taskId, date, ihour, incident, comment);
   };
 
   const handleOnChangeTask = (i) =>{

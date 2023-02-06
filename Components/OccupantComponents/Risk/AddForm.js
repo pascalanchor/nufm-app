@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 import * as AddRiskActionCreator from "../../../Store/ActionCreator/Risk/AddRiskActionCreator";
 import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
 import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function AddRiskO({
   getRiskInfo,
@@ -35,6 +36,7 @@ function AddRiskO({
   parent,
 }) {
   useEffect(() => {
+    fN();
     getFacilities();
     getAllParent();
     getRiskInfo("senderId", "");
@@ -43,6 +45,18 @@ function AddRiskO({
     getRiskInfo("comment", "");
     getRiskInfo("error", "");
   }, []);
+
+  const [semail, setSEmail] = useState("");
+  const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("email");
+      if (adname !== null) {
+        setSEmail(adname);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
 
@@ -55,7 +69,7 @@ function AddRiskO({
   }
 
   const handleClick = () => {
-    addRisk(senderId, facilityId, risk, comment);
+    addRisk(semail, facilityId, risk, comment);
   };
   return (
     <View style={styles.initialCont}>

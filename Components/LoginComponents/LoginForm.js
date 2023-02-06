@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation , useFocusEffect} from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { AntDesign } from "@expo/vector-icons";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import Buttons from "../../Components/SharedComponents/Buttons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { connect } from "react-redux";
 import * as LoginActionCreators from "../../Store/ActionCreator/Login/LoginActionCreator";
 
@@ -28,6 +29,25 @@ function LoginForm({
   let STORAGE_KEY = "@user_token";
   const [fName, setFname] = useState("");
   const [ntoken, setNtoken] = useState("");
+
+  const onLoadFunc = () =>{
+    setFname("");
+    setNtoken("");
+    getLoginInfo("fullName", "");
+    getLoginInfo("password", "");
+    getLoginInfo("error", "");
+    getLoginInfo("email","");
+    getLoginInfo("roles","");
+    getLoginInfo("profileImage","");
+    getLoginInfo("token","");
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      onLoadFunc();
+    }, [])
+    
+  );
 
   const saveData = async () => {
     try {
@@ -80,22 +100,36 @@ function LoginForm({
     const role = roles[0];
     switch (role) {
       case "ROLE_WORKER":
-        setTimeout(() => navigation.navigate("Worker/Home"), 3000);
+        setTimeout(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Worker/Home")}, 3000);
         break;
       case "ROLE_ADMIN":
-        setTimeout(() => navigation.navigate("Home"), 3000);
+        setTimeout(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Home");
+
+      }, 3000);
         break;
       case "ROLE_OCCUPANT":
-        setTimeout(() => navigation.navigate("Occupant/Home"), 3000);
+        setTimeout(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Occupant/Home")}, 3000);
         break;
       case "ROLE_CONTRACTOR":
-        setTimeout(() => navigation.navigate("Contractor/Home"), 3000);
+        setTimeout(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Contractor/Home")}, 3000);
         break;
       case "ROLE_OWNER":
-        setTimeout(() => navigation.navigate("Owner"), 3000);
+        setTimeout(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Owner")}, 3000);
         break;
       default:
-        setTimeout(() => navigation.navigate("Landing"), 3500);
+        setTimeout(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Landing")}, 3500);
         break;
     }
   }
@@ -105,6 +139,7 @@ function LoginForm({
   };
 
   const submitForm = () => {
+    getLoginInfo("loading", true)
     submitLogin(email, password);
     // console.log(email,password)
     console.log({"fullname":fName, "token": ntoken});

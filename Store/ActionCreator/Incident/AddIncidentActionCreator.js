@@ -17,7 +17,7 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
 
     const params = { 
-      "senderId":"janjoune.9@gmail.com",
+      "senderId":senderId,
       "facilityId": facilityId,
       "taskId": taskId,
       "date":date,

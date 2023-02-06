@@ -12,6 +12,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { connect } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as AddOrderActionCreator from "../../../Store/ActionCreator/Order/AddOrderActionCreator";
 import * as GetFacilitiesActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
 import * as GetFacParentActionCreator from "../../../Store/ActionCreator/Fcaility/GetFacParentActionCreator";
@@ -38,6 +39,7 @@ function AddForm({
   getWorkers,
 }) {
   useEffect(() => {
+    fN();
     getFacilities();
     getAllParent();
     getWorkers();
@@ -49,6 +51,7 @@ function AddForm({
     getOrderInfo("orderContent", "");
     getOrderInfo("comment", "");
     getOrderInfo("error", "");
+   
   }, []);
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
@@ -67,10 +70,23 @@ function AddForm({
 
   };
 
+  const [semail, setSEmail] = useState("");
+  const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("email");
+      if (adname !== null) {
+        setSEmail(adname);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
+
 
   const handleClick = () => {
+    // console.log(semail);
     addOrder(
-      senderId,
+      semail,
       receiverId,
       email,
       phoneNumber,
@@ -106,9 +122,6 @@ function AddForm({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a site.."
-            rowTextStyle={{
-              color: "#595959",
-            }}
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
@@ -137,9 +150,6 @@ function AddForm({
             )}
             dropdownIconPosition="right"
             defaultButtonText=" "
-            rowTextStyle={{
-              color: "#595959",
-            }}
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
