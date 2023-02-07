@@ -39,7 +39,7 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err.response.data)
         dispatch(addIncidentFail(err));
       });
   };

@@ -66,7 +66,7 @@ export const addFacility = (
         }
       })
       .catch((err) => {
-       console.log(err.message)
+       console.log(err.response.data)
         dispatch(addFacilityFail(err));
       });
   };

@@ -43,7 +43,7 @@ export const submitLogin = (username, password) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
         dispatch(loginFail(err));
       });
   };

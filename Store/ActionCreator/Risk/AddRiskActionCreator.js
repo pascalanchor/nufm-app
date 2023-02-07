@@ -34,7 +34,7 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err.response.data)
         dispatch(addRiskFail(err));
       });
   };

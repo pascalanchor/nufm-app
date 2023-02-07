@@ -103,7 +103,7 @@ function AddForm({
 
   const [specState, setSpecState] = useState([]);
   useEffect(() => {
-    if (spec.length > 0) {
+    // if (spec.length > 0) {
       var arrSpec = [];
       for (let i = 0; i < spec.length; i++) {
         var obj = { label: spec[i].label, value: spec[i].eid };
@@ -111,7 +111,7 @@ function AddForm({
       }
 
       setSpecState(arrSpec);
-    }
+    // }
   }, [spec]);
 
   const handleChangeFacility = (index) => {

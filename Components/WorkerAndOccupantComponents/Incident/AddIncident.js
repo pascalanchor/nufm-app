@@ -49,6 +49,8 @@ function AddIncident({
     getIncidentInfo("incident", "");
     getIncidentInfo("comment", "");
     getIncidentInfo("error", "");
+    console.log(semail)
+
   }, []);
 
   const [semail, setSEmail] = useState("");
@@ -57,6 +59,7 @@ function AddIncident({
       const adname = await AsyncStorage.getItem("email");
       if (adname !== null) {
         setSEmail(adname);
+        // console.log(semail)
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");

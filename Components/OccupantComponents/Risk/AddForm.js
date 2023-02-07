@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -64,12 +64,13 @@ function AddRiskO({
     getRiskInfo(name, value);
   };
 
-  const handleOnChangeFacility = (i)=>{
-    getRiskInfo("facilityId",Facilities[i].eid);
-  }
+  const handleOnChangeFacility = (i) => {
+    getRiskInfo("facilityId", Facilities[i].eid);
+  };
 
   const handleClick = () => {
     addRisk(semail, facilityId, risk, comment);
+    console.log(semail, facilityId, risk, comment);
   };
   return (
     <View style={styles.initialCont}>
@@ -313,7 +314,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
-    flexDirection:"row"
+    flexDirection: "row",
   },
   cancel: {
     borderWidth: 1.5,

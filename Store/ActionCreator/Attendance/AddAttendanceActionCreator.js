@@ -36,7 +36,7 @@ export const addAttendance = (facility , user,task,type,lng,lat) => {
         }
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err.response.data)
         dispatch(addAttendanceFail(err));
       });
   };

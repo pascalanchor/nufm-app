@@ -38,6 +38,19 @@ function AddAttendance({
   tasks,
   getAllTaskInfo,
 }) {
+
+  const [semail, setSEmail] = useState("");
+  const fN = async () => {
+    try {
+      const adname = await AsyncStorage.getItem("email");
+      if (adname !== null) {
+        setSEmail(adname);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
+
   useEffect(() => {
     fN();
     getFacilities();
@@ -51,17 +64,6 @@ function AddAttendance({
     getAttendanceInfo("error", "");
   }, []);
 
-  const [semail, setSEmail] = useState("");
-  const fN = async () => {
-    try {
-      const adname = await AsyncStorage.getItem("email");
-      if (adname !== null) {
-        setSEmail(adname);
-      }
-    } catch (e) {
-      alert("Failed to fetch the input from storage");
-    }
-  };
   const siteName = Facilities.map((fn) => fn.name);
   const Tasks = tasks.map((wr) => wr.name);
 
@@ -84,6 +86,7 @@ function AddAttendance({
 
   const handleClick = () => {
     addAttendance(facility, semail, task, checkType, long, latitude);
+    console.log(semail);
     // console.log(checkType);
     // console.log(latitude);
   };

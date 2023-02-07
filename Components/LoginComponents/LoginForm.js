@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { useNavigation , useFocusEffect} from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { AntDesign } from "@expo/vector-icons";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
@@ -29,38 +29,63 @@ function LoginForm({
   let STORAGE_KEY = "@user_token";
   const [fName, setFname] = useState("");
   const [ntoken, setNtoken] = useState("");
+  const [rEmail, setEmail] = useState("");
+  const [keys, setKeys] = useState("");
 
-  const onLoadFunc = () =>{
+  const onLoadFunc = () => {
     setFname("");
     setNtoken("");
     getLoginInfo("fullName", "");
     getLoginInfo("password", "");
     getLoginInfo("error", "");
-    getLoginInfo("email","");
-    getLoginInfo("roles","");
-    getLoginInfo("profileImage","");
-    getLoginInfo("token","");
-  }
+    getLoginInfo("email", "");
+    getLoginInfo("roles", "");
+    getLoginInfo("profileImage", "");
+    getLoginInfo("token", "");
+  };
 
   useFocusEffect(
     React.useCallback(() => {
       onLoadFunc();
     }, [])
-    
   );
 
   const saveData = async () => {
     try {
       await AsyncStorage.setItem("fullName", fullName);
       await AsyncStorage.setItem("nufmtoken", token);
-      await AsyncStorage.setItem("profileImage", profileImage);
       await AsyncStorage.setItem("email", email);
+      await AsyncStorage.setItem("profileImage", profileImage);
       await AsyncStorage.setItem("roles", JSON.stringify(roles));
     } catch (e) {
       // alert('Failed to save the data to the storage')
     }
   };
 
+  const kA = async () => {
+    try {
+      const ka = await AsyncStorage.getAllKeys();
+      if (ka !== null) {
+        setKeys(ka);
+        console.log("----------------");
+        console.log(keys);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
+  const eM = async () => {
+    try {
+      const em = await AsyncStorage.getItem("email");
+      if (em !== null) {
+        setEmail(em);
+        // console.log("----------------");
+        // console.log(rEmail);
+      }
+    } catch (e) {
+      alert("Failed to fetch the input from storage");
+    }
+  };
   const fN = async () => {
     try {
       const fn = await AsyncStorage.getItem("fullName");
@@ -90,11 +115,13 @@ function LoginForm({
   useEffect(() => {
     fN();
     nT();
-    if (fName !== fullName && ntoken !== token) {
+    eM();
+    kA();
+    if (fName !== fullName && ntoken !== token && rEmail !== email) {
       saveData();
     } else {
     }
-  }, [fullName, token]);
+  }, [fullName, token, email]);
 
   if (token !== "" && fullName !== "" && roles.length !== 0) {
     const role = roles[0];
@@ -102,34 +129,38 @@ function LoginForm({
       case "ROLE_WORKER":
         setTimeout(() => {
           getLoginInfo("loading", false);
-          navigation.navigate("Worker/Home")}, 3000);
+          navigation.navigate("Worker/Home");
+        }, 3000);
         break;
       case "ROLE_ADMIN":
         setTimeout(() => {
           getLoginInfo("loading", false);
           navigation.navigate("Home");
-
-      }, 3000);
+        }, 3000);
         break;
       case "ROLE_OCCUPANT":
         setTimeout(() => {
           getLoginInfo("loading", false);
-          navigation.navigate("Occupant/Home")}, 3000);
+          navigation.navigate("Occupant/Home");
+        }, 3000);
         break;
       case "ROLE_CONTRACTOR":
         setTimeout(() => {
           getLoginInfo("loading", false);
-          navigation.navigate("Contractor/Home")}, 3000);
+          navigation.navigate("Contractor/Home");
+        }, 3000);
         break;
       case "ROLE_OWNER":
         setTimeout(() => {
           getLoginInfo("loading", false);
-          navigation.navigate("Owner")}, 3000);
+          navigation.navigate("Owner");
+        }, 3000);
         break;
       default:
         setTimeout(() => {
           getLoginInfo("loading", false);
-          navigation.navigate("Landing")}, 3500);
+          navigation.navigate("Landing");
+        }, 3500);
         break;
     }
   }
@@ -139,14 +170,13 @@ function LoginForm({
   };
 
   const submitForm = () => {
-    getLoginInfo("loading", true)
+    getLoginInfo("loading", true);
     submitLogin(email, password);
     // console.log(email,password)
-    console.log({"fullname":fName, "token": ntoken});
-
+    console.log({ fullname: fName, token: ntoken });
   };
   // useEffect(() => {
-    // console.log(fName, ntoken);
+  // console.log(fName, ntoken);
   // },[]);
 
   return (

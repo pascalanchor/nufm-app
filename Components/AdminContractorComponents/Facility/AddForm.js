@@ -61,7 +61,7 @@ function AddForm({
 
   const types = [
     "Aged Care",
-    " Education",
+    "Education",
     "Commercial",
     "Industrial",
     "Clubs",
