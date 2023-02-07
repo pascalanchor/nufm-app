@@ -35,6 +35,7 @@ function LoginForm({
   const onLoadFunc = () => {
     setFname("");
     setNtoken("");
+    setEmail("");
     getLoginInfo("fullName", "");
     getLoginInfo("password", "");
     getLoginInfo("error", "");
@@ -123,44 +124,48 @@ function LoginForm({
     }
   }, [fullName, token, email]);
 
+ 
+
+  
+
   if (token !== "" && fullName !== "" && roles.length !== 0) {
     const role = roles[0];
     switch (role) {
       case "ROLE_WORKER":
-        setTimeout(() => {
+        setImmediate(() => {
           getLoginInfo("loading", false);
           navigation.navigate("Worker/Home");
-        }, 3000);
+        });
         break;
       case "ROLE_ADMIN":
-        setTimeout(() => {
+        setImmediate(() => {
           getLoginInfo("loading", false);
           navigation.navigate("Home");
-        }, 3000);
+        });
         break;
       case "ROLE_OCCUPANT":
-        setTimeout(() => {
-          getLoginInfo("loading", false);
-          navigation.navigate("Occupant/Home");
-        }, 3000);
+      setImmediate(() => {
+            getLoginInfo("loading", false);
+            navigation.navigate("Occupant/Home");
+        });
         break;
       case "ROLE_CONTRACTOR":
-        setTimeout(() => {
+        setImmediate(() => {
           getLoginInfo("loading", false);
           navigation.navigate("Contractor/Home");
-        }, 3000);
+        });
         break;
       case "ROLE_OWNER":
-        setTimeout(() => {
+        setImmediate(() => {
           getLoginInfo("loading", false);
           navigation.navigate("Owner");
-        }, 3000);
+        });
         break;
       default:
-        setTimeout(() => {
+        setImmediate(() => {
           getLoginInfo("loading", false);
           navigation.navigate("Landing");
-        }, 3500);
+        });
         break;
     }
   }

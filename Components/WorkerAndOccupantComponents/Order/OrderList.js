@@ -38,6 +38,12 @@ function OrderList({
     getOrders();
   }
 
+  useEffect(()=>{
+    if(Orders.length > 0){
+      setOrderArr(Orders);
+    }
+  },[Orders])
+
   useFocusEffect(
     React.useCallback(() => {
       onLoadFunc();

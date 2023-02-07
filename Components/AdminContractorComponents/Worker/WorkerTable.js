@@ -13,6 +13,12 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
     sortedArray();
   }, [searchVal]);
 
+  useEffect(() => {
+    if(Workers.length > 0){
+      setWorkersArr(Workers)
+    }
+  }, [Workers]);
+
   const onLoadFunc = () =>{
     getWorkers();
   }

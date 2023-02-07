@@ -143,6 +143,7 @@ function AddForm({
   };
 
   const handleChangeDate = (n, e) => {
+    console.log(e);
     getFacilityInfo("date_opened", e);
   };
 
@@ -252,9 +253,6 @@ function AddForm({
           )}
           dropdownIconPosition="right"
           defaultButtonText="Select a parent.."
-          rowTextStyle={{
-            color: "#595959",
-          }}
           buttonStyle={styles.btnselectstyle}
           buttonTextStyle={styles.btnselectxtstyle}
           dropdownStyle={styles.dropdownHour}
@@ -282,9 +280,6 @@ function AddForm({
           )}
           dropdownIconPosition="right"
           defaultButtonText="Select a Type.."
-          rowTextStyle={{
-            color: "#595959",
-          }}
           buttonStyle={styles.btnselectstyle}
           buttonTextStyle={styles.btnselectxtstyle}
           dropdownStyle={styles.dropdownHour}

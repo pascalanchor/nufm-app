@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View, FlatList, BackHandler } from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
@@ -28,6 +28,15 @@ export default function WorkerHome({link}) {
     { name: "View Order ", icon: Order, link: navToOrders },
     { name: "Incident ", icon: Incident, link: navToInc },
   ];
+
+  useEffect(()=>{
+    function handleBackButton(){
+      navigation.navigate("Worker/Home");
+      return true;
+    }  
+    const backHandler = BackHandler.addEventListener('hardwareBackPress',handleBackButton);
+    return () => backHandler.remove();
+  },[navigation])
 
   return (
     <View style={styles.box}>

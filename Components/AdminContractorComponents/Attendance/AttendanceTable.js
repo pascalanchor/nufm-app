@@ -27,6 +27,12 @@ function AttendanceTable({
     sortedArray();
   }, [searchVal]);
 
+  useEffect(() => {
+   if(Attendances.length > 0){
+    setAttendancesArr(Attendances);
+   }
+  }, [Attendances]);
+
 
   const onLoadFunc = () =>{
     getAttendances();

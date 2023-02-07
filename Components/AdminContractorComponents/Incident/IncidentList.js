@@ -33,6 +33,12 @@ function Incidents({
     sortedArray();
   }, [searchVal]);
 
+  useEffect(() => {
+    if(Incidents.length > 0){
+      setIncidentArr(Incidents);
+    }
+  }, [Incidents]);
+
   const onLoadFunc = () =>{
     getIncidents();
   }

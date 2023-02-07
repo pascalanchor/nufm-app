@@ -51,6 +51,12 @@ function Risks({
     sortedArray();
   }, [searchVal]);
 
+  useEffect(() => {
+    if(Risks.length > 0){
+      setRiskArr(Risks);
+    }
+  }, [Risks]);
+
   const sortedArray = () => {
     setRiskArr(
       Risks.filter((cntr) =>

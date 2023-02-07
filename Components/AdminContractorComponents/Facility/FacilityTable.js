@@ -13,6 +13,12 @@ function FacilityTable({ searchVal, Facilities, getFacilities, error }) {
     sortedArray();
   }, [searchVal]);
 
+  useEffect(() => {
+    if(Facilities.length > 0){
+      setFacilitiesArr(Facilities)
+    }
+   
+  }, [Facilities]);
 
   const onLoadFunc = () =>{
     getFacilities();

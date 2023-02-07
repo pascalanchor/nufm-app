@@ -152,6 +152,7 @@ function CMenu({
                         ? MenuItemsOccupant
                         : MenuItems
                     }
+                    
                     numColumns={1}
                     renderItem={({ item }) => {
                       return (
