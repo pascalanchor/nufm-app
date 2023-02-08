@@ -33,7 +33,7 @@ function Contractors({ searchVal, Contractors, getContractors }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.fullName}
+          keyExtractor={(item) => item.email}
           data={
             contractorsArr && contractorsArr.length > 0
               ? contractorsArr
