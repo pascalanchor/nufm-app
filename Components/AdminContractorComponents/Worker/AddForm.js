@@ -55,7 +55,7 @@ function AddForm({
   useEffect(() => {
     setSpecState([]);
     getFacilities();
-
+    setSpecState("");
     getSpecialization();
     getWorkerInfo("fullName", "");
     getWorkerInfo("email", "");
