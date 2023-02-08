@@ -59,9 +59,9 @@ function FacilityTable({ searchVal, Facilities, getFacilities, error }) {
             );
           }}
           data={
-            FacilitiesArr && FacilitiesArr.length > 0
-              ? FacilitiesArr
-              : Facilities
+            Facilities.filter((cntr) =>
+        cntr.name.toLowerCase().includes(searchVal.toLowerCase())
+      )
           }
           numColumns={1}
           renderItem={({ item }) => {

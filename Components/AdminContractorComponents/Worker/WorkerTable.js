@@ -9,15 +9,15 @@ import * as GetWorkersActionCreator from "../../../Store/ActionCreator/Worker/Ge
 function WorkerTable({ searchVal, Workers, getWorkers, error }) {
   const [WorkersArr, setWorkersArr] = useState([]);
   useEffect(() => {
-    getWorkers();
-    sortedArray();
+    // getWorkers();
+    // sortedArray();
   }, [searchVal]);
 
   useEffect(() => {
     if(Workers.length > 0){
       setWorkersArr(Workers)
     }
-  }, [Workers, searchVal]);
+  }, [Workers]);
 
   const onLoadFunc = () =>{
     getWorkers();
@@ -57,7 +57,10 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
               </View>
             );
           }}
-          data={WorkersArr && WorkersArr.length > 0 ? WorkersArr : Workers}
+          // data={WorkersArr && WorkersArr.length > 0 ? WorkersArr : Workers}
+          data={Workers.filter((cntr) =>
+            cntr.fullName.toLowerCase().includes(searchVal.toLowerCase()))}
+          
           numColumns={1}
           renderItem={({ item }) => {
             return (

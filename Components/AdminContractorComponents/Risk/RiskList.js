@@ -74,7 +74,9 @@ function Risks({
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.id}
-          data={RiskArr && RiskArr.length > 0 ? RiskArr : Risks}
+          data={Risks.filter((cntr) =>
+            cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
+          )}
           numColumns={1}
           renderItem={({ item }) => {
             return (

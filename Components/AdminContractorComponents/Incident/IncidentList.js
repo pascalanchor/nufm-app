@@ -73,7 +73,9 @@ function Incidents({
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.eid}
-          data={IncidentArr && IncidentArr.length > 0 ? IncidentArr : Incidents}
+          data={Incidents.filter((cntr) =>
+            cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
+          )}
           numColumns={1}
           renderItem={({ item }) => {
             return (

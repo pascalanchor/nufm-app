@@ -76,7 +76,9 @@ function OrderList({
       <ScrollView>
         <FlatList
           keyExtractor={(item) => item.eid}
-          data={OrderArr && OrderArr.length > 0 ? OrderArr : Orders}
+          data={Orders.filter((cntr) =>
+            cntr.sender.fullName.toLowerCase().includes(searchVal.toLowerCase())
+          )}
           numColumns={1}
           renderItem={({ item }) => {
             return (

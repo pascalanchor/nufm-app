@@ -73,9 +73,9 @@ function AttendanceTable({
             );
           }}
           data={
-            AttendancesArr && AttendancesArr.length > 0
-              ? AttendancesArr
-              : Attendances
+            Attendances.filter((cntr) =>
+            cntr.user.fullName.toLowerCase().includes(searchVal.toLowerCase())
+          )
           }
           numColumns={1}
           renderItem={({ item }) => {

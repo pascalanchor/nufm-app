@@ -173,10 +173,10 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
                   </View>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate(link + "Reset");
-                    setModal(false);
-                  }}
+                  // onPress={() => {
+                  //   navigation.navigate(link + "Reset");
+                  //   setModal(false);
+                  // }}
                   style={styles.reset}
                 >
                   <View>
