@@ -14,7 +14,6 @@ export const getFacilities = () => {
         dispatch(getFacilitiesEnd(res.data));
       })
       .catch((err) => {
-        console.log(err)
         dispatch(getFacilitiesFail(err));
       });
 

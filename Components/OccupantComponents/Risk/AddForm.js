@@ -70,7 +70,6 @@ function AddRiskO({
 
   const handleClick = () => {
     addRisk(semail, facilityId, risk, comment);
-    console.log(semail, facilityId, risk, comment);
   };
   return (
     <View style={styles.initialCont}>

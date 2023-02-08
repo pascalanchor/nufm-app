@@ -30,29 +30,22 @@ function Risks({
   const navigation = useNavigation();
   const [RiskArr, setRiskArr] = useState([]);
 
-  const onLoadFunc = () =>{
+  const onLoadFunc = () => {
     getRisks();
-  }
+  };
 
   useFocusEffect(
     React.useCallback(() => {
       onLoadFunc();
     }, [])
-    
   );
-
-  // useEffect(() => {
-  //   console.log("Risk screen table")
-  //   getRisks();
-  // }, []);
-
   useEffect(() => {
     getRisks();
     sortedArray();
   }, [searchVal]);
 
   useEffect(() => {
-    if(Risks.length > 0){
+    if (Risks.length > 0) {
       setRiskArr(Risks);
     }
   }, [Risks]);
@@ -80,7 +73,7 @@ function Risks({
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) =>item.id}
+          keyExtractor={(item) => item.id}
           data={RiskArr && RiskArr.length > 0 ? RiskArr : Risks}
           numColumns={1}
           renderItem={({ item }) => {
@@ -92,13 +85,11 @@ function Risks({
               >
                 <View style={styles.senderContainer}>
                   <View style={styles.senderRec}>
-                  <Text style={styles.txt}> {item.sender.fullName}</Text>
+                    <Text style={styles.txt}> {item.sender.fullName}</Text>
                     <Text style={styles.receiver}> {item.facility.name}</Text>
                   </View>
                   <View>
-                    <TouchableOpacity
-                      onPress={() => handleDeleteRisk(item.id)}
-                    >
+                    <TouchableOpacity onPress={() => handleDeleteRisk(item.id)}>
                       <AntDesign
                         name="close"
                         size={20}

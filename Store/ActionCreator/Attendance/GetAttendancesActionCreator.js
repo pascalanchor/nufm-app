@@ -17,14 +17,8 @@ export const getAttendances = () => {
         dispatch(getAttendancesEnd(res.data));
       })
       .catch((err) => {
-        console.log(err);
         dispatch(getAttendancesFail(err));
       });
-    //   dispatch(getAttendancesEnd([{
-    //     user:{fullName:"Janaaa", nb:"1"},
-    //     facility:{name:"facone", nb:"2"},
-    //     task:{name:"taskkkk", nb:"3"},
-    // }]))
   };
 };
 

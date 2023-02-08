@@ -24,18 +24,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 import * as LoginActionCreators from "../../Store/ActionCreator/Login/LoginActionCreator";
 
-function CMenu({
-  link,
-  modalVisible,
-  setModal,
-  error,
-  token,
-  getLoginInfo,
-}) {
+function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
   const navigation = useNavigation();
-  // useEffect(()=>{
-  //   console.log(link)
-  // },[])
   const navToHome = () => {
     navigation.navigate(link + "Home");
     setModal(false);
@@ -113,7 +103,6 @@ function CMenu({
 
   useEffect(() => {
     fN();
-    // console.log(adminName);
   }, []);
 
   const clearStorage = async () => {
@@ -152,7 +141,6 @@ function CMenu({
                         ? MenuItemsOccupant
                         : MenuItems
                     }
-                    
                     numColumns={1}
                     renderItem={({ item }) => {
                       return (
@@ -174,10 +162,7 @@ function CMenu({
                   alignItems: "center",
                 }}
               >
-                <TouchableOpacity
-                  style={styles.logout}
-                  onPress={handleClick}
-                >
+                <TouchableOpacity style={styles.logout} onPress={handleClick}>
                   <View style={styles.flexlog}>
                     <MaterialCommunityIcons
                       name="logout"

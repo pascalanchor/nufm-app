@@ -81,7 +81,6 @@ function AddForm({
 
   const navigation = useNavigation();
   useEffect(() => {
-    console.log(link);
     getAllParent();
     getFacilityInfo("name", "");
     getFacilityInfo("parentId", "");
@@ -143,7 +142,6 @@ function AddForm({
   };
 
   const handleChangeDate = (n, e) => {
-    console.log(e);
     getFacilityInfo("date_opened", e);
   };
 
@@ -174,7 +172,6 @@ function AddForm({
     } else {
       setFacType("");
     }
-    console.log(types[index]);
     getFacilityInfo("type", types[index]);
   };
 
@@ -213,17 +210,6 @@ function AddForm({
       submit = false;
     }
     if (submit) {
-      console.log(
-        name,
-        parentId,
-        type,
-        location,
-        const_year,
-        date_opened,
-        street,
-        post_code,
-        description
-      );
       navigation.navigate(link + "AddFacility2");
     }
   };

@@ -68,8 +68,6 @@ function LoginForm({
       const ka = await AsyncStorage.getAllKeys();
       if (ka !== null) {
         setKeys(ka);
-        console.log("----------------");
-        console.log(keys);
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -80,8 +78,6 @@ function LoginForm({
       const em = await AsyncStorage.getItem("email");
       if (em !== null) {
         setEmail(em);
-        // console.log("----------------");
-        // console.log(rEmail);
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -92,8 +88,6 @@ function LoginForm({
       const fn = await AsyncStorage.getItem("fullName");
       if (fn !== null) {
         setFname(fn);
-        // console.log("----------------");
-        // console.log(fName);
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -106,8 +100,6 @@ function LoginForm({
       if (nt !== null) {
         setNtoken(nt);
       }
-      // console.log("----------------");
-      // console.log(ntoken);
     } catch (e) {
       alert("Failed to fetch the token from storage");
     }
@@ -123,10 +115,6 @@ function LoginForm({
     } else {
     }
   }, [fullName, token, email]);
-
- 
-
-  
 
   if (token !== "" && fullName !== "" && roles.length !== 0) {
     const role = roles[0];
@@ -144,9 +132,9 @@ function LoginForm({
         });
         break;
       case "ROLE_OCCUPANT":
-      setImmediate(() => {
-            getLoginInfo("loading", false);
-            navigation.navigate("Occupant/Home");
+        setImmediate(() => {
+          getLoginInfo("loading", false);
+          navigation.navigate("Occupant/Home");
         });
         break;
       case "ROLE_CONTRACTOR":
@@ -177,13 +165,7 @@ function LoginForm({
   const submitForm = () => {
     getLoginInfo("loading", true);
     submitLogin(email, password);
-    // console.log(email,password)
-    console.log({ fullname: fName, token: ntoken });
   };
-  // useEffect(() => {
-  // console.log(fName, ntoken);
-  // },[]);
-
   return (
     <View style={styles.container}>
       <View style={styles.welcomeCont}>

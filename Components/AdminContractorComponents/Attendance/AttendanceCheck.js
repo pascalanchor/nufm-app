@@ -16,21 +16,19 @@ function AttendanceCheck({
   eid,
   error,
   loading,
-  setFacilityName
+  setFacilityName,
 }) {
-  
   const route = useRoute();
   const id = route.params.id;
   useEffect(() => {
     getCheckById(id);
-    console.log(id);
   }, []);
 
-  useEffect(()=>{
-    if(facility != ""){
-    setFacilityName(facility.name)
+  useEffect(() => {
+    if (facility != "") {
+      setFacilityName(facility.name);
     }
-  },[facility])
+  }, [facility]);
 
   return (
     <View style={styles.container}>

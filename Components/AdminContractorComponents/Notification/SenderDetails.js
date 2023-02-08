@@ -27,7 +27,6 @@ function SenderDetails({
   const navigation = useNavigation();
   useEffect(() => {
     getNotificationDetails(id);
-    console.log(id);
   }, []);
   return (
     <View style={styles.container}>

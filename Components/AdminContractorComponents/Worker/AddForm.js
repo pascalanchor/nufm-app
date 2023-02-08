@@ -82,7 +82,6 @@ function AddForm({
   };
 
   const handleOnChangeSpecs = (value) => {
-    console.log(value);
     if (!value) {
       setSpecMsg("Please Select a Specialization");
     } else {
@@ -104,13 +103,13 @@ function AddForm({
   const [specState, setSpecState] = useState([]);
   useEffect(() => {
     // if (spec.length > 0) {
-      var arrSpec = [];
-      for (let i = 0; i < spec.length; i++) {
-        var obj = { label: spec[i].label, value: spec[i].eid };
-        arrSpec.push(obj);
-      }
+    var arrSpec = [];
+    for (let i = 0; i < spec.length; i++) {
+      var obj = { label: spec[i].label, value: spec[i].eid };
+      arrSpec.push(obj);
+    }
 
-      setSpecState(arrSpec);
+    setSpecState(arrSpec);
     // }
   }, [spec]);
 

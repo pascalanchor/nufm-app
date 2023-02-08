@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Platform,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import BasicInput from "../../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -49,8 +49,6 @@ function AddIncident({
     getIncidentInfo("incident", "");
     getIncidentInfo("comment", "");
     getIncidentInfo("error", "");
-    console.log(semail)
-
   }, []);
 
   const [semail, setSEmail] = useState("");
@@ -59,7 +57,6 @@ function AddIncident({
       const adname = await AsyncStorage.getItem("email");
       if (adname !== null) {
         setSEmail(adname);
-        // console.log(semail)
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -70,7 +67,7 @@ function AddIncident({
   const siteName = Facilities.map((fn) => fn.name);
   const Tasks = tasks.map((wr) => wr.name);
 
-  const handleOnChangeDate = (name,value) => {
+  const handleOnChangeDate = (name, value) => {
     getIncidentInfo(name, value);
   };
 
@@ -82,14 +79,13 @@ function AddIncident({
     addIncident(semail, facilityId, taskId, date, ihour, incident, comment);
   };
 
-  const handleOnChangeTask = (i) =>{
+  const handleOnChangeTask = (i) => {
     getIncidentInfo("taskId", tasks[i].eid);
-  }
+  };
 
-  const handleOnChangeFacility = (i) =>{
+  const handleOnChangeFacility = (i) => {
     getIncidentInfo("facilityId", Facilities[i].eid);
-  }
-  
+  };
 
   return (
     <View style={styles.initialCont}>
@@ -117,7 +113,6 @@ function AddIncident({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a site.."
-            
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
@@ -146,7 +141,6 @@ function AddIncident({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a task.."
-            
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
@@ -437,7 +431,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
-    flexDirection:"row"
+    flexDirection: "row",
   },
   cancel: {
     borderWidth: 1.5,

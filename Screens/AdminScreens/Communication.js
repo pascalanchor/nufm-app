@@ -8,22 +8,27 @@ import Header from "../../Components/SharedComponents/Header";
 import SearchInput from "../../Components/SharedComponents/SearchInput";
 import TabPannel from "../../Components/AdminContractorComponents/Communication/TabPannel";
 
-export default function Communication({link}) {
-  useEffect(()=>{
-    console.log(link)
-  },[])
+export default function Communication({ link }) {
   const [searchVal, setSearchVal] = useState("");
 
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.box}>
       <View>
-        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu
+          link={link}
+          modalVisible={modalVisible}
+          setModal={setModalVisible}
+        />
       </View>
       <Header link={link} title="Communication" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
         <Text style={styles.txt}> New Messages</Text>
-        <SearchInput searchVal={searchVal} setSearchVal={setSearchVal} bgColor="#F1F1F1"/>
+        <SearchInput
+          searchVal={searchVal}
+          setSearchVal={setSearchVal}
+          bgColor="#F1F1F1"
+        />
         <TabPannel searchVal={searchVal} />
       </View>
     </View>
@@ -39,8 +44,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,
-    marginBottom:"8%",
-    marginTop:"3%"
+    marginBottom: "8%",
+    marginTop: "3%",
   },
   txt: {
     fontSize: RFPercentage(1.9),

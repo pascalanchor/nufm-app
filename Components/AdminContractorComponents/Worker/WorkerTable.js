@@ -17,7 +17,7 @@ function WorkerTable({ searchVal, Workers, getWorkers, error }) {
     if(Workers.length > 0){
       setWorkersArr(Workers)
     }
-  }, [Workers]);
+  }, [Workers, searchVal]);
 
   const onLoadFunc = () =>{
     getWorkers();

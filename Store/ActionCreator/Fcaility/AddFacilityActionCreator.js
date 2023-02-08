@@ -43,9 +43,6 @@ export const addFacility = (
     fd.append("facilityData", facilityData);
     fd.append("facilityPrimaryEmail", JSON.stringify(primaryEmail));
     fd.append("facilityWorkSchedule", JSON.stringify(workSchedule));
-    // console.log(facilityData)
-    console.log(primaryEmail)
-    console.log(workSchedule);
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
     var link = server + privatePath+"/facility/add";
     axios
@@ -56,7 +53,6 @@ export const addFacility = (
         headers: { "Content-Type": "multipart/form-data", /*'Authorization': token*/ },
       })
       .then((res) => {
-        // console.log(res.data)
         if (res.data.message === "facility name  already exists") {
           dispatch(addFacilityFail("facility name  already exists"));
         } else if (res.data.message === "the facility name cannot be null") {
@@ -66,7 +62,6 @@ export const addFacility = (
         }
       })
       .catch((err) => {
-       console.log(err.response.data)
         dispatch(addFacilityFail(err));
       });
   };

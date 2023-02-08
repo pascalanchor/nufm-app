@@ -26,12 +26,9 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
       "comment": comment,
     }
 
-    console.log(params);
-
     var link = server +  privatePath + "/incident/add";
     axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
       .then((res) => {
-        console.log(res.data)
         if (res.data.message === "expectation failed") {
           dispatch(addIncidentFail("expectation failed"));
         } else {
@@ -39,7 +36,6 @@ export const addIncident = (senderId,facilityId,taskId,date, ihour, incident, co
         }
       })
       .catch((err) => {
-        console.log(err.response.data)
         dispatch(addIncidentFail(err));
       });
   };

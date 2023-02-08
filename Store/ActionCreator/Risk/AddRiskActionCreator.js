@@ -26,7 +26,6 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
     var link = server +  privatePath + "/risk";
     axios.post(link,params,{headers :{ /*'Authorization': token,*/ "Content-Type": "application/json" ,} ,})
       .then((res) => {
-        console.log(res.data)
         if (res.data.message === "expectation failed") {
           dispatch(addRiskFail("expectation failed"));
         } else {
@@ -34,7 +33,6 @@ export const addRisk = (senderId,facilityId,risk,comment) => {
         }
       })
       .catch((err) => {
-        console.log(err.response.data)
         dispatch(addRiskFail(err));
       });
   };

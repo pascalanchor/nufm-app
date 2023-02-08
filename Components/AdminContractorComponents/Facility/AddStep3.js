@@ -175,23 +175,6 @@ function AddStep3({
     }
 
     if (submit) {
-      console.log("00000000000000000");
-      console.log(
-        parentId,
-        name,
-        type,
-        location,
-        sqm,
-        const_year,
-        date_opened,
-        street,
-        post_code,
-        description,
-        primaryEmail,
-        workSchedule
-      );
-      console.log("00000000000000000");
-
       addFacility(
         parentId,
         name,

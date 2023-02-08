@@ -15,9 +15,6 @@ export const getCheckById = (eid) => {
         },
       })
       .then((res) => {
-        console.log(res.data)
-   
-
         if (res.data.message === "expectation failed") {
           dispatch(getCheckByIdFail("expectation failed"));
         } else {
@@ -25,7 +22,6 @@ export const getCheckById = (eid) => {
         }
       })
       .catch((err) => {
-        console.log(err)
         dispatch(getCheckByIdFail(err));
       });
   };

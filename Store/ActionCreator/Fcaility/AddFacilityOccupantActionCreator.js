@@ -34,7 +34,6 @@ eid
     fd.append("profileImage", null);
     fd.append("facility", eid);
 
-    console.log(occupantData)
     // var token = 'Bearer '+localStorage.getItem('nufmtoken');
     var link = server +  privatePath + "/facility/addOccupant";
     axios
@@ -45,7 +44,6 @@ eid
         headers: { "Content-Type": "multipart/form-data", /*'Authorization': token */},
       })
       .then((res) => {
-        console.log(res.data)
         if (res.data.message === "facility name  already exists") {
           dispatch(addFacilityOccupantFail("facility name  already exists"));
         } else if (res.data.message === "the facility name cannot be null") {
@@ -55,7 +53,6 @@ eid
         }
       })
       .catch((err) => {
-       console.log(err)
         dispatch(addFacilityOccupantFail(err));
       });
   };

@@ -64,7 +64,6 @@ export const addWorker = (
       headers :{ /*'Authorization': token,*/ "Content-Type": "multipart/form-data" ,} ,
     })
       .then((res) => {
-        console.log(res.data)
         if (res.data.message === "expectation failed") {
           dispatch(addWorkerFail("expectation failed"));
         } else {
@@ -72,7 +71,6 @@ export const addWorker = (
         }
       })
       .catch((err) => {
-        console.log(err)
         dispatch(addWorkerFail(err));
       });
   };

@@ -14,7 +14,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import { connect } from "react-redux";
 import * as AddFacilityActionCreator from "../../../Store/ActionCreator/Fcaility/AddFacilityActionCreator";
 
-function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
+function AddStep2({ link, workSchedule, primaryEmail, getFacilityInfo }) {
   const navigation = useNavigation();
   useEffect(() => {
     getFacilityInfo("primaryEmail", "");
@@ -43,9 +43,9 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
       ...work,
       {
         fromDay: "",
-      fromHour: "",
-      toDay: "",
-      toHour: "",
+        fromHour: "",
+        toDay: "",
+        toHour: "",
       },
     ]);
   };
@@ -56,28 +56,21 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
     setWork(rows);
   };
   const handleChangeItemDFrom = (index, value) => {
-    // const { name, value } = e.target;
-    console.log(index);
-
     const list = [...work];
     list[index].fromDay = value;
     setWork(list);
   };
   const handleChangeItemHFrom = (index, value) => {
-    // const { name, value } = e.target;
-
     const list = [...work];
     list[index].fromHour = value;
     setWork(list);
   };
   const handleChangeItemHTo = (index, value) => {
-    // const { name, value } = e.target;
     const list = [...work];
     list[index].toHour = value;
     setWork(list);
   };
   const handleChangeItemDTo = (index, value) => {
-    console.log(index);
     const list = [...work];
     list[index].toDay = value;
     setWork(list);
@@ -138,13 +131,9 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
   };
 
   const handleNav3 = () => {
-    console.log(primary);
-    console.log(work);
-
     getFacilityInfo("primaryEmail", primary);
     getFacilityInfo("workSchedule", work);
-    
-    navigation.navigate(link+"AddFacility3");
+    navigation.navigate(link + "AddFacility3");
   };
 
   return (
@@ -178,7 +167,7 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 rowTextStyle={styles.rows}
                 data={weekDays}
                 onSelect={(selectedItem, ind) => {
-                  handleChangeItemDFrom(i, selectedItem)
+                  handleChangeItemDFrom(i, selectedItem);
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;
@@ -221,7 +210,7 @@ function AddStep2({link, workSchedule, primaryEmail, getFacilityInfo }) {
                 rowTextStyle={styles.rows}
                 data={weekDays}
                 onSelect={(selectedItem, ind) => {
-                  handleChangeItemDTo(i, selectedItem)
+                  handleChangeItemDTo(i, selectedItem);
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
                   return selectedItem;

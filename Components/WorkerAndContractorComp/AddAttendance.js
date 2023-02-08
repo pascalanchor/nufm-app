@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
@@ -38,7 +38,6 @@ function AddAttendance({
   tasks,
   getAllTaskInfo,
 }) {
-
   const [semail, setSEmail] = useState("");
   const fN = async () => {
     try {
@@ -73,8 +72,7 @@ function AddAttendance({
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [toggleCheckBox2, setToggleCheckBox2] = useState(false);
   const [disableCheck, setDisableCheck] = useState(false);
-  const [disableCheck2, setDisableCheck2] = useState(false)
-
+  const [disableCheck2, setDisableCheck2] = useState(false);
 
   const [checkType, setCheckType] = useState("");
   const [selected, setSelected] = useState([]);
@@ -86,9 +84,6 @@ function AddAttendance({
 
   const handleClick = () => {
     addAttendance(facility, semail, task, checkType, long, latitude);
-    console.log(semail);
-    // console.log(checkType);
-    // console.log(latitude);
   };
 
   useEffect(() => {
@@ -134,13 +129,13 @@ function AddAttendance({
     }
   };
 
-  const handleOnChangeFacility = (i) =>{
-    getAttendanceInfo("facility",Facilities[i].eid);
-  }
+  const handleOnChangeFacility = (i) => {
+    getAttendanceInfo("facility", Facilities[i].eid);
+  };
 
-  const handleOnChangeTask = (i) =>{
-    getAttendanceInfo("task",tasks[i].eid);
-  }
+  const handleOnChangeTask = (i) => {
+    getAttendanceInfo("task", tasks[i].eid);
+  };
   return (
     <View style={styles.initialCont}>
       <View style={styles.container}>
@@ -154,7 +149,6 @@ function AddAttendance({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a site.."
-           
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
@@ -183,7 +177,6 @@ function AddAttendance({
             )}
             dropdownIconPosition="right"
             defaultButtonText="Select a task.."
-           
             buttonStyle={styles.btnselectstyle}
             buttonTextStyle={styles.btnselectxtstyle}
             dropdownStyle={styles.dropdownHour}
@@ -375,7 +368,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
-    flexDirection:"row"
+    flexDirection: "row",
   },
   cancel: {
     borderWidth: 1.5,

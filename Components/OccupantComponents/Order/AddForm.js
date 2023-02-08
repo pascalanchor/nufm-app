@@ -5,7 +5,7 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
@@ -51,7 +51,6 @@ function AddForm({
     getOrderInfo("orderContent", "");
     getOrderInfo("comment", "");
     getOrderInfo("error", "");
-   
   }, []);
   const navigation = useNavigation();
   const siteName = Facilities.map((fn) => fn.name);
@@ -62,12 +61,11 @@ function AddForm({
   };
 
   const handleOnChangeFacility = (index) => {
-    getOrderInfo("facilityId",Facilities[index].eid);
+    getOrderInfo("facilityId", Facilities[index].eid);
   };
 
   const handleOnChangeWorker = (index) => {
-    getOrderInfo("receiverId",Workers[index].email);
-
+    getOrderInfo("receiverId", Workers[index].email);
   };
 
   const [semail, setSEmail] = useState("");
@@ -82,9 +80,7 @@ function AddForm({
     }
   };
 
-
   const handleClick = () => {
-    // console.log(semail);
     addOrder(
       semail,
       receiverId,
@@ -430,7 +426,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: "7%",
     marginHorizontal: "7%",
-    flexDirection:"row"
+    flexDirection: "row",
   },
   cancel: {
     borderWidth: 1.5,
