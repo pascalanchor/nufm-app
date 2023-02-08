@@ -50,8 +50,10 @@ function AddForm({
   const [specMsg, setSpecMsg] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [phoneMsg, setPhoneMsg] = useState("");
+  const [specState, setSpecState] = useState([]);
 
   useEffect(() => {
+    setSpecState([]);
     getFacilities();
 
     getSpecialization();
@@ -100,7 +102,6 @@ function AddForm({
     getWorkerInfo("phone", value);
   };
 
-  const [specState, setSpecState] = useState([]);
   useEffect(() => {
     // if (spec.length > 0) {
     var arrSpec = [];
