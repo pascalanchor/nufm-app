@@ -102,8 +102,10 @@ function AddAttendance({
   const handleCheck = (value) => {
     if (!toggleCheckBox) {
       setCheckType("CheckIn");
-      setLat(JSON.stringify(location.coords.latitude));
-      setLong(JSON.stringify(location.coords.longitude));
+      if (location !== null) {
+        setLat(JSON.stringify(location.coords.latitude));
+        setLong(JSON.stringify(location.coords.longitude));
+      }
       setToggleCheckBox(value);
       setDisableCheck2(true);
     } else {
@@ -117,8 +119,10 @@ function AddAttendance({
   const handleCheckOut = (value) => {
     if (!toggleCheckBox2) {
       setCheckType("CheckOut");
-      setLat(JSON.stringify(location.coords.latitude));
-      setLong(JSON.stringify(location.coords.longitude));
+      if (location !== null) {
+        setLat(JSON.stringify(location.coords.latitude));
+        setLong(JSON.stringify(location.coords.longitude));
+      }
       setToggleCheckBox2(value);
       setDisableCheck(true);
     } else {
