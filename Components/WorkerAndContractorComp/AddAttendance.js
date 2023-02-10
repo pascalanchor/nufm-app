@@ -77,7 +77,7 @@ function AddAttendance({
   const [checkType, setCheckType] = useState("");
   const [selected, setSelected] = useState([]);
 
-  const [location, setLocation] = useState(0);
+  const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [latitude, setLat] = useState("");
   const [long, setLong] = useState("");
