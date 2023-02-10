@@ -53,6 +53,7 @@ function AddForm({
   const [specState, setSpecState] = useState([]);
 
   useEffect(() => {
+    setSpecState([]);
     getFacilities();
     setSpecState("");
     getSpecialization();
@@ -101,7 +102,6 @@ function AddForm({
     getWorkerInfo("phone", value);
   };
 
-  // const [specState, setSpecState] = useState([]);
   useEffect(() => {
     // if (spec.length > 0) {
     var arrSpec = [];
