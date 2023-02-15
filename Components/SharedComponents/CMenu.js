@@ -270,6 +270,7 @@ const styles = StyleSheet.create({
   logout: {
     flexDirection: "row",
     paddingLeft: "2%",
+    justifyContent: "center",
     marginBottom: "10%",
     alignItems: "center",
     backgroundColor: "#B4D9CB",

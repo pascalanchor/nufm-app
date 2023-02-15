@@ -4,8 +4,17 @@ import { Ionicons } from "@expo/vector-icons";
 import NUFM from "../../assets/NUFM-Green.png";
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Dimensions,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 
+const windowHeight = Dimensions.get("window").height;
+console.log(windowHeight);
 export default function Header({ link, title, setModal }) {
   const navigation = useNavigation();
   return (
@@ -42,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: "19%",
+    paddingTop: windowHeight > 700 ? "17%" : "10%",
     paddingHorizontal: "7%",
     width: "100%",
   },

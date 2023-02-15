@@ -1,6 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, FlatList, BackHandler } from "react-native";
+import {
+  StyleSheet,
+  Dimensions,
+  Text,
+  View,
+  FlatList,
+  BackHandler,
+} from "react-native";
 import { ScrollView } from "react-native-virtualized-view";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import { useNavigation } from "@react-navigation/native";
@@ -12,10 +19,8 @@ import Worker from "../../assets/Worker-Management.png";
 import Order from "../../assets/Order.png";
 import Attendance from "../../assets/Attandence-Management.png";
 
-export default function Home({link}) {
-
-  
-
+const windowHeight = Dimensions.get("window").height;
+export default function Home({ link }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
   const navToFac = () => {
@@ -37,21 +42,26 @@ export default function Home({link}) {
     { name: "View Order ", icon: Order, link: navToOrders },
   ];
 
-  useEffect(()=>{
-    function handleBackButton(){
+  useEffect(() => {
+    function handleBackButton() {
       navigation.navigate("Home");
       return true;
-    }  
-    const backHandler = BackHandler.addEventListener('hardwareBackPress',handleBackButton);
+    }
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      handleBackButton
+    );
     return () => backHandler.remove();
-  },[navigation])
-
- 
+  }, [navigation]);
 
   return (
     <View style={styles.box}>
       <View>
-        <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
+        <CMenu
+          link={link}
+          modalVisible={modalVisible}
+          setModal={setModalVisible}
+        />
       </View>
       <Header link={link} title="Home" setModal={setModalVisible} />
       <View style={styles.container}>
@@ -77,6 +87,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingBottom: "35%",
+    paddingBottom: windowHeight > 700 ? "35%" : "20%",
   },
 });
