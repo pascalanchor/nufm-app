@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
-import OrderDetails from "../../../Components/WorkerAndOccupantComponents/Order/OrderDetails.js";
+import OrderDetails from "../../../Components/WorkerAndOccupantComponents/Order/OrderDetails.jsx";
 
 export default function OrderDet({link}) {
   const [modalVisible, setModalVisible] = useState(false);
