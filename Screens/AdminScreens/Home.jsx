@@ -37,6 +37,7 @@ export default function Home({ link }) {
     { name: "Worker Management", icon: Worker, link: navToWorker },
     { name: "Attendance Management", icon: Attendance, link: navToAtt },
     { name: "View Order ", icon: Order, link: navToOrders },
+
   ];
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function Home({ link }) {
         />
       </View>
       <Header link={link} title="Home" setModal={setModalVisible} />
-      <View>
+      <View style={styles.container}>
         <ScrollView>
           <FlatList
             keyExtractor={(item) => item.name}
@@ -82,5 +83,9 @@ export default function Home({ link }) {
 const styles = StyleSheet.create({
   box: {
     flex: 1,
+  },
+  container: {
+    paddingBottom: "3%",
+    flex:1
   },
 });

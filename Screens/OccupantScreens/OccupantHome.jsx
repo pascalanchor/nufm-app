@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingBottom: "35%",
+    paddingBottom: "3%",
+    flex:1
   },
 });
