@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   container: {
     marginHorizontal: "9%",
     marginBottom: "5%",
+    backgroundColor:"#f1f1f1",
   },
   subCont: {
     flexDirection: "column",

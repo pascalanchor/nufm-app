@@ -19,7 +19,6 @@ export default function AddRisk({ link }) {
       </View>
       <Header link={link} title="Risk" setModal={setModalVisible} />
       <View style={styles.whiteBox}>
-        {/* <Text style={styles.txt}> </Text> */}
         <ScrollView>
           <AddRiskO />
         </ScrollView>
@@ -33,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   whiteBox: {
-    displlay:"flex",
+    displlay: "flex",
     backgroundColor: "#fff",
     marginHorizontal: "5%",
     borderRadius: 25,

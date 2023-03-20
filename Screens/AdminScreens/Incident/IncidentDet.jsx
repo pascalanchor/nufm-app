@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
-import IncidentDetails from "../../../Components/AdminContractorComponents/Incident/IncidentDetails.js";
+import IncidentDetails from "../../../Components/AdminContractorComponents/Incident/IncidentDetails.jsx";
 
 export default function IncidentDet({link}) {
   const [modalVisible, setModalVisible] = useState(false);

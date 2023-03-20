@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import CMenu from "../../../Components/SharedComponents/CMenu";
 import Header from "../../../Components/SharedComponents/Header";
-import RiskDetails from "../../../Components/AdminContractorComponents/Risk/RiskDetails.js";
+import SenderDetails from "../../../Components/AdminContractorComponents/Notification/SenderDetails.jsx";
 
-export default function RiskDet({link}) {
+export default function Sender({link}) {
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -19,9 +19,9 @@ export default function RiskDet({link}) {
       <View>
         <CMenu link={link} modalVisible={modalVisible} setModal={setModalVisible} />
       </View>
-      <Header link={link} title="Risk" setModal={setModalVisible} />
+      <Header link={link} title="Notification" setModal={setModalVisible} />
       <View style={{ marginVertical:"10%"}}>
-      <RiskDetails />
+      <SenderDetails link={link} />
       </View>
     </View>
   );

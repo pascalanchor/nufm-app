@@ -193,8 +193,8 @@ function LoginForm({
           <Text style={styles.errorTxt}>{error}</Text>
         </View>
       )}
-      {/* <Buttons text="Login" onPress={()=> navigation.navigate("Home")} /> */}
-      <Buttons text="Login" onPress={submitForm} loading={loading} />
+      <Buttons text="Login" onPress={()=> navigation.navigate("Home")} />
+      {/* <Buttons text="Login" onPress={submitForm} loading={loading} /> */}
     </View>
   );
 }

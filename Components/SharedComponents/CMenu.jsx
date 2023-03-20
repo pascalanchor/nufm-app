@@ -8,6 +8,10 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native-virtualized-view";
 import { useNavigation } from "@react-navigation/native";
@@ -155,13 +159,7 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
                   />
                 </ScrollView>
               </View>
-              <View
-                style={{
-                  justifyContent: "space-between",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
+              <View style={styles.menuFooter}>
                 <TouchableOpacity style={styles.logout} onPress={handleClick}>
                   <View style={styles.flexlog}>
                     <MaterialCommunityIcons
@@ -179,8 +177,13 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
                   // }}
                   style={styles.reset}
                 >
-                  <View>
-                    <Text style={styles.txtlog}>Reset Password</Text>
+                  <View style={styles.flexlog}>
+                    <MaterialCommunityIcons
+                      name="lock-reset"
+                      size={28}
+                      color="#023D26"
+                    />
+                    <Text style={styles.txtlog}>Reset Pass</Text>
                   </View>
                 </TouchableOpacity>
               </View>
@@ -269,25 +272,28 @@ const styles = StyleSheet.create({
   },
   logout: {
     flexDirection: "row",
-    paddingLeft: "2%",
     justifyContent: "center",
-    marginBottom: "10%",
     alignItems: "center",
     backgroundColor: "#B4D9CB",
     borderRadius: 7,
-    width: "42%",
-    marginLeft: "5%",
-    paddingVertical: "1%",
+    width: "42.5%",
+    marginHorizontal: "5%",
+    paddingVertical: "1.5%",
   },
   reset: {
     flexDirection: "row",
-    marginBottom: "10%",
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#B4D9CB",
     borderRadius: 7,
-    width: "41%",
-    marginHorizontal: "6%",
-    paddingVertical: "2.5%",
+    width: "42.5%",
+    marginRight: "6%",
+    paddingVertical: "1.5%",
+  },
+  menuFooter: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: "10%",
   },
 });

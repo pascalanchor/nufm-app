@@ -38,7 +38,6 @@ import {
   OrderO,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
