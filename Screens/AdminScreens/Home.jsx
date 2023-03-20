@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
-  Dimensions,
   Text,
   View,
   FlatList,
@@ -19,7 +17,6 @@ import Worker from "../../assets/Worker-Management.png";
 import Order from "../../assets/Order.png";
 import Attendance from "../../assets/Attandence-Management.png";
 
-const windowHeight = Dimensions.get("window").height;
 export default function Home({ link }) {
   const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation();
@@ -64,7 +61,7 @@ export default function Home({ link }) {
         />
       </View>
       <Header link={link} title="Home" setModal={setModalVisible} />
-      <View style={styles.container}>
+      <View>
         <ScrollView>
           <FlatList
             keyExtractor={(item) => item.name}
@@ -85,8 +82,5 @@ export default function Home({ link }) {
 const styles = StyleSheet.create({
   box: {
     flex: 1,
-  },
-  container: {
-    paddingBottom: windowHeight > 700 ? "35%" : "20%",
   },
 });

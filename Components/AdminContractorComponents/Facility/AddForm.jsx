@@ -181,34 +181,34 @@ function AddForm({
 
   const handleNavigation = () => {
     var submit = true;
-    // if (!name || name.length > 24) {
-    //   setFacName("Please Enter a Name");
-    //   submit = false;
-    // }
-    // if (type.length === 0) {
-    //   setFacType("Please Select a Type");
-    //   submit = false;
-    // }
-    // if (!location) {
-    //   setLocMsg("Please Enter a Location");
-    //   submit = false;
-    // }
-    // if (+const_year < 0 || const_year.length !== 4) {
-    //   setYearMsg("Please Enter a Year");
-    //   submit = false;
-    // }
-    // if (!street) {
-    //   setStreetMsg("Please enter a Street");
-    //   submit = false;
-    // }
-    // if (!post_code) {
-    //   setCodeMsg("Please Enter a code");
-    //   submit = false;
-    // }
-    // if (!description) {
-    //   setDescMsg("Please Enter a Description");
-    //   submit = false;
-    // }
+    if (!name || name.length > 24) {
+      setFacName("Please Enter a Name");
+      submit = false;
+    }
+    if (type.length === 0) {
+      setFacType("Please Select a Type");
+      submit = false;
+    }
+    if (!location) {
+      setLocMsg("Please Enter a Location");
+      submit = false;
+    }
+    if (+const_year < 0 || const_year.length !== 4) {
+      setYearMsg("Please Enter a Year");
+      submit = false;
+    }
+    if (!street) {
+      setStreetMsg("Please enter a Street");
+      submit = false;
+    }
+    if (!post_code) {
+      setCodeMsg("Please Enter a code");
+      submit = false;
+    }
+    if (!description) {
+      setDescMsg("Please Enter a Description");
+      submit = false;
+    }
     if (submit) {
       navigation.navigate(link + "AddFacility2");
     }

@@ -164,7 +164,7 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
                   <View style={styles.flexlog}>
                     <MaterialCommunityIcons
                       name="logout"
-                      size={28}
+                      size={26}
                       color="#023D26"
                     />
                     <Text style={styles.txtlog}>Log out</Text>
@@ -180,7 +180,7 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
                   <View style={styles.flexlog}>
                     <MaterialCommunityIcons
                       name="lock-reset"
-                      size={28}
+                      size={26}
                       color="#023D26"
                     />
                     <Text style={styles.txtlog}>Reset Pass</Text>

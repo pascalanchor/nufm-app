@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import MainNavigation from "./Navigation/MainNavigation/MainNavigation";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createStore, applyMiddleware, compose, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
@@ -33,7 +34,7 @@ import {
   GetOccupantsR,
   GetSpecializationR,
   AddFacilityOccupantR,
-  DeleteOrderR
+  DeleteOrderR,
 } from "./Store";
 const composeEnhancers =
   (process.env.NODE_ENV === "development"
@@ -68,20 +69,18 @@ const reducer = combineReducers({
   GetOccupantsR: GetOccupantsR,
   GetSpecializationR: GetSpecializationR,
   AddFacilityOccupantR: AddFacilityOccupantR,
-  DeleteOrderR: DeleteOrderR
+  DeleteOrderR: DeleteOrderR,
 });
 const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <MainNavigation/>
-        {/* <AdminNavigation />
-        <ContractorNavigation />
-        <WorkerNavigation />
-        <OccupantNavigation />  */}
-      </View>
+      <SafeAreaProvider>
+        <View style={styles.container}>
+          <MainNavigation />
+        </View>
+      </SafeAreaProvider>
     </Provider>
   );
 }

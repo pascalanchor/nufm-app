@@ -4,27 +4,31 @@ import { Ionicons } from "@expo/vector-icons";
 import NUFM from "../../assets/NUFM-Green.png";
 import { useNavigation } from "@react-navigation/native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import SafeAreaView from 'react-native-safe-area-view';
 import {
   StyleSheet,
-  Dimensions,
   Text,
   View,
-  Image,
   TouchableOpacity,
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
-const windowHeight = Dimensions.get("window").height;
-console.log(windowHeight);
 export default function Header({ link, title, setModal }) {
   const navigation = useNavigation();
   return (
+    <SafeAreaView forceInset={{ top: 'always' }}>
     <View style={styles.container}>
       <View style={styles.subCont}>
+        <View>
         <TouchableOpacity onPress={() => setModal(true)}>
           <View>
             <Entypo name="menu" size={26} color="#023D26" />
           </View>
         </TouchableOpacity>
+        </View>
         <View>
           <Text style={styles.title}>{title}</Text>
         </View>
@@ -38,6 +42,7 @@ export default function Header({ link, title, setModal }) {
       </View>
       <View></View>
     </View>
+    </SafeAreaView>
   );
 }
 
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: windowHeight > 700 ? "17%" : "10%",
+    paddingTop: hp('2%') ,
     paddingHorizontal: "7%",
     width: "100%",
   },
