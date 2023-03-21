@@ -22,6 +22,7 @@
     "expo-checkbox": "~2.2.2",
     "expo-location": "~15.0.1",
     "expo-status-bar": "~1.4.2",
+    "expo-updates": "~0.15.6",
     "lodash.filter": "^4.6.0",
     "react": "18.1.0",
     "react-native": "0.70.5",
