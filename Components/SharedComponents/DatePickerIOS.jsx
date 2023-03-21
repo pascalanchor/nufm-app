@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -38,7 +38,7 @@ export default function DatePickerIOS({value , label, handleOnChange, name}) {
       </View>
       <TouchableOpacity onPress={showDatePicker}>
         <View style={styles.input}>
-          <Text style={styles.date}>{date.toLocaleString().substr(0, 10)}</Text>
+          <Text style={styles.date}>{date.toLocaleString().substr(0, 9)}</Text>
         </View>
       </TouchableOpacity>
       <View
