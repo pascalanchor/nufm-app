@@ -8,9 +8,9 @@ workflows:
         environment:
           ios_signing:
             distribution_type: app_store
-            bundle_identifier: "com.avh.nufmmobile"
+            bundle_identifier: "com.avh.nufm"
           vars:
-            XCODE_WORKSPACE: "com.avh.nufmmobile" # <-- Put the name of your Xcode workspace here
+            XCODE_WORKSPACE: "com.avh.nufm" # <-- Put the name of your Xcode workspace here
             XCODE_SCHEME: "nufmmobile" # <-- Put the name of your Xcode scheme here
             APP_ID: 6446584670 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
           node: v18.12.1
