@@ -43,6 +43,8 @@ workflows:
               failure: false
           app_store_connect:
             auth: integration
+            key_id: DB8LRCHG7H
+            issuer_id: 738fc6d2-23f5-4c18-af2b-964ae9bf4834
 
             # Configuration related to TestFlight (optional)
             # Note: This action is performed during post-processing.
