@@ -45,10 +45,7 @@ workflows:
             auth: integration
             key_id: DB8LRCHG7H
             issuer_id: 738fc6d2-23f5-4c18-af2b-964ae9bf4834
-            api_key: MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgN+sGwrKJkUtJA7k6
-fMXPbFO+ghWTbRPEgblTX7yM6j+gCgYIKoZIzj0DAQehRANCAAQ+thBecPbJspNK
-qcQrDk8Jr98FwJ3mfFNdCNG9CJADQxS9WBOD33j9d7jOyw7ggTHyTCipUuEVtSK8
-n9Ue3NEt
+            api_key: MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgN+sGwrKJkUtJA7k6fMXPbFO+ghWTbRPEgblTX7yM6j+gCgYIKoZIzj0DAQehRANCAAQ+thBecPbJspNKqcQrDk8Jr98FwJ3mfFNdCNG9CJADQxS9WBOD33j9d7jOyw7ggTHyTCipUuEVtSK8n9Ue3NEt
 
             # Configuration related to TestFlight (optional)
             # Note: This action is performed during post-processing.
