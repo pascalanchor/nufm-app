@@ -37,13 +37,12 @@ workflows:
         publishing:
           email:
             recipients:
-              - user_1@example.com
-              - user_2@example.com
+              - houssam11998877@gmail.com 
             notify:
               success: true
               failure: false
           app_store_connect:
-            auth: integration
+            auth: CM-DNS
 
             # Configuration related to TestFlight (optional)
             # Note: This action is performed during post-processing.
