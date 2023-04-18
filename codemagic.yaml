@@ -19,10 +19,17 @@ workflows:
         scripts:
             - name: Install npm dependencies
               script: |
-                npm install
+                yarn install
+                yarn global add expo-cli
+                expo eject
             - name: Install CocoaPods dependencies
               script: |
-                pod install
+                cd ios && pod install
+            - name: Increment build number
+              script: |
+                cd $CM_BUILD_DIR/ios
+                LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
+                agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
             - name: Set Info.plist values
               script: |
                 # This allows publishing without manually answering the question about encryption 
