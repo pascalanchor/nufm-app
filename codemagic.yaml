@@ -22,7 +22,7 @@ workflows:
                 npm install
             - name: Install CocoaPods dependencies
               script: |
-                cd ios && pod install
+                pod install
             - name: Set Info.plist values
               script: |
                 # This allows publishing without manually answering the question about encryption 
