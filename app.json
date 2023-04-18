@@ -20,7 +20,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.avh.nufm"
+      "bundleIdentifier": "com.hussamkhaled.nufmmobile"
     },
     "android": {
       "adaptiveIcon": {
