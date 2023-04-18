@@ -38,7 +38,7 @@ workflows:
               $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
          - name: Install CocoaPods dependencies
            script: |
-              cd ios && pod install
+              cd ios && pod install && ls
          - name: Increment build number
            script: |
               cd $CM_BUILD_DIR/ios
