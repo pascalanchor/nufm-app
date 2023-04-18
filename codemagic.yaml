@@ -45,17 +45,6 @@ workflows:
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
             - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
         publishing:
-          email:
-            recipients:
-              - houssam11998877@gmail.com 
-            notify:
-              success: true
-              failure: false
           app_store_connect:
-            key_id: DB8LRCHG7H
-            issuer_id: 738fc6d2-23f5-4c18-af2b-964ae9bf4834
-            api_key: MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQgN+sGwrKJkUtJA7k6fMXPbFO+ghWTbRPEgblTX7yM6j+gCgYIKoZIzj0DAQehRANCAAQ+thBecPbJspNKqcQrDk8Jr98FwJ3mfFNdCNG9CJADQxS9WBOD33j9d7jOyw7ggTHyTCipUuEVtSK8n9Ue3NEt
-           
-            # Configuration related to App Store (optional)
-            # Note: This action is performed during post-processing.
+            auth: integration
             submit_to_app_store: true
