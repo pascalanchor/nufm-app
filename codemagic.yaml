@@ -37,6 +37,17 @@ workflows:
           PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
           PLIST_BUDDY=/usr/libexec/PlistBuddy
           $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
+      - name: Update iOS Deployment Target
+        script: |
+          # Find the Xcode project file in the ios directory
+          XCODE_PROJECT=$(find ios -name '*.xcodeproj' -type d)
+          if [ -n "$XCODE_PROJECT" ]; then
+            # Update the iOS deployment target
+            plutil -replace IPHONEOS_DEPLOYMENT_TARGET -string "12.0" "$XCODE_PROJECT/project.pbxproj"
+          else
+            echo "Xcode project file not found."
+            exit 1
+          fi
       - name: Install CocoaPods dependencies
         script: |
           cd ios && pod install && ls
