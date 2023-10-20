@@ -32,14 +32,6 @@ workflows:
           npm install -g expo-cli  # Update Expo CLI
           expo eject  # Eject the project
           npm install -g sharp-cli  # Install sharp-cli
-      - name: Update Deployment Target
-        script: |
-          # Specify the path to the .xcconfig or .xcworkspace file where the deployment target is defined.
-          # For example, if you are using an .xcconfig file:
-          XCCONFIG_FILE="$FCI_BUILD_DIR/ios/NuFmMobile.xcconfig"
-          
-          # Replace the deployment target in the .xcconfig file.
-          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 12.0/g' "$XCCONFIG_FILE"
       - name: Set Info.plist values
         script: |
           PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
@@ -48,6 +40,8 @@ workflows:
       - name: Install CocoaPods dependencies
         script: |
           cd ios && pod install && ls
+          XCCONFIG_FILE="NuFmMobile.xcconfig"
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 12.0/g' "$XCCONFIG_FILE"
       - name: Increment build number
         script: |
           cd $CM_BUILD_DIR/ios
