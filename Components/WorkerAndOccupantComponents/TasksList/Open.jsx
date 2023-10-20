@@ -41,7 +41,7 @@ function Open({ searchVal, data }) {
           numColumns={1}
           renderItem={({ item }) => {
             return (
-              <TouchableOpacity
+              <View
                 // onPress={() => {
                 //   Linking.openURL(
                 //     "http://api.whatsapp.com/send?phone=" + item.phone
@@ -62,7 +62,7 @@ function Open({ searchVal, data }) {
                     </Text>
                   </View>
                 </View>
-              </TouchableOpacity>
+              </View>
             );
           }}
         />
