@@ -36,7 +36,7 @@ function Open({ searchVal, data }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.name}
+          keyExtractor={(item) => item.eid}
           data={WorkersArr}
           numColumns={1}
           renderItem={({ item }) => {

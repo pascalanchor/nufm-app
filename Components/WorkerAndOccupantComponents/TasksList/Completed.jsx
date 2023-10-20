@@ -39,7 +39,7 @@ function Completed({ searchVal, data }) {
     <View style={styles.box}>
       <ScrollView>
         <FlatList
-          keyExtractor={(item) => item.email}
+          keyExtractor={(item) => item.eid}
           data={WorkersArr}
           numColumns={1}
           renderItem={({ item }) => {
