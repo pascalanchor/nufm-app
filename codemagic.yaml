@@ -32,6 +32,14 @@ workflows:
           npm install -g expo-cli  # Update Expo CLI
           expo eject  # Eject the project
           npm install -g sharp-cli  # Install sharp-cli
+          scripts:
+      - name: Update Deployment Target
+        script: |
+          # Specify the path to the .xcconfig or .xcworkspace file where the deployment target is defined.
+          # For example, if you are using an .xcconfig file:
+          XCCONFIG_FILE="$FCI_BUILD_DIR/ios/your_project_name.xcconfig"
+          
+          # Replace the deployment target in the .xcconfig file.
       - name: Set Info.plist values
         script: |
           PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
