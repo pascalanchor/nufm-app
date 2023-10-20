@@ -40,8 +40,6 @@ workflows:
          - name: Install CocoaPods dependencies
            script: |
               cd ios && pod install && ls
-              XCODE_WORKSPACESS="Pods/Pods.xcodeproj/project.pbxproj"
-              sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 15.0/g' "$XCODE_WORKSPACESS"
          - name: Increment build number
            script: |
               cd $CM_BUILD_DIR/ios
