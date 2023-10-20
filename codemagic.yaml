@@ -29,8 +29,9 @@ workflows:
          - name: Install dependencies, Expo CLI and eject app
            script: |
               yarn install
-              yarn global add expo-cli
-              expo eject
+              npm install -g expo-cli  # Update Expo CLI
+              expo eject  # Eject the project
+              npm install -g sharp-cli  # Install sharp-cli
          - name: Set Info.plist values
            script: |
               PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
