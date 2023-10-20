@@ -44,7 +44,7 @@ workflows:
               sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 15.0/g' "$XCODE_WORKSPACESS"
          - name: Increment build number
            script: |
-              ls && cd $CM_BUILD_DIR/ios
+              ls && cd ios
               LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_ID")
               agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
          - name: Set up code signing settings on Xcode project
