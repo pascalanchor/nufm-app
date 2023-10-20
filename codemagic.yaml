@@ -43,7 +43,7 @@ workflows:
           XCODE_PROJECT=$(find ios -name '*.xcodeproj' -type d)
           if [ -n "$XCODE_PROJECT" ]; then
             # Update the iOS deployment target
-            plutil -replace IPHONEOS_DEPLOYMENT_TARGET -string "12.0" "$XCODE_PROJECT/project.pbxproj"
+            sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 9.0;/IPHONEOS_DEPLOYMENT_TARGET = 12.0;/' "$XCODE_PROJECT/project.pbxproj"
           else
             echo "Xcode project file not found."
             exit 1
