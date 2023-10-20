@@ -14,7 +14,7 @@ workflows:
             XCODE_SCHEME: "NuFmMobile" # <-- Put the name of your Xcode scheme here
             APP_ID: 6446584670 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
           node: v18.12.1
-          xcode: latest
+          xcode: 11
           cocoapods: default
         triggering:
            events:
@@ -40,8 +40,6 @@ workflows:
          - name: Install CocoaPods dependencies
            script: |
               cd ios && pod install && ls && pod update && cd Pods
-              XCODE_WORKSPACESS="Pods.xcodeproj/project.pbxproj"
-              sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 15.0/g' "$XCODE_WORKSPACESS"
          - name: Increment build number
            script: |
               ls && cd ios
