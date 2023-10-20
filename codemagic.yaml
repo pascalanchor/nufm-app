@@ -40,8 +40,8 @@ workflows:
       - name: Install CocoaPods dependencies
         script: |
           cd ios && pod install && ls
-          XCCONFIG_FILE="NuFmMobile.xcodeproj"
-          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 12.0/g' "$XCCONFIG_FILE"
+          XCODE_WORKSPACE="$FCI_BUILD_DIR/$XCODE_WORKSPACE"
+          sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 11.0/IPHONEOS_DEPLOYMENT_TARGET = 12.0/g' "$XCODE_WORKSPACE"
       - name: Increment build number
         script: |
           cd $CM_BUILD_DIR/ios
