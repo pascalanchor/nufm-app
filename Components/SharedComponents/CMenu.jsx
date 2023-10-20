@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Dimensions,
 } from "react-native";
 import {
   widthPercentageToDP as wp,
@@ -28,6 +29,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { connect } from "react-redux";
 import * as LoginActionCreators from "../../Store/ActionCreator/Login/LoginActionCreator";
 
+const { width, height } = Dimensions.get("window");
+
 function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
   const navigation = useNavigation();
   const navToHome = () => {
@@ -38,14 +41,23 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
     navigation.navigate(link + "Communication");
     setModal(false);
   };
+  const navToCommWorker = () => {
+    navigation.navigate(link + "CommunicationWorker");
+    setModal(false);
+  };
+
+  const navToCommOcc = () => {
+    navigation.navigate(link + "CommunicationOccupant");
+    setModal(false);
+  };
   const navToIncident = () => {
     navigation.navigate(link + "Incident");
     setModal(false);
   };
-  const navToSupport = () => {
-    navigation.navigate(link + "Support");
-    setModal(false);
-  };
+  // const navToSupport = () => {
+  //   navigation.navigate(link + "Support");
+  //   setModal(false);
+  // };
   const navToRisk = () => {
     navigation.navigate(link + "Risk");
     setModal(false);
@@ -63,35 +75,35 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
       icon: Risk,
       link: navToRisk,
     },
-    {
-      name: "Support",
-      icon: Support,
-      link: navToSupport,
-    },
+    // {
+    //   name: "Support",
+    //   icon: Support,
+    //   link: navToSupport,
+    // },
   ];
 
   const MenuItemsWorker = [
     { name: "Home", icon: Home, link: navToHome },
-    { name: "Communication", icon: Communication, link: navToComm },
+    { name: "Communication", icon: Communication, link: navToCommWorker },
     {
       name: "Risk",
       icon: Risk,
       link: navToRisk,
     },
-    {
-      name: "Support",
-      icon: Support,
-      link: navToSupport,
-    },
+    // {
+    //   name: "Support",
+    //   icon: Support,
+    //   link: navToSupport,
+    // },
   ];
   const MenuItemsOccupant = [
     { name: "Home", icon: Home, link: navToHome },
-    { name: "Communication", icon: Communication, link: navToComm },
-    {
-      name: "Support",
-      icon: Support,
-      link: navToSupport,
-    },
+    { name: "Communication", icon: Communication, link: navToCommOcc },
+    // {
+    //   name: "Support",
+    //   icon: Support,
+    //   link: navToSupport,
+    // },
   ];
   const [adminName, setAdminName] = useState("");
   const fN = async () => {
@@ -135,29 +147,27 @@ function CMenu({ link, modalVisible, setModal, error, token, getLoginInfo }) {
             </View>
             <View style={styles.flexView}>
               <View>
-                <ScrollView>
-                  <FlatList
-                    keyExtractor={(item) => item.name}
-                    data={
-                      link === "Worker/"
-                        ? MenuItemsWorker
-                        : link === "Occupant/"
-                        ? MenuItemsOccupant
-                        : MenuItems
-                    }
-                    numColumns={1}
-                    renderItem={({ item }) => {
-                      return (
-                        <TouchableOpacity onPress={item.link}>
-                          <View style={styles.menuItem}>
-                            <Image source={item.icon} />
-                            <Text style={styles.txtMenu}>{item.name}</Text>
-                          </View>
-                        </TouchableOpacity>
-                      );
-                    }}
-                  />
-                </ScrollView>
+                <FlatList
+                  keyExtractor={(item) => item.name}
+                  data={
+                    link === "Worker/"
+                      ? MenuItemsWorker
+                      : link === "Occupant/"
+                      ? MenuItemsOccupant
+                      : MenuItems
+                  }
+                  numColumns={1}
+                  renderItem={({ item }) => {
+                    return (
+                      <TouchableOpacity onPress={item.link}>
+                        <View style={styles.menuItem}>
+                          <Image source={item.icon} />
+                          <Text style={styles.txtMenu}>{item.name}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  }}
+                />
               </View>
               <View style={styles.menuFooter}>
                 <TouchableOpacity style={styles.logout} onPress={handleClick}>
@@ -222,17 +232,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(CMenu);
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "rgba(100,100,100,0.5)",
+    width: wp("100%"),
+    height: hp("100%"),
   },
   subCont: {
-    width: "80%",
+    width: width > 650 ? "45%" : "80%",
     height: "100%",
     backgroundColor: "#023D26",
-    paddingTop: "6%",
+    paddingTop: width > 650 ? "2%" : "6%",
   },
   img: {
-    width: 190,
-    height: 140,
+    width: width > 650 ? 160 : 190,
+    height: width > 650 ? 110 : 140,
   },
   txtImg: {
     alignItems: "center",
@@ -240,13 +253,14 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: "#fff",
-    fontSize: RFPercentage(2.4),
+    fontSize: width > 650 ? RFPercentage(2.2) : RFPercentage(2.4),
     paddingTop: "3%",
     fontWeight: "bold",
   },
   flexView: {
     flex: 1,
     justifyContent: "space-between",
+    flexDirection: "column",
   },
   menuItem: {
     flexDirection: "row",
@@ -276,8 +290,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#B4D9CB",
     borderRadius: 7,
-    width: "42.5%",
-    marginHorizontal: "5%",
+    width: "42%",
+    paddingLeft: "1%",
+    marginLeft: "5%",
     paddingVertical: "1.5%",
   },
   reset: {
@@ -286,14 +301,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#B4D9CB",
     borderRadius: 7,
-    width: "42.5%",
-    marginRight: "6%",
+    width: "42%",
+    paddingLeft: "1%",
+    marginRight: "5%",
     paddingVertical: "1.5%",
   },
   menuFooter: {
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: "10%",
+    marginBottom: width > 650 ? "5%" : "10%",
   },
 });

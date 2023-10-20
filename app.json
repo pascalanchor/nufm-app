@@ -3,13 +3,13 @@
     "name": "NuFm_Mobile",
     "slug": "NuFm_Mobile",
     "description": "nufm mobile app",
-    "version": "1.0.7",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/grlogo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/Landing.png",
-      "resizeMode": "contain",
+      "image": "./assets/NUFM-Green.png",
+      "resizeMode": "center",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -19,7 +19,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": false,
+      "supportsTablet": true,
       "bundleIdentifier": "com.avh.nufm"
     },
     "android": {

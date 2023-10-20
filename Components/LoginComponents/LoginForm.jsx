@@ -55,7 +55,7 @@ function LoginForm({
     try {
       await AsyncStorage.setItem("fullName", fullName);
       await AsyncStorage.setItem("nufmtoken", token);
-      await AsyncStorage.setItem("email", email);
+      await AsyncStorage.setItem("email", email.toLowerCase());
       await AsyncStorage.setItem("profileImage", profileImage);
       await AsyncStorage.setItem("roles", JSON.stringify(roles));
     } catch (e) {
@@ -167,7 +167,7 @@ function LoginForm({
     submitLogin(email, password);
   };
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <View style={styles.welcomeCont}>
         <Text style={styles.welcome}>Welcome !</Text>
       </View>

@@ -36,6 +36,13 @@ import {
   AddRisk,
   RiskO,
   OrderO,
+  TasksList,
+  Safety,
+  CommunicationWorker,
+  CommunicationOccupant,
+  Profile,
+  IncidentListW,
+  IncidentDW,
 } from "../../Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -187,6 +194,15 @@ export default function LoginNavigation() {
             {(props) => <Risk {...props} link="Worker/" />}
           </Stack.Screen>
 
+          <Stack.Screen name="Worker/Profile">
+            {(props) => <Profile {...props} link="Worker/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Worker/CommunicationWorker">
+            {(props) => <CommunicationWorker {...props} link="Worker/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Worker/Safety">
+            {(props) => <Safety {...props} link="Worker/" />}
+          </Stack.Screen>
           <Stack.Screen name="Worker/Communication">
             {(props) => <Communication {...props} link="Worker/" />}
           </Stack.Screen>
@@ -197,13 +213,16 @@ export default function LoginNavigation() {
             {(props) => <Sender {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/IncidentsW">
-            {(props) => <IncidentsW {...props} link="Worker/" />}
+            {(props) => <IncidentListW {...props} link="Worker/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Worker/TasksList">
+            {(props) => <TasksList {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/AddIncident">
             {(props) => <AddIncidentOW {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/IncidentDet">
-            {(props) => <IncidentDet {...props} link="Worker/" />}
+            {(props) => <IncidentDW {...props} link="Worker/" />}
           </Stack.Screen>
           <Stack.Screen name="Worker/RiskDet">
             {(props) => <RiskDet {...props} link="Worker/" />}
@@ -230,6 +249,9 @@ export default function LoginNavigation() {
           </Stack.Screen>
           <Stack.Screen name="Occupant/Risk">
             {(props) => <RiskO {...props} link="Occupant/" />}
+          </Stack.Screen>
+          <Stack.Screen name="Occupant/CommunicationOccupant">
+            {(props) => <CommunicationOccupant {...props} link="Occupant/" />}
           </Stack.Screen>
           <Stack.Screen name="Occupant/AddRisk">
             {(props) => <AddRisk {...props} link="Occupant/" />}

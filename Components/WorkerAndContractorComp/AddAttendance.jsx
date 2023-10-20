@@ -6,18 +6,23 @@ import {
   TouchableOpacity,
   TextInput,
   ActivityIndicator,
+  Dimensions,
 } from "react-native";
+import { useStopwatch } from "react-timer-hook";
 import BasicInput from "../../Components/SharedComponents/BasicInput";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import SelectDropdown from "react-native-select-dropdown";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import CheckBox from "expo-checkbox";
 import * as Location from "expo-location";
-import { connect } from "react-redux";
 import * as AddAttendanceActionCreator from "../../Store/ActionCreator/Attendance/AddAttendanceActionCreator";
-import * as GetFacilitiesActionCreator from "../../Store/ActionCreator/Fcaility/GetFacilitiesActionCreator";
-import * as GetTasksActionCreator from "../../Store/ActionCreator/Task/GetTasksActionCreator";
+import * as GetFacilitiesByUserId from "../../Store/ActionCreator/Attendance/GetFacilitiesByUserId";
+import * as GetTasksActionCreator from "../../Store/ActionCreator/Task/GetTasksByUserId";
+import { connect } from "react-redux";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const { width, height } = Dimensions.get("window");
 
 function AddAttendance({
   link,
@@ -36,7 +41,7 @@ function AddAttendance({
   getAllParent,
   parent,
   tasks,
-  getAllTaskInfo,
+  getAllTaskInfoByUserId,
 }) {
   const [semail, setSEmail] = useState("");
   const fN = async () => {
@@ -44,6 +49,8 @@ function AddAttendance({
       const adname = await AsyncStorage.getItem("email");
       if (adname !== null) {
         setSEmail(adname);
+        getFacilities(adname);
+        getAllTaskInfoByUserId(adname);
       }
     } catch (e) {
       alert("Failed to fetch the input from storage");
@@ -52,8 +59,6 @@ function AddAttendance({
 
   useEffect(() => {
     fN();
-    getFacilities();
-    getAllTaskInfo();
     getAttendanceInfo("facility", "");
     getAttendanceInfo("user", "");
     getAttendanceInfo("type", "");
@@ -101,6 +106,7 @@ function AddAttendance({
 
   const handleCheck = (value) => {
     if (!toggleCheckBox) {
+      // start();
       setCheckType("CheckIn");
       if (location !== null) {
         setLat(JSON.stringify(location.coords.latitude));
@@ -109,6 +115,7 @@ function AddAttendance({
       setToggleCheckBox(value);
       setDisableCheck2(true);
     } else {
+      // pause();
       setLat("");
       setLong("");
       setToggleCheckBox(value);
@@ -118,6 +125,7 @@ function AddAttendance({
 
   const handleCheckOut = (value) => {
     if (!toggleCheckBox2) {
+      // pause();
       setCheckType("CheckOut");
       if (location !== null) {
         setLat(JSON.stringify(location.coords.latitude));
@@ -223,13 +231,23 @@ function AddAttendance({
           <Ionicons name="location" size={26} color="#023D26" />
         </View>
       </View>
+
       {error && (
         <View style={styles.errorMsg}>
           <AntDesign name="checkcircle" size={24} color="#02A962" />
           <Text style={styles.errorTxt}>{error}</Text>
         </View>
       )}
-      <View style={{ flexDirection: "row", marginBottom: "3%" }}>
+      <View
+        style={{
+          flexDirection: "row",
+          paddingHorizontal: "5%",
+          marginVertical: "5%",
+          height: 50,
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
         <View style={{ width: "30%" }}>
           <TouchableOpacity>
             <View style={styles.cancel}>
@@ -249,7 +267,7 @@ function AddAttendance({
           <View style={{ width: "70%" }}>
             <TouchableOpacity>
               <View style={styles.save}>
-                <Text style={styles.addSite}>Saving... </Text>
+                <Text style={styles.addSite}>Saving </Text>
                 <ActivityIndicator size="small" color="#fff" />
               </View>
             </TouchableOpacity>
@@ -270,15 +288,17 @@ const mapStateToProps = (state) => {
     lng: state.AddAttendanceR.lng,
     error: state.AddAttendanceR.error,
     loading: state.AddAttendanceR.loading,
-    Facilities: state.GetFacilitiesR.Facilities,
-    tasks: state.GetAllTasksR.tasks,
+    Facilities: state.GetAllFacilitiesByUserR.Facilities,
+    tasks: state.GetAllTasksByUserR.tasks,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getFacilities: () => dispatch(GetFacilitiesActionCreator.getFacilities()),
-    getAllTaskInfo: () => dispatch(GetTasksActionCreator.getAllTaskInfo()),
+    getFacilities: (email) =>
+      dispatch(GetFacilitiesByUserId.getFacilitiesByUserId(email)),
+    getAllTaskInfoByUserId: (email) =>
+      dispatch(GetTasksActionCreator.getAllTaskInfoByUserId(email)),
     getAttendanceInfo: (name, value) =>
       dispatch(AddAttendanceActionCreator.getAttendanceInfo(name, value)),
     addAttendance: (facility, user, task, type, lng, lat) =>
@@ -304,19 +324,20 @@ const styles = StyleSheet.create({
   },
   input: {
     width: "100%",
-    aspectRatio: 8.6 / 1,
+    // aspectRatio: 8.6 / 1,
+    height: 45,
     backgroundColor: "#F1F1F1",
     borderRadius: 12,
     paddingLeft: "4%",
     marginTop: "1%",
-    fontSize: RFPercentage(1.5),
-    paddingRight: "2%",
+    fontSize: width > 700 ? RFPercentage(1.7) : RFPercentage(1.5),
+    paddingRight: "4%",
   },
   container: {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "8%",
+    marginBottom: "6%",
   },
   dropdownHour: {
     borderRadius: 8,
@@ -330,8 +351,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingLeft: "4%",
     marginTop: "2%",
-    height: 40,
     width: "100%",
+    height: 45,
+    // paddingVertical:"1.2%",
     alignItems: "center",
     justifyContent: "flex-start",
   },
@@ -349,7 +371,7 @@ const styles = StyleSheet.create({
     paddingLeft: "1.5%",
     fontWeight: "bold",
     color: "#595959",
-    fontSize: RFPercentage(1.5),
+    fontSize: width > 700 ? RFPercentage(1.7) : RFPercentage(1.5),
   },
   addSite: {
     fontSize: RFPercentage(1.9),
@@ -366,24 +388,24 @@ const styles = StyleSheet.create({
   save: {
     backgroundColor: "#309694",
     borderRadius: 12,
-    paddingHorizontal: "2%",
     alignItems: "center",
-    paddingVertical: "3%",
+    height: "100%",
     justifyContent: "center",
-    marginBottom: "7%",
-    marginHorizontal: "7%",
-    flexDirection: "row",
+    marginLeft: "3%",
   },
   cancel: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    // paddingHorizontal: "0%",
+    alignItems: "center",
+    // paddingVertical: "4%",
+    height: "100%",
+    justifyContent: "center",
+    // marginBottom: "12%",
+    marginRight: "3%",
     borderWidth: 1.5,
     borderColor: "#309694",
-    borderRadius: 12,
-    paddingHorizontal: "2%",
-    alignItems: "center",
-    paddingVertical: "5%",
-    justifyContent: "center",
-    marginBottom: "7%",
-    marginLeft: "18%",
   },
   checkboxes: {
     flexDirection: "row",
@@ -404,10 +426,12 @@ const styles = StyleSheet.create({
   },
   errorMsg: {
     marginHorizontal: "5%",
-    marginBottom: "7%",
+    width: "90%",
+    height: 55,
+    marginBottom: "3%",
     backgroundColor: "#CAF3D1",
     flexDirection: "row",
-    padding: "3.5%",
+    paddingHorizontal: "3.5%",
     borderRadius: 12,
     alignItems: "center",
   },
