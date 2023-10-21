@@ -39,7 +39,7 @@ workflows:
          - name: Generate Podfile
            script: |
               # Set the iOS deployment target value
-              ios_deployment_target="12.0" # Replace with your desired deployment target
+              ios_deployment_target="13.0" # Replace with your desired deployment target
               # Render the Podfile template using ERB
               sed -e "s/<%= ios_deployment_target %>/$ios_deployment_target/g" Podfile.erb > ios/Podfile
          - name: Set Info.plist values
