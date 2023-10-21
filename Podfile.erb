@@ -1,14 +1,7 @@
 # Ensure the platform and other configuration options are defined outside the target block
-platform :ios, '<%= ios_deployment_target %>'
+platform :ios, '12'
 install! 'cocoapods',
   :deterministic_uuids => false
-
-# Define variables for your dependencies
-#dependencies = [
- # { name: 'Dependency1', version: '1.0.0' },
-  #{ name: 'Dependency2', version: '2.0.0' },
-  # Add more dependencies as needed
-#]
 
 target 'NuFmMobile' do
   use_expo_modules!
