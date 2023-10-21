@@ -13,7 +13,7 @@ workflows:
             XCODE_WORKSPACE: "NuFmMobile.xcworkspace" # <-- Put the name of your Xcode workspace here
             XCODE_SCHEME: "NuFmMobile" # <-- Put the name of your Xcode scheme here
             APP_ID: 6446584670 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
-            ios.deploymentTarget: "12.0"
+            ios.deploymentTarget: "13.0"
           node: v18.12.1
           xcode: latest
           cocoapods: default
