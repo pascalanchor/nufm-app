@@ -46,7 +46,8 @@ workflows:
               $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
          - name: Install CocoaPods dependencies and set ios.deploymentTarget
            script: |
-              cd ios && pod install && ls
+              cd ios && ls && cat podfile
+              #cd ios && pod install && ls
               #deployment_target="12.0" # Replace with your desired deployment target version
               #sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
               #cat Podfile.properties.json
