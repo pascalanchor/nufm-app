@@ -1,5 +1,13 @@
+require 'json'
+
+# Define podfile_properties by reading from a JSON file
+podfile_properties = JSON.parse(File.read(File.join(__dir__, 'Podfile.properties.json'))) rescue {}
+
+# Set a default deployment target if it's not defined
+deployment_target = podfile_properties['ios.deploymentTarget'] || '12.0'
+
 # Ensure the platform and other configuration options are defined outside the target block
-platform :ios, '12'
+platform :ios, deployment_target
 install! 'cocoapods',
   :deterministic_uuids => false
 
