@@ -43,6 +43,7 @@ workflows:
               cd ios && pod install && ls
               deployment_target="12.0" # Replace with your desired deployment target version
               sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
+              cat Podfile.properties.json
 
          - name: Increment build number
            script: |
