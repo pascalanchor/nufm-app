@@ -33,9 +33,8 @@ workflows:
               npm install -g expo-cli  # Update Expo CLI
               expo eject  # Eject the project
               npm install -g sharp-cli  # Install sharp-cli
-          scripts:
          - name: Generate Podfile
-          script: |
+           script: |
               # Set the iOS deployment target value
               ios_deployment_target="12.0" # Replace with your desired deployment target
               # Render the Podfile template using ERB
