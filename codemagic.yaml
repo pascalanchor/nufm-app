@@ -33,6 +33,13 @@ workflows:
               npm install -g expo-cli  # Update Expo CLI
               expo eject  # Eject the project
               npm install -g sharp-cli  # Install sharp-cli
+          scripts:
+         - name: Generate Podfile
+          script: |
+              # Set the iOS deployment target value
+              ios_deployment_target="12.0" # Replace with your desired deployment target
+              # Render the Podfile template using ERB
+              erb -T  YourPodfile.erb > ios/Podfile
          - name: Set Info.plist values
            script: |
               PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
@@ -41,9 +48,9 @@ workflows:
          - name: Install CocoaPods dependencies and set ios.deploymentTarget
            script: |
               cd ios && pod install && ls
-              deployment_target="12.0" # Replace with your desired deployment target version
-              sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
-              cat Podfile.properties.json
+              #deployment_target="12.0" # Replace with your desired deployment target version
+              #sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
+              #cat Podfile.properties.json
 
          - name: Increment build number
            script: |
