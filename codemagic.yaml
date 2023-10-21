@@ -38,12 +38,12 @@ workflows:
               PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
               PLIST_BUDDY=/usr/libexec/PlistBuddy
               $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
-         - name: Install CocoaPods dependencies
+         - name: Install CocoaPods dependencies and set ios.deploymentTarget
            script: |
-              cd ios && # Define the desired deployment target version
-                deployment_target="12.0"
-                sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
-                pod install && ls && cat Podfile.properties.json  && pod update && cd Pods
+              cd ios && pod install && ls
+              deployment_target="12.0" # Replace with your desired deployment target version
+              sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
+
          - name: Increment build number
            script: |
               ls && cd ios
