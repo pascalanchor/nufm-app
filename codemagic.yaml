@@ -50,6 +50,7 @@ workflows:
          - name: Install CocoaPods dependencies and set ios.deploymentTarget
            script: |
               cd ios && pod deintegrate
+              cat podfile
               pod clean
               rm -rf Pods Podfile.lock
               pod install && ls
