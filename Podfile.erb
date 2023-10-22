@@ -29,6 +29,18 @@ target 'NuFmMobile' do
     # Note that if you have use_frameworks! enabled, Flipper will not work
     # :flipper_configuration => !ENV['CI'] ? FlipperConfiguration.enabled : FlipperConfiguration.disabled,
   )
+  
+  pod 'React', :path => config[:reactNativePath], :subspecs => [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTText',
+    'RCTNetwork',
+    'RCTWebSocket',
+    'RCTAnimation',
+    'RCTImage',
+    'RCTLinkingIOS',
+  ]
 
   post_install do |installer|
     react_native_post_install(
