@@ -13,7 +13,6 @@ workflows:
             XCODE_WORKSPACE: "NuFmMobile.xcworkspace" # <-- Put the name of your Xcode workspace here
             XCODE_SCHEME: "NuFmMobile" # <-- Put the name of your Xcode scheme here
             APP_ID: 6446584670 # <-- Put the app id number here. This is found in App Store Connect > App > General > App Information
-            ios.deploymentTarget: "13.0"
           node: v18.12.1
           xcode: latest
           cocoapods: default
@@ -33,31 +32,14 @@ workflows:
               npm install -g expo-cli  # Update Expo CLI
               expo eject  # Eject the project
               npm install -g sharp-cli  # Install sharp-cli
-              npm install -g npm-check-updates
-              ncu -u
-              npm install
-         - name: Generate Podfile
-           script: |
-              # Set the iOS deployment target value
-              ios_deployment_target="13.0" # Replace with your desired deployment target
-              # Render the Podfile template using ERB
-              sed -e "s/<%= ios_deployment_target %>/$ios_deployment_target/g" Podfile.erb > ios/Podfile
          - name: Set Info.plist values
            script: |
               PLIST=$FCI_BUILD_DIR/$XCODE_SCHEME/Info.plist
               PLIST_BUDDY=/usr/libexec/PlistBuddy
               $PLIST_BUDDY -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST
-         - name: Install CocoaPods dependencies and set ios.deploymentTarget
+         - name: Install CocoaPods dependencies
            script: |
-              cd ios && pod deintegrate
-              cat podfile
-              pod clean
-              rm -rf Pods Podfile.lock
-              pod install && ls
-              #deployment_target="12.0" # Replace with your desired deployment target version
-              #sed -i '' -e 's/"expo.jsEngine": "jsc"/"expo.jsEngine": "jsc",\n  "ios.deploymentTarget": "'$deployment_target'"/' Podfile.properties.json
-              #cat Podfile.properties.json
-
+              cd ios && pod install && ls && cat Podfile.properties.json && cat podfile && pod update && cd Pods
          - name: Increment build number
            script: |
               ls && cd ios
