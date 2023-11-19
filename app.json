@@ -20,7 +20,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.avh.nufm"
+      "bundleIdentifier": "com.avh.nufm",
+      "deploymentTarget": "12.0"
     },
     "android": {
       "adaptiveIcon": {
